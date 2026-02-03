@@ -2,54 +2,36 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ESSENCE OMNIVERSE | V900 SUPREME</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@900&family=Inter:wght@400;900&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESSENCE FORCE V1100</title>
     <style>
-        :root { --b: #000; --w: #fff; --gold: #b8952e; }
-        * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter'; }
-        body { background: var(--w); padding-top: 100px; }
-        header { height: 100px; width: 100%; position: fixed; top: 0; background: #fff; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 1px solid #eee; z-index: 10000; }
-        .logo { font-family: 'Cinzel'; font-size: 1.8rem; letter-spacing: 12px; font-weight: 900; cursor: pointer; }
-        .status-dot { width: 10px; height: 10px; background: red; border-radius: 50%; margin-top: 5px; }
-        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; padding: 20px 5%; }
-        .card { border: 1px solid #eee; padding: 15px; position: relative; }
-        .img-h { aspect-ratio: 1/1; background: #f9f9f9; display: flex; align-items: center; justify-content: center; }
-        .img-h img { width: 85%; }
-        .btn-buy { width: 100%; padding: 18px; background: #000; color: #fff; border: none; font-size: 0.7rem; font-weight: 900; letter-spacing: 3px; cursor: pointer; margin-top: 10px; }
-        .fab { position: fixed; bottom: 30px; right: 30px; width: 70px; height: 70px; background: #000; color: #fff; border-radius: 50%; display: none; align-items: center; justify-content: center; font-size: 2rem; z-index: 10001; }
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff; z-index: 20000; align-items: center; justify-content: center; flex-direction: column; padding: 30px; }
-        input { width: 100%; max-width: 450px; padding: 20px; margin-bottom: 15px; border: 1px solid #ddd; }
-        #error-console { position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(217, 4, 41, 0.9); color: #fff; font-size: 0.6rem; padding: 10px; z-index: 100000; display: none; }
+        body { font-family: sans-serif; text-align: center; padding: 20px; }
+        input { display: block; width: 90%; max-width: 300px; margin: 10px auto; padding: 10px; }
+        button { padding: 10px 20px; background: #000; color: #fff; border: none; cursor: pointer; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
+        .card { border: 1px solid #ddd; padding: 10px; }
+        .card img { width: 100%; }
     </style>
 </head>
 <body>
 
-    <div id="error-console"></div>
-
-    <header>
-        <div class="logo" id="boss-key">ESSENCE</div>
-        <div id="conn-status" style="font-size: 0.5rem; letter-spacing: 2px;">CONECTANDO A GOOGLE CLOUD...</div>
-    </header>
-
-    <main class="grid" id="main-grid"></main>
-
-    <div class="fab" id="add-btn" onclick="openM()">+</div>
-
-    <div class="modal" id="modal">
-        <h2 style="font-family:'Cinzel';">NUEVO PERFUME</h2><br>
-        <input id="in-n" placeholder="Nombre">
-        <input id="in-p" type="number" placeholder="Precio ($)">
-        <input id="in-i" placeholder="URL Imagen">
-        <button class="btn-buy" id="save-btn" onclick="save()">SUBIR A FIRESTORE</button>
-        <p onclick="closeM()" style="margin-top:20px; cursor:pointer; font-weight:900;">CANCELAR</p>
+    <h1>ESSENCE DEBUG MODE</h1>
+    <p>Si las reglas están en TRUE, este formulario debe escribir en Firebase sí o sí.</p>
+    
+    <div style="border: 2px solid #000; padding: 20px; display: inline-block;">
+        <input id="n" placeholder="Nombre">
+        <input id="p" type="number" placeholder="Precio">
+        <input id="i" placeholder="URL Imagen">
+        <button id="btn" onclick="subir()">FORZAR SUBIDA</button>
     </div>
+
+    <div class="grid" id="lista"></div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
-        import { getFirestore, collection, addDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
 
-        const firebaseConfig = {
+        const config = {
             apiKey: "AIzaSyBkNAkJXoyxn9rkGv1mG5GPh9ge4FUjp8Y",
             authDomain: "essencev2.firebaseapp.com",
             projectId: "essencev2",
@@ -58,63 +40,35 @@
             appId: "1:201967001425:web:0a072cd4d2048e7a0dbd70"
         };
 
-        try {
-            const app = initializeApp(firebaseConfig);
-            const db = getFirestore(app);
-            const col = collection(db, "catalogo_oficial");
+        const app = initializeApp(config);
+        const db = getFirestore(app);
+        const col = collection(db, "perfumes_test"); // Usamos una colección nueva para limpiar errores
 
-            document.getElementById('conn-status').innerText = "CONEXIÓN ESTABLECIDA";
-            document.getElementById('conn-status').style.color = "green";
-
-            onSnapshot(query(col, orderBy("t", "desc")), (snap) => {
-                const grid = document.getElementById('main-grid');
-                grid.innerHTML = "";
-                snap.forEach((d) => {
-                    const p = d.data();
-                    const div = document.createElement('div');
-                    div.className = 'card';
-                    div.innerHTML = `
-                        <div class="img-h"><img src="${p.i}"></div>
-                        <div style="font-weight:900; margin-top:10px;">${p.n}</div>
-                        <div style="font-weight:200;">$${p.p}.00</div>
-                        <button class="btn-buy" onclick="window.open('https://wa.me/50769028805?text=Quiero%20${p.n}')">COMPRAR</button>
-                    `;
-                    grid.appendChild(div);
-                });
-            }, (error) => {
-                showError("ERROR DE LECTURA: " + error.message);
+        // LEER
+        onSnapshot(col, (snap) => {
+            const lista = document.getElementById('lista');
+            lista.innerHTML = "";
+            snap.forEach(d => {
+                const p = d.data();
+                lista.innerHTML += `<div class="card"><img src="${p.i}"><h3>${p.n}</h3><p>$${p.p}</p></div>`;
             });
+        });
 
-            window.save = async () => {
-                const n = document.getElementById('in-n').value, p = document.getElementById('in-p').value, i = document.getElementById('in-i').value;
-                if(n && p && i) {
-                    try {
-                        await addDoc(col, { n, p: parseInt(p), i, t: new Date() });
-                        closeM();
-                    } catch (e) { showError("ERROR AL SUBIR: " + e.message); }
-                }
-            };
-        } catch (e) { showError("ERROR DE INICIALIZACIÓN: " + e.message); }
-
-        function showError(m) {
-            const c = document.getElementById('error-console');
-            c.innerText = m;
-            c.style.display = 'block';
-            console.error(m);
-        }
-
-        window.openM = () => document.getElementById('modal').style.display = 'flex';
-        window.closeM = () => document.getElementById('modal').style.display = 'none';
-
-        let cl = 0;
-        document.getElementById('boss-key').onclick = () => {
-            cl++;
-            if(cl >= 3) {
-                if(prompt("PASS:") === "542497") {
-                    document.getElementById('add-btn').style.display = 'flex';
-                    alert("MODO JEFE ACTIVADO");
-                }
-                cl = 0;
+        // ESCRIBIR
+        window.subir = async () => {
+            const btn = document.getElementById('btn');
+            try {
+                btn.innerText = "INTENTANDO...";
+                await addDoc(col, {
+                    n: document.getElementById('n').value,
+                    p: document.getElementById('p').value,
+                    i: document.getElementById('i').value
+                });
+                alert("¡LO LOGRAMOS! REVISA FIREBASE");
+                btn.innerText = "FORZAR SUBIDA";
+            } catch (e) {
+                alert("FIREBASE BLOQUEÓ EL ACCESO: " + e.message);
+                btn.innerText = "REINTENTAR";
             }
         };
     </script>
