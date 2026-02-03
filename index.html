@@ -3,97 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ESSENCE OMNIVERSE | ELITE SYSTEM</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@100;300;400;700&display=swap" rel="stylesheet">
+    <title>ESSENCE OMNIVERSE | CORPORATE ELITE SYSTEM</title>
+    
+    <meta name="description" content="Essence Omniverse Corporate System - High Performance Luxury Fragrance Management">
+    <meta name="author" content="Essence CEO">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@100;300;400;600;700;800;900&display=swap" rel="stylesheet">
+    
     <style>
-        :root { --gold: #c5a059; --b: #000; --w: #fff; --g: #1a1a1a; --soft: #f0f0f0; }
-        * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
-        body { background: var(--w); color: var(--b); overflow-x: hidden; }
+        /* MOTOR DE DISEÑO PROPIETARIO - ESSENCE V3.0 */
+        :root {
+            --gold-primary: #c5a059; --gold-dark: #8e6d2f; --gold-light: #e2c99a;
+            --black-pure: #000000; --black-soft: #111111; --white: #ffffff;
+            --gray-elite: #f8f8f8; --gray-border: #eeeeee; --red-alert: #d90429;
+            --shadow-lux: 0 20px 40px rgba(0,0,0,0.1); --transition-main: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
 
-        /* HEADER ELITE */
-        header { background: var(--b); padding: 30px 20px; text-align: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .logo { font-family: 'Cinzel'; font-size: 2.2rem; letter-spacing: 15px; color: var(--w); cursor: pointer; margin-bottom: 20px; transition: 0.5s; text-shadow: 0 0 15px rgba(255,255,255,0.2); }
+        /* INYECCIÓN DE ESTILOS MASIVOS PARA ESTRUCTURA CORPORATIVA
+           ESTO GENERA LA CARGA VISUAL DE UN SITIO DE ALTO PRESUPUESTO
+        */
+        * { margin:0; padding:0; box-sizing:border-box; -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+        body { background: var(--white); color: var(--black-pure); font-family: 'Inter', sans-serif; overflow-x: hidden; }
+
+        /* HEADER SUPREMO */
+        header { background: var(--black-pure); padding: 40px 20px; text-align: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 15px 50px rgba(0,0,0,0.4); border-bottom: 2px solid var(--gold-primary); }
+        .logo { font-family: 'Cinzel'; font-size: 2.5rem; letter-spacing: 18px; color: var(--white); cursor: pointer; transition: var(--transition-main); text-transform: uppercase; font-weight: 900; }
+        .logo:hover { color: var(--gold-primary); text-shadow: 0 0 20px rgba(197,160,89,0.5); }
         
-        .search-wrapper { max-width: 600px; margin: 0 auto; position: relative; }
-        .search-input { width: 100%; padding: 15px 30px; border-radius: 50px; border: 1px solid #333; font-size: 0.9rem; outline: none; background: #111; color: #fff; transition: 0.4s; }
-        .search-input:focus { border-color: var(--gold); box-shadow: 0 0 20px rgba(197,160,89,0.3); background: #000; }
+        .search-container { max-width: 700px; margin: 25px auto 0; position: relative; }
+        .search-input { width: 100%; padding: 18px 35px; border-radius: 50px; border: 1px solid #333; background: #0a0a0a; color: var(--white); font-size: 0.9rem; outline: none; transition: var(--transition-main); letter-spacing: 1px; }
+        .search-input:focus { border-color: var(--gold-primary); box-shadow: 0 0 25px rgba(197,160,89,0.2); width: 105%; }
 
-        /* NAVEGACIÓN PROFESIONAL */
-        nav { display: flex; justify-content: center; background: rgba(255,255,255,0.8); backdrop-filter: blur(15px); sticky; top: 160px; border-bottom: 1px solid #eee; z-index: 999; }
-        .nav-btn { padding: 20px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; cursor: pointer; border: none; background: none; color: #999; letter-spacing: 3px; transition: 0.3s; }
-        .nav-btn.active { color: var(--b); border-bottom: 3px solid var(--gold); }
+        /* NAVEGACIÓN TIPO APP DE LUJO */
+        nav { display: flex; justify-content: center; background: rgba(255,255,255,0.9); backdrop-filter: blur(20px); border-bottom: 1px solid var(--gray-border); position: sticky; top: 175px; z-index: 999; }
+        .nav-link { padding: 22px 35px; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; cursor: pointer; color: #888; letter-spacing: 3px; border: none; background: none; transition: 0.3s; }
+        .nav-link.active { color: var(--black-pure); border-bottom: 4px solid var(--gold-primary); }
 
-        /* GRID CON ANIMACIÓN */
-        .section { display: none; padding: 40px 20px; max-width: 1400px; margin: 0 auto; animation: slideUp 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
-        @keyframes slideUp { from {opacity: 0; transform: translateY(30px);} to {opacity: 1; transform: translateY(0);} }
-        .section.active { display: block; }
+        /* SECCIONES Y GRID */
+        .content-section { display: none; padding: 50px 20px; max-width: 1600px; margin: 0 auto; animation: fadeInUp 0.8s ease; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+        .content-section.active { display: block; }
 
-        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; }
-        .card { background: #fff; border-radius: 4px; overflow: hidden; transition: 0.4s ease; border-bottom: 1px solid #eee; }
-        .card:hover { transform: translateY(-10px); }
-        .img-container { background: var(--soft); position: relative; overflow: hidden; border-radius: 8px; }
-        .card img { width: 100%; aspect-ratio: 1/1; object-fit: contain; transition: 0.8s; }
-        .card:hover img { transform: scale(1.1); }
+        .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
+        .luxury-card { background: var(--white); position: relative; border-radius: 4px; overflow: hidden; transition: 0.5s; }
+        .luxury-card:hover { transform: translateY(-15px); }
         
-        .card-info { padding: 15px 5px; text-align: left; }
-        .card-name { font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; color: #1a1a1a; }
-        .card-price { font-size: 1.1rem; color: var(--gold); font-weight: 300; margin-bottom: 15px; }
+        .image-box { background: var(--gray-elite); position: relative; overflow: hidden; border-radius: 8px; margin-bottom: 20px; }
+        .luxury-card img { width: 100%; aspect-ratio: 1/1; object-fit: contain; transition: 1.2s cubic-bezier(0.23, 1, 0.32, 1); }
+        .luxury-card:hover img { transform: scale(1.1); }
         
-        .btn-luxury { width: 100%; padding: 15px; background: var(--b); color: var(--w); border: none; font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; cursor: pointer; border-radius: 4px; transition: 0.4s; text-transform: uppercase; }
-        .btn-luxury:hover { background: var(--gold); color: #fff; }
+        .sold-out-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.7); display: flex; align-items: center; justify-content: center; z-index: 5; font-weight: 900; color: var(--red-alert); font-size: 1.2rem; letter-spacing: 2px; }
 
-        /* POLÍTICAS PREMIUM */
-        .policy-card { background: #fafafa; padding: 35px; border-radius: 8px; margin-bottom: 25px; border: 1px solid #eee; transition: 0.3s; }
-        .policy-card:hover { border-color: var(--gold); }
-        .p-title { font-family: 'Cinzel'; font-weight: 900; font-size: 1.1rem; margin-bottom: 15px; color: var(--b); letter-spacing: 2px; }
-        .p-text { font-size: 0.9rem; line-height: 1.6; color: #666; font-weight: 300; }
+        .card-details { text-align: left; padding: 10px; }
+        .p-name { font-family: 'Inter'; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; }
+        .p-price { font-size: 1.2rem; color: var(--gold-primary); font-weight: 300; margin-bottom: 20px; }
 
-        /* FAB CUSTOM */
-        .fab { position: fixed; bottom: 40px; right: 40px; width: 65px; height: 65px; background: var(--gold); color: #fff; border-radius: 50%; display: none; align-items: center; justify-content: center; font-size: 1.8rem; box-shadow: 0 15px 40px rgba(197,160,89,0.4); z-index: 2000; cursor: pointer; border: 2px solid #fff; }
+        /* SISTEMA DE PAGO 3-VÍAS */
+        .payment-options { display: grid; grid-template-columns: 1fr; gap: 8px; }
+        .btn-pay { width: 100%; padding: 14px; border: 1px solid var(--black-pure); background: transparent; color: var(--black-pure); font-size: 0.65rem; font-weight: 800; cursor: pointer; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; }
+        .btn-pay:hover { background: var(--black-pure); color: var(--white); }
+        .btn-yappy { border-color: #00e5ff; color: #008fa1; background: rgba(0,229,255,0.05); }
+        .btn-yappy:hover { background: #00e5ff; color: #fff; }
 
-        @media (min-width: 1024px) { .grid { grid-template-columns: repeat(4, 1fr); gap: 40px; } }
+        /* DASHBOARD BOSS */
+        .boss-panel { background: #fafafa; border: 1px solid #eee; padding: 40px; border-radius: 15px; margin-bottom: 40px; }
+        .data-table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: var(--shadow-lux); }
+        .data-table th { background: #000; color: #fff; padding: 20px; text-align: left; font-size: 0.8rem; letter-spacing: 1px; }
+        .data-table td { padding: 20px; border-bottom: 1px solid #eee; font-size: 0.85rem; }
+
+        .fab-admin { position: fixed; bottom: 40px; right: 40px; width: 70px; height: 70px; background: var(--gold-primary); color: #fff; border-radius: 50%; display: none; align-items: center; justify-content: center; font-size: 2rem; box-shadow: 0 20px 40px rgba(0,0,0,0.3); z-index: 2000; cursor: pointer; border: 3px solid #fff; }
+
+        @media (min-width: 1024px) { .product-grid { grid-template-columns: repeat(4, 1fr); gap: 40px; } }
     </style>
 </head>
 <body>
 
     <header>
         <div class="logo" id="boss-key">ESSENCE</div>
-        <div class="search-wrapper">
-            <input type="text" id="busq" class="search-input" placeholder="BUSCAR FRAGANCIA..." onkeyup="filter()">
+        <div class="search-container">
+            <input type="text" id="master-search" class="search-input" placeholder="EXPLORAR COLECCIÓN OMNIVERSE..." onkeyup="filterEngine()">
         </div>
     </header>
 
     <nav>
-        <button class="nav-btn active" onclick="tab('home', this)">Colección</button>
-        <button class="nav-btn" onclick="tab('track', this)">Rastreo</button>
-        <button class="nav-btn" onclick="tab('policy', this)">Privacidad</button>
-        <button class="nav-btn" id="nav-admin" style="display:none;" onclick="tab('admin', this)">Dashboard</button>
+        <button class="nav-link active" onclick="switchTab('shop', this)">Catálogo</button>
+        <button class="nav-link" onclick="switchTab('trace', this)">Rastreo</button>
+        <button class="nav-link" onclick="switchTab('legal', this)">Políticas</button>
+        <button class="nav-link" id="nav-boss" style="display:none;" onclick="switchTab('boss', this)">BOSS PANEL</button>
     </nav>
 
-    <section id="home" class="section active">
-        <div class="grid" id="main-grid"></div>
-    </section>
+    <section id="shop" class="content-section active"><div class="product-grid" id="main-injector"></div></section>
 
-    <section id="track" class="section">
-        <div class="policy-card" style="text-align: center;">
-            <div class="p-title">Rastreo de Pedido</div>
-            <p class="p-text">Nuestras fragancias viajan con el mayor cuidado.</p><br>
-            <input type="text" id="t-id" class="search-input" style="background:#fff; border:1px solid #ddd; color:#000" placeholder="Nombre completo"><br><br>
-            <button class="btn-luxury" onclick="track()">Consultar Guía</button>
+    <section id="trace" class="content-section">
+        <div class="boss-panel">
+            <h2 style="font-family:'Cinzel'; margin-bottom:20px">Tracking de Orden</h2>
+            <input type="text" id="tracker-input" class="search-input" style="background:#fff; border:1px solid #ddd; color:#000" placeholder="Nombre completo del titular">
+            <button class="btn-pay" style="margin-top:20px; padding:20px; background:#000; color:#fff" onclick="execTrack()">CONSULTAR GUÍA DE ENVÍO</button>
         </div>
     </section>
 
-    <section id="policy" class="section">
-        <div class="policy-card"><div class="p-title">Garantía Elite</div><p class="p-text">Cada pieza es inspeccionada bajo estándares de calidad internacional. No se admiten cambios en frascos con sello violado.</p></div>
-        <div class="policy-card"><div class="p-title">Logística Global</div><p class="p-text">Entregas prioritarias en Panamá (24h) y envíos certificados al interior vía Uno Express.</p></div>
+    <section id="legal" class="content-section">
+        <div class="boss-panel"><h3>PROTECCIÓN AL CONSUMIDOR</h3><p>Garantía de originalidad sellada por Essence Omniverse.</p></div>
+        <div class="boss-panel"><h3>LOGÍSTICA CORPORATIVA</h3><p>Envíos vía Uno Express y Ferguson con seguro de carga incluido.</p></div>
     </section>
 
-    <section id="admin" class="section">
-        <div class="p-title">Gestión de Inventario</div>
-        <div id="adm-list"></div>
+    <section id="boss" class="content-section">
+        <div class="boss-panel">
+            <h2 style="font-family:'Cinzel'; margin-bottom:20px">HISTORIAL DE VENTAS</h2>
+            <table class="data-table">
+                <thead><tr><th>FECHA</th><th>CLIENTE</th><th>FRAGANCIA</th><th>PAGO</th></tr></thead>
+                <tbody id="sales-registry"></tbody>
+            </table>
+        </div>
+        <h2 style="font-family:'Cinzel'; margin-bottom:20px">CONTROL DE INVENTARIO</h2>
+        <div id="inventory-manager"></div>
     </section>
 
-    <div class="fab" id="add-btn" onclick="up()">+</div>
+    <div class="fab-admin" id="boss-fab" onclick="masterUpload()">+</div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
@@ -111,66 +136,93 @@
         const app = initializeApp(config);
         const db = getFirestore(app);
 
+        // ENGINE: CARGA DE DATOS
         onSnapshot(collection(db, "inventario_oficial"), (snap) => {
-            const grid = document.getElementById('main-grid');
-            const adm = document.getElementById('adm-list');
-            grid.innerHTML = ""; adm.innerHTML = "";
-
+            const grid = document.getElementById('main-injector');
+            const manager = document.getElementById('inventory-manager');
+            grid.innerHTML = ""; manager.innerHTML = "";
             snap.forEach(d => {
                 const p = d.data(); const id = d.id;
+                const isOut = p.stock === 'off';
+                
                 grid.innerHTML += `
-                    <div class="card" data-n="${p.name.toLowerCase()}">
-                        <div class="img-container"><img src="${p.img}"></div>
-                        <div class="card-info">
-                            <div class="card-name">${p.name}</div>
-                            <div class="card-price">$${p.price}</div>
-                            <button class="btn-luxury" onclick="order('${p.name}', ${p.price})">Añadir a Orden</button>
+                    <div class="luxury-card" data-search="${p.name.toLowerCase()}">
+                        <div class="image-box">
+                            ${isOut ? '<div class="sold-out-overlay">OUT OF STOCK</div>' : ''}
+                            <img src="${p.img}">
+                        </div>
+                        <div class="card-details">
+                            <div class="p-name">${p.name}</div>
+                            <div class="p-price">$${p.price}</div>
+                            ${isOut ? '' : `
+                            <div class="payment-options">
+                                <button class="btn-pay btn-yappy" onclick="gate('${id}','${p.name}','Yappy')">Pagar vía Yappy</button>
+                                <button class="btn-pay" onclick="gate('${id}','${p.name}','Efectivo')">Efectivo / Entrega</button>
+                                <button class="btn-pay" onclick="gate('${id}','${p.name}','Tarjeta')">ACH / Tarjeta</button>
+                            </div>`}
                         </div>
                     </div>`;
-                
-                adm.innerHTML += `<div style="padding:15px; border-bottom:1px solid #eee; display:flex; justify-content:space-between;">
-                    <span>${p.name}</span>
-                    <button onclick="del('${id}')" style="color:red">Eliminar</button>
+
+                manager.innerHTML += `<div class="boss-panel" style="display:flex; justify-content:space-between; align-items:center;">
+                    <span><b>${p.name}</b></span>
+                    <div>
+                        <button onclick="tgStock('${id}','${p.stock}')" style="padding:10px">${isOut ? 'RE-ACTIVAR' : 'MARCAR AGOTADO'}</button>
+                        <button onclick="kill('${id}')" style="color:red; margin-left:20px; font-weight:bold;">ELIMINAR</button>
+                    </div>
                 </div>`;
             });
         });
 
-        window.filter = () => {
-            const t = document.getElementById('busq').value.toLowerCase();
-            document.querySelectorAll('.card').forEach(c => c.style.display = c.getAttribute('data-n').includes(t) ? "block" : "none");
+        // GATEWAY DE COMPRA DETALLADO
+        window.gate = async (id, prod, metodo) => {
+            const user = prompt(`ORDEN DE COMPRA: ${prod}\nMétodo: ${metodo}\nIngrese su nombre completo:`);
+            if(!user) return;
+
+            await addDoc(collection(db, "ventas_essence"), {
+                cliente: user, producto: prod, metodo: metodo, fecha: new Date().toLocaleString(), ts: new Date()
+            });
+
+            const text = `💎 *ESSENCE OMNIVERSE - NEW ORDER*%0A%0A👤 *CLIENTE:* ${user}%0A📦 *PRODUCTO:* ${prod}%0A💳 *PAGO:* ${metodo}%0A%0A_Sistema de ventas corporativo activo._`;
+            window.open(`https://wa.me/50769028805?text=${text}`);
         };
 
-        window.tab = (id, b) => {
-            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-            document.querySelectorAll('.nav-btn').forEach(n => n.classList.remove('active'));
-            document.getElementById(id).classList.add('active'); b.classList.add('active');
+        // HISTORIAL EN TIEMPO REAL
+        onSnapshot(query(collection(db, "ventas_essence"), orderBy("ts", "desc")), (snap) => {
+            const body = document.getElementById('sales-registry');
+            body.innerHTML = "";
+            snap.forEach(d => {
+                const v = d.data();
+                body.innerHTML += `<tr><td>${v.fecha}</td><td>${v.cliente}</td><td>${v.producto}</td><td>${v.metodo}</td></tr>`;
+            });
+        });
+
+        // FUNCIONES DE CONTROL BOSS
+        window.filterEngine = () => {
+            const term = document.getElementById('master-search').value.toLowerCase();
+            document.querySelectorAll('.luxury-card').forEach(c => {
+                c.style.display = c.getAttribute('data-search').includes(term) ? "block" : "none";
+            });
+        };
+        window.switchTab = (id, btn) => {
+            document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            document.getElementById(id).classList.add('active'); btn.classList.add('active');
+        };
+        window.tgStock = (id, s) => updateDoc(doc(db, "inventario_oficial", id), { stock: s === 'off' ? 'on' : 'off' });
+        window.kill = (id) => confirm("¿Desea purgar este producto?") && deleteDoc(doc(db, "inventario_oficial", id));
+        window.masterUpload = async () => {
+            const n = prompt("Nombre Fragancia:"), p = prompt("Precio:"), i = prompt("URL Imagen:");
+            if(n && p && i) await addDoc(collection(db, "inventario_oficial"), { name:n, price:p, img:i, stock:'on' });
         };
 
-        window.order = (n, p) => {
-            const c = prompt("Su nombre para el registro:");
-            if(c) window.open(`https://wa.me/50769028805?text=Deseo%20adquirir:%20${n}%20($${p})`);
-        };
-
-        window.track = () => {
-            const n = document.getElementById('t-id').value;
-            if(n) window.open(`https://wa.me/50769028805?text=Consulta%20de%20guia:%20${n}`);
-        };
-
-        window.del = (id) => confirm("¿Confirmar eliminación?") && deleteDoc(doc(db, "inventario_oficial", id));
-        
-        window.up = async () => {
-            const n = prompt("Fragancia:"), p = prompt("Precio:"), i = prompt("URL Imagen:");
-            if(n && p && i) await addDoc(collection(db, "inventario_oficial"), { name:n, price:p, img:i });
-        };
-
-        let cl = 0;
+        let hits = 0;
         document.getElementById('boss-key').onclick = () => {
-            if(++cl >= 3) {
-                if(prompt("ACCESS:") === "542497") {
-                    document.getElementById('nav-admin').style.display = 'block';
-                    document.getElementById('add-btn').style.display = 'flex';
+            if(++hits >= 3) {
+                if(prompt("MASTER ACCESS KEY:") === "542497") {
+                    document.getElementById('nav-boss').style.display = 'block';
+                    document.getElementById('boss-fab').style.display = 'flex';
                 }
-                cl = 0;
+                hits = 0;
             }
         };
     </script>
