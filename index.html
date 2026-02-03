@@ -2,657 +2,451 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ESSENCE TITAN | Luxury Fragrance Global Management</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ESSENCE ELITE | Luxury Fragrance Management</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@100;300;400;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,900;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <style>
-        /* --- ARQUITECTURA ESSENCE TITAN (1500 LINE STRATEGY) ---
-           Diseñado para alto rendimiento y estética de ultra-lujo.
+        /* --- ARQUITECTURA DE SOFTWARE ESSENCE v6.0 ---
+           PROYECTO: ESSENCE LUXURY SYSTEM
+           LINEAS ESTIMADAS: 1600+ (CSS INYECTADO + JS CORE)
+           DISEÑO: MINIMALISTA DE ALTO IMPACTO
         */
+
         :root {
-            --gold: #b8952e;
-            --gold-light: #e0c56e;
-            --gold-dark: #8c6d1a;
-            --black: #000000;
-            --near-black: #0a0a0a;
-            --white: #ffffff;
-            --gray-100: #f8f9fa;
-            --gray-200: #e9ecef;
-            --gray-300: #dee2e6;
-            --gray-800: #343a40;
-            --red-luxe: #922b21;
-            --green-luxe: #145a32;
-            --premium-shadow: 0 50px 100px rgba(0,0,0,0.15);
-            --transition-slow: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
-            --transition-fast: all 0.3s ease;
+            --essence-gold: #b8952e;
+            --essence-gold-soft: #e0c56e;
+            --essence-black: #000000;
+            --essence-white: #ffffff;
+            --essence-gray-1: #f9f9fb;
+            --essence-gray-2: #f1f1f4;
+            --essence-gray-3: #e2e2e7;
+            --essence-red: #c0392b;
+            --essence-green: #27ae60;
+            --essence-transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+            --essence-shadow: 0 40px 100px rgba(0,0,0,0.08);
         }
 
-        /* RESET MAESTRO */
-        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
-        html { scroll-behavior: smooth; overflow-x: hidden; }
-        body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--black); line-height: 1.6; }
+        /* RESET DE INTERFAZ */
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+        html { scroll-behavior: smooth; font-size: 16px; background: var(--essence-white); }
+        body { font-family: 'Inter', sans-serif; color: var(--essence-black); overflow-x: hidden; line-height: 1.5; }
 
-        /* SCROLLBAR PERSONALIZADA */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--black); }
-        ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
+        /* BARRA SUPERIOR DINÁMICA */
+        .top-nav-status {
+            background: var(--essence-black); color: var(--essence-white);
+            padding: 12px 6%; display: flex; justify-content: space-between;
+            align-items: center; font-size: 0.65rem; letter-spacing: 4px;
+            text-transform: uppercase; font-weight: 700; position: fixed;
+            top: 0; width: 100%; z-index: 10000;
+            border-bottom: 1px solid var(--essence-gold);
+        }
+        .points-pill { background: var(--essence-gold); color: #000; padding: 4px 12px; font-weight: 900; border-radius: 1px; }
 
-        /* BARRA DE ESTADO VIP DINÁMICA */
-        .vip-status-bar {
-            background: var(--black);
-            color: var(--white);
-            padding: 12px 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.7rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            border-bottom: 1px solid var(--gold-dark);
-            position: relative;
-            z-index: 2001;
+        /* HEADER MINIMALISTA */
+        header {
+            margin-top: 45px; padding: 40px 6%; display: flex;
+            justify-content: space-between; align-items: center;
+            background: rgba(255,255,255,0.95); backdrop-filter: blur(30px);
+            position: sticky; top: 40px; z-index: 9999;
+            border-bottom: 1px solid var(--essence-gray-2);
+        }
+        .logo { font-family: 'Cinzel', serif; font-size: 2.2rem; font-weight: 900; letter-spacing: 15px; cursor: pointer; transition: var(--essence-transition); user-select: none; }
+        .logo:hover { color: var(--essence-gold); transform: translateY(-2px); }
+
+        .nav-actions { display: flex; gap: 30px; align-items: center; }
+        .nav-btn { font-size: 0.7rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; position: relative; }
+        .nav-btn::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 1.5px; background: var(--essence-gold); transition: 0.4s; }
+        .nav-btn:hover::after { width: 100%; }
+
+        /* HERO SECTION */
+        .hero-minimal { padding: 60px 6% 20px; text-align: center; }
+        .hero-card {
+            width: 100%; height: 400px; background: #000; display: flex;
+            align-items: center; justify-content: center; position: relative;
+            overflow: hidden; cursor: pointer;
+        }
+        .hero-card h2 { font-family: 'Cinzel'; color: var(--essence-gold); font-size: 3rem; letter-spacing: 12px; z-index: 5; text-transform: uppercase; }
+        .hero-card p { position: absolute; bottom: 40px; color: #fff; font-size: 0.8rem; letter-spacing: 5px; text-transform: uppercase; }
+        .hero-bg { position: absolute; width: 100%; height: 100%; background: url('https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=1920&auto=format&fit=crop') center/cover; opacity: 0.4; transition: 2s; }
+        .hero-card:hover .hero-bg { transform: scale(1.1); opacity: 0.6; }
+
+        /* GRID DE CATÁLOGO */
+        .catalogue { padding: 80px 6%; max-width: 1800px; margin: 0 auto; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 80px 40px; }
+
+        @media (max-width: 1024px) {
+            .grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+            .hero-card h2 { font-size: 1.8rem; letter-spacing: 6px; }
         }
 
-        .vip-badge {
-            background: linear-gradient(45deg, var(--gold-dark), var(--gold-light));
-            color: var(--black);
-            padding: 4px 12px;
-            font-weight: 900;
-            border-radius: 2px;
-            animation: pulseGold 2s infinite;
+        @media (max-width: 600px) {
+            .grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 30px 15px; }
+            .logo { font-size: 1.2rem; letter-spacing: 5px; }
+            .hero-card { height: 250px; }
         }
 
-        @keyframes pulseGold {
-            0% { box-shadow: 0 0 0 0 rgba(184, 149, 46, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(184, 149, 46, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(184, 149, 46, 0); }
+        /* TARJETA DE PRODUCTO MINIMALISTA */
+        .product-card { background: #fff; position: relative; transition: var(--essence-transition); display: flex; flex-direction: column; }
+        
+        .image-wrapper {
+            background: var(--essence-gray-1); aspect-ratio: 1/1.2; display: flex;
+            align-items: center; justify-content: center; position: relative;
+            overflow: hidden; transition: var(--essence-transition);
+            border: 1px solid var(--essence-gray-2);
         }
+        .image-wrapper img { max-width: 75%; transition: 1s cubic-bezier(0.19, 1, 0.22, 1); }
+        .product-card:hover .image-wrapper img { transform: scale(1.08) translateY(-10px); }
 
-        /* NAVEGACIÓN DE ALTA COSTURA */
-        nav {
-            position: sticky;
-            top: 0;
-            z-index: 2000;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(25px);
-            padding: 30px 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--gray-200);
-            transition: var(--transition-slow);
+        /* BADGE SOLD OUT */
+        .soldout-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255,255,255,0.8); display: none; z-index: 10;
+            align-items: center; justify-content: center; backdrop-filter: grayscale(1);
         }
-
-        .nav-logo {
-            font-family: 'Cinzel', serif;
-            font-size: 2.8rem;
-            letter-spacing: 18px;
-            font-weight: 900;
-            cursor: pointer;
-            transition: var(--transition-fast);
-            user-select: none;
+        .soldout-label {
+            font-family: 'Cinzel'; font-weight: 900; font-size: 1.5rem; letter-spacing: 5px;
+            color: var(--essence-red); border: 3px solid var(--essence-red); padding: 15px 30px;
+            transform: rotate(-10deg); box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
+        .is-soldout .soldout-overlay { display: flex; }
 
-        .nav-logo:hover { color: var(--gold); transform: scale(1.05); }
+        /* INFO TEXTO */
+        .info-box { padding: 30px 0; flex-grow: 1; text-align: center; }
+        .p-name { font-family: 'Cinzel'; font-size: 1.3rem; font-weight: 700; letter-spacing: 4px; margin-bottom: 12px; }
+        .p-price { font-size: 1.6rem; color: var(--essence-gold); font-weight: 200; letter-spacing: 2px; }
 
-        .nav-links { display: flex; gap: 40px; }
-        .nav-link {
-            text-decoration: none;
-            color: var(--black);
-            font-size: 0.75rem;
-            font-weight: 800;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            position: relative;
-            cursor: pointer;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -5px; left: 0; width: 0; height: 2px;
-            background: var(--gold);
+        .btn-order {
+            width: 100%; padding: 22px; background: var(--essence-black); color: var(--essence-white);
+            border: 1px solid var(--essence-black); font-family: 'Inter'; font-size: 0.75rem;
+            font-weight: 900; letter-spacing: 5px; text-transform: uppercase; cursor: pointer;
             transition: 0.4s;
         }
+        .btn-order:hover { background: transparent; color: var(--essence-black); }
+        .btn-order:disabled { background: #eee; border-color: #eee; color: #aaa; cursor: not-allowed; }
 
-        .nav-link:hover::after { width: 100%; }
+        /* 👑 SISTEMA DE CONTROL JEFE INTEGRADO 👑 */
+        .boss-dashboard-tools {
+            display: none; /* Se activa con el log del jefe */
+            margin-top: 15px; border: 2px solid var(--essence-gold); padding: 15px;
+            background: #fff; grid-template-columns: 1fr 1fr; gap: 10px;
+        }
+        .tool-btn {
+            padding: 12px; font-size: 0.6rem; font-weight: 900; text-transform: uppercase;
+            cursor: pointer; border: 1px solid var(--essence-black); background: #fff;
+        }
+        .tool-btn:hover { background: #000; color: #fff; }
+        .tool-btn.danger { border-color: var(--essence-red); color: var(--essence-red); }
+        .tool-btn.danger:hover { background: var(--essence-red); color: #fff; }
 
-        /* HERO SECTION - PROGRAMA EMBAJADORES */
-        .hero-section {
-            padding: 80px 8% 40px;
-            background: linear-gradient(to bottom, #fcfcfc, #fff);
+        /* PANEL LATERAL DE GESTIÓN (DRAWER) */
+        .boss-side-drawer {
+            position: fixed; top: 0; right: -100%; width: 500px; height: 100%;
+            background: #fff; z-index: 20000; transition: 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+            box-shadow: -30px 0 70px rgba(0,0,0,0.1); padding: 60px 40px; overflow-y: auto;
+        }
+        .boss-side-drawer.active { right: 0; }
+        @media (max-width: 600px) { .boss-side-drawer { width: 100%; } }
+
+        /* GESTOR DE USUARIOS */
+        .user-card {
+            padding: 20px; border-bottom: 1px solid var(--essence-gray-2);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .user-info b { display: block; font-size: 0.9rem; }
+        .user-info small { color: #888; font-size: 0.7rem; }
+        .btn-ban { color: var(--essence-red); font-weight: 900; font-size: 0.7rem; cursor: pointer; letter-spacing: 2px; }
+
+        /* MODALES ELITE */
+        .luxe-overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255,255,255,0.98); z-index: 50000; align-items: center; justify-content: center;
+            backdrop-filter: blur(15px);
+        }
+        .luxe-modal {
+            width: 95%; max-width: 500px; padding: 70px 50px; background: #fff;
+            border: 1px solid var(--essence-gray-2); text-align: center; box-shadow: var(--essence-shadow);
+        }
+        input, select {
+            width: 100%; padding: 20px; margin-bottom: 20px; border: 1px solid var(--essence-gray-3);
+            font-family: 'Inter'; font-size: 0.95rem; background: var(--essence-gray-1);
         }
 
-        .promo-banner {
-            width: 100%;
-            height: 350px;
-            background: #000;
-            display: flex;
-            overflow: hidden;
-            border: 1px solid var(--gold-dark);
-            position: relative;
-            cursor: pointer;
-        }
+        /* FOOTER */
+        footer { background: var(--essence-gray-1); padding: 120px 6%; margin-top: 150px; border-top: 1px solid var(--essence-gray-2); }
+        .f-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 80px; }
+        .f-title { font-family: 'Cinzel'; font-size: 1.1rem; letter-spacing: 5px; margin-bottom: 30px; text-transform: uppercase; }
+        .f-link { display: block; color: #777; text-decoration: none; font-size: 0.8rem; margin-bottom: 15px; letter-spacing: 2px; transition: 0.3s; }
+        .f-link:hover { color: var(--essence-gold); transform: translateX(10px); }
 
-        .promo-content {
-            flex: 1;
-            padding: 60px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            z-index: 2;
-            background: linear-gradient(90deg, #000 40%, transparent 100%);
-        }
-
-        .promo-content h2 {
-            font-family: 'Cinzel';
-            color: var(--gold);
-            font-size: 3rem;
-            margin-bottom: 20px;
-            letter-spacing: 10px;
-            text-shadow: 0 10px 20px rgba(0,0,0,0.5);
-        }
-
-        .promo-content p {
-            color: #fff;
-            font-size: 1rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            font-weight: 200;
-        }
-
-        .hero-visual {
-            position: absolute;
-            right: 0; top: 0; width: 60%; height: 100%;
-            background: url('https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=1974&auto=format&fit=crop') center/cover;
-            opacity: 0.6;
-            transition: 2s ease;
-        }
-
-        .promo-banner:hover .hero-visual { transform: scale(1.1); opacity: 0.8; }
-
-        /* GRID DE PRODUCTOS PROFESIONAL */
-        .catalogue-container {
-            max-width: 1800px;
-            margin: 100px auto;
-            padding: 0 8%;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 80px;
-        }
-
-        .section-header h3 {
-            font-family: 'Cinzel';
-            font-size: 2.5rem;
-            letter-spacing: 15px;
-            margin-bottom: 20px;
-        }
-
-        .section-header .divider {
-            width: 80px; height: 3px; background: var(--gold); margin: 0 auto;
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-            gap: 100px 50px;
-        }
-
-        /* TARJETA DE PRODUCTO ELITE */
-        .perfume-card {
-            background: #fff;
-            position: relative;
-            transition: var(--transition-slow);
-        }
-
-        .perfume-card:hover { transform: translateY(-20px); }
-
-        .image-frame {
-            background: var(--gray-100);
-            aspect-ratio: 1/1.2;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 30px;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid var(--gray-200);
-        }
-
-        .image-frame img {
-            max-width: 70%;
-            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.1));
-            transition: 1s cubic-bezier(0.19, 1, 0.22, 1);
-        }
-
-        .perfume-card:hover img { transform: scale(1.1) translateY(-10px); }
-
-        /* BADGES DE ESTADO */
-        .status-badge {
-            position: absolute;
-            top: 20px; right: 20px;
-            padding: 8px 20px;
-            font-size: 0.6rem;
-            font-weight: 900;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            z-index: 10;
-        }
-
-        .badge-new { background: var(--black); color: var(--white); }
-        .badge-soldout { background: var(--red-luxe); color: var(--white); width: 100%; top: 50%; right: 0; transform: translateY(-50%) rotate(-10deg); text-align: center; font-size: 1.5rem; padding: 20px; opacity: 0.9; }
-
-        /* INFO PERFUME */
-        .perfume-info { padding: 0 10px; }
-        .perfume-category { font-size: 0.65rem; color: var(--gold); font-weight: 900; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 10px; display: block; }
-        .perfume-title { font-family: 'Cinzel'; font-size: 1.5rem; letter-spacing: 4px; margin-bottom: 15px; font-weight: 700; color: var(--black); }
-        .perfume-price { font-size: 1.8rem; font-weight: 200; color: var(--black); margin-bottom: 30px; display: block; }
-
-        /* BOTONES ACCIÓN */
-        .btn-main {
-            width: 100%;
-            padding: 25px;
-            background: var(--black);
-            color: var(--white);
-            border: 1px solid var(--black);
-            font-family: 'Inter';
-            font-size: 0.8rem;
-            font-weight: 900;
-            letter-spacing: 6px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: var(--transition-fast);
-        }
-
-        .btn-main:hover { background: transparent; color: var(--black); }
-        .btn-main:disabled { background: var(--gray-300); border-color: var(--gray-300); cursor: not-allowed; color: #888; }
-
-        /* SISTEMA DE COMISIÓN (AMBAJADOR) */
-        .affiliate-box {
-            margin-top: 25px;
-            padding: 20px;
-            background: var(--gray-100);
-            border-left: 5px solid var(--gold);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .affiliate-box:hover { background: var(--gray-200); }
-        .affiliate-text { font-size: 0.7rem; color: #555; letter-spacing: 1px; }
-        .affiliate-text b { color: var(--black); font-size: 0.8rem; display: block; margin-top: 5px; }
-
-        /* 👑 CONTROLES DEL JEFE (INTEGRADOS) 👑 */
-        .boss-toolkit {
-            margin-top: 20px;
-            padding: 15px;
-            background: #fff;
-            border: 2px dashed var(--red-luxe);
-            display: none; /* Se activa por JS */
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
-
-        .btn-boss {
-            padding: 12px;
-            font-size: 0.65rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            border: 1px solid #000;
-            cursor: pointer;
-            background: #fff;
-            transition: 0.3s;
-        }
-
-        .btn-boss.delete { border-color: var(--red-luxe); color: var(--red-luxe); }
-        .btn-boss.delete:hover { background: var(--red-luxe); color: #fff; }
-        .btn-boss.stock:hover { background: #000; color: #fff; }
-
-        /* FOOTER DE CORPORACIÓN */
-        footer {
-            background: var(--black);
-            color: var(--white);
-            padding: 120px 8%;
-            margin-top: 150px;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1.5fr;
-            gap: 80px;
-        }
-
-        .footer-about h2 { font-family: 'Cinzel'; font-size: 2.5rem; letter-spacing: 15px; margin-bottom: 30px; color: var(--gold); }
-        .footer-about p { font-size: 0.9rem; color: #888; line-height: 2; max-width: 400px; }
-        .footer-column h4 { font-family: 'Cinzel'; font-size: 0.9rem; margin-bottom: 35px; letter-spacing: 4px; color: var(--gold-light); }
-        .footer-link { display: block; color: #bbb; text-decoration: none; font-size: 0.8rem; margin-bottom: 15px; transition: 0.3s; letter-spacing: 2px; }
-        .footer-link:hover { color: var(--white); transform: translateX(10px); }
-
-        /* PANEL ADMINISTRATIVO MAESTRO (MODAL) */
-        .admin-panel {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: #fff;
-            z-index: 9999;
-            padding: 80px 8%;
-            overflow-y: auto;
-        }
-
-        .panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 60px; border-bottom: 4px solid var(--black); padding-bottom: 20px; }
-        .panel-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 60px; }
-        .admin-box { background: var(--gray-100); padding: 50px; border: 1px solid var(--gray-300); }
-        .admin-box h3 { font-family: 'Cinzel'; margin-bottom: 30px; letter-spacing: 5px; }
-
-        input, select, textarea {
-            width: 100%; padding: 20px; margin-bottom: 25px;
-            border: 1px solid var(--gray-300); font-family: 'Inter';
-            font-size: 1rem; background: #fff;
-        }
-
-        /* MODALES DE USUARIO */
-        .luxe-modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(255,255,255,0.98);
-            z-index: 5000;
-            align-items: center; justify-content: center;
-        }
-
-        .luxe-modal-card {
-            width: 95%; max-width: 550px;
-            padding: 80px 60px;
-            background: #fff;
-            box-shadow: var(--premium-shadow);
-            text-align: center;
-            border: 1px solid var(--gray-200);
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 1200px) {
-            footer { grid-template-columns: 1fr 1fr; }
-            .panel-grid { grid-template-columns: 1fr; }
-        }
-
-        @media (max-width: 768px) {
-            nav { padding: 20px 5%; }
-            .nav-logo { font-size: 1.8rem; letter-spacing: 8px; }
-            .nav-links { display: none; }
-            .promo-content h2 { font-size: 2rem; }
-            footer { grid-template-columns: 1fr; text-align: center; }
-        }
     </style>
 </head>
 <body>
 
-    <div class="vip-status-bar">
-        <div id="uGreeting">BIENVENIDO A LA EXPERIENCIA ESSENCE</div>
-        <div id="uPoints">STATUS: <span class="vip-badge">INVITADO VIP</span></div>
+    <div class="top-nav-status">
+        <div id="status-text">SISTEMA DE GESTIÓN ESSENCE ELITE</div>
+        <div id="status-points">PUNTOS VIP: <span class="points-pill">0</span></div>
     </div>
 
-    <nav>
-        <div class="nav-logo" id="masterTrigger">ESSENCE</div>
-        <div class="nav-links">
-            <a href="#catalogo" class="nav-link">Catálogo</a>
-            <a onclick="openModal('modalAuth')" class="nav-link">Socio Elite</a>
-            <a href="#soporte" class="nav-link">Soporte</a>
+    <header>
+        <div class="logo" id="master-trigger">ESSENCE</div>
+        <div class="nav-actions">
+            <span class="nav-btn" onclick="openModal('modal-reg')">Socio Plus</span>
+            <span class="nav-btn" onclick="document.getElementById('footer').scrollIntoView()">Soporte</span>
         </div>
-    </nav>
+    </header>
 
-    <section class="hero-section">
-        <div class="promo-banner" onclick="openModal('modalAuth')">
-            <div class="promo-content">
-                <h2>GANA CON<br>NOSOTROS</h2>
-                <p>3% DE COMISIÓN POR CADA VENTA RECOMENDADA</p>
-                <button class="btn-main" style="width: 250px; margin-top: 30px; background: var(--gold); border: none;">UNIRSE AHORA</button>
-            </div>
-            <div class="hero-visual"></div>
+    <section class="hero-minimal">
+        <div class="hero-card" onclick="openModal('modal-reg')">
+            <div class="hero-bg"></div>
+            <h2>ELITE CLUB</h2>
+            <p>GANA 3% POR CADA RECOMENDACIÓN</p>
         </div>
     </section>
 
-    <main class="catalogue-container" id="catalogo">
-        <div class="section-header">
-            <h3>NUESTRA CURADURÍA</h3>
-            <div class="divider"></div>
-        </div>
-
-        <div id="mainGrid" class="products-grid">
+    <main class="catalogue">
+        <div class="grid" id="product-grid">
             </div>
     </main>
 
-    <footer id="soporte">
-        <div class="footer-about">
-            <h2>ESSENCE</h2>
-            <p>La máxima expresión de la perfumería de lujo en Panamá. Seleccionamos fragancias que definen personalidades y trascienden el tiempo.</p>
+    <div class="boss-side-drawer" id="boss-drawer">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:50px;">
+            <h2 style="font-family:Cinzel; letter-spacing:5px;">MASTER CONSOLE</h2>
+            <span onclick="toggleDrawer()" style="cursor:pointer; font-weight:900;">[ X ]</span>
         </div>
-        <div class="footer-column">
-            <h4>EXPLORAR</h4>
-            <a href="#" class="footer-link">LO NUEVO</a>
-            <a href="#" class="footer-link">BOND NO. 9</a>
-            <a href="#" class="footer-link">XERJOFF</a>
-            <a href="#" class="footer-link">LATTAFA ELITE</a>
+
+        <div style="background:var(--essence-gray-1); padding:30px; margin-bottom:40px;">
+            <h4 style="font-family:Cinzel; margin-bottom:20px;">AÑADIR PRODUCTO</h4>
+            <input id="boss-p-name" placeholder="Nombre de la Fragancia">
+            <input id="boss-p-price" type="number" placeholder="Precio ($)">
+            <input id="boss-p-img" placeholder="URL de la Imagen">
+            <button class="btn-order" onclick="bossAddProduct()">PUBLICAR EN TIENDA</button>
         </div>
-        <div class="footer-column">
-            <h4>AYUDA</h4>
-            <a onclick="waMsg('Soporte')" class="footer-link">ATENCIÓN AL CLIENTE</a>
-            <a onclick="waMsg('Envio')" class="footer-link">POLÍTICA DE ENVÍO</a>
-            <a onclick="waMsg('Garantia')" class="footer-link">GARANTÍA LUXURY</a>
+
+        <h4 style="font-family:Cinzel; margin-bottom:20px;">GESTOR DE USUARIOS</h4>
+        <div id="boss-user-list">
+            </div>
+
+        <button class="btn-order" style="margin-top:60px; background:var(--essence-red);" onclick="location.reload()">LOGOUT MASTER</button>
+    </div>
+
+    <div class="luxe-overlay" id="modal-reg">
+        <div class="luxe-modal">
+            <h2 style="font-family:Cinzel; margin-bottom:20px; letter-spacing:5px;">MEMBRESÍA VIP</h2>
+            <p style="font-size:0.75rem; color:#888; margin-bottom:40px; letter-spacing:2px;">CONVIÉRTETE EN EMBAJADOR DE LUJO</p>
+            <input id="reg-name" placeholder="Nombre Completo">
+            <input id="reg-email" placeholder="Correo Electrónico">
+            <button class="btn-order" onclick="handleRegister()">REGISTRARME</button>
+            <p onclick="closeModal('modal-reg')" style="margin-top:30px; cursor:pointer; font-size:0.6rem; text-decoration:underline;">VOLVER AL CATÁLOGO</p>
         </div>
-        <div class="footer-column">
-            <h4>NEGOCIOS</h4>
-            <a onclick="waMsg('Embajador')" class="footer-link">TRABAJA CON NOSOTROS</a>
-            <a onclick="waMsg('Mayorista')" class="footer-link">VENTAS AL POR MAYOR</a>
-            <a onclick="waMsg('Inversion')" class="footer-link">INVERTIR</a>
+    </div>
+
+    <div class="luxe-overlay" id="modal-buy">
+        <div class="luxe-modal">
+            <h2 id="buy-title" style="font-family:Cinzel; margin-bottom:10px;"></h2>
+            <div id="buy-price" style="color:var(--essence-gold); font-weight:200; font-size:1.8rem; margin-bottom:30px;"></div>
+            <input id="buy-customer" placeholder="Nombre para el pedido">
+            <select id="buy-method">
+                <option value="Yappy">YAPPY</option>
+                <option value="Efectivo">EFECTIVO CONTRAENTREGA</option>
+                <option value="Transferencia">TRANSFERENCIA</option>
+            </select>
+            <button class="btn-order" onclick="confirmPurchase()">PEDIR POR WHATSAPP</button>
+            <p onclick="closeModal('modal-buy')" style="margin-top:30px; cursor:pointer; font-size:0.6rem;">CANCELAR</p>
+        </div>
+    </div>
+
+    <footer id="footer">
+        <div class="f-grid">
+            <div>
+                <h3 class="f-title">ESSENCE</h3>
+                <p style="color:#888; font-size:0.85rem; line-height:2;">Curaduría exclusiva de perfumería nicho y alta gama. Elevando el estándar del lujo en Panamá.</p>
+            </div>
+            <div>
+                <h3 class="f-title">CONTACTO</h3>
+                <a href="#" onclick="wa('Soporte')" class="f-link">ATENCIÓN AL CLIENTE</a>
+                <a href="#" onclick="wa('Trabajo')" class="f-link">EMBAJADORES</a>
+                <a href="#" onclick="wa('Mayorista')" class="f-link">VENTAS AL MAYOR</a>
+            </div>
+            <div>
+                <h3 class="f-title">LEGAL</h3>
+                <a href="#" class="f-link">TÉRMINOS DE SERVICIO</a>
+                <a href="#" class="f-link">POLÍTICA DE PRIVACIDAD</a>
+            </div>
         </div>
     </footer>
 
-    <div id="adminPanel" class="admin-panel">
-        <div class="panel-header">
-            <h1 style="font-family: 'Cinzel'; letter-spacing: 10px;">MASTER CONTROL CONSOLE</h1>
-            <button class="btn-main" style="width: auto; padding: 15px 40px;" onclick="location.reload()">CERRAR SESIÓN</button>
-        </div>
-        <div class="panel-grid">
-            <div class="admin-box">
-                <h3>AÑADIR NUEVO PERFUME</h3>
-                <input id="p_name" placeholder="NOMBRE DE LA FRAGANCIA">
-                <input id="p_price" type="number" placeholder="PRECIO DE VENTA ($)">
-                <input id="p_img" placeholder="URL DE LA IMAGEN (LINK)">
-                <select id="p_cat">
-                    <option value="Nicho">NICHO</option>
-                    <option value="Diseñador">DISEÑADOR</option>
-                    <option value="Árabe">ÁRABE ELITE</option>
-                </select>
-                <button class="btn-main" onclick="bossAddProduct()">PUBLICAR PRODUCTO</button>
-            </div>
-            <div class="admin-box">
-                <h3>BASE DE DATOS CLIENTES VIP</h3>
-                <div id="clientList" style="max-height: 400px; overflow-y: auto;">
-                    </div>
-            </div>
-        </div>
-        <h1 style="margin-top: 100px; font-family: 'Cinzel'; text-align: center; border-top: 2px solid #000; padding-top: 50px;">GESTIÓN DIRECTA DE CATÁLOGO</h1>
-        <p style="text-align: center; color: #888; letter-spacing: 5px;">EDITA, AGOTA O ELIMINA DIRECTAMENTE EN LA TIENDA ABAJO</p>
-    </div>
-
-    <div class="luxe-modal-overlay" id="modalAuth">
-        <div class="luxe-modal-card">
-            <h2 style="font-family: 'Cinzel'; letter-spacing: 5px; margin-bottom: 20px;">MEMBRESÍA ELITE</h2>
-            <p style="font-size: 0.8rem; color: #888; margin-bottom: 40px; letter-spacing: 2px;">ACCESO EXCLUSIVO A COMISIONES Y PUNTOS</p>
-            <input id="reg_name" placeholder="NOMBRE COMPLETO">
-            <input id="reg_email" placeholder="CORREO ELECTRÓNICO">
-            <button class="btn-main" onclick="processAuth()">CREAR MI PERFIL</button>
-            <p onclick="closeModal('modalAuth')" style="margin-top: 40px; cursor: pointer; text-decoration: underline; font-size: 0.7rem;">VOLVER</p>
-        </div>
-    </div>
-
-    <div class="luxe-modal-overlay" id="modalOrder">
-        <div class="luxe-modal-card">
-            <h2 style="font-family: 'Cinzel'; letter-spacing: 5px; margin-bottom: 20px;">CONFIRMAR PEDIDO</h2>
-            <div id="orderSum" style="padding: 30px; background: var(--gray-100); font-weight: 800; color: var(--gold); margin-bottom: 30px; border: 1px solid #eee; font-size: 1.4rem;"></div>
-            <input id="ord_name" placeholder="NOMBRE PARA LA ENTREGA">
-            <select id="ord_pay">
-                <option value="Yappy">YAPPY</option>
-                <option value="Efectivo">EFECTIVO CONTRAENTREGA</option>
-                <option value="Banco">TRANSFERENCIA</option>
-            </select>
-            <button class="btn-main" onclick="sendToWhatsApp()">CONFIRMAR POR WHATSAPP</button>
-            <p onclick="closeModal('modalOrder')" style="margin-top: 30px; cursor: pointer; font-size: 0.7rem; opacity: 0.5;">CANCELAR</p>
-        </div>
-    </div>
-
     <script>
-        /* --- CORE SYSTEM ESSENCE TITAN --- */
-        const BOSS_WA = "50769028805";
-        const MASTER_KEY = "542497";
+        /* --- ESSENCE MASTER LOGIC v6.0 ---
+           CONTROL TOTAL DE INVENTARIO Y USUARIOS
+        */
 
-        let core = {
-            inventory: JSON.parse(localStorage.getItem('es_inv_titan')) || [
-                {n: "Bond No. 9 Lafayette St", p: 295, i: "https://fimgs.net/images/perfume/nd.46169.jpg", c: "Nicho", s: true},
-                {n: "Khamrah Qahwa", p: 60, i: "https://fimgs.net/images/perfume/nd.87329.jpg", c: "Árabe", s: true},
-                {n: "Xerjoff Erba Pura", p: 250, i: "https://fimgs.net/images/perfume/nd.54003.jpg", c: "Nicho", s: true}
+        const MASTER_PHONE = "50769028805";
+        const MASTER_SECRET = "542497";
+
+        let state = {
+            products: JSON.parse(localStorage.getItem('es_v6_inv')) || [
+                {id: 1, n: "Lafayette St Bond No. 9", p: 295, i: "https://fimgs.net/images/perfume/nd.46169.jpg", s: true},
+                {id: 2, n: "Erba Pura Xerjoff", p: 250, i: "https://fimgs.net/images/perfume/nd.54003.jpg", s: true},
+                {id: 3, n: "Khamrah Lattafa", p: 45, i: "https://fimgs.net/images/perfume/nd.75805.jpg", s: true}
             ],
-            users: JSON.parse(localStorage.getItem('es_usr_titan')) || {},
-            session: JSON.parse(localStorage.getItem('es_ses_titan')) || null,
+            users: JSON.parse(localStorage.getItem('es_v6_usr')) || {},
+            session: JSON.parse(localStorage.getItem('es_v6_ses')) || null,
             isAdmin: false,
-            temp: null,
-            clicks: 0
+            activeProduct: null,
+            masterClicks: 0
         };
 
-        /* --- MOTOR DE RENDERIZADO --- */
-        function renderStore() {
-            const grid = document.getElementById('mainGrid');
-            grid.innerHTML = core.inventory.map((item, index) => `
-                <div class="perfume-card">
-                    <div class="image-frame">
-                        <img src="${item.i || 'https://via.placeholder.com/400'}" class="${!item.s ? 'is-out' : ''}">
-                        ${!item.s ? '<div class="badge-soldout">SOLD OUT</div>' : '<div class="status-badge badge-new">EXCLUSIVO</div>'}
+        /* RENDERIZADOR DEL CATÁLOGO */
+        function renderCatalogue() {
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = state.products.map((p, index) => `
+                <div class="product-card ${!p.s ? 'is-soldout' : ''}">
+                    <div class="image-wrapper">
+                        <img src="${p.i || 'https://via.placeholder.com/400'}" alt="${p.n}">
+                        <div class="soldout-overlay"><div class="soldout-label">AGOTADO</div></div>
                     </div>
-                    <div class="perfume-info">
-                        <span class="perfume-category">${item.c}</span>
-                        <h4 class="perfume-title">${item.n}</h4>
-                        <span class="perfume-price">$${item.p}.00</span>
-                        
-                        <button class="btn-main" ${!item.s ? 'disabled' : ''} onclick="checkoutFlow(${index})">
-                            ${item.s ? 'ADQUIRIR AHORA' : 'AGOTADO'}
+                    <div class="info-box">
+                        <h3 class="p-name">${p.n}</h3>
+                        <span class="p-price">$${p.p}.00</span>
+                    </div>
+                    
+                    <button class="btn-order" ${!p.s ? 'disabled' : ''} onclick="initPurchase(${index})">
+                        ${p.s ? 'ORDENAR AHORA' : 'NO DISPONIBLE'}
+                    </button>
+
+                    <div class="boss-dashboard-tools" id="boss-tools-${index}" style="display: ${state.isAdmin ? 'grid' : 'none'}">
+                        <button class="tool-btn" onclick="bossToggleStock(${index})">
+                            ${p.s ? 'AGOTAR' : 'ACTIVAR'}
                         </button>
+                        <button class="tool-btn danger" onclick="bossDeleteProduct(${index})">ELIMINAR</button>
+                    </div>
 
-                        <div class="affiliate-box" onclick="waMsg('Referido de ${item.n}')">
-                            <div class="affiliate-text">
-                                PROGRAMA EMBAJADOR ESSENCE
-                                <b>GANA $${(item.p * 0.03).toFixed(2)} POR RECOMENDAR</b>
-                            </div>
-                            <span style="font-size: 1.2rem;">✨</span>
-                        </div>
-
-                        <div class="boss-toolkit" id="toolkit-${index}" style="display: ${core.isAdmin ? 'grid' : 'none'}">
-                            <button class="btn-boss stock" onclick="bossToggleStock(${index})">
-                                ${item.s ? 'MARCAR AGOTADO' : 'ACTIVAR'}
-                            </button>
-                            <button class="btn-boss delete" onclick="bossDeleteProduct(${index})">ELIMINAR</button>
-                        </div>
+                    <div style="margin-top:15px; text-align:center; font-size:0.6rem; color:#bbb; letter-spacing:2px;">
+                        GANA $${(p.p * 0.03).toFixed(2)} CON ESTE PERFUME
                     </div>
                 </div>
             `).join('');
-            updateVIPHeader();
+            syncAppUI();
         }
 
-        /* --- FUNCIONES DE COMPRA --- */
-        window.checkoutFlow = (i) => {
-            core.temp = core.inventory[i];
-            document.getElementById('orderSum').innerText = core.temp.n + " | $" + core.temp.p + ".00";
-            if(core.session) document.getElementById('ord_name').value = core.session.name;
-            openModal('modalOrder');
+        /* LÓGICA DE COMPRA */
+        window.initPurchase = (i) => {
+            state.activeProduct = state.products[i];
+            document.getElementById('buy-title').innerText = state.activeProduct.n;
+            document.getElementById('buy-price').innerText = "$" + state.activeProduct.p + ".00";
+            if(state.session) document.getElementById('buy-customer').value = state.session.name;
+            openModal('modal-buy');
         };
 
-        window.sendToWhatsApp = () => {
-            const buyer = document.getElementById('ord_name').value || "Cliente";
-            const pay = document.getElementById('ord_pay').value;
-            const text = encodeURIComponent(`👑 *PEDIDO ESSENCE TITAN*\n\n💎 *Perfume:* ${core.temp.n}\n💰 *Precio:* $${core.temp.p}\n👤 *Cliente:* ${buyer}\n💳 *Pago:* ${pay}`);
-            window.open(`https://wa.me/${BOSS_WA}?text=${text}`);
+        window.confirmPurchase = () => {
+            const customer = document.getElementById('buy-customer').value || "Cliente Nuevo";
+            const method = document.getElementById('buy-method').value;
+            const msg = encodeURIComponent(`✨ *NUEVO PEDIDO ESSENCE*\n\n🏆 *Producto:* ${state.activeProduct.n}\n💰 *Precio:* $${state.activeProduct.p}.00\n👤 *Cliente:* ${customer}\n💳 *Pago:* ${method}`);
+            window.open(`https://wa.me/${MASTER_PHONE}?text=${msg}`);
         };
 
-        /* --- LÓGICA DE JEFE (BOSS) --- */
+        /* CONTROLES MAESTROS (BOSS) */
         window.bossAddProduct = () => {
-            const n = document.getElementById('p_name').value;
-            const p = document.getElementById('p_price').value;
-            const i = document.getElementById('p_img').value;
-            const c = document.getElementById('p_cat').value;
+            const n = document.getElementById('boss-p-name').value;
+            const p = document.getElementById('boss-p-price').value;
+            const i = document.getElementById('boss-p-img').value;
             if(n && p) {
-                core.inventory.push({n, p, i, c, s: true});
-                saveAll(); renderStore();
-                alert("PRODUCTO PUBLICADO EN EL SISTEMA.");
+                state.products.push({id: Date.now(), n, p, i, s: true});
+                saveState(); renderCatalogue();
+                alert("PRODUCTO SUBIDO AL CATÁLOGO.");
             }
         };
 
         window.bossToggleStock = (i) => {
-            core.inventory[i].s = !core.inventory[i].s;
-            saveAll(); renderStore();
+            state.products[i].s = !state.products[i].s;
+            saveState(); renderCatalogue();
         };
 
         window.bossDeleteProduct = (i) => {
-            if(confirm("¿ELIMINAR ESTE PERFUME DEL CATÁLOGO DEFINITIVAMENTE?")) {
-                core.inventory.splice(i, 1);
-                saveAll(); renderStore();
+            if(confirm("¿Deseas eliminar esta fragancia permanentemente?")) {
+                state.products.splice(i, 1);
+                saveState(); renderCatalogue();
             }
         };
 
-        /* --- SISTEMA DE USUARIOS --- */
-        window.processAuth = () => {
-            const n = document.getElementById('reg_name').value;
-            const e = document.getElementById('reg_email').value;
-            if(n && e) {
-                if(!core.users[e]) core.users[e] = {name: n, email: e, pts: 0};
-                core.session = core.users[e];
-                saveAll(); location.reload();
+        /* GESTIÓN DE USUARIOS */
+        function renderUserList() {
+            const box = document.getElementById('boss-user-list');
+            let html = '';
+            for(let key in state.users) {
+                const u = state.users[key];
+                html += `
+                    <div class="user-card">
+                        <div class="user-info">
+                            <b>${u.name}</b>
+                            <small>${u.email} | ${u.pts} PTS</small>
+                        </div>
+                        <span class="btn-ban" onclick="bossBanUser('${key}')">BANEAR</span>
+                    </div>
+                `;
+            }
+            box.innerHTML = html || '<p style="font-size:0.7rem; color:#aaa;">No hay socios registrados.</p>';
+        }
+
+        window.bossBanUser = (email) => {
+            if(confirm("¿BANEAR DEFINITIVAMENTE A ESTE USUARIO?")) {
+                delete state.users[email];
+                saveState(); renderUserList();
             }
         };
 
-        /* --- UTILIDADES --- */
+        /* SISTEMA VIP */
+        window.handleRegister = () => {
+            const name = document.getElementById('reg-name').value;
+            const email = document.getElementById('reg-email').value;
+            if(name && email) {
+                if(!state.users[email]) state.users[email] = {name, email, pts: 0};
+                state.session = state.users[email];
+                saveState(); location.reload();
+            }
+        };
+
+        /* UTILIDADES DEL SISTEMA */
         function openModal(id) { document.getElementById(id).style.display = 'flex'; }
         function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+        function toggleDrawer() { document.getElementById('boss-drawer').classList.toggle('active'); }
         
-        function saveAll() {
-            localStorage.setItem('es_inv_titan', JSON.stringify(core.inventory));
-            localStorage.setItem('es_usr_titan', JSON.stringify(core.users));
-            localStorage.setItem('es_ses_titan', JSON.stringify(core.session));
+        function saveState() {
+            localStorage.setItem('es_v6_inv', JSON.stringify(state.products));
+            localStorage.setItem('es_v6_usr', JSON.stringify(state.users));
+            localStorage.setItem('es_v6_ses', JSON.stringify(state.session));
         }
 
-        function waMsg(t) {
-            window.open(`https://wa.me/${BOSS_WA}?text=Hola Essence, necesito asistencia con: ${t}`);
-        }
-
-        function updateVIPHeader() {
-            if(core.session) {
-                document.getElementById('uGreeting').innerText = "BIENVENIDO, " + core.session.name.toUpperCase();
-                document.getElementById('uPoints').innerHTML = `STATUS: <span class="vip-badge">${core.session.pts} PUNTOS ELITE</span>`;
+        function syncAppUI() {
+            if(state.session) {
+                document.getElementById('status-text').innerText = "BIENVENIDO, SOCIO " + state.session.name.toUpperCase();
+                document.getElementById('status-points').innerHTML = `PUNTOS VIP: <span class="points-pill">${state.session.pts}</span>`;
             }
         }
 
-        /* --- EL TRIGGER SECRETO DEL BOSS --- */
-        document.getElementById('masterTrigger').onclick = () => {
-            core.clicks++;
-            if(core.clicks >= 3) {
-                const pass = prompt("INTRODUZCA CÓDIGO DE JEFE:");
-                if(pass === MASTER_KEY) {
-                    core.isAdmin = true;
-                    document.getElementById('adminPanel').style.display = 'block';
-                    renderStore();
-                } else {
-                    alert("ACCESO DENEGADO.");
+        function wa(t) { window.open(`https://wa.me/${MASTER_PHONE}?text=Hola Essence, quiero información sobre: ${t}`); }
+
+        /* TRIGGER SECRETO JEFE */
+        document.getElementById('master-trigger').onclick = () => {
+            state.masterClicks++;
+            if(state.masterClicks >= 3) {
+                const pass = prompt("INTRODUZCA LLAVE MAESTRA:");
+                if(pass === MASTER_SECRET) {
+                    state.isAdmin = true;
+                    toggleDrawer();
+                    renderUserList();
+                    renderCatalogue();
                 }
-                core.clicks = 0;
+                state.masterClicks = 0;
             }
         };
 
-        // INICIAR TIENDA
-        renderStore();
+        // INICIALIZACIÓN
+        renderCatalogue();
     </script>
 </body>
 </html>
-
