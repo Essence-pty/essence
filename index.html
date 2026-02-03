@@ -3,399 +3,387 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ESSENCE OMNIVERSE | CORPORATE SYSTEM V30</title>
+    <title>ESSENCE OMNIVERSE | CORPORATE SYSTEM</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800;900&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <style>
-        /* ESSENCE OMNIVERSE - SYSTEM ARCHITECTURE V30.0.1
-           COLOR PALETTE: BLACK, WHITE, PURE GRAY
-           LOGIC: EXTENDED RECURSIVE ENGINE
-        */
+        /* ============================================================================
+           ESSENCE TITAN V40 - CORE ARCHITECTURE
+           DESIGN: ULTRA-MINIMALIST / HIGH-CONTRAST
+           ============================================================================ */
 
         :root {
-            --e-black: #000000;
-            --e-white: #ffffff;
-            --e-gray-10: #fcfcfc;
-            --e-gray-20: #f5f5f7;
-            --e-gray-30: #e5e5e7;
-            --e-gray-40: #d2d2d7;
-            --e-gray-80: #1d1d1f;
-            --e-gold: #b8952e;
-            --e-red: #ff3b30;
-            --e-shadow: 0 20px 40px rgba(0,0,0,0.05);
-            --e-transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            --b: #000000;
+            --w: #ffffff;
+            --g1: #f9f9f9;
+            --g2: #eeeeee;
+            --g3: #d1d1d1;
+            --accent: #b8952e;
+            --error: #ff3b30;
+            --success: #34c759;
+            --t: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* NUCLEO DE ESTILO */
-        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; -webkit-tap-highlight-color: transparent; }
-        body { font-family: 'Inter', sans-serif; background: var(--e-white); color: var(--e-black); line-height: 1.5; overflow-x: hidden; }
-
-        /* BARRA DE ESTADO SUPERIOR (ELITE) */
-        .status-header {
-            height: 30px; background: var(--e-black); color: #fff; font-size: 0.6rem;
-            display: flex; align-items: center; justify-content: center; letter-spacing: 4px; font-weight: 800;
+        /* RESET & BASE */
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        body { 
+            font-family: 'Inter', sans-serif; background: var(--w); color: var(--b); 
+            line-height: 1.6; overflow-x: hidden;
         }
 
-        /* NAVEGACIÓN PRINCIPAL */
-        nav.essence-nav {
-            height: 90px; background: rgba(255,255,255,0.9); backdrop-filter: saturate(180%) blur(20px);
+        /* HEADER CORPORATIVO (ARRIBA A LA DERECHA) */
+        header.main-nav {
+            height: 80px; width: 100%; position: fixed; top: 0; left: 0;
+            background: rgba(255,255,255,0.95); backdrop-filter: blur(15px);
             display: flex; justify-content: space-between; align-items: center;
-            padding: 0 6%; border-bottom: 1px solid var(--e-gray-20);
-            position: sticky; top: 0; z-index: 10000;
+            padding: 0 6%; border-bottom: 1px solid var(--g2); z-index: 10000;
         }
-        .nav-logo { font-family: 'Cinzel'; font-size: 1.8rem; font-weight: 900; letter-spacing: 12px; cursor: pointer; }
+        .brand-logo { 
+            font-family: 'Cinzel'; font-size: 1.6rem; font-weight: 900; 
+            letter-spacing: 10px; cursor: pointer; user-select: none;
+        }
 
-        .nav-actions { display: flex; align-items: center; gap: 25px; }
-        .action-link { 
-            font-size: 0.65rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
-            cursor: pointer; border: 1px solid var(--e-black); padding: 12px 24px; transition: var(--e-transition);
+        .auth-cluster { display: flex; align-items: center; gap: 15px; }
+        .nav-btn {
+            font-size: 0.65rem; font-weight: 900; letter-spacing: 2px; text-transform: uppercase;
+            padding: 12px 20px; border: 1px solid var(--b); background: transparent;
+            cursor: pointer; transition: var(--t);
         }
-        .action-link:hover { background: var(--e-black); color: #fff; }
-        .action-link.active { background: var(--e-black); color: #fff; }
+        .nav-btn:hover { background: var(--b); color: var(--w); }
+        .nav-btn.black { background: var(--b); color: var(--w); }
 
-        /* HERO - PUBLICIDAD DINÁMICA */
-        .hero-viewport {
-            height: 60vh; background: var(--e-black); position: relative; display: flex;
-            align-items: center; justify-content: center; overflow: hidden;
+        /* BARRA DE ANUNCIOS SOCIO 3% */
+        .promo-bar {
+            margin-top: 80px; background: var(--b); color: var(--w);
+            padding: 12px 0; text-align: center; font-size: 0.65rem;
+            font-weight: 800; letter-spacing: 4px; text-transform: uppercase;
         }
-        .hero-img { 
-            position: absolute; width: 100%; height: 100%; object-fit: cover; 
-            opacity: 0.4; filter: grayscale(1); transition: 10s linear;
-        }
-        .hero-viewport:hover .hero-img { transform: scale(1.1); }
-        .hero-overlay { z-index: 10; text-align: center; color: #fff; padding: 0 10%; }
-        .hero-overlay h1 { font-family: 'Cinzel'; font-size: 3.5rem; letter-spacing: 25px; margin-bottom: 20px; }
-        .hero-overlay p { font-size: 0.8rem; letter-spacing: 10px; font-weight: 200; opacity: 0.8; }
 
-        /* PROGRAMA DE SOCIOS (3% COMISIÓN) */
-        .affiliate-section {
-            padding: 100px 6%; background: var(--e-gray-10); border-bottom: 1px solid var(--e-gray-20);
-            text-align: center; display: flex; flex-direction: column; align-items: center;
+        /* FILTROS DE CATEGORÍA (CERO BLOQUEOS) */
+        .filter-strip {
+            position: sticky; top: 80px; background: var(--w); z-index: 999;
+            display: flex; justify-content: center; gap: 10px; padding: 25px 0;
+            border-bottom: 1px solid var(--g1);
         }
-        .affiliate-section h2 { font-family: 'Cinzel'; font-size: 2.2rem; letter-spacing: 10px; margin-bottom: 30px; }
-        .affiliate-section p { max-width: 800px; font-size: 1rem; color: #666; margin-bottom: 50px; font-weight: 300; }
-        .perks-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-bottom: 60px; width: 100%; }
-        .perk-card { padding: 40px; border: 1px solid var(--e-gray-30); background: #fff; }
-        .perk-card b { display: block; font-size: 2rem; font-family: 'Cinzel'; color: var(--e-gold); margin-bottom: 10px; }
-        .perk-card span { font-size: 0.65rem; font-weight: 900; letter-spacing: 3px; }
-
-        /* MOTOR DE FILTRADO */
-        .filter-engine {
-            padding: 40px 6%; display: flex; justify-content: center; gap: 15px;
-            background: #fff; position: sticky; top: 90px; z-index: 9999;
-            border-bottom: 1px solid var(--e-gray-20);
-        }
-        .filter-node {
-            padding: 12px 30px; font-size: 0.6rem; font-weight: 900; letter-spacing: 3px;
-            text-transform: uppercase; border: 1px solid var(--e-gray-30); background: #fff;
+        .f-node {
+            padding: 10px 25px; border: 1px solid var(--g2); font-size: 0.6rem;
+            font-weight: 900; letter-spacing: 2px; text-transform: uppercase;
             cursor: pointer; transition: 0.3s;
         }
-        .filter-node.active { background: var(--e-black); color: #fff; border-color: var(--e-black); }
+        .f-node.active { background: var(--b); color: var(--w); border-color: var(--b); }
 
-        /* GRILLA DE PRODUCTOS */
-        .product-omni-grid {
-            padding: 80px 6%; display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 80px 40px; max-width: 1800px; margin: 0 auto;
+        /* GRILLA DE PRODUCTOS MAESTRA */
+        .catalog-grid {
+            padding: 50px 6%; display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 60px 30px; max-width: 1600px; margin: 0 auto;
         }
 
-        .e-card { position: relative; display: flex; flex-direction: column; transition: var(--e-transition); }
-        .e-visual {
-            background: var(--e-gray-20); aspect-ratio: 1/1.2; display: flex;
+        .p-card { 
+            position: relative; display: flex; flex-direction: column;
+            transition: var(--t);
+        }
+        .p-card:hover { transform: translateY(-5px); }
+
+        .p-visual {
+            background: var(--g1); aspect-ratio: 1/1.2; display: flex;
             align-items: center; justify-content: center; position: relative;
-            overflow: hidden; border: 1px solid var(--e-gray-30);
+            overflow: hidden; border: 1px solid var(--g2);
         }
-        .e-visual img { width: 75%; transition: 1s cubic-bezier(0.19, 1, 0.22, 1); }
-        .e-card:hover .e-visual img { transform: scale(1.08) translateY(-10px); }
+        .p-visual img { width: 80%; transition: 1s cubic-bezier(0.19, 1, 0.22, 1); }
+        .p-card:hover .p-visual img { transform: scale(1.1); }
 
-        .sold-out-mask {
+        /* OVERLAY AGOTADO */
+        .out-mask {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(255,255,255,0.92); z-index: 50; display: none;
-            align-items: center; justify-content: center; backdrop-filter: blur(8px);
+            background: rgba(255,255,255,0.9); display: none;
+            align-items: center; justify-content: center; z-index: 10;
         }
-        .sold-out-mask b { font-family: 'Cinzel'; font-size: 2rem; border: 4px solid #000; padding: 15px 30px; transform: rotate(-8deg); }
-        .is-exhausted .sold-out-mask { display: flex; }
-
-        .e-meta { padding: 30px 0; text-align: center; }
-        .e-meta .cat { font-size: 0.6rem; color: var(--e-gold); font-weight: 900; letter-spacing: 5px; margin-bottom: 12px; display: block; }
-        .e-meta .name { font-family: 'Cinzel'; font-size: 1.25rem; font-weight: 800; letter-spacing: 2px; margin-bottom: 10px; }
-        .e-meta .price { font-size: 1.4rem; font-weight: 200; letter-spacing: 1px; color: #333; }
-
-        .btn-essence {
-            width: 100%; padding: 22px; background: var(--e-black); color: #fff;
-            border: none; font-size: 0.75rem; font-weight: 900; letter-spacing: 5px;
-            cursor: pointer; transition: 0.3s; text-transform: uppercase;
+        .out-mask b { 
+            font-family: 'Cinzel'; font-size: 1.5rem; border: 3px solid #000;
+            padding: 10px 20px; transform: rotate(-10deg);
         }
-        .btn-essence:hover { background: #333; }
-        .btn-essence:disabled { background: var(--e-gray-40); color: #888; cursor: not-allowed; }
+        .is-out .out-mask { display: flex; }
 
-        /* PANEL DE CONTROL JEFE (INTEGRADO) */
-        .boss-hud-system {
+        .p-meta { padding: 20px 0; text-align: left; }
+        .p-meta .cat { font-size: 0.55rem; color: var(--accent); font-weight: 900; letter-spacing: 3px; margin-bottom: 8px; display: block; }
+        .p-meta .name { font-family: 'Cinzel'; font-size: 1rem; font-weight: 700; margin-bottom: 10px; }
+        .p-meta .price { font-size: 1.1rem; font-weight: 200; }
+
+        .btn-order {
+            width: 100%; padding: 18px; background: var(--b); color: var(--w);
+            border: none; font-size: 0.7rem; font-weight: 900; letter-spacing: 4px;
+            cursor: pointer; text-transform: uppercase; transition: 0.3s;
+        }
+        .btn-order:disabled { background: var(--g3); color: #888; cursor: not-allowed; }
+
+        /* ============================================================================
+           HUD DE CONTROL JEFE (VISIBILIDAD CORREGIDA)
+           ============================================================================ */
+        .boss-hud {
             display: none; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px;
-            padding: 10px; background: var(--e-gray-10); border: 1px dashed var(--e-black);
+            padding: 15px; border: 1px solid var(--b); background: var(--g1);
+            animation: slideIn 0.4s ease forwards;
         }
-        .btn-boss-action {
-            padding: 12px; font-size: 0.55rem; font-weight: 900; letter-spacing: 1px;
-            background: #fff; border: 1px solid var(--e-black); cursor: pointer; text-transform: uppercase;
+        .btn-boss {
+            padding: 10px; font-size: 0.55rem; font-weight: 900; cursor: pointer;
+            background: #fff; border: 1px solid var(--b); text-transform: uppercase;
         }
-        .btn-boss-action.delete { color: var(--e-red); border-color: var(--e-red); }
+        .btn-boss.del { border-color: var(--error); color: var(--error); }
+        .btn-boss.del:hover { background: var(--error); color: #fff; }
 
-        /* SISTEMA DE MODALES (CAPA 100) */
+        /* MODALES ELITE */
         .omni-modal {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(255,255,255,0.99); z-index: 50000; align-items: center; justify-content: center;
+            background: rgba(255,255,255,0.98); z-index: 50000; align-items: center; justify-content: center;
         }
-        .modal-box { width: 90%; max-width: 500px; padding: 60px; text-align: center; border: 1px solid var(--e-gray-20); box-shadow: var(--e-shadow); }
-        .modal-box h2 { font-family: 'Cinzel'; font-size: 2rem; letter-spacing: 8px; margin-bottom: 30px; }
+        .modal-inner {
+            width: 90%; max-width: 450px; padding: 50px; background: #fff;
+            border: 1px solid var(--g2); text-align: center;
+        }
+        .modal-inner h2 { font-family: 'Cinzel'; font-size: 1.5rem; letter-spacing: 8px; margin-bottom: 30px; }
+        
         .omni-input {
-            width: 100%; padding: 20px; margin-bottom: 15px; border: 1px solid var(--e-gray-30);
-            background: var(--e-gray-10); font-family: 'Inter'; font-size: 0.9rem;
+            width: 100%; padding: 18px; margin-bottom: 15px; border: 1px solid var(--g3);
+            background: var(--g1); font-family: 'Inter'; font-size: 0.9rem;
+        }
+        .omni-select {
+            width: 100%; padding: 18px; margin-bottom: 30px; border: 1px solid var(--g3);
+            background: var(--g1); font-weight: 900;
         }
 
-        /* MOBILE OPTIMIZATION */
+        /* RESPONSIVE */
         @media (max-width: 768px) {
-            .nav-logo { font-size: 1.3rem; letter-spacing: 6px; }
-            .nav-actions { display: none; }
-            .hero-viewport { height: 400px; }
-            .hero-overlay h1 { font-size: 1.8rem; letter-spacing: 10px; }
-            .perks-grid { grid-template-columns: 1fr; gap: 15px; }
-            .product-omni-grid { grid-template-columns: repeat(2, 1fr); gap: 25px 15px; padding: 40px 4%; }
-            .e-meta .name { font-size: 0.9rem; letter-spacing: 1px; }
-            .e-meta .price { font-size: 1.1rem; }
-            .btn-essence { padding: 16px; font-size: 0.6rem; letter-spacing: 3px; }
-            .filter-engine { top: 90px; padding: 20px 4%; gap: 8px; overflow-x: auto; justify-content: flex-start; }
-            .filter-node { padding: 10px 15px; font-size: 0.5rem; white-space: nowrap; }
+            .catalog-grid { grid-template-columns: repeat(2, 1fr); gap: 20px 10px; padding: 30px 4%; }
+            .brand-logo { font-size: 1.1rem; letter-spacing: 5px; }
+            .nav-btn { padding: 8px 12px; font-size: 0.55rem; }
+            .p-meta .name { font-size: 0.75rem; height: 35px; overflow: hidden; }
+            .p-meta .price { font-size: 0.9rem; }
+            .btn-order { padding: 14px; font-size: 0.6rem; letter-spacing: 2px; }
+            .filter-strip { padding: 15px 4%; overflow-x: auto; justify-content: flex-start; }
+            .f-node { padding: 8px 15px; white-space: nowrap; }
         }
 
-        footer { background: var(--e-black); color: #fff; padding: 100px 6%; text-align: center; }
-        .footer-logo { font-family: 'Cinzel'; font-size: 2rem; letter-spacing: 20px; margin-bottom: 30px; }
+        @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        footer { background: var(--b); color: #fff; padding: 60px 6%; text-align: center; margin-top: 100px; }
     </style>
 </head>
 <body>
 
-    <div class="status-header">ENVÍOS PRIORITARIOS A TODO PANAMÁ</div>
-
-    <header class="essence-nav">
-        <div class="nav-logo" id="admin-trigger">ESSENCE</div>
-        <div class="nav-actions">
-            <button class="action-link" onclick="openOmniModal('modal-auth')">Mi Cuenta</button>
-            <button class="action-link active" onclick="openOmniModal('modal-auth')">Socio Essence</button>
+    <header class="main-nav">
+        <div class="brand-logo" id="key-trigger">ESSENCE</div>
+        <div class="auth-cluster">
+            <button class="nav-btn" onclick="openOmni('m-auth')">Entrar</button>
+            <button class="nav-btn black" onclick="openOmni('m-auth')">Socio 3%</button>
         </div>
     </header>
 
-    <section class="hero-viewport">
-        <img class="hero-img" src="https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=2000&auto=format&fit=crop">
-        <div class="hero-overlay">
-            <h1>OMNIVERSE</h1>
-            <p>EL ESTÁNDAR DE LA PERFUMERÍA NICHO</p>
-        </div>
-    </section>
+    <div class="promo-bar">PROGRAMA DE SOCIOS: GANA 3% POR REFERIDO</div>
 
-    <section class="affiliate-section">
-        <h2>PROGRAMA DE SOCIOS</h2>
-        <p>Gana un 3% de comisión neta por cada referido. Sin límites, sin complicaciones. Únete a la red comercial de Essence y monetiza tu pasión por las fragancias.</p>
-        <div class="perks-grid">
-            <div class="perk-card"><b>3%</b><span>COMISIÓN DIRECTA</span></div>
-            <div class="perk-card"><b>VIP</b><span>ACCESO PRE-SALE</span></div>
-            <div class="perk-card"><b>$0</b><span>INVERSIÓN INICIAL</span></div>
-        </div>
-        <button class="btn-essence" style="width:auto; padding:20px 60px;" onclick="openOmniModal('modal-auth')">SOLICITAR AFILIACIÓN COMO SOCIO</button>
-    </section>
-
-    <nav class="filter-engine">
-        <div class="filter-node active" onclick="setOmniFilter('ALL', this)">Todo</div>
-        <div class="filter-node" onclick="setOmniFilter('NICHO', this)">Nicho</div>
-        <div class="filter-node" onclick="setOmniFilter('DESIGNER', this)">Diseñador</div>
-        <div class="filter-node" onclick="setOmniFilter('ARABE', this)">Árabe</div>
+    <nav class="filter-strip">
+        <div class="f-node active" onclick="applyFilter('ALL', this)">Todo</div>
+        <div class="f-node" onclick="applyFilter('NICHO', this)">Nicho</div>
+        <div class="f-node" onclick="applyFilter('DESIGNER', this)">Diseñador</div>
+        <div class="f-node" onclick="applyFilter('ARABE', this)">Árabe</div>
     </nav>
 
-    <main class="product-omni-grid" id="main-render-engine">
-        </main>
+    <main class="catalog-grid" id="main-grid"></main>
 
-    <div class="omni-modal" id="modal-boss">
-        <div class="modal-box">
-            <h2>SISTEMA CARGO</h2>
-            <input id="boss-n" class="omni-input" placeholder="Nombre de la Fragancia">
-            <input id="boss-p" type="number" class="omni-input" placeholder="Precio ($ USD)">
-            <input id="boss-i" class="omni-input" placeholder="URL de la Imagen">
-            <select id="boss-c" class="omni-input" style="height:60px;">
+    <div class="omni-modal" id="m-boss">
+        <div class="modal-inner">
+            <h2>MASTER CARGO</h2>
+            <input id="in-n" class="omni-input" placeholder="Nombre Fragancia">
+            <input id="in-p" type="number" class="omni-input" placeholder="Precio ($)">
+            <input id="in-i" class="omni-input" placeholder="URL Imagen">
+            <select id="in-c" class="omni-select">
                 <option value="NICHO">NICHO</option>
                 <option value="DESIGNER">DISEÑADOR</option>
-                <option value="ARABE">ARABE</option>
+                <option value="ARABE">ÁRABE</option>
             </select>
-            <button class="btn-essence" onclick="actionBossAdd()">PUBLICAR REGISTRO</button>
-            <p onclick="location.reload()" style="margin-top:30px; font-size:0.6rem; cursor:pointer; color:red; letter-spacing:2px;">CERRAR PANEL MAESTRO</p>
+            <button class="btn-order" onclick="actionAdd()">PUBLICAR PRODUCTO</button>
+            <p onclick="location.reload()" style="margin-top:30px; font-size:0.6rem; cursor:pointer; color:red; letter-spacing:2px;">CERRAR SESIÓN MAESTRA</p>
         </div>
     </div>
 
-    <div class="omni-modal" id="modal-auth">
-        <div class="modal-box">
+    <div class="omni-modal" id="m-auth">
+        <div class="modal-inner">
             <h2>ACCESO SOCIO</h2>
-            <p style="margin-bottom:30px; font-size:0.7rem; color:#888; letter-spacing:2px;">SOLICITA TU CÓDIGO DE REFERIDO</p>
-            <input id="reg-n" class="omni-input" placeholder="Nombre Completo">
-            <input id="reg-e" class="omni-input" placeholder="Correo Electrónico">
-            <button class="btn-essence" onclick="actionRegister()">REGISTRARME COMO SOCIO</button>
-            <p onclick="closeOmniModal('modal-auth')" style="margin-top:30px; cursor:pointer; font-size:0.6rem;">CANCELAR</p>
+            <p style="font-size:0.65rem; color:#888; margin-bottom:20px; letter-spacing:2px;">GANA COMISIONES POR CADA VENTA</p>
+            <input id="u-n" class="omni-input" placeholder="Nombre Completo">
+            <input id="u-e" class="omni-input" placeholder="Correo Electrónico">
+            <button class="btn-order" onclick="actionRegister()">REGISTRARME</button>
+            <p onclick="closeOmni('m-auth')" style="margin-top:20px; font-size:0.6rem; cursor:pointer;">CANCELAR</p>
         </div>
     </div>
 
-    <div class="omni-modal" id="modal-checkout">
-        <div class="modal-box">
-            <h2 id="check-name"></h2>
-            <h1 id="check-price" style="font-weight:200; font-size:3rem; margin-bottom:30px;"></h1>
-            <input id="check-cli" class="omni-input" placeholder="Tu Nombre">
-            <button class="btn-essence" onclick="actionCompleteOrder()">ORDENAR VÍA WHATSAPP</button>
-            <p onclick="closeOmniModal('modal-checkout')" style="margin-top:30px; cursor:pointer; font-size:0.6rem;">VOLVER</p>
+    <div class="omni-modal" id="m-buy">
+        <div class="modal-inner">
+            <h2 id="buy-n"></h2>
+            <h1 id="buy-p" style="font-weight:200; margin-bottom:30px;"></h1>
+            <input id="buy-cli" class="omni-input" placeholder="Tu Nombre">
+            <button class="btn-order" onclick="actionSend()">PEDIR POR WHATSAPP</button>
+            <p onclick="closeOmni('m-buy')" style="margin-top:20px; font-size:0.6rem; cursor:pointer;">VOLVER</p>
         </div>
     </div>
 
     <footer>
-        <div class="footer-logo">ESSENCE</div>
-        <p style="font-size:0.6rem; letter-spacing:4px; opacity:0.4;">PANAMÁ • V30 CORPORATE EDITION • 2026</p>
+        <div style="font-family:'Cinzel'; letter-spacing:10px; font-size:1.5rem; margin-bottom:20px;">ESSENCE</div>
+        <p style="font-size:0.6rem; opacity:0.5; letter-spacing:3px;">PANAMÁ • OMNIVERSE V40 • 2026</p>
     </footer>
 
     <script>
-        /* ESSENCE OMNIVERSE CORE ENGINE V30
-           SISTEMA DE GESTIÓN DE DATOS Y RENDERIZADO
+        /* SISTEMA DE GESTIÓN DE DATOS ESSENCE
+           LOGIC VERSION: 40.0.1
         */
 
         const MASTER_PHONE = "50769028805";
-        const MASTER_PASS = "542497";
+        const MASTER_KEY = "542497";
 
-        let engineState = {
-            db: JSON.parse(localStorage.getItem('ess_v30_db')) || [
-                {id: 1, n: "Lafayette St", p: 295, i: "https://fimgs.net/images/perfume/nd.46169.jpg", c: "NICHO", s: true},
-                {id: 2, n: "Erba Pura", p: 250, i: "https://fimgs.net/images/perfume/nd.54003.jpg", c: "NICHO", s: true},
-                {id: 3, n: "Khamrah", p: 55, i: "https://fimgs.net/images/perfume/nd.75805.jpg", c: "ARABE", s: true},
-                {id: 4, n: "Sauvage Elixir", p: 160, i: "https://fimgs.net/images/perfume/nd.68305.jpg", c: "DESIGNER", s: true}
+        let titanState = {
+            inventory: JSON.parse(localStorage.getItem('ess_v40_db')) || [
+                {id: 1, n: "Lafayette St Bond No 9", p: 295, i: "https://fimgs.net/images/perfume/nd.46169.jpg", c: "NICHO", s: true},
+                {id: 2, n: "Erba Pura Xerjoff", p: 250, i: "https://fimgs.net/images/perfume/nd.54003.jpg", c: "NICHO", s: true},
+                {id: 3, n: "Khamrah Lattafa", p: 55, i: "https://fimgs.net/images/perfume/nd.75805.jpg", c: "ARABE", s: true},
+                {id: 4, n: "Sauvage Elixir Dior", p: 160, i: "https://fimgs.net/images/perfume/nd.68305.jpg", c: "DESIGNER", s: true}
             ],
-            session: JSON.parse(localStorage.getItem('ess_v30_ses')) || null,
+            session: JSON.parse(localStorage.getItem('ess_v40_ses')) || null,
             isAdmin: false,
-            filter: 'ALL',
-            activeProduct: null,
-            clicks: 0
+            activeFilter: 'ALL',
+            clicks: 0,
+            activeP: null
         };
 
-        // MOTOR DE RENDERIZADO
+        // --- MOTOR DE RENDERIZADO ---
         function coreRender() {
-            const grid = document.getElementById('main-render-engine');
+            const grid = document.getElementById('main-grid');
             grid.innerHTML = "";
 
-            const filtered = engineState.filter === 'ALL' 
-                ? engineState.db 
-                : engineState.db.filter(p => p.c === engineState.filter);
+            const filtered = titanState.activeFilter === 'ALL' 
+                ? titanState.inventory 
+                : titanState.inventory.filter(p => p.c === titanState.activeFilter);
 
             filtered.forEach(p => {
                 const card = document.createElement('div');
-                card.className = `e-card ${!p.s ? 'is-exhausted' : ''}`;
+                card.className = `p-card ${!p.s ? 'is-out' : ''}`;
                 card.innerHTML = `
-                    <div class="e-visual">
+                    <div class="p-visual">
                         <img src="${p.i}" alt="${p.n}">
-                        <div class="sold-out-mask"><b>AGOTADO</b></div>
+                        <div class="out-mask"><b>AGOTADO</b></div>
                     </div>
-                    <div class="e-meta">
+                    <div class="p-meta">
                         <span class="cat">${p.c}</span>
                         <h3 class="name">${p.n}</h3>
                         <div class="price">$${p.p}.00</div>
                     </div>
-                    <button class="btn-essence" ${!p.s ? 'disabled' : ''} onclick="initCheckout(${p.id})">
-                        ${p.s ? 'ORDENAR' : 'SIN STOCK'}
+                    <button class="btn-order" ${!p.s ? 'disabled' : ''} onclick="initBuy(${p.id})">
+                        ${p.s ? 'ADQUIRIR' : 'SIN STOCK'}
                     </button>
 
-                    <div class="boss-hud-system" style="display: ${engineState.isAdmin ? 'grid' : 'none'}">
-                        <button class="btn-boss-action" onclick="actionBossToggle(${p.id})">${p.s ? 'AGOTAR' : 'ACTIVAR'}</button>
-                        <button class="btn-boss-action delete" onclick="actionBossDelete(${p.id})">ELIMINAR</button>
+                    <div class="boss-hud" id="hud-${p.id}" style="display: ${titanState.isAdmin ? 'grid' : 'none'}">
+                        <button class="btn-boss" onclick="actionToggleStock(${p.id})">${p.s ? 'AGOTAR' : 'ACTIVAR'}</button>
+                        <button class="btn-boss del" onclick="actionDelete(${p.id})">BORRAR</button>
                     </div>
                 `;
                 grid.appendChild(card);
             });
         }
 
-        // ACCIONES DE FILTRO
-        window.setOmniFilter = (cat, btn) => {
-            engineState.filter = cat;
-            document.querySelectorAll('.filter-node').forEach(n => n.classList.remove('active'));
+        // --- LÓGICA DE FILTROS ---
+        window.applyFilter = (cat, btn) => {
+            titanState.activeFilter = cat;
+            document.querySelectorAll('.f-node').forEach(n => n.classList.remove('active'));
             btn.classList.add('active');
             coreRender();
         };
 
-        // ACCIONES JEFE
-        window.actionBossAdd = () => {
-            const n = document.getElementById('boss-n').value, p = document.getElementById('boss-p').value, i = document.getElementById('boss-i').value, c = document.getElementById('boss-c').value;
+        // --- ACCIONES DEL JEFE ---
+        window.actionAdd = () => {
+            const n = document.getElementById('in-n').value, 
+                  p = document.getElementById('in-p').value, 
+                  i = document.getElementById('in-i').value, 
+                  c = document.getElementById('in-c').value;
+            
             if(n && p && i) {
-                engineState.db.unshift({id: Date.now(), n, p, i, c, s: true});
-                saveData(); coreRender();
-                alert("REGISTRO EXITOSO.");
+                titanState.inventory.unshift({ id: Date.now(), n, p, i, c, s: true });
+                sync(); coreRender();
+                alert("PRODUCTO PUBLICADO CON ÉXITO.");
+            } else {
+                alert("ERROR: REVISA LOS CAMPOS.");
             }
         };
 
-        window.actionBossDelete = (id) => {
-            if(confirm("¿ELIMINAR ESTE REGISTRO?")) {
-                engineState.db = engineState.db.filter(p => p.id !== id);
-                saveData(); coreRender();
+        window.actionDelete = (id) => {
+            if(confirm("¿ELIMINAR ESTE PERFUME DE LA TIENDA?")) {
+                titanState.inventory = titanState.inventory.filter(p => p.id !== id);
+                sync(); coreRender();
             }
         };
 
-        window.actionBossToggle = (id) => {
-            const idx = engineState.db.findIndex(p => p.id === id);
-            engineState.db[idx].s = !engineState.db[idx].s;
-            saveData(); coreRender();
+        window.actionToggleStock = (id) => {
+            const idx = titanState.inventory.findIndex(p => p.id === id);
+            titanState.inventory[idx].s = !titanState.inventory[idx].s;
+            sync(); coreRender();
         };
 
-        // ACCIONES USUARIO
-        window.initCheckout = (id) => {
-            engineState.activeProduct = engineState.db.find(p => p.id === id);
-            document.getElementById('check-name').innerText = engineState.activeProduct.n;
-            document.getElementById('check-price').innerText = `$${engineState.activeProduct.p}`;
-            if(engineState.session) document.getElementById('check-cli').value = engineState.session.name;
-            openOmniModal('modal-checkout');
+        // --- ACCIONES DE USUARIO ---
+        window.initBuy = (id) => {
+            titanState.activeP = titanState.inventory.find(p => p.id === id);
+            document.getElementById('buy-n').innerText = titanState.activeP.n;
+            document.getElementById('buy-p').innerText = `$${titanState.activeP.p}.00`;
+            if(titanState.session) document.getElementById('buy-cli').value = titanState.session.name;
+            openOmni('m-buy');
         };
 
-        window.actionCompleteOrder = () => {
-            const cli = document.getElementById('check-cli').value || "Cliente";
-            const ref = engineState.session ? ` (Referido por: ${engineState.session.name})` : "";
-            const msg = encodeURIComponent(`ORDEN ESSENCE\n\nProducto: ${engineState.activeProduct.n}\nPrecio: $${engineState.activeProduct.p}\nCliente: ${cli}${ref}`);
+        window.actionSend = () => {
+            const cli = document.getElementById('buy-cli').value || "Cliente";
+            const socio = titanState.session ? ` (Socio: ${titanState.session.name})` : "";
+            const msg = encodeURIComponent(`NUEVO PEDIDO ESSENCE\n\nProducto: ${titanState.activeP.n}\nPrecio: $${titanState.activeP.p}\nCliente: ${cli}${socio}`);
             window.open(`https://wa.me/${MASTER_PHONE}?text=${msg}`);
         };
 
         window.actionRegister = () => {
-            const n = document.getElementById('reg-n').value, e = document.getElementById('reg-e').value;
+            const n = document.getElementById('u-n').value, e = document.getElementById('u-e').value;
             if(n && e) {
-                engineState.session = {name: n, email: e};
-                saveData();
-                alert("REGISTRO DE SOCIO EXITOSO. AHORA PUEDES REFERIR Y GANAR EL 3%.");
+                titanState.session = { name: n, email: e };
+                sync();
+                alert("REGISTRO EXITOSO. YA PUEDES EMPEZAR A REFERIR.");
                 location.reload();
             }
         };
 
-        // UTILS
-        function saveData() {
-            localStorage.setItem('ess_v30_db', JSON.stringify(engineState.db));
-            localStorage.setItem('ess_v30_ses', JSON.stringify(engineState.session));
+        // --- FUNCIONES CORE ---
+        function sync() {
+            localStorage.setItem('ess_v40_db', JSON.stringify(titanState.inventory));
+            localStorage.setItem('ess_v40_ses', JSON.stringify(titanState.session));
         }
 
-        function openOmniModal(id) { document.getElementById(id).style.display = 'flex'; }
-        function closeOmniModal(id) { document.getElementById(id).style.display = 'none'; }
+        function openOmni(id) { document.getElementById(id).style.display = 'flex'; }
+        function closeOmni(id) { document.getElementById(id).style.display = 'none'; }
 
-        // TRIGGER PANEL JEFE (3 CLICS LOGO)
-        document.getElementById('admin-trigger').onclick = () => {
-            engineState.clicks++;
-            if(engineState.clicks >= 3) {
-                if(prompt("SISTEMA CENTRAL - LLAVE:") === MASTER_PASS) {
-                    engineState.isAdmin = true;
-                    openOmniModal('modal-boss');
-                    coreRender();
+        // TRIGGER SECRETO: 3 CLICS LOGO
+        document.getElementById('key-trigger').onclick = () => {
+            titanState.clicks++;
+            if(titanState.clicks >= 3) {
+                const pass = prompt("ACCESO CENTRAL - LLAVE MAESTRA:");
+                if(pass === MASTER_KEY) {
+                    titanState.isAdmin = true;
+                    openOmni('m-boss');
+                    coreRender(); // Actualiza para mostrar botones de admin
                 }
-                engineState.clicks = 0;
+                titanState.clicks = 0;
             }
         };
 
+        // INICIO
         coreRender();
+
     </script>
 </body>
 </html>
+
 
 
 
