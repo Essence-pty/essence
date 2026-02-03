@@ -3,195 +3,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ESSENCE | Luxury Management Elite</title>
+    <title>ESSENCE | Luxury Management Elite v3.0</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@200;300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@100;300;400;600;700;800&display=swap" rel="stylesheet">
     
     <style>
-        /* --- SISTEMA DE DISEÑO ESSENCE --- */
+        /* --- ARQUITECTURA DE DISEÑO --- */
         :root {
             --gold: #b8952e;
             --gold-light: #d4af37;
             --black: #000000;
             --near-black: #0a0a0a;
             --white: #ffffff;
-            --gray-extra-light: #fdfdfd;
-            --gray-light: #f5f5f5;
+            --gray-light: #f8f8f8;
             --gray-medium: #eeeeee;
             --gray-dark: #333333;
-            --red-alert: #c0392b;
-            --transition-premium: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-            --shadow-luxe: 0 30px 60px rgba(0,0,0,0.08);
+            --red-luxe: #922b21;
+            --premium-transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+            --shadow-float: 0 30px 100px rgba(0,0,0,0.12);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
+        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; -webkit-tap-highlight-color: transparent; }
         
         body {
             font-family: 'Inter', sans-serif;
             background: var(--white);
             color: var(--black);
-            line-height: 1.6;
             overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
+            scroll-behavior: smooth;
         }
 
-        /* --- BARRA VIP DINÁMICA --- */
-        .top-banner {
-            background: var(--near-black);
+        /* --- CABECERA VIP --- */
+        .vip-status-bar {
+            background: var(--black);
             color: var(--white);
-            padding: 12px 8%;
+            padding: 14px 8%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             font-size: 0.65rem;
-            letter-spacing: 3px;
+            letter-spacing: 3.5px;
             text-transform: uppercase;
-            font-weight: 400;
-            border-bottom: 1px solid rgba(184, 149, 46, 0.3);
+            border-bottom: 1px solid var(--gold);
         }
 
-        .points-badge {
+        .points-indicator {
             background: var(--gold);
             color: var(--black);
-            padding: 5px 15px;
-            border-radius: 50px;
-            font-weight: 800;
-            box-shadow: 0 0 20px rgba(184, 149, 46, 0.4);
+            padding: 6px 18px;
+            border-radius: 4px;
+            font-weight: 900;
+            box-shadow: 0 0 15px rgba(184, 149, 46, 0.5);
         }
 
-        /* --- NAVEGACIÓN --- */
-        header {
+        /* --- NAVEGACIÓN PRINCIPAL --- */
+        nav {
             position: sticky;
             top: 0;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(15px);
+            z-index: 2000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--gray-medium);
-            padding: 30px 8%;
+            padding: 35px 8%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: var(--transition-premium);
+            transition: var(--premium-transition);
         }
 
-        .brand {
+        .brand-essence {
             font-family: 'Cinzel', serif;
-            font-size: 2.5rem;
-            letter-spacing: 15px;
+            font-size: 2.8rem;
+            letter-spacing: 18px;
             cursor: pointer;
             color: var(--black);
             text-decoration: none;
-            font-weight: 400;
+            font-weight: 900;
+            margin-right: -18px; /* Compensar espaciado final */
         }
 
-        .nav-links { display: flex; gap: 40px; align-items: center; }
+        .nav-tools { display: flex; gap: 45px; align-items: center; }
 
-        .link-item {
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 2px;
+        .tool-link {
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 2.5px;
             text-transform: uppercase;
             cursor: pointer;
-            position: relative;
-            padding-bottom: 5px;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 4px;
+            transition: 0.3s;
         }
 
-        .link-item::after {
-            content: '';
-            position: absolute;
-            bottom: 0; left: 0; width: 0; height: 1px;
-            background: var(--gold);
-            transition: 0.4s;
-        }
+        .tool-link:hover { border-color: var(--gold); }
 
-        .link-item:hover::after { width: 100%; }
-
-        /* --- ANUNCIO VIP ROTATIVO --- */
-        .promo-container {
-            padding: 60px 8% 0 8%;
+        /* --- BANNER DE FIDELIZACIÓN --- */
+        .loyalty-hero {
+            padding: 80px 8% 40px 8%;
             display: flex;
             justify-content: center;
         }
 
-        .vip-promo-card {
+        .promo-frame {
             width: 100%;
-            max-width: 800px;
-            background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
-            padding: 40px;
+            max-width: 900px;
+            background: #000;
+            padding: 50px;
             border: 1px solid var(--gold);
-            position: relative;
-            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            perspective: 1000px;
+            position: relative;
             cursor: pointer;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            box-shadow: var(--shadow-float);
         }
 
-        .vip-promo-card:hover .promo-content {
-            transform: rotateY(5deg);
+        .promo-frame::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+            z-index: 1;
         }
 
-        .promo-content {
+        .promo-text { position: relative; z-index: 2; }
+        .promo-text h2 { font-family: 'Cinzel'; color: var(--gold); font-size: 2rem; letter-spacing: 6px; }
+        .promo-text p { color: #888; letter-spacing: 3px; font-size: 0.75rem; margin-top: 10px; }
+
+        .essence-cube {
+            width: 120px;
+            height: 120px;
+            border: 1px solid var(--gold);
             z-index: 2;
-            transition: var(--transition-premium);
-        }
-
-        .promo-content h2 {
-            font-family: 'Cinzel';
-            color: var(--gold);
-            font-size: 1.8rem;
-            letter-spacing: 5px;
-            margin-bottom: 10px;
-        }
-
-        .promo-content p {
-            color: var(--white);
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-            font-weight: 200;
-        }
-
-        .rotating-box {
-            width: 100px;
-            height: 100px;
-            border: 2px solid var(--gold);
             display: flex;
             align-items: center;
             justify-content: center;
-            animation: rotate3D 8s linear infinite;
+            animation: spinningCube 12s linear infinite;
         }
 
-        @keyframes rotate3D {
-            0% { transform: rotateX(0deg) rotateY(0deg); }
-            100% { transform: rotateX(360deg) rotateY(360deg); }
+        @keyframes spinningCube {
+            0% { transform: rotate3d(1, 1, 1, 0deg); }
+            100% { transform: rotate3d(1, 1, 1, 360deg); }
         }
 
-        /* --- CATÁLOGO --- */
-        .main-content {
+        /* --- ÁREA DE CATÁLOGO --- */
+        .boutique-container {
             max-width: 1600px;
-            margin: 80px auto;
+            margin: 60px auto;
             padding: 0 8%;
         }
 
-        .grid {
+        .catalogue-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 70px 40px;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 80px 45px;
         }
 
-        .product-card {
-            background: var(--white);
-            transition: var(--transition-premium);
-            padding: 10px;
+        .fragrance-card {
+            background: #fff;
+            transition: var(--premium-transition);
+            position: relative;
+            padding: 15px;
         }
 
-        .product-card:hover { transform: translateY(-15px); }
+        .fragrance-card:hover { transform: scale(1.02); }
 
-        .img-container {
+        .visual-frame {
             background: var(--gray-light);
             aspect-ratio: 1/1;
             display: flex;
@@ -199,80 +178,126 @@
             justify-content: center;
             margin-bottom: 30px;
             overflow: hidden;
-            border-radius: 4px;
+            position: relative;
         }
 
-        .img-container img {
-            max-width: 75%;
-            mix-blend-mode: multiply;
-            transition: var(--transition-premium);
+        .visual-frame img {
+            max-width: 70%;
+            transition: 1.2s cubic-bezier(0.19, 1, 0.22, 1);
         }
 
-        .product-card:hover img { transform: scale(1.1); }
+        .fragrance-card:hover img { transform: scale(1.15) translateY(-10px); }
 
-        .product-name {
+        .badge-soldout {
+            position: absolute;
+            background: var(--red-luxe);
+            color: white;
+            padding: 12px 30px;
             font-family: 'Cinzel';
-            font-size: 1.1rem;
-            letter-spacing: 3px;
-            margin-bottom: 12px;
-            color: var(--near-black);
+            font-weight: 900;
+            letter-spacing: 4px;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%) rotate(-10deg);
+            z-index: 5;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
-        .product-price {
+        .gray-scale { filter: grayscale(1); opacity: 0.4; }
+
+        /* --- INFO PRODUCTO --- */
+        .fragrance-name {
+            font-family: 'Cinzel';
+            font-size: 1.25rem;
+            letter-spacing: 4px;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .fragrance-price {
             display: block;
             color: var(--gold);
+            font-size: 1.4rem;
             font-weight: 300;
-            font-size: 1.3rem;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
 
-        /* --- BOTONES --- */
-        .btn-essence {
-            width: 100%;
-            padding: 20px;
-            background: transparent;
-            border: 1px solid var(--black);
-            font-size: 0.75rem;
-            font-weight: 800;
-            letter-spacing: 4px;
-            text-transform: uppercase;
+        /* --- PROGRAMA RECOMENDADOS --- */
+        .affiliate-badge {
+            margin-top: 15px;
+            padding: 12px;
+            background: var(--gray-light);
+            border-left: 3px solid var(--gold);
+            font-size: 0.65rem;
+            color: #555;
+            text-align: left;
             cursor: pointer;
-            transition: 0.4s;
+            transition: 0.3s;
         }
 
-        .btn-essence:hover {
+        .affiliate-badge:hover { background: #f0f0f0; }
+        .affiliate-badge b { color: var(--black); letter-spacing: 1px; }
+
+        /* --- BOTONES BOUTIQUE --- */
+        .btn-order {
+            width: 100%;
+            padding: 22px;
             background: var(--black);
             color: var(--white);
+            border: 1px solid var(--black);
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: 0.5s;
         }
 
+        .btn-order:hover { background: transparent; color: var(--black); }
+        .btn-order:disabled { background: #eee; border-color: #eee; color: #aaa; cursor: not-allowed; }
+
+        /* --- FOOTER ATENCION --- */
+        footer {
+            background: var(--gray-light);
+            padding: 80px 8%;
+            margin-top: 120px;
+            border-top: 1px solid var(--gray-medium);
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 50px;
+        }
+
+        .footer-logo { font-family: 'Cinzel'; font-size: 1.8rem; letter-spacing: 10px; margin-bottom: 20px; }
+        .footer-desc { font-size: 0.8rem; color: #777; max-width: 400px; }
+        .footer-title { font-size: 0.75rem; font-weight: 800; letter-spacing: 2px; margin-bottom: 25px; text-transform: uppercase; }
+        .footer-btn { display: block; font-size: 0.7rem; color: #000; text-decoration: none; margin-bottom: 12px; font-weight: 600; letter-spacing: 1.5px; }
+        .footer-btn:hover { color: var(--gold); }
+
         /* --- MODALES --- */
-        .overlay {
+        .luxe-overlay {
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(255, 255, 255, 0.98);
+            background: rgba(255, 255, 255, 0.99);
             z-index: 5000;
             align-items: center; justify-content: center;
-            backdrop-filter: blur(10px);
         }
 
-        .modal-body {
-            width: 90%; max-width: 450px;
-            background: var(--white);
-            padding: 60px 40px;
-            text-align: center;
-            box-shadow: var(--shadow-luxe);
+        .luxe-modal {
+            width: 95%; max-width: 500px;
+            padding: 70px 50px;
+            background: #fff;
             border: 1px solid var(--gray-medium);
+            text-align: center;
+            box-shadow: var(--shadow-float);
         }
 
         input, select {
-            width: 100%; padding: 18px; margin-bottom: 20px;
-            border: 1px solid var(--gray-medium);
-            background: var(--gray-extra-light);
-            font-family: 'Inter';
+            width: 100%; padding: 20px; margin-bottom: 22px;
+            border: 1px solid #ddd; background: #fafafa;
+            font-family: 'Inter'; font-size: 0.9rem;
         }
 
-        /* --- PANEL JEFE --- */
+        /* --- BOSS CONSOLE --- */
         #bossPanel {
             display: none;
             position: fixed;
@@ -281,257 +306,260 @@
             overflow-y: auto;
         }
 
-        .boss-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 60px; }
-        .boss-card { background: var(--gray-light); padding: 40px; }
+        .boss-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 60px; }
+        .boss-main { display: grid; grid-template-columns: 1fr 1.6fr; gap: 80px; }
+        .boss-widget { background: var(--gray-light); padding: 45px; border-radius: 4px; }
         
-        .data-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
-        .data-table th { background: #000; color: #fff; padding: 15px; font-family: 'Cinzel'; }
-        .data-table td { padding: 15px; border-bottom: 1px solid #ddd; text-align: center; }
+        .boss-table { width: 100%; border-collapse: collapse; margin-top: 30px; font-size: 0.8rem; }
+        .boss-table th { background: #000; color: #fff; padding: 20px; font-family: 'Cinzel'; text-align: left; }
+        .boss-table td { padding: 20px; border-bottom: 1px solid #eee; background: #fff; }
 
-        @media (max-width: 768px) {
-            .brand { font-size: 1.6rem; letter-spacing: 8px; }
-            .nav-links { display: none; }
-            .boss-grid { grid-template-columns: 1fr; }
-            .vip-promo-card { flex-direction: column; text-align: center; gap: 20px; }
+        .boss-controls { display: flex; gap: 8px; margin-top: 15px; }
+        .btn-action { padding: 8px 12px; font-size: 0.6rem; font-weight: 800; cursor: pointer; border: 1px solid #000; background: none; }
+        .btn-del { border-color: var(--red-luxe); color: var(--red-luxe); }
+
+        @media (max-width: 900px) {
+            nav { padding: 25px 5%; }
+            .nav-tools { display: none; }
+            .brand-essence { font-size: 1.8rem; }
+            footer { grid-template-columns: 1fr; text-align: center; }
+            .boss-main { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <div class="top-banner">
-        <div id="uName">EXCLUSIVIDAD EN PERFUMERÍA DE NICHO</div>
-        <div id="uPts">PUNTOS: <span class="points-badge">0</span></div>
+    <div class="vip-status-bar">
+        <div id="uDisplay">AUTÉNTICA PERFUMERÍA LUXURY</div>
+        <div id="uPoints">SOCIO VIP: <span class="points-indicator">0 PTS</span></div>
     </div>
 
-    <header>
-        <div class="brand" id="logoMain">ESSENCE</div>
-        <div class="nav-links" id="menuActions">
-            <span class="link-item" onclick="openM('modalReg')">MEMBRESÍA PLUS</span>
+    <nav>
+        <div class="brand-essence" id="bossTrigger">ESSENCE</div>
+        <div class="nav-tools">
+            <span class="tool-link" onclick="openM('modalAuth')">UNIRSE AL CLUB</span>
+            <span class="tool-link" onclick="location.href='#atencion'">AYUDA</span>
         </div>
-    </header>
+    </nav>
 
-    <section class="promo-container">
-        <div class="vip-promo-card" onclick="openM('modalReg')">
-            <div class="promo-content">
-                <h2>ESSENCE VIP CLUB</h2>
-                <p>REGÍSTRATE PARA ACUMULAR PUNTOS EN CADA COMPRA</p>
+    <section class="loyalty-hero">
+        <div class="promo-frame" onclick="openM('modalAuth')">
+            <div class="promo-text">
+                <h2>GANA CON ESSENCE</h2>
+                <p>REGÍSTRATE Y GANA EL 3% POR CADA VENTA RECOMENDADA</p>
             </div>
-            <div class="rotating-box">
-                <span style="color:var(--gold); font-family:'Cinzel'; font-size:0.7rem; font-weight:700; text-align:center;">ESSENCE<br>POINTS</span>
+            <div class="essence-cube">
+                <span style="color:var(--gold); font-family:'Cinzel'; font-size:0.6rem; font-weight:900; letter-spacing:2px; text-align:center;">ESSENCE<br>ELITE</span>
             </div>
         </div>
     </section>
 
-    <main class="main-content">
-        <div id="mainGrid" class="grid">
+    <main class="boutique-container">
+        <div id="boutiqueGrid" class="catalogue-grid">
             </div>
     </main>
 
-    <div id="bossPanel">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:50px; border-bottom:2px solid #000; padding-bottom:20px;">
-            <h1 style="font-family:Cinzel;">BOSS CONTROL CENTER</h1>
-            <button class="btn-essence" style="width:auto; padding:10px 40px;" onclick="location.reload()">CERRAR</button>
+    <footer id="atencion">
+        <div>
+            <div class="footer-logo">ESSENCE</div>
+            <p class="footer-desc">Curaduría de fragancias exclusivas para personalidades que no temen destacar. Envíos garantizados a todo el país.</p>
         </div>
-        <div class="boss-grid">
-            <div class="boss-card">
-                <h3 style="font-family:Cinzel; margin-bottom:20px;">+ NUEVA FRAGANCIA</h3>
-                <input id="inName" placeholder="Nombre">
-                <input id="inPrice" type="number" placeholder="Precio ($)">
-                <input id="inImg" placeholder="Link Imagen">
-                <button class="btn-essence" onclick="addProductBoss()" style="background:#000; color:#fff;">SUBIR A LA WEB</button>
+        <div>
+            <div class="footer-title">ASISTENCIA</div>
+            <a href="#" onclick="contactLink('Soporte')" class="footer-btn">ATENCIÓN AL CLIENTE</a>
+            <a href="#" onclick="contactLink('Garantia')" class="footer-btn">POLÍTICA DE GARANTÍA</a>
+            <a href="#" onclick="contactLink('Envios')" class="footer-btn">RASTREO DE PEDIDOS</a>
+        </div>
+        <div>
+            <div class="footer-title">NEGOCIOS</div>
+            <a href="#" onclick="contactLink('Embajador')" class="footer-btn">TRABAJA CON NOSOTROS</a>
+            <a href="#" onclick="contactLink('Mayorista')" class="footer-btn">VENTAS AL MAYOR</a>
+        </div>
+    </footer>
+
+    <div class="luxe-overlay" id="modalAuth">
+        <div class="luxe-modal">
+            <h2 style="font-family:Cinzel; margin-bottom:20px; letter-spacing:5px;">SISTEMA VIP</h2>
+            <p style="font-size:0.75rem; color:#888; margin-bottom:35px;">ACCEDE A COMISIONES Y PUNTOS EXCLUSIVOS.</p>
+            <input id="authN" placeholder="NOMBRE COMPLETO">
+            <input id="authE" placeholder="CORREO ELECTRÓNICO">
+            <button class="btn-order" onclick="processAuth()">CREAR MI PERFIL ELITE</button>
+            <p onclick="closeM('modalAuth')" style="margin-top:30px; font-size:0.65rem; cursor:pointer; text-decoration:underline; letter-spacing:2px;">CERRAR VENTANA</p>
+        </div>
+    </div>
+
+    <div class="luxe-overlay" id="modalCheckout">
+        <div class="luxe-modal">
+            <h2 style="font-family:Cinzel; margin-bottom:15px; letter-spacing:4px;">ORDEN DE COMPRA</h2>
+            <div id="checkD" style="margin:20px 0; padding:25px; background:var(--gray-light); font-weight:800; color:var(--gold); font-size:1.1rem; border:1px solid #eee;"></div>
+            <input id="checkN" placeholder="¿A QUIÉN ENTREGAMOS?">
+            <select id="checkS">
+                <option value="YAPPY">PAGO POR YAPPY (PANAMÁ)</option>
+                <option value="EFECTIVO">EFECTIVO CONTRA ENTREGA</option>
+                <option value="BANCO">TRANSFERENCIA BANCARIA</option>
+            </select>
+            <button class="btn-order" onclick="sendOrder()">CONFIRMAR POR WHATSAPP</button>
+            <p onclick="closeM('modalCheckout')" style="margin-top:30px; font-size:0.6rem; cursor:pointer; opacity:0.6;">VOLVER ATRÁS</p>
+        </div>
+    </div>
+
+    <div id="bossPanel">
+        <div class="boss-header">
+            <h1 style="font-family:Cinzel; letter-spacing:8px; border-left: 5px solid var(--gold); padding-left: 20px;">ADMIN CONSOLE</h1>
+            <button class="btn-order" style="width:auto; padding:12px 30px;" onclick="location.reload()">CERRAR SESIÓN</button>
+        </div>
+        <div class="boss-main">
+            <div class="boss-widget">
+                <h3 style="font-family:Cinzel; margin-bottom:30px;">GESTIÓN DE STOCK</h3>
+                <input id="bP_name" placeholder="NOMBRE PERFUME">
+                <input id="bP_price" type="number" placeholder="PRECIO ($)">
+                <input id="bP_img" placeholder="URL DE IMAGEN">
+                <button class="btn-order" onclick="bossAddProduct()">PUBLICAR PRODUCTO</button>
             </div>
-            <div class="boss-card">
-                <h3 style="font-family:Cinzel; margin-bottom:20px;">CLIENTES REGISTRADOS</h3>
-                <table class="data-table">
-                    <thead><tr><th>NOMBRE</th><th>PUNTOS</th><th>ESTADO</th><th>ACCION</th></tr></thead>
-                    <tbody id="bossUsers"></tbody>
+            <div class="boss-widget">
+                <h3 style="font-family:Cinzel; margin-bottom:30px;">BASE DE DATOS CLIENTES</h3>
+                <table class="boss-table">
+                    <thead><tr><th>USUARIO</th><th>PUNTOS</th><th>ACCIONES</th></tr></thead>
+                    <tbody id="bossUserList"></tbody>
                 </table>
             </div>
         </div>
     </div>
 
-    <div class="overlay" id="modalReg">
-        <div class="modal-body">
-            <h2 style="font-family:Cinzel; margin-bottom:20px; letter-spacing:5px;">ÚNETE AL CLUB</h2>
-            <p style="font-size:0.7rem; color:#888; margin-bottom:30px;">OBTÉN BENEFICIOS Y PUNTOS POR CADA COMPRA.</p>
-            <input id="regName" placeholder="Nombre Completo">
-            <input id="regEmail" placeholder="Correo Electrónico">
-            <button class="btn-essence" onclick="registerUser()">CREAR MI CUENTA PLUS</button>
-            <p onclick="closeM('modalReg')" style="margin-top:25px; font-size:0.6rem; cursor:pointer; text-decoration:underline;">SEGUIR COMPRANDO</p>
-        </div>
-    </div>
-
-    <div class="overlay" id="modalBuy">
-        <div class="modal-body">
-            <h2 style="font-family:Cinzel; margin-bottom:10px;">TU PEDIDO</h2>
-            <div id="itemInfo" style="margin:20px 0; padding:20px; background:var(--gray-light); font-weight:700; color:var(--gold);"></div>
-            
-            <input id="buyerName" placeholder="¿A qué nombre la orden?">
-            <select id="shipOpt">
-                <option value="Pago Contraentrega">Pago Contra Entrega (Efectivo)</option>
-                <option value="Yappy">Pago por Yappy / Transferencia</option>
-                <option value="Retiro">Retiro en Local</option>
-            </select>
-            
-            <button class="btn-essence" onclick="orderWhatsApp()">CONFIRMAR POR WHATSAPP</button>
-            <p onclick="closeM('modalBuy')" style="margin-top:25px; font-size:0.6rem; cursor:pointer;">CANCELAR</p>
-        </div>
-    </div>
-
     <script>
-        /* --- CONFIGURACIÓN --- */
-        const BOSS_WHA = "50769028805";
-        const BOSS_PASS = "0000";
+        /* --- NÚCLEO ESSENCE --- */
+        const BOSS_WHATSAPP = "50769028805";
+        const MASTER_PASS = "Edubr432234";
 
-        /* --- BASE DE DATOS --- */
-        let essence = {
-            products: JSON.parse(localStorage.getItem('es_prod')) || [
-                {n: "Lattafa Khamrah", p: 45, i: "https://fimgs.net/images/perfume/nd.75805.jpg"},
-                {n: "Sauvage Elixir", p: 165, i: "https://fimgs.net/images/perfume/nd.68305.jpg"},
-                {n: "Avenue Bond No 9", p: 290, i: "https://fimgs.net/images/perfume/nd.18243.jpg"}
+        let core = {
+            inventory: JSON.parse(localStorage.getItem('ess_inv')) || [
+                {n: "Bond No 9 Lafayette", p: 285, i: "https://fimgs.net/images/perfume/nd.46169.jpg", s: true},
+                {n: "Lattafa Khamrah Qahwa", p: 55, i: "https://fimgs.net/images/perfume/nd.87329.jpg", s: true}
             ],
-            users: JSON.parse(localStorage.getItem('es_users')) || {},
-            session: JSON.parse(localStorage.getItem('es_sess')) || null,
+            users: JSON.parse(localStorage.getItem('ess_usr')) || {},
+            session: JSON.parse(localStorage.getItem('ess_ses')) || null,
             temp: null,
-            clicks: 0
+            keyLog: 0,
+            isAdmin: false
         };
 
-        /* --- MOTOR DE RENDERIZADO --- */
-        function start() {
-            const grid = document.getElementById('mainGrid');
-            grid.innerHTML = essence.products.map((p, i) => `
-                <div class="product-card">
-                    <div class="img-container"><img src="${p.i || 'https://via.placeholder.com/400'}"></div>
-                    <h3 class="product-name">${p.n}</h3>
-                    <span class="product-price">$${p.p}.00</span>
-                    <button class="btn-essence" onclick="openBuy(${i})">ORDENAR AHORA</button>
-                    ${essence.isBoss ? `<button onclick="deleteBoss(${i})" style="color:red; font-size:0.5rem; border:none; background:none; cursor:pointer; margin-top:15px;">[ ELIMINAR ]</button>` : ''}
+        /* --- MOTOR DE INTERFAZ --- */
+        function initBoutique() {
+            const grid = document.getElementById('boutiqueGrid');
+            grid.innerHTML = core.inventory.map((item, index) => `
+                <div class="fragrance-card">
+                    <div class="visual-frame ${!item.s ? 'gray-scale' : ''}">
+                        <img src="${item.i || 'https://via.placeholder.com/400'}">
+                        ${!item.s ? '<div class="badge-soldout">SOLDOUT</div>' : ''}
+                    </div>
+                    <h3 class="fragrance-name">${item.n}</h3>
+                    <span class="fragrance-price">$${item.p}.00</span>
+                    
+                    <button class="btn-order" ${!item.s ? 'disabled' : ''} onclick="checkoutFlow(${index})">
+                        ${item.s ? 'ADQUIRIR AHORA' : 'FUERA DE STOCK'}
+                    </button>
+
+                    <div class="affiliate-badge" onclick="affiliateClick('${item.n}')">
+                        <b>💰 EMBAJADOR ESSENCE:</b> Gana $${(item.p * 0.03).toFixed(2)} recomendando esta fragancia. <u>Más info</u>
+                    </div>
+
+                    ${core.isAdmin ? `
+                        <div class="boss-controls">
+                            <button class="btn-action" onclick="bossToggleStock(${index})">${item.s?'AGOTAR':'ACTIVAR'}</button>
+                            <button class="btn-action btn-del" onclick="bossDelete(${index})">BORRAR</button>
+                        </div>
+                    ` : ''}
                 </div>
             `).join('');
-            updateUI();
+            updateHeader();
         }
 
-        function renderUsers() {
-            const list = document.getElementById('bossUsers');
+        /* --- FLUJO DE VENTAS --- */
+        window.checkoutFlow = i => {
+            core.temp = core.inventory[i];
+            document.getElementById('checkD').innerText = core.temp.n + " | $" + core.temp.p + ".00";
+            if(core.session) document.getElementById('checkN').value = core.session.name;
+            openM('modalCheckout');
+        };
+
+        window.sendOrder = () => {
+            const buyer = document.getElementById('checkN').value || "Cliente Privado";
+            const pay = document.getElementById('checkS').value;
+            const text = encodeURIComponent(`✨ *NUEVA ORDEN ESSENCE*\n\n💎 *Fragancia:* ${core.temp.n}\n💰 *Precio:* $${core.temp.p}.00\n👤 *Cliente:* ${buyer}\n💳 *Pago:* ${pay}`);
+            window.open(`https://wa.me/${BOSS_WHATSAPP}?text=${text}`);
+        };
+
+        window.affiliateClick = (name) => {
+            const text = encodeURIComponent(`Hola Essence, me interesa el programa de Embajador (3% comisión) para el perfume: ${name}`);
+            window.open(`https://wa.me/${BOSS_WHATSAPP}?text=${text}`);
+        };
+
+        window.contactLink = (tema) => {
+            const text = encodeURIComponent(`Hola, necesito asistencia con: ${tema}`);
+            window.open(`https://wa.me/${BOSS_WHATSAPP}?text=${text}`);
+        };
+
+        /* --- SISTEMA DE USUARIOS --- */
+        window.processAuth = () => {
+            const n = document.getElementById('authN').value, e = document.getElementById('authE').value;
+            if(!n || !e.includes('@')) return alert("Datos inválidos.");
+            if(!core.users[e]) core.users[e] = { name: n, email: e, pts: 0 };
+            core.session = core.users[e];
+            saveCore(); location.reload();
+        };
+
+        /* --- CONSOLA DE MANDO (BOSS) --- */
+        window.bossAddProduct = () => {
+            const n = document.getElementById('bP_name').value, p = document.getElementById('bP_price').value, i = document.getElementById('bP_img').value;
+            if(n && p) { core.inventory.push({n, p, i, s: true}); saveCore(); initBoutique(); alert("Perfume publicado."); }
+        };
+
+        window.bossToggleStock = i => { core.inventory[i].s = !core.inventory[i].s; saveCore(); initBoutique(); };
+        window.bossDelete = i => { if(confirm("¿Eliminar del catálogo?")) { core.inventory.splice(i, 1); saveCore(); initBoutique(); } };
+
+        window.bossAddPoints = e => { core.users[e].pts += 50; saveCore(); renderBossUsers(); };
+
+        function renderBossUsers() {
+            const list = document.getElementById('bossUserList');
             let html = '';
-            for(let key in essence.users) {
-                const u = essence.users[key];
-                html += `<tr>
-                    <td>${u.name}<br><small>${u.email}</small></td>
-                    <td>${u.pts}</td>
-                    <td style="color:${u.ban?'red':'green'}">${u.ban?'BANEADO':'ACTIVO'}</td>
-                    <td>
-                        <button onclick="addPointsBoss('${u.email}')">+50</button>
-                        <button onclick="banBoss('${u.email}')" style="color:red; margin-left:10px;">${u.ban?'OK':'BAN'}</button>
-                    </td>
-                </tr>`;
+            for(let e in core.users) {
+                const u = core.users[e];
+                html += `<tr><td>${u.name}<br>${u.email}</td><td>${u.pts}</td><td><button class="btn-action" onclick="bossAddPoints('${u.email}')">+50 PTS</button></td></tr>`;
             }
             list.innerHTML = html;
         }
 
-        /* --- ACCIONES DE COMPRA --- */
-        window.openBuy = function(i) {
-            essence.temp = essence.products[i];
-            document.getElementById('itemInfo').innerText = essence.temp.n.toUpperCase() + " | $" + essence.temp.p + ".00";
-            if(essence.session) document.getElementById('buyerName').value = essence.session.name;
-            openM('modalBuy');
-        };
-
-        window.orderWhatsApp = function() {
-            const name = document.getElementById('buyerName').value || "Cliente Nuevo";
-            const opt = document.getElementById('shipOpt').value;
-            const text = encodeURIComponent(
-                `🛍️ *NUEVO PEDIDO - ESSENCE*\n\n` +
-                `👤 *Cliente:* ${name}\n` +
-                `📦 *Producto:* ${essence.temp.n}\n` +
-                `💰 *Precio:* $${essence.temp.p}.00\n` +
-                `🚚 *Método:* ${opt}\n\n` +
-                `_Pedido enviado desde el portal web._`
-            );
-            window.open(`https://wa.me/${BOSS_WHA}?text=${text}`);
-        };
-
-        /* --- ACCIONES DE USUARIO --- */
-        window.registerUser = function() {
-            const name = document.getElementById('regName').value;
-            const email = document.getElementById('regEmail').value;
-            if(!name || !email) return alert("Completa tus datos para el VIP.");
-            
-            if(!essence.users[email]) {
-                essence.users[email] = { name, email, pts: 0, ban: false };
-            }
-            essence.session = essence.users[email];
-            save();
-            alert("¡Bienvenido al Club VIP de Essence!");
-            location.reload();
-        };
-
-        /* --- FUNCIONES BOSS --- */
-        window.addProductBoss = function() {
-            const n = document.getElementById('inName').value, p = document.getElementById('inPrice').value, i = document.getElementById('inImg').value;
-            if(n && p) {
-                essence.products.push({n, p, i});
-                save(); start();
-                alert("Producto subido!");
-            }
-        };
-
-        window.deleteBoss = function(i) {
-            if(confirm("¿Borrar permanentemente?")) {
-                essence.products.splice(i, 1);
-                save(); start();
-            }
-        };
-
-        window.addPointsBoss = function(email) {
-            essence.users[email].pts += 50;
-            save(); renderUsers();
-        };
-
-        window.banBoss = function(email) {
-            essence.users[email].ban = !essence.users[email].ban;
-            save(); renderUsers();
-        };
-
         /* --- UTILIDADES --- */
         function openM(id) { document.getElementById(id).style.display = 'flex'; }
         function closeM(id) { document.getElementById(id).style.display = 'none'; }
-
-        function save() {
-            localStorage.setItem('es_prod', JSON.stringify(essence.products));
-            localStorage.setItem('es_users', JSON.stringify(essence.users));
-            localStorage.setItem('es_sess', JSON.stringify(essence.session));
+        function saveCore() {
+            localStorage.setItem('ess_inv', JSON.stringify(core.inventory));
+            localStorage.setItem('ess_usr', JSON.stringify(core.users));
+            localStorage.setItem('ess_ses', JSON.stringify(core.session));
         }
 
-        function updateUI() {
-            if(essence.session) {
-                document.getElementById('uName').innerText = "SOCIO VIP: " + essence.session.name.toUpperCase();
-                document.getElementById('uPts').innerHTML = `PUNTOS: <span class="points-badge">${essence.session.pts}</span>`;
-                document.getElementById('menuActions').innerHTML = `<span class="link-item" onclick="logout()">CERRAR SESIÓN</span>`;
+        function updateHeader() {
+            if(core.session) {
+                document.getElementById('uDisplay').innerText = "BIENVENIDO, " + core.session.name.toUpperCase();
+                document.getElementById('uPoints').innerHTML = `SOCIO VIP: <span class="points-indicator">${core.session.pts} PTS</span>`;
             }
         }
 
-        window.logout = function() {
-            localStorage.removeItem('es_sess');
-            location.reload();
-        };
-
-        /* --- ACCESO OCULTO --- */
-        document.getElementById('logoMain').onclick = function() {
-            essence.clicks++;
-            if(essence.clicks >= 3) {
-                if(prompt("PASSWORD BOSS:") === BOSS_PASS) {
-                    essence.isBoss = true;
+        /* --- LOGIN SECRETO JEFE --- */
+        document.getElementById('bossTrigger').onclick = () => {
+            core.keyLog++;
+            if(core.keyLog >= 3) {
+                const access = prompt("CREDITIALS REQUIRED:");
+                if(access === MASTER_PASS) {
+                    core.isAdmin = true;
                     document.getElementById('bossPanel').style.display = 'block';
-                    renderUsers();
-                    start();
+                    renderBossUsers(); initBoutique();
                 }
-                essence.clicks = 0;
+                core.keyLog = 0;
             }
         };
 
-        // Inicio
-        start();
+        initBoutique();
     </script>
 </body>
 </html>
