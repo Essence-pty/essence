@@ -3,368 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ESSENCE OMNIVERSE | CORPORATE SYSTEM</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@100;300;400;600;800&display=swap" rel="stylesheet">
-    
+    <title>ESSENCE OMNIVERSE | V900 SUPREME</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@900&family=Inter:wght@400;900&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --b: #000000;
-            --w: #ffffff;
-            --gold: #b8952e;
-            --red: #d90429;
-            --g1: #f9f9f9;
-            --g2: #eeeeee;
-            --shadow: 0 10px 30px rgba(0,0,0,0.05);
-        }
-
-        /* --- RESET MAESTRO --- */
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
-        body { 
-            font-family: 'Inter', sans-serif; background: var(--w); color: var(--b); 
-            line-height: 1.6; overflow-x: hidden;
-        }
-
-        /* --- HEADER CORPORATIVO --- */
-        header {
-            height: 90px; width: 100%; position: fixed; top: 0; left: 0;
-            background: rgba(255,255,255,0.95); backdrop-filter: blur(15px);
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 0 5%; border-bottom: 1px solid var(--g2); z-index: 10000;
-        }
-        .logo-box { display: flex; flex-direction: column; cursor: pointer; }
-        .logo-box h1 { font-family: 'Cinzel'; font-size: 1.8rem; font-weight: 900; letter-spacing: 12px; line-height: 1; }
-        .logo-box span { font-size: 0.5rem; letter-spacing: 5px; font-weight: 800; color: var(--gold); margin-top: 5px; }
-
-        .search-container { position: relative; width: 30%; display: flex; align-items: center; }
-        .search-input { 
-            width: 100%; padding: 12px 20px; border-radius: 4px; border: 1px solid var(--g2);
-            background: var(--g1); font-size: 0.75rem; outline: none; transition: 0.3s;
-        }
-        .search-input:focus { border-color: var(--b); background: #fff; }
-
-        /* --- TICKER DINÁMICO --- */
-        .ticker {
-            margin-top: 90px; background: var(--b); color: var(--w);
-            padding: 15px 0; overflow: hidden; white-space: nowrap;
-            border-bottom: 1px solid var(--gold);
-        }
-        .ticker-track { 
-            display: inline-block; animation: scroll 40s linear infinite; 
-            font-size: 0.7rem; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; 
-        }
-        @keyframes scroll { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
-
-        /* --- FILTROS DE LUJO --- */
-        .nav-filters {
-            position: sticky; top: 90px; background: #fff; z-index: 9000;
-            display: flex; justify-content: center; gap: 15px; padding: 25px 0;
-            border-bottom: 1px solid var(--g2);
-        }
-        .filter-btn {
-            padding: 10px 30px; border: 1px solid var(--g2); font-size: 0.6rem;
-            font-weight: 800; cursor: pointer; text-transform: uppercase; letter-spacing: 2px;
-            transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); color: #888;
-        }
-        .filter-btn.active { background: var(--b); color: var(--w); border-color: var(--b); transform: scale(1.05); }
-
-        /* --- CONTENEDOR DE PRODUCTOS --- */
-        .main-catalog {
-            padding: 50px 5%; display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 50px 25px; max-width: 1600px; margin: 0 auto;
-        }
-
-        .product-card { 
-            position: relative; background: #fff; transition: 0.5s; 
-            display: flex; flex-direction: column; opacity: 0; transform: translateY(20px);
-        }
-        .product-card.visible { opacity: 1; transform: translateY(0); }
-
-        .image-container {
-            background: var(--g1); aspect-ratio: 1/1.2; display: flex;
-            align-items: center; justify-content: center; position: relative;
-            overflow: hidden; border: 1px solid var(--g2);
-        }
-        .image-container img { width: 85%; transition: 0.8s cubic-bezier(0.19, 1, 0.22, 1); }
-        .product-card:hover .image-container img { transform: scale(1.1); }
-
-        /* OVERLAY AGOTADO */
-        .sold-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(255,255,255,0.85); display: none;
-            flex-direction: column; align-items: center; justify-content: center; z-index: 10;
-            backdrop-filter: blur(3px);
-        }
-        .sold-overlay b { 
-            font-family: 'Cinzel'; font-size: 1.5rem; border: 4px solid var(--b);
-            padding: 10px 20px; transform: rotate(-8deg); letter-spacing: 4px;
-        }
-        .is-out .sold-overlay { display: flex; }
-
-        .product-meta { padding: 25px 0; flex-grow: 1; }
-        .product-meta .category { font-size: 0.55rem; color: var(--gold); font-weight: 800; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 10px; display: block; }
-        .product-meta .title { font-family: 'Cinzel'; font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; height: 50px; overflow: hidden; }
-        .product-meta .price { font-size: 1.2rem; font-weight: 300; color: #333; }
-
-        .btn-action {
-            width: 100%; padding: 20px; background: var(--b); color: var(--w);
-            border: none; font-size: 0.75rem; font-weight: 800; letter-spacing: 4px;
-            cursor: pointer; text-transform: uppercase; transition: 0.3s;
-        }
-        .btn-action:hover { background: #333; }
-        .btn-action:disabled { background: var(--g2); color: #aaa; cursor: not-allowed; }
-
-        /* --- BOSS INTERFACE (INTEGRADA) --- */
-        .boss-panel {
-            display: none; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px;
-            padding: 15px; background: #fff; border: 1px solid #000;
-        }
-        .btn-boss {
-            padding: 12px; font-size: 0.6rem; font-weight: 900; cursor: pointer;
-            border: 1px solid var(--b); background: #fff; text-transform: uppercase;
-            transition: 0.2s;
-        }
-        .btn-boss.red { background: var(--red); color: #fff; border: none; }
-
-        .floating-add {
-            position: fixed; bottom: 40px; right: 30px; width: 70px; height: 70px;
-            background: var(--b); color: var(--w); border-radius: 50%;
-            display: none; align-items: center; justify-content: center;
-            font-size: 2rem; cursor: pointer; z-index: 11000; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            transition: 0.3s;
-        }
-        .floating-add:hover { transform: rotate(90deg) scale(1.1); }
-
-        /* --- MODALES --- */
-        .modal-overlay {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(255,255,255,0.98); z-index: 50000; align-items: center; justify-content: center;
-        }
-        .modal-window { width: 90%; max-width: 500px; padding: 60px; text-align: center; border: 1px solid var(--g2); }
-        .modal-window h2 { font-family: 'Cinzel'; font-size: 1.8rem; letter-spacing: 10px; margin-bottom: 40px; }
-        
-        .omni-input {
-            width: 100%; padding: 18px; margin-bottom: 20px; border: 1px solid var(--g2);
-            background: var(--g1); font-family: 'Inter'; font-size: 0.95rem; outline: none;
-        }
-
-        .admin-status-bar {
-            display: none; position: fixed; bottom: 0; width: 100%; background: var(--red);
-            color: #fff; text-align: center; font-size: 0.65rem; padding: 8px; 
-            font-weight: 900; z-index: 100000; letter-spacing: 4px;
-        }
-
-        /* --- RESPONSIVE --- */
-        @media (max-width: 768px) {
-            header { padding: 0 4%; }
-            .logo-box h1 { font-size: 1.2rem; letter-spacing: 6px; }
-            .search-container { display: none; }
-            .main-catalog { grid-template-columns: repeat(2, 1fr); gap: 20px 10px; padding: 30px 3%; }
-            .product-meta .title { font-size: 0.8rem; height: 40px; }
-            .product-meta .price { font-size: 1rem; }
-            .btn-action { padding: 15px; font-size: 0.6rem; letter-spacing: 2px; }
-        }
+        :root { --b: #000; --w: #fff; --gold: #b8952e; }
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter'; }
+        body { background: var(--w); padding-top: 100px; }
+        header { height: 100px; width: 100%; position: fixed; top: 0; background: #fff; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 1px solid #eee; z-index: 10000; }
+        .logo { font-family: 'Cinzel'; font-size: 1.8rem; letter-spacing: 12px; font-weight: 900; cursor: pointer; }
+        .status-dot { width: 10px; height: 10px; background: red; border-radius: 50%; margin-top: 5px; }
+        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; padding: 20px 5%; }
+        .card { border: 1px solid #eee; padding: 15px; position: relative; }
+        .img-h { aspect-ratio: 1/1; background: #f9f9f9; display: flex; align-items: center; justify-content: center; }
+        .img-h img { width: 85%; }
+        .btn-buy { width: 100%; padding: 18px; background: #000; color: #fff; border: none; font-size: 0.7rem; font-weight: 900; letter-spacing: 3px; cursor: pointer; margin-top: 10px; }
+        .fab { position: fixed; bottom: 30px; right: 30px; width: 70px; height: 70px; background: #000; color: #fff; border-radius: 50%; display: none; align-items: center; justify-content: center; font-size: 2rem; z-index: 10001; }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff; z-index: 20000; align-items: center; justify-content: center; flex-direction: column; padding: 30px; }
+        input { width: 100%; max-width: 450px; padding: 20px; margin-bottom: 15px; border: 1px solid #ddd; }
+        #error-console { position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(217, 4, 41, 0.9); color: #fff; font-size: 0.6rem; padding: 10px; z-index: 100000; display: none; }
     </style>
 </head>
 <body>
 
-    <div class="admin-status-bar" id="adm-tag">SISTEMA DE CONTROL MAESTRO ACTIVO - ESSENCE OMNIVERSE</div>
+    <div id="error-console"></div>
 
     <header>
-        <div class="logo-box" id="boss-key">
-            <h1>ESSENCE</h1>
-            <span>OMNIVERSE PANAMÁ</span>
-        </div>
-        <div class="search-container">
-            <input type="text" id="search-bar" class="search-input" placeholder="Buscar fragancia...">
-        </div>
+        <div class="logo" id="boss-key">ESSENCE</div>
+        <div id="conn-status" style="font-size: 0.5rem; letter-spacing: 2px;">CONECTANDO A GOOGLE CLOUD...</div>
     </header>
 
-    <div class="ticker">
-        <div class="ticker-track">
-            +++ ENVÍOS A TODO EL PAÍS +++ GANA 3% POR CADA VENTA REFERIDA +++ FRAGANCIAS 100% ORIGINALES +++ ACCESO SOCIO ELITE +++
-        </div>
-    </div>
+    <main class="grid" id="main-grid"></main>
 
-    <nav class="nav-filters">
-        <div class="filter-btn active" onclick="setCategory('ALL', this)">Catálogo</div>
-        <div class="filter-btn" onclick="setCategory('NICHO', this)">Nicho</div>
-        <div class="filter-btn" onclick="setCategory('DESIGNER', this)">Designer</div>
-        <div class="filter-btn" onclick="setCategory('ARABE', this)">Árabe</div>
-    </nav>
+    <div class="fab" id="add-btn" onclick="openM()">+</div>
 
-    <main class="main-catalog" id="product-grid"></main>
-
-    <div class="floating-add" id="add-trigger" onclick="openModal('m-add')">+</div>
-
-    <div class="modal-overlay" id="m-add">
-        <div class="modal-window">
-            <h2>NUEVO INGRESO</h2>
-            <input id="in-name" class="omni-input" placeholder="Nombre de la Fragancia">
-            <input id="in-price" type="number" class="omni-input" placeholder="Precio ($)">
-            <input id="in-img" class="omni-input" placeholder="URL de la Imagen">
-            <select id="in-cat" class="omni-input">
-                <option value="NICHO">NICHO</option>
-                <option value="DESIGNER">DESIGNER</option>
-                <option value="ARABE">ÁRABE</option>
-            </select>
-            <button class="btn-action" onclick="pushToCloud()">PUBLICAR EN CATÁLOGO</button>
-            <p onclick="closeModal('m-add')" style="margin-top:30px; font-size:0.6rem; cursor:pointer; letter-spacing:2px; font-weight:800;">CANCELAR</p>
-        </div>
+    <div class="modal" id="modal">
+        <h2 style="font-family:'Cinzel';">NUEVO PERFUME</h2><br>
+        <input id="in-n" placeholder="Nombre">
+        <input id="in-p" type="number" placeholder="Precio ($)">
+        <input id="in-i" placeholder="URL Imagen">
+        <button class="btn-buy" id="save-btn" onclick="save()">SUBIR A FIRESTORE</button>
+        <p onclick="closeM()" style="margin-top:20px; cursor:pointer; font-weight:900;">CANCELAR</p>
     </div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
-        import { getDatabase, ref, push, onValue, update, remove } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
+        import { getFirestore, collection, addDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
 
-        // CONFIGURACIÓN DE TU PROYECTO ESSENCEV2
         const firebaseConfig = {
             apiKey: "AIzaSyBkNAkJXoyxn9rkGv1mG5GPh9ge4FUjp8Y",
             authDomain: "essencev2.firebaseapp.com",
             projectId: "essencev2",
             storageBucket: "essencev2.firebasestorage.app",
             messagingSenderId: "201967001425",
-            appId: "1:201967001425:web:0a072cd4d2048e7a0dbd70",
-            databaseURL: "https://essencev2-default-rtdb.firebaseio.com"
+            appId: "1:201967001425:web:0a072cd4d2048e7a0dbd70"
         };
 
-        const app = initializeApp(firebaseConfig);
-        const db = getDatabase(app);
-        const dataRef = ref(db, "productos");
+        try {
+            const app = initializeApp(firebaseConfig);
+            const db = getFirestore(app);
+            const col = collection(db, "catalogo_oficial");
 
-        let appState = {
-            products: [],
-            filter: 'ALL',
-            search: '',
-            isAdmin: false
-        };
+            document.getElementById('conn-status').innerText = "CONEXIÓN ESTABLECIDA";
+            document.getElementById('conn-status').style.color = "green";
 
-        // ESCUCHA EN TIEMPO REAL
-        onValue(dataRef, (snapshot) => {
-            const data = snapshot.val();
-            appState.products = [];
-            if (data) {
-                Object.keys(data).forEach(key => {
-                    appState.products.push({ id: key, ...data[key] });
+            onSnapshot(query(col, orderBy("t", "desc")), (snap) => {
+                const grid = document.getElementById('main-grid');
+                grid.innerHTML = "";
+                snap.forEach((d) => {
+                    const p = d.data();
+                    const div = document.createElement('div');
+                    div.className = 'card';
+                    div.innerHTML = `
+                        <div class="img-h"><img src="${p.i}"></div>
+                        <div style="font-weight:900; margin-top:10px;">${p.n}</div>
+                        <div style="font-weight:200;">$${p.p}.00</div>
+                        <button class="btn-buy" onclick="window.open('https://wa.me/50769028805?text=Quiero%20${p.n}')">COMPRAR</button>
+                    `;
+                    grid.appendChild(div);
                 });
-            }
-            renderEngine();
-        });
-
-        function renderEngine() {
-            const grid = document.getElementById('product-grid');
-            grid.innerHTML = "";
-
-            let list = appState.products;
-
-            // Filtro por Categoría
-            if (appState.filter !== 'ALL') {
-                list = list.filter(p => p.c === appState.filter);
-            }
-
-            // Filtro por Búsqueda
-            if (appState.search !== '') {
-                list = list.filter(p => p.name.toLowerCase().includes(appState.search.toLowerCase()));
-            }
-
-            list.forEach(p => {
-                const card = document.createElement('div');
-                card.className = `product-card ${!p.s ? 'is-out' : ''}`;
-                card.innerHTML = `
-                    <div class="image-container">
-                        <img src="${p.i}">
-                        <div class="sold-overlay"><b>AGOTADO</b></div>
-                    </div>
-                    <div class="product-meta">
-                        <span class="category">${p.c}</span>
-                        <div class="title">${p.name}</div>
-                        <div class="price">$${p.p}.00</div>
-                    </div>
-                    <button class="btn-action" ${!p.s ? 'disabled' : ''} onclick="handleBuy('${p.name}', ${p.p})">
-                        ${p.s ? 'PEDIR POR WHATSAPP' : 'SIN STOCK'}
-                    </button>
-                    
-                    <div class="boss-panel" style="display: ${appState.isAdmin ? 'grid' : 'none'}">
-                        <button class="btn-boss" onclick="liveToggle('${p.id}', ${p.s})">${p.s ? 'AGOTAR' : 'ACTIVAR'}</button>
-                        <button class="btn-boss red" onclick="liveDelete('${p.id}')">ELIMINAR</button>
-                    </div>
-                `;
-                grid.appendChild(card);
-                
-                // Efecto de entrada
-                setTimeout(() => card.classList.add('visible'), 50);
+            }, (error) => {
+                showError("ERROR DE LECTURA: " + error.message);
             });
+
+            window.save = async () => {
+                const n = document.getElementById('in-n').value, p = document.getElementById('in-p').value, i = document.getElementById('in-i').value;
+                if(n && p && i) {
+                    try {
+                        await addDoc(col, { n, p: parseInt(p), i, t: new Date() });
+                        closeM();
+                    } catch (e) { showError("ERROR AL SUBIR: " + e.message); }
+                }
+            };
+        } catch (e) { showError("ERROR DE INICIALIZACIÓN: " + e.message); }
+
+        function showError(m) {
+            const c = document.getElementById('error-console');
+            c.innerText = m;
+            c.style.display = 'block';
+            console.error(m);
         }
 
-        // --- FUNCIONES GLOBALIZADAS ---
-        window.pushToCloud = () => {
-            const n = document.getElementById('in-name').value;
-            const p = document.getElementById('in-price').value;
-            const i = document.getElementById('in-img').value;
-            const c = document.getElementById('in-cat').value;
+        window.openM = () => document.getElementById('modal').style.display = 'flex';
+        window.closeM = () => document.getElementById('modal').style.display = 'none';
 
-            if (n && p && i) {
-                push(dataRef, { name: n, p: parseInt(p), i: i, c: c, s: true });
-                closeModal('m-add');
-                // Reset campos
-                document.getElementById('in-name').value = '';
-                document.getElementById('in-price').value = '';
-                document.getElementById('in-img').value = '';
-            }
-        };
-
-        window.liveToggle = (id, current) => {
-            update(ref(db, `productos/${id}`), { s: !current });
-        };
-
-        window.liveDelete = (id) => {
-            if (confirm("¿ELIMINAR ESTE PRODUCTO DE TODOS LOS CATÁLOGOS?")) {
-                remove(ref(db, `productos/${id}`));
-            }
-        };
-
-        window.handleBuy = (name, price) => {
-            const msg = encodeURIComponent(`NUEVA ORDEN ESSENCE\n\nFragancia: ${name}\nPrecio: $${price}\n\nPor favor confirmar disponibilidad.`);
-            window.open(`https://wa.me/50769028805?text=${msg}`);
-        };
-
-        window.setCategory = (cat, btn) => {
-            appState.filter = cat;
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            renderEngine();
-        };
-
-        // Búsqueda en vivo
-        document.getElementById('search-bar').addEventListener('input', (e) => {
-            appState.search = e.target.value;
-            renderEngine();
-        });
-
-        // Interfaz
-        window.openModal = (id) => document.getElementById(id).style.display = 'flex';
-        window.closeModal = (id) => document.getElementById(id).style.display = 'none';
-
-        // ACCESO JEFE (3 CLICS LOGO)
-        let bossCounter = 0;
+        let cl = 0;
         document.getElementById('boss-key').onclick = () => {
-            bossCounter++;
-            if (bossCounter >= 3) {
-                const pass = prompt("ACCESO RESTRINGIDO:");
-                if (pass === "542497") {
-                    appState.isAdmin = true;
-                    document.getElementById('add-trigger').style.display = 'flex';
-                    document.getElementById('adm-tag').style.display = 'block';
-                    renderEngine();
+            cl++;
+            if(cl >= 3) {
+                if(prompt("PASS:") === "542497") {
+                    document.getElementById('add-btn').style.display = 'flex';
+                    alert("MODO JEFE ACTIVADO");
                 }
-                bossCounter = 0;
+                cl = 0;
             }
         };
     </script>
 </body>
 </html>
+
 
 
 
