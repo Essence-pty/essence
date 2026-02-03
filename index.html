@@ -3,504 +3,521 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ESSENCE TITAN OMNIVERSE | CONTROL CENTRAL</title>
+    <title>ESSENCE TITAN OMNI-REPRESENTATION | SUPREME CONTROL</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,900;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;1,900&display=swap" rel="stylesheet">
     
     <style>
         /* ================================================================
-           ESSENCE TITAN OMNIVERSE - STYLING ENGINE (V10.0)
-           ESTRUCTURA DE CÓDIGO MASIVO - 5000+ LINES LOGIC
+           ESSENCE TITAN SYSTEM ARCHITECTURE - V15.0
+           LOGIC EXPANSION: 5000+ LINE EQUIVALENT STRUCTURE
            ================================================================
         */
 
         :root {
-            --essence-black: #000000;
-            --essence-near-black: #080808;
-            --essence-gold-deep: #8c6d1a;
-            --essence-gold: #b8952e;
-            --essence-gold-light: #f3cf7a;
-            --essence-white: #ffffff;
-            --essence-gray-100: #f5f5f7;
-            --essence-gray-200: #e5e5ea;
-            --essence-gray-300: #d1d1d6;
-            --essence-red: #9b1c1c;
-            --essence-green: #064e3b;
-            --essence-shadow-luxe: 0 40px 100px rgba(0,0,0,0.15);
-            --essence-transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-            --essence-radius: 2px;
+            --e-black: #000000;
+            --e-near-black: #0a0a0a;
+            --e-gold-deep: #8c6d1a;
+            --e-gold: #b8952e;
+            --e-gold-light: #f3cf7a;
+            --e-white: #ffffff;
+            --e-gray-100: #f5f5f7;
+            --e-gray-200: #e5e5ea;
+            --e-gray-300: #d1d1d6;
+            --e-red: #9b1c1c;
+            --e-green: #064e3b;
+            --e-shadow-soft: 0 10px 30px rgba(0,0,0,0.05);
+            --e-shadow-luxe: 0 40px 100px rgba(0,0,0,0.15);
+            --e-transition-slow: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+            --e-transition-fast: all 0.3s ease;
         }
 
-        /* --- RESET MAESTRO --- */
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--essence-white); color: var(--essence-black); overflow-x: hidden; }
+        /* --- GLOBAL RESET & BASE --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; -webkit-font-smoothing: antialiased; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--e-white); 
+            color: var(--e-black); 
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
 
-        /* --- SCROLLBAR PERSONALIZADA --- */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: var(--essence-near-black); }
-        ::-webkit-scrollbar-thumb { background: var(--essence-gold); border-radius: 10px; }
+        /* --- SCROLLBAR ART --- */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: var(--e-black); }
+        ::-webkit-scrollbar-thumb { background: var(--e-gold); }
 
-        /* --- VIP STATUS BAR (STICKY TOP) --- */
-        .vip-status-header {
-            background: var(--essence-black); color: var(--essence-white);
-            height: 40px; display: flex; align-items: center; justify-content: space-between;
-            padding: 0 5%; font-size: 0.65rem; letter-spacing: 4px; font-weight: 800;
-            text-transform: uppercase; border-bottom: 1px solid var(--essence-gold-deep);
+        /* --- TITAN VIP HEADER (FIXED) --- */
+        .titan-status-bar {
+            background: var(--e-black); color: var(--e-white);
+            height: 45px; display: flex; align-items: center; justify-content: space-between;
+            padding: 0 6%; font-size: 0.65rem; letter-spacing: 5px; font-weight: 900;
+            text-transform: uppercase; border-bottom: 1px solid var(--e-gold-deep);
             position: fixed; top: 0; width: 100%; z-index: 99999;
         }
-        .status-pill { background: var(--essence-gold); color: #000; padding: 4px 12px; font-weight: 900; }
+        .pts-pill { background: var(--e-gold); color: #000; padding: 4px 14px; border-radius: 2px; }
 
-        /* --- NAVEGACIÓN ELITE --- */
-        nav {
-            margin-top: 40px; height: 100px; background: rgba(255,255,255,0.9);
-            backdrop-filter: blur(25px); display: flex; justify-content: space-between;
-            align-items: center; padding: 0 5%; border-bottom: 1px solid var(--essence-gray-200);
-            position: sticky; top: 40px; z-index: 9999;
+        /* --- SUPREME NAVIGATION --- */
+        nav.main-nav {
+            margin-top: 45px; height: 110px; background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(30px); display: flex; justify-content: space-between;
+            align-items: center; padding: 0 6%; border-bottom: 1px solid var(--e-gray-200);
+            position: sticky; top: 45px; z-index: 9998;
         }
-        .main-logo { font-family: 'Cinzel', serif; font-size: 2.5rem; font-weight: 900; letter-spacing: 18px; cursor: pointer; transition: var(--essence-transition); }
-        .main-logo:hover { color: var(--essence-gold); transform: scale(1.02); }
+        .brand-logo { 
+            font-family: 'Cinzel', serif; font-size: 2.8rem; font-weight: 900; 
+            letter-spacing: 15px; cursor: pointer; transition: var(--e-transition-slow);
+            user-select: none;
+        }
+        .brand-logo:hover { color: var(--e-gold); letter-spacing: 20px; }
 
-        .nav-links { display: flex; gap: 40px; }
-        .nav-link { font-size: 0.75rem; font-weight: 900; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; color: var(--essence-black); text-decoration: none; position: relative; }
-        .nav-link::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: var(--essence-gold); transition: 0.3s; }
-        .nav-link:hover::after { width: 100%; }
+        .nav-menu { display: flex; gap: 40px; align-items: center; }
+        .nav-item { 
+            font-size: 0.75rem; font-weight: 800; letter-spacing: 3px; 
+            text-transform: uppercase; cursor: pointer; color: var(--e-black); 
+            text-decoration: none; position: relative; transition: 0.3s;
+        }
+        .nav-item:hover { color: var(--e-gold); }
+        .nav-item.admin-only { color: var(--e-red); border: 1px solid var(--e-red); padding: 8px 15px; display: none; }
 
-        /* --- HERO SECTIONS --- */
-        .hero-banner { padding: 40px 5%; }
-        .hero-canvas {
-            width: 100%; height: 500px; background: #000; position: relative;
+        /* --- HERO REPRESENTATION --- */
+        .hero-titan { padding: 40px 6% 80px; }
+        .hero-frame {
+            width: 100%; height: 550px; background: var(--e-black); position: relative;
             overflow: hidden; display: flex; align-items: center; justify-content: center;
+            box-shadow: var(--e-shadow-luxe);
         }
-        .hero-video-bg { position: absolute; width: 100%; height: 100%; object-fit: cover; opacity: 0.5; filter: grayscale(1); }
-        .hero-content { z-index: 10; text-align: center; }
-        .hero-content h1 { font-family: 'Cinzel'; color: var(--essence-gold); font-size: 4rem; letter-spacing: 20px; text-transform: uppercase; margin-bottom: 20px; }
-        .hero-content p { color: #fff; font-size: 0.9rem; letter-spacing: 8px; font-weight: 200; }
+        .hero-img { 
+            position: absolute; width: 100%; height: 100%; object-fit: cover; 
+            opacity: 0.4; filter: contrast(1.2) grayscale(0.5); transition: 2s ease;
+        }
+        .hero-frame:hover .hero-img { transform: scale(1.1); opacity: 0.5; }
+        .hero-overlay { z-index: 10; text-align: center; }
+        .hero-overlay h1 { 
+            font-family: 'Cinzel'; color: var(--e-white); font-size: 5rem; 
+            letter-spacing: 25px; text-transform: uppercase; margin-bottom: 20px; 
+            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .hero-overlay p { color: var(--e-gold); font-size: 1rem; letter-spacing: 10px; font-weight: 300; text-transform: uppercase; }
 
-        /* --- GRID DEL CATÁLOGO TITÁN --- */
-        .catalogue-wrapper { padding: 100px 5%; max-width: 1900px; margin: 0 auto; }
-        .grid-header { text-align: center; margin-bottom: 80px; }
-        .grid-header h2 { font-family: 'Cinzel'; font-size: 3rem; letter-spacing: 15px; margin-bottom: 20px; }
-        .grid-header .line { width: 100px; height: 2px; background: var(--essence-gold); margin: 0 auto; }
+        /* --- THE GRID ENGINE --- */
+        .store-engine { padding: 100px 6%; max-width: 2000px; margin: 0 auto; }
+        .section-tag { 
+            font-family: 'Cinzel'; font-size: 3rem; letter-spacing: 15px; 
+            text-align: center; margin-bottom: 100px; position: relative;
+        }
+        .section-tag::after {
+            content: ''; position: absolute; bottom: -20px; left: 50%; transform: translateX(-50%);
+            width: 80px; height: 2px; background: var(--e-gold);
+        }
 
-        .essence-grid {
+        .omni-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-            gap: 80px 40px;
+            grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+            gap: 100px 50px;
         }
 
-        /* --- TARJETA DE PRODUCTO AVANZADA --- */
-        .p-card {
+        /* --- TITAN PRODUCT ARCHITECTURE --- */
+        .titan-card {
             background: #fff; position: relative; display: flex; flex-direction: column;
-            transition: var(--essence-transition);
+            transition: var(--e-transition-slow); border: 1px solid transparent;
         }
-        .p-image-container {
-            background: var(--essence-gray-100); aspect-ratio: 1/1.2; display: flex;
+        .titan-card:hover { transform: translateY(-10px); }
+
+        .image-pod {
+            background: var(--e-gray-100); aspect-ratio: 1/1.3; display: flex;
             align-items: center; justify-content: center; position: relative;
-            overflow: hidden; border: 1px solid var(--essence-gray-200);
+            overflow: hidden; transition: 0.5s;
         }
-        .p-image-container img { max-width: 70%; transition: 1.5s cubic-bezier(0.19, 1, 0.22, 1); filter: drop-shadow(0 20px 30px rgba(0,0,0,0.1)); }
-        .p-card:hover .p-image-container img { transform: scale(1.1) translateY(-10px); }
+        .image-pod img { 
+            max-width: 75%; height: auto; transition: 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+            filter: drop-shadow(0 30px 40px rgba(0,0,0,0.12));
+        }
+        .titan-card:hover .image-pod img { transform: scale(1.15) rotate(2deg); }
 
-        .sold-out-overlay {
+        .exhaust-overlay {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(255,255,255,0.85); z-index: 50; display: none;
-            align-items: center; justify-content: center; backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.9); z-index: 40; display: none;
+            align-items: center; justify-content: center; backdrop-filter: blur(12px);
         }
-        .sold-out-stamp {
-            font-family: 'Cinzel'; font-weight: 900; font-size: 2rem; color: var(--essence-red);
-            border: 5px solid var(--essence-red); padding: 20px 40px; transform: rotate(-15deg);
+        .exhaust-label {
+            font-family: 'Cinzel'; font-weight: 900; font-size: 2.5rem; color: var(--e-red);
+            border: 6px solid var(--e-red); padding: 25px 50px; transform: rotate(-12deg);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
         }
-        .is-exhausted .sold-out-overlay { display: flex; }
+        .is-depleted .exhaust-overlay { display: flex; }
 
-        .p-meta { padding: 30px 0; text-align: center; }
-        .p-brand { font-size: 0.7rem; color: var(--essence-gold); letter-spacing: 4px; font-weight: 900; text-transform: uppercase; margin-bottom: 10px; display: block; }
-        .p-name { font-family: 'Cinzel'; font-size: 1.4rem; font-weight: 700; letter-spacing: 3px; margin-bottom: 15px; }
-        .p-price { font-size: 1.8rem; font-weight: 200; letter-spacing: 2px; color: var(--essence-black); margin-bottom: 25px; display: block; }
+        .meta-pod { padding: 40px 0; text-align: center; }
+        .meta-category { font-size: 0.7rem; color: var(--e-gold); letter-spacing: 5px; font-weight: 900; text-transform: uppercase; margin-bottom: 15px; display: block; }
+        .meta-title { font-family: 'Cinzel'; font-size: 1.6rem; font-weight: 800; letter-spacing: 4px; margin-bottom: 20px; }
+        .meta-price { font-size: 2rem; font-weight: 200; letter-spacing: 3px; color: var(--e-black); margin-bottom: 35px; display: block; }
 
-        /* --- BOTONES DE LUJO --- */
-        .btn-essence {
-            width: 100%; padding: 25px; background: var(--essence-black); color: #fff;
-            border: 1px solid var(--essence-black); font-family: 'Inter'; font-size: 0.8rem;
-            font-weight: 900; letter-spacing: 5px; text-transform: uppercase; cursor: pointer;
-            transition: var(--essence-transition);
+        .btn-order-titan {
+            width: 100%; padding: 28px; background: var(--e-black); color: var(--e-white);
+            border: 1px solid var(--e-black); font-family: 'Inter'; font-size: 0.85rem;
+            font-weight: 900; letter-spacing: 6px; text-transform: uppercase; cursor: pointer;
+            transition: var(--e-transition-fast);
         }
-        .btn-essence:hover { background: transparent; color: var(--essence-black); }
-        .btn-essence:disabled { background: var(--essence-gray-300); border-color: var(--essence-gray-300); color: #888; cursor: not-allowed; }
+        .btn-order-titan:hover { background: transparent; color: var(--e-black); }
+        .btn-order-titan:disabled { background: var(--e-gray-300); border: none; color: #888; cursor: not-allowed; }
 
-        /* 👑 BOSS TOOLKIT (INYECTADO) 👑 */
-        .boss-controls-v10 {
-            display: none; /* Controlado por JS */
-            margin-top: 20px; border: 2px dashed var(--essence-red); padding: 20px;
-            background: #fff; grid-template-columns: 1fr 1fr; gap: 10px;
+        /* 👑 HUD MASTER CONTROL (REAL-TIME EDIT) 👑 */
+        .hud-master-actions {
+            display: none; /* Inyectado via JS */
+            margin-top: 25px; padding: 20px; border: 2px solid var(--e-gold);
+            background: #fff; grid-template-columns: 1fr 1fr; gap: 15px;
+            animation: slideUp 0.5s forwards;
         }
-        .boss-btn {
-            padding: 15px; font-size: 0.65rem; font-weight: 900; text-transform: uppercase;
-            cursor: pointer; border: 1px solid #000; background: #fff; transition: 0.3s;
+        .hud-btn {
+            padding: 18px; font-size: 0.7rem; font-weight: 900; text-transform: uppercase;
+            cursor: pointer; border: 1px solid #000; background: #fff; letter-spacing: 2px;
         }
-        .boss-btn:hover { background: #000; color: #fff; }
-        .boss-btn.delete { color: var(--essence-red); border-color: var(--essence-red); }
-        .boss-btn.delete:hover { background: var(--essence-red); color: #fff; }
+        .hud-btn.danger { color: var(--e-red); border-color: var(--e-red); }
+        .hud-btn.danger:hover { background: var(--e-red); color: #fff; }
+        .hud-btn.stock:hover { background: var(--e-black); color: #fff; }
 
-        /* --- DASHBOARD DE JEFE (MODAL FULL) --- */
-        .boss-dashboard {
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- BOSS OMNI-BAR (LOADING DOCK) --- */
+        .boss-omni-dock {
+            display: none; position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
+            width: 95%; max-width: 1000px; background: rgba(0,0,0,0.98);
+            padding: 30px; border: 1px solid var(--e-gold); z-index: 100000;
+            box-shadow: 0 0 100px rgba(0,0,0,0.8); border-radius: 4px;
+        }
+        .dock-flex { display: grid; grid-template-columns: repeat(4, 1fr) 0.5fr; gap: 15px; }
+        .dock-input { background: #1a1a1a; border: 1px solid #333; color: #fff; padding: 15px; font-size: 0.9rem; }
+        .dock-btn { background: var(--e-gold); color: #000; font-weight: 900; border: none; cursor: pointer; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 2px; }
+
+        /* --- MODALES ELITE --- */
+        .omni-modal-overlay {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #fff; z-index: 999999; padding: 100px 5%; overflow-y: auto;
+            background: rgba(255,255,255,0.98); z-index: 200000; align-items: center; justify-content: center;
+            backdrop-filter: blur(20px);
         }
-        .db-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 80px; border-bottom: 5px solid #000; padding-bottom: 20px; }
-        .db-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 60px; }
-        .db-card { background: var(--essence-gray-100); padding: 50px; border: 1px solid #ddd; }
-        .db-card h3 { font-family: 'Cinzel'; font-size: 1.5rem; margin-bottom: 30px; letter-spacing: 5px; }
+        .omni-modal {
+            width: 90%; max-width: 600px; padding: 100px 70px; background: #fff;
+            box-shadow: var(--e-shadow-luxe); text-align: center; border: 1px solid var(--e-gray-200);
+        }
+        .omni-modal h2 { font-family: 'Cinzel'; font-size: 2.2rem; letter-spacing: 8px; margin-bottom: 30px; }
+        .omni-modal input { width: 100%; padding: 22px; margin-bottom: 25px; border: 1px solid var(--e-gray-200); background: var(--e-gray-100); font-size: 1rem; }
 
-        input, select, textarea {
-            width: 100%; padding: 20px; margin-bottom: 25px; border: 1px solid var(--essence-gray-300);
-            font-family: 'Inter'; font-size: 1rem; background: #fff; transition: 0.3s;
-        }
-        input:focus { border-color: var(--essence-gold); }
-
-        /* --- MODALES DE CLIENTE --- */
-        .modal-overlay {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(255,255,255,0.98); z-index: 100000; align-items: center; justify-content: center;
-        }
-        .modal-content {
-            width: 95%; max-width: 550px; padding: 80px 60px; background: #fff;
-            box-shadow: var(--essence-shadow-luxe); text-align: center; border: 1px solid #eee;
-        }
-
-        /* --- RESPONSIVIDAD TITÁN --- */
-        @media (max-width: 1200px) {
-            .essence-grid { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
-            .db-grid { grid-template-columns: 1fr; }
+        /* --- MOBILE ADAPTATION --- */
+        @media (max-width: 1024px) {
+            .omni-grid { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
         }
 
         @media (max-width: 768px) {
-            nav { height: 80px; padding: 0 5%; }
-            .main-logo { font-size: 1.5rem; letter-spacing: 8px; }
-            .nav-links { display: none; }
-            .essence-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 30px 15px; }
-            .p-meta { padding: 15px 0; }
-            .p-name { font-size: 0.9rem; letter-spacing: 1px; }
-            .p-price { font-size: 1.2rem; }
-            .btn-essence { padding: 15px; font-size: 0.6rem; letter-spacing: 2px; }
-            .hero-content h1 { font-size: 2rem; letter-spacing: 8px; }
+            nav.main-nav { height: 90px; }
+            .brand-logo { font-size: 1.8rem; letter-spacing: 8px; }
+            .hero-overlay h1 { font-size: 2.5rem; letter-spacing: 12px; }
+            .hero-frame { height: 350px; }
+            .omni-grid { grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 30px 15px; }
+            .meta-pod { padding: 20px 0; }
+            .meta-title { font-size: 1rem; letter-spacing: 1px; }
+            .meta-price { font-size: 1.3rem; }
+            .btn-order-titan { padding: 18px; font-size: 0.65rem; letter-spacing: 3px; }
+            .dock-flex { grid-template-columns: 1fr; }
+            .boss-omni-dock { bottom: 0; width: 100%; border-radius: 0; }
         }
 
-        /* --- FOOTER --- */
-        footer {
-            background: var(--essence-black); color: #fff; padding: 120px 5%;
-            display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 80px; margin-top: 150px;
+        /* --- BANEO DASHBOARD --- */
+        .baneo-panel {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #fff; z-index: 300000; padding: 100px 6%; overflow-y: auto;
         }
-        .f-col h4 { font-family: 'Cinzel'; font-size: 1rem; letter-spacing: 5px; color: var(--essence-gold); margin-bottom: 40px; }
-        .f-link { display: block; color: #888; text-decoration: none; margin-bottom: 15px; font-size: 0.8rem; letter-spacing: 2px; transition: 0.3s; }
-        .f-link:hover { color: #fff; transform: translateX(10px); }
+        .user-row {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 25px; border-bottom: 1px solid var(--e-gray-200); transition: 0.3s;
+        }
+        .user-row:hover { background: var(--e-gray-100); }
+
+        footer { background: var(--e-near-black); color: #fff; padding: 150px 6%; margin-top: 150px; }
+        .f-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 100px; }
+        .f-link { display: block; color: #777; text-decoration: none; margin-bottom: 20px; font-size: 0.85rem; letter-spacing: 3px; text-transform: uppercase; transition: 0.3s; }
+        .f-link:hover { color: var(--e-gold); transform: translateX(10px); }
 
     </style>
 </head>
 <body>
 
-    <div class="vip-status-header">
-        <div id="u-greeting">EXPERIENCIA ESSENCE GLOBAL</div>
-        <div id="u-membership">SOCIO: <span class="status-pill">STANDARD</span></div>
+    <div class="titan-status-bar">
+        <div id="u-status-msg">SISTEMA DE CONTROL ESSENCE TITAN</div>
+        <div id="u-status-pts">VIP PUNTOS: <span class="pts-pill">0</span></div>
     </div>
 
-    <nav>
-        <div class="main-logo" id="master-key-trigger">ESSENCE</div>
-        <div class="nav-links">
-            <a href="#shop" class="nav-link">Colecciones</a>
-            <a onclick="openModal('modal-vip')" class="nav-link">Embajadores</a>
-            <a href="#soporte" class="nav-link">Soporte</a>
+    <nav class="main-nav">
+        <div class="brand-logo" id="titan-master-key">ESSENCE</div>
+        <div class="nav-menu">
+            <a href="#catalogue" class="nav-item">Colección</a>
+            <a onclick="openOmniModal('modal-vip')" class="nav-item">Socio Plus</a>
+            <a id="nav-baneos" class="nav-item admin-only" onclick="toggleBaneoPanel()">Gestión de Usuarios</a>
         </div>
     </nav>
 
-    <header class="hero-banner">
-        <div class="hero-canvas" onclick="openModal('modal-vip')">
-            <img class="hero-video-bg" src="https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=1974&auto=format&fit=crop" alt="Background">
-            <div class="hero-content">
+    <section class="hero-titan">
+        <div class="hero-frame" onclick="openOmniModal('modal-vip')">
+            <img class="hero-img" src="https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=2000&auto=format&fit=crop" alt="Luxe">
+            <div class="hero-overlay">
                 <h1>OMNIVERSE</h1>
-                <p>LA NUEVA ERA DE LA PERFUMERÍA EN PANAMÁ</p>
+                <p>LA ELITE DE LA PERFUMERÍA EN PANAMÁ</p>
             </div>
         </div>
-    </header>
+    </section>
 
-    <main class="catalogue-wrapper" id="shop">
-        <div class="grid-header">
-            <h2>CURADURÍA</h2>
-            <div class="line"></div>
-        </div>
-
-        <div id="main-catalogue-grid" class="essence-grid">
+    <main class="store-engine" id="catalogue">
+        <h2 class="section-tag">CURADURÍA</h2>
+        <div class="omni-grid" id="main-omni-grid">
             </div>
     </main>
 
-    <div class="boss-dashboard" id="boss-panel">
-        <div class="db-header">
-            <h1 style="font-family:'Cinzel'; letter-spacing:10px;">TITAN CONTROL UNIT</h1>
-            <button class="btn-essence" style="width:auto; padding:15px 40px;" onclick="location.reload()">TERMINAR SESIÓN</button>
-        </div>
-        
-        <div class="db-grid">
-            <div class="db-card">
-                <h3>AÑADIR FRAGANCIA</h3>
-                <input id="boss-p-name" placeholder="NOMBRE DEL PERFUME">
-                <input id="boss-p-price" type="number" placeholder="PRECIO UNITARIO ($)">
-                <input id="boss-p-img" placeholder="URL DE IMAGEN (DIRECTA)">
-                <select id="boss-p-cat">
-                    <option value="NICHO">COLECCIÓN NICHO</option>
-                    <option value="DISEÑADOR">ALTA COSTURA</option>
-                    <option value="ARABE">ESENCIAS ÁRABES</option>
-                </select>
-                <button class="btn-essence" onclick="bossActionAdd()">SUBIR AL SERVIDOR</button>
-            </div>
-
-            <div class="db-card">
-                <h3>GESTIÓN DE USUARIOS / BANEOS</h3>
-                <div id="boss-user-db" style="max-height: 400px; overflow-y: auto;">
-                    </div>
-            </div>
-        </div>
-
-        <div style="margin-top:100px; text-align:center;">
-            <h2 style="font-family:'Cinzel'; letter-spacing:10px;">EDICIÓN DIRECTA ACTIVADA</h2>
-            <p style="color:#888; letter-spacing:3px;">USA LOS BOTONES ROJOS EN LA TIENDA ABAJO PARA BORRAR O AGOTAR</p>
-        </div>
-    </div>
-
-    <div class="modal-overlay" id="modal-vip">
-        <div class="modal-content">
-            <h2 style="font-family:'Cinzel'; letter-spacing:5px; margin-bottom:20px;">MEMBRESÍA ELITE</h2>
-            <p style="color:#888; font-size:0.8rem; margin-bottom:40px; letter-spacing:2px;">GANA 3% DE COMISIÓN POR CADA VENTA REFERIDA</p>
-            <input id="reg-name" placeholder="NOMBRE COMPLETO">
-            <input id="reg-email" placeholder="CORREO ELECTRÓNICO">
-            <button class="btn-essence" onclick="systemActionRegister()">UNIRSE AL CLUB</button>
-            <p onclick="closeModal('modal-vip')" style="margin-top:40px; cursor:pointer; font-size:0.7rem; text-decoration:underline;">VOLVER</p>
-        </div>
-    </div>
-
-    <div class="modal-overlay" id="modal-checkout">
-        <div class="modal-content">
-            <h2 id="check-name" style="font-family:'Cinzel'; letter-spacing:5px;"></h2>
-            <div id="check-price" style="font-size:2.5rem; color:var(--essence-gold); margin:20px 0;"></div>
-            <input id="check-customer" placeholder="NOMBRE PARA EL PEDIDO">
-            <select id="check-payment">
-                <option value="Yappy">YAPPY @ESSENCE</option>
-                <option value="Efectivo">EFECTIVO (PANAMÁ CITY)</option>
-                <option value="Banco">TRANSFERENCIA ACH</option>
+    <div class="boss-omni-dock" id="boss-omni-dock">
+        <h3 style="color:var(--e-gold); font-family:'Cinzel'; margin-bottom:15px; letter-spacing:5px; font-size:0.8rem;">TITAN MASTER CARGO</h3>
+        <div class="dock-flex">
+            <input id="in-name" class="dock-input" placeholder="Nombre Fragancia">
+            <input id="in-price" class="dock-input" type="number" placeholder="Precio ($)">
+            <input id="in-img" class="dock-input" placeholder="URL Imagen">
+            <select id="in-cat" class="dock-input">
+                <option value="NICHO">NICHO</option>
+                <option value="DISEÑADOR">ALTA GAMA</option>
+                <option value="ARABE">ÁRABE</option>
             </select>
-            <button class="btn-essence" onclick="systemActionSendWA()">CONFIRMAR PEDIDO</button>
-            <p onclick="closeModal('modal-checkout')" style="margin-top:30px; cursor:pointer; font-size:0.7rem; opacity:0.5;">CANCELAR</p>
+            <button class="dock-btn" onclick="titanBossAdd()">Cargar</button>
+        </div>
+        <button class="dock-btn" style="width:100%; margin-top:15px; background:#333; color:#fff;" onclick="location.reload()">Cerrar Sesión Maestra</button>
+    </div>
+
+    <div class="baneo-panel" id="baneo-panel">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:50px;">
+            <h1 style="font-family:'Cinzel'; letter-spacing:10px;">USER DATABASE</h1>
+            <button class="btn-order-titan" style="width:auto; padding:15px 40px;" onclick="toggleBaneoPanel()">Volver</button>
+        </div>
+        <div id="user-database-list"></div>
+    </div>
+
+    <div class="omni-modal-overlay" id="modal-vip">
+        <div class="omni-modal">
+            <h2>MEMBRESÍA VIP</h2>
+            <p style="color:#888; letter-spacing:3px; margin-bottom:40px;">GANA COMISIONES POR RECOMENDAR</p>
+            <input id="reg-name" placeholder="Nombre Completo">
+            <input id="reg-email" placeholder="Correo Electrónico">
+            <button class="btn-order-titan" onclick="titanActionRegister()">Registrarme Ahora</button>
+            <p onclick="closeOmniModal('modal-vip')" style="margin-top:30px; cursor:pointer; font-size:0.7rem; text-decoration:underline;">CANCELAR</p>
         </div>
     </div>
 
-    <footer id="soporte">
-        <div class="f-col">
-            <h1 style="font-family:'Cinzel'; letter-spacing:10px; margin-bottom:20px;">ESSENCE</h1>
-            <p style="color:#666; font-size:0.8rem; line-height:2;">La plataforma definitiva de perfumería en Panamá. Calidad garantizada, control absoluto.</p>
+    <div class="omni-modal-overlay" id="modal-buy">
+        <div class="omni-modal">
+            <h2 id="buy-title"></h2>
+            <h1 id="buy-price" style="color:var(--e-gold); margin-bottom:30px; font-size:3rem;"></h1>
+            <input id="buy-customer" placeholder="Tu Nombre">
+            <select id="buy-pay" class="dock-input" style="color:#000; background:#fff; border:1px solid #ddd; margin-bottom:25px;">
+                <option value="Yappy">YAPPY</option>
+                <option value="Efectivo">EFECTIVO CONTRAENTREGA</option>
+            </select>
+            <button class="btn-order-titan" onclick="titanActionSendOrder()">Confirmar por WhatsApp</button>
+            <p onclick="closeOmniModal('modal-buy')" style="margin-top:30px; cursor:pointer; font-size:0.7rem;">VOLVER AL CATÁLOGO</p>
         </div>
-        <div class="f-col">
-            <h4>EXPLORAR</h4>
-            <a href="#" class="f-link">NICHO</a>
-            <a href="#" class="f-link">DESIGNER</a>
-            <a href="#" class="f-link">BEST SELLERS</a>
-        </div>
-        <div class="f-col">
-            <h4>SOPORTE</h4>
-            <a onclick="waMsg('Ayuda')" class="f-link">CENTRO DE AYUDA</a>
-            <a onclick="waMsg('Envio')" class="f-link">RASTREO</a>
-            <a onclick="waMsg('Garantia')" class="f-link">GARANTÍA</a>
-        </div>
-        <div class="f-col">
-            <h4>BUSSINES</h4>
-            <a onclick="waMsg('Inversion')" class="f-link">INVERTIR</a>
-            <a onclick="waMsg('Mayorista')" class="f-link">MAYORISTAS</a>
+    </div>
+
+    <footer>
+        <div class="f-grid">
+            <div>
+                <h2 style="font-family:'Cinzel'; letter-spacing:10px; margin-bottom:30px;">ESSENCE</h2>
+                <p style="color:#555; font-size:0.8rem; line-height:2;">La curaduría de perfumes más exclusiva de Centroamérica. Control total, calidad absoluta.</p>
+            </div>
+            <div>
+                <h4 style="color:var(--e-gold); letter-spacing:5px; margin-bottom:30px;">EXPLORA</h4>
+                <a href="#" class="f-link">Fragancias Nicho</a>
+                <a href="#" class="f-link">Best Sellers</a>
+                <a href="#" class="f-link">Socio Plus</a>
+            </div>
+            <div>
+                <h4 style="color:var(--e-gold); letter-spacing:5px; margin-bottom:30px;">SOPORTE</h4>
+                <a onclick="waMsg('General')" class="f-link">Atención 24/7</a>
+                <a onclick="waMsg('Envio')" class="f-link">Logística de Envío</a>
+            </div>
         </div>
     </footer>
 
     <script>
         /* ================================================================
-           ESSENCE TITAN OMNIVERSE - LOGIC CORE (V10.0)
-           SISTEMA DE GESTIÓN MASIVA
+           ESSENCE TITAN OMNI-REPRESENTATION LOGIC CORE
+           V15.0 - THE SUPREME ENGINE
            ================================================================
         */
 
-        const BOSS_PHONE = "50769028805";
-        const BOSS_PASS = "542497";
+        const MASTER_PHONE = "50769028805";
+        const MASTER_KEY = "542497";
 
-        // --- SISTEMA DE DATOS DINÁMICOS ---
-        let titanState = {
-            inventory: JSON.parse(localStorage.getItem('tt_inventory')) || [
-                {id: 101, n: "Lafayette St Bond No. 9", p: 295, i: "https://fimgs.net/images/perfume/nd.46169.jpg", c: "NICHO", s: true},
-                {id: 102, n: "Erba Pura Xerjoff", p: 250, i: "https://fimgs.net/images/perfume/nd.54003.jpg", c: "NICHO", s: true},
-                {id: 103, n: "Khamrah Lattafa", p: 55, i: "https://fimgs.net/images/perfume/nd.75805.jpg", c: "ARABE", s: true},
-                {id: 104, n: "Sauvage Elixir Dior", p: 160, i: "https://fimgs.net/images/perfume/nd.68305.jpg", c: "DISEÑADOR", s: true}
+        let titanDB = {
+            inventory: JSON.parse(localStorage.getItem('titan_v15_inv')) || [
+                {id: 1, n: "Lafayette St Bond No 9", p: 295, i: "https://fimgs.net/images/perfume/nd.46169.jpg", c: "NICHO", s: true},
+                {id: 2, n: "Erba Pura Xerjoff", p: 250, i: "https://fimgs.net/images/perfume/nd.54003.jpg", c: "NICHO", s: true},
+                {id: 3, n: "Khamrah Lattafa", p: 55, i: "https://fimgs.net/images/perfume/nd.75805.jpg", c: "ARABE", s: true},
+                {id: 4, n: "Sauvage Elixir Dior", p: 160, i: "https://fimgs.net/images/perfume/nd.68305.jpg", c: "DISEÑADOR", s: true}
             ],
-            users: JSON.parse(localStorage.getItem('tt_users')) || {},
-            session: JSON.parse(localStorage.getItem('tt_session')) || null,
+            users: JSON.parse(localStorage.getItem('titan_v15_usr')) || {},
+            session: JSON.parse(localStorage.getItem('titan_v15_ses')) || null,
             isAdmin: false,
             activeP: null,
             keyClicks: 0
         };
 
-        // --- MOTOR DE RENDERIZADO (5000 LINES SIMULATION) ---
-        function renderTitanCore() {
-            const container = document.getElementById('main-catalogue-grid');
-            container.innerHTML = ""; // Limpiar
+        // --- RENDERIZADOR TITÁN (EL CORAZÓN) ---
+        function titanRender() {
+            const grid = document.getElementById('main-omni-grid');
+            grid.innerHTML = "";
 
-            titanState.inventory.forEach((p, idx) => {
-                const card = document.createElement('div');
-                card.className = `p-card ${!p.s ? 'is-exhausted' : ''}`;
-                card.innerHTML = `
-                    <div class="p-image-container">
+            titanDB.inventory.forEach((p, idx) => {
+                const node = document.createElement('div');
+                node.className = `titan-card ${!p.s ? 'is-depleted' : ''}`;
+                node.innerHTML = `
+                    <div class="image-pod">
                         <img src="${p.i || 'https://via.placeholder.com/500'}" alt="${p.n}">
-                        <div class="sold-out-overlay">
-                            <div class="sold-out-stamp">AGOTADO</div>
-                        </div>
+                        <div class="exhaust-overlay"><div class="exhaust-label">AGOTADO</div></div>
                     </div>
-                    <div class="p-meta">
-                        <span class="p-brand">${p.c}</span>
-                        <h3 class="p-name">${p.n}</h3>
-                        <span class="p-price">$${p.p}.00</span>
-                        <button class="btn-essence" ${!p.s ? 'disabled' : ''} onclick="systemActionInitCheckout(${idx})">
-                            ${p.s ? 'ADQUIRIR AHORA' : 'FUERA DE STOCK'}
+                    <div class="meta-pod">
+                        <span class="meta-category">${p.c}</span>
+                        <h3 class="meta-title">${p.n}</h3>
+                        <span class="meta-price">$${p.p}.00</span>
+                        <button class="btn-order-titan" ${!p.s ? 'disabled' : ''} onclick="titanActionInitBuy(${idx})">
+                            ${p.s ? 'ADQUIRIR FRAGANCIA' : 'NO DISPONIBLE'}
                         </button>
 
-                        <div class="boss-controls-v10" id="boss-tools-${idx}" style="display: ${titanState.isAdmin ? 'grid' : 'none'}">
-                            <button class="boss-btn" onclick="bossActionToggleStock(${idx})">${p.s ? 'AGOTAR' : 'REESTABLECER'}</button>
-                            <button class="boss-btn delete" onclick="bossActionDelete(${idx})">ELIMINAR</button>
+                        <div class="hud-master-actions" id="hud-${idx}" style="display: ${titanDB.isAdmin ? 'grid' : 'none'}">
+                            <button class="hud-btn stock" onclick="titanBossToggleStock(${idx})">${p.s ? 'AGOTAR' : 'ACTIVAR'}</button>
+                            <button class="hud-btn danger" onclick="titanBossDelete(${idx})">ELIMINAR</button>
                         </div>
                     </div>
                 `;
-                container.appendChild(card);
+                grid.appendChild(node);
             });
-
-            syncUIState();
+            titanSyncUI();
         }
 
-        // --- ACCIONES DEL JEFE (CORE) ---
-        window.bossActionToggleStock = (index) => {
-            titanState.inventory[index].s = !titanState.inventory[index].s;
-            saveAndRefresh();
-        };
-
-        window.bossActionDelete = (index) => {
-            if(confirm("¿ELIMINAR ESTE PRODUCTO DE FORMA PERMANENTE?")) {
-                titanState.inventory.splice(index, 1);
-                saveAndRefresh();
-            }
-        };
-
-        window.bossActionAdd = () => {
-            const n = document.getElementById('boss-p-name').value;
-            const p = document.getElementById('boss-p-price').value;
-            const i = document.getElementById('boss-p-img').value;
-            const c = document.getElementById('boss-p-cat').value;
-
+        // --- LÓGICA DE JEFE (CONTROLES REALES) ---
+        window.titanBossAdd = () => {
+            const n = document.getElementById('in-name').value;
+            const p = document.getElementById('in-price').value;
+            const i = document.getElementById('in-img').value;
+            const c = document.getElementById('in-cat').value;
             if(n && p) {
-                titanState.inventory.unshift({ id: Date.now(), n, p, i, c, s: true });
-                saveAndRefresh();
-                alert("PRODUCTO CARGADO EXITOSAMENTE.");
-                document.getElementById('boss-p-name').value = "";
-                document.getElementById('boss-p-price').value = "";
-                document.getElementById('boss-p-img').value = "";
-            } else {
-                alert("ERROR: NOMBRE Y PRECIO REQUERIDOS.");
+                titanDB.inventory.unshift({id: Date.now(), n, p, i, c, s: true});
+                titanSave(); titanRender();
+                alert("CARGA EXITOSA AL SISTEMA TITÁN.");
             }
         };
 
-        window.bossActionBan = (email) => {
-            if(confirm(`¿BANEAR A ${email}?`)) {
-                delete titanState.users[email];
-                saveAndRefresh();
-                renderBossUsers();
+        window.titanBossToggleStock = (idx) => {
+            titanDB.inventory[idx].s = !titanDB.inventory[idx].s;
+            titanSave(); titanRender();
+        };
+
+        window.titanBossDelete = (idx) => {
+            if(confirm("¿DESEAS BORRAR ESTE PRODUCTO PERMANENTEMENTE?")) {
+                titanDB.inventory.splice(idx, 1);
+                titanSave(); titanRender();
             }
         };
 
-        function renderBossUsers() {
-            const list = document.getElementById('boss-user-db');
+        window.toggleBaneoPanel = () => {
+            const panel = document.getElementById('baneo-panel');
+            panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+            titanRenderUsers();
+        };
+
+        function titanRenderUsers() {
+            const list = document.getElementById('user-database-list');
             let html = "";
-            for(let key in titanState.users) {
-                const u = titanState.users[key];
+            for(let key in titanDB.users) {
                 html += `
-                    <div style="padding:15px; border-bottom:1px solid #ddd; display:flex; justify-content:space-between; align-items:center; background:#fff; margin-bottom:5px;">
+                    <div class="user-row">
                         <div>
-                            <b style="font-size:0.9rem;">${u.name.toUpperCase()}</b><br>
-                            <small style="color:#888;">${key} | ${u.pts} PUNTOS</small>
+                            <b style="font-size:1.1rem; letter-spacing:2px;">${titanDB.users[key].name.toUpperCase()}</b><br>
+                            <small style="color:#888;">${key} | PUNTOS: ${titanDB.users[key].pts}</small>
                         </div>
-                        <span onclick="bossActionBan('${key}')" style="color:red; cursor:pointer; font-weight:900; font-size:0.7rem;">BANEAR</span>
+                        <button class="hud-btn danger" style="padding:10px 20px;" onclick="titanBossBan('${key}')">BORRAR SOCIO</button>
                     </div>
                 `;
             }
-            list.innerHTML = html || "<p>NO HAY SOCIOS REGISTRADOS.</p>";
+            list.innerHTML = html || "<h3 style='text-align:center; color:#ccc; margin-top:50px;'>NO HAY REGISTROS</h3>";
         }
 
-        // --- SISTEMA DE CLIENTE ---
-        window.systemActionInitCheckout = (idx) => {
-            titanState.activeP = titanState.inventory[idx];
-            document.getElementById('check-name').innerText = titanState.activeP.n;
-            document.getElementById('check-price').innerText = "$" + titanState.activeP.p + ".00";
-            if(titanState.session) document.getElementById('check-customer').value = titanState.session.name;
-            openModal('modal-checkout');
+        window.titanBossBan = (email) => {
+            if(confirm("¿BORRAR ACCESO DE ESTE USUARIO?")) {
+                delete titanDB.users[email];
+                titanSave(); titanRenderUsers();
+            }
         };
 
-        window.systemActionSendWA = () => {
-            const customer = document.getElementById('check-customer').value || "Cliente";
-            const payment = document.getElementById('check-payment').value;
-            const msg = encodeURIComponent(`👑 *PEDIDO ESSENCE TITAN*\n\n💎 *PRODUCTO:* ${titanState.activeP.n}\n💰 *PRECIO:* $${titanState.activeP.p}\n👤 *CLIENTE:* ${customer}\n💳 *PAGO:* ${payment}`);
-            window.open(`https://wa.me/${BOSS_PHONE}?text=${msg}`);
+        // --- ACCIONES CLIENTE ---
+        window.titanActionInitBuy = (idx) => {
+            titanDB.activeP = titanDB.inventory[idx];
+            document.getElementById('buy-title').innerText = titanDB.activeP.n;
+            document.getElementById('buy-price').innerText = "$" + titanDB.activeP.p;
+            if(titanDB.session) document.getElementById('buy-customer').value = titanDB.session.name;
+            openOmniModal('modal-buy');
         };
 
-        window.systemActionRegister = () => {
+        window.titanActionSendOrder = () => {
+            const cli = document.getElementById('buy-customer').value || "Cliente";
+            const pay = document.getElementById('buy-pay').value;
+            const text = encodeURIComponent(`✨ *PEDIDO TITAN ESSENCE*\n\n🏆 *Fragancia:* ${titanDB.activeP.n}\n💰 *Precio:* $${titanDB.activeP.p}\n👤 *Cliente:* ${cli}\n💳 *Pago:* ${pay}`);
+            window.open(`https://wa.me/${MASTER_PHONE}?text=${text}`);
+        };
+
+        window.titanActionRegister = () => {
             const n = document.getElementById('reg-name').value;
             const e = document.getElementById('reg-email').value;
             if(n && e) {
-                if(!titanState.users[e]) titanState.users[e] = {name: n, pts: 0};
-                titanState.session = {name: n, email: e, pts: 0};
-                saveAndRefresh();
-                location.reload();
+                if(!titanDB.users[e]) titanDB.users[e] = {name: n, pts: 0};
+                titanDB.session = {name: n, email: e, pts: 0};
+                titanSave(); location.reload();
             }
         };
 
-        // --- UTILS ---
-        function saveAndRefresh() {
-            localStorage.setItem('tt_inventory', JSON.stringify(titanState.inventory));
-            localStorage.setItem('tt_users', JSON.stringify(titanState.users));
-            localStorage.setItem('tt_session', JSON.stringify(titanState.session));
-            renderTitanCore();
+        // --- UTILS CORE ---
+        function titanSave() {
+            localStorage.setItem('titan_v15_inv', JSON.stringify(titanDB.inventory));
+            localStorage.setItem('titan_v15_usr', JSON.stringify(titanDB.users));
+            localStorage.setItem('titan_v15_ses', JSON.stringify(titanDB.session));
         }
 
-        function syncUIState() {
-            if(titanState.session) {
-                document.getElementById('u-greeting').innerText = "BIENVENIDO SOCIO: " + titanState.session.name.toUpperCase();
-                document.getElementById('u-membership').innerHTML = `SOCIO: <span class="status-pill">ELITE VIP</span>`;
+        function titanSyncUI() {
+            if(titanDB.session) {
+                document.getElementById('u-status-msg').innerText = "CENTRAL TITÁN | BIENVENIDO " + titanDB.session.name.toUpperCase();
+                document.getElementById('u-status-pts').innerHTML = `VIP PUNTOS: <span class="pts-pill">${titanDB.session.pts}</span>`;
             }
         }
 
-        function openModal(id) { document.getElementById(id).style.display = 'flex'; }
-        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
-        
-        function waMsg(t) { window.open(`https://wa.me/${BOSS_PHONE}?text=Asistencia Essence sobre: ${t}`); }
+        function openOmniModal(id) { document.getElementById(id).style.display = 'flex'; }
+        function closeOmniModal(id) { document.getElementById(id).style.display = 'none'; }
+        function waMsg(t) { window.open(`https://wa.me/${MASTER_PHONE}?text=Hola Essence, necesito apoyo en: ${t}`); }
 
-        // --- LLAVE MAESTRA DEL JEFE ---
-        document.getElementById('master-key-trigger').onclick = () => {
-            titanState.keyClicks++;
-            if(titanState.keyClicks >= 3) {
-                const p = prompt("ACCESO TITÁN - INGRESE CÓDIGO:");
-                if(p === BOSS_PASS) {
-                    titanState.isAdmin = true;
-                    document.getElementById('boss-panel').style.display = 'block';
-                    renderBossUsers();
-                    renderTitanCore();
+        // --- TRIGGER SECRETO JEFE (OMNIPOTENCIA) ---
+        document.getElementById('titan-master-key').onclick = () => {
+            titanDB.keyClicks++;
+            if(titanDB.keyClicks >= 3) {
+                const p = prompt("ACCESO MAESTRO TITÁN:");
+                if(p === MASTER_KEY) {
+                    titanDB.isAdmin = true;
+                    document.getElementById('boss-omni-dock').style.display = 'block';
+                    document.getElementById('nav-baneos').style.display = 'block';
+                    titanRender(); // Refresh para mostrar HUD de edición
                 } else {
-                    alert("ACCESO DENEGADO.");
+                    alert("LLAVE INCORRECTA.");
                 }
-                titanState.keyClicks = 0;
+                titanDB.keyClicks = 0;
             }
         };
 
-        // --- INICIO ---
-        renderTitanCore();
+        // INICIO
+        titanRender();
 
     </script>
 </body>
 </html>
+
 
