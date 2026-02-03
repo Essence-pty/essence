@@ -3,383 +3,216 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ESSENCE OMNIVERSE | CORPORATE SYSTEM</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
+    <title>ESSENCE OMNIVERSE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
     <style>
-        /* ============================================================================
-           ESSENCE TITAN V40 - CORE ARCHITECTURE
-           DESIGN: ULTRA-MINIMALIST / HIGH-CONTRAST
-           ============================================================================ */
+        :root { --b: #000; --w: #fff; --g: #f4f4f4; --red: #ff3b30; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background: var(--w); color: var(--b); padding-top: 70px; }
 
-        :root {
-            --b: #000000;
-            --w: #ffffff;
-            --g1: #f9f9f9;
-            --g2: #eeeeee;
-            --g3: #d1d1d1;
-            --accent: #b8952e;
-            --error: #ff3b30;
-            --success: #34c759;
-            --t: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        /* RESET & BASE */
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
-        body { 
-            font-family: 'Inter', sans-serif; background: var(--w); color: var(--b); 
-            line-height: 1.6; overflow-x: hidden;
-        }
-
-        /* HEADER CORPORATIVO (ARRIBA A LA DERECHA) */
-        header.main-nav {
-            height: 80px; width: 100%; position: fixed; top: 0; left: 0;
-            background: rgba(255,255,255,0.95); backdrop-filter: blur(15px);
+        /* HEADER */
+        header {
+            height: 70px; width: 100%; position: fixed; top: 0; background: #fff;
             display: flex; justify-content: space-between; align-items: center;
-            padding: 0 6%; border-bottom: 1px solid var(--g2); z-index: 10000;
+            padding: 0 5%; border-bottom: 1px solid var(--g); z-index: 10000;
         }
-        .brand-logo { 
-            font-family: 'Cinzel'; font-size: 1.6rem; font-weight: 900; 
-            letter-spacing: 10px; cursor: pointer; user-select: none;
-        }
+        .logo { font-family: 'Cinzel'; font-size: 1.4rem; letter-spacing: 6px; cursor: pointer; font-weight: 900; }
+        .nav-r { display: flex; gap: 10px; }
+        .btn-n { font-size: 0.6rem; font-weight: 900; letter-spacing: 1px; padding: 10px 15px; border: 1.5px solid #000; background: none; cursor: pointer; text-transform: uppercase; }
+        .btn-n.black { background: #000; color: #fff; }
 
-        .auth-cluster { display: flex; align-items: center; gap: 15px; }
-        .nav-btn {
-            font-size: 0.65rem; font-weight: 900; letter-spacing: 2px; text-transform: uppercase;
-            padding: 12px 20px; border: 1px solid var(--b); background: transparent;
-            cursor: pointer; transition: var(--t);
-        }
-        .nav-btn:hover { background: var(--b); color: var(--w); }
-        .nav-btn.black { background: var(--b); color: var(--w); }
+        /* BANNER SOCIO */
+        .socio-info { background: #000; color: #fff; text-align: center; padding: 10px; font-size: 0.65rem; font-weight: 800; letter-spacing: 2px; }
 
-        /* BARRA DE ANUNCIOS SOCIO 3% */
-        .promo-bar {
-            margin-top: 80px; background: var(--b); color: var(--w);
-            padding: 12px 0; text-align: center; font-size: 0.65rem;
-            font-weight: 800; letter-spacing: 4px; text-transform: uppercase;
-        }
+        /* FILTROS */
+        .filter-box { display: flex; justify-content: center; gap: 10px; padding: 25px 0; position: sticky; top: 70px; background: #fff; z-index: 9000; border-bottom: 1px solid var(--g); }
+        .f-tag { padding: 8px 18px; border: 1px solid #ddd; font-size: 0.6rem; font-weight: 900; cursor: pointer; text-transform: uppercase; }
+        .f-tag.active { background: #000; color: #fff; border-color: #000; }
 
-        /* FILTROS DE CATEGORÍA (CERO BLOQUEOS) */
-        .filter-strip {
-            position: sticky; top: 80px; background: var(--w); z-index: 999;
-            display: flex; justify-content: center; gap: 10px; padding: 25px 0;
-            border-bottom: 1px solid var(--g1);
-        }
-        .f-node {
-            padding: 10px 25px; border: 1px solid var(--g2); font-size: 0.6rem;
-            font-weight: 900; letter-spacing: 2px; text-transform: uppercase;
-            cursor: pointer; transition: 0.3s;
-        }
-        .f-node.active { background: var(--b); color: var(--w); border-color: var(--b); }
-
-        /* GRILLA DE PRODUCTOS MAESTRA */
-        .catalog-grid {
-            padding: 50px 6%; display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 60px 30px; max-width: 1600px; margin: 0 auto;
-        }
-
-        .p-card { 
-            position: relative; display: flex; flex-direction: column;
-            transition: var(--t);
-        }
-        .p-card:hover { transform: translateY(-5px); }
-
-        .p-visual {
-            background: var(--g1); aspect-ratio: 1/1.2; display: flex;
-            align-items: center; justify-content: center; position: relative;
-            overflow: hidden; border: 1px solid var(--g2);
-        }
-        .p-visual img { width: 80%; transition: 1s cubic-bezier(0.19, 1, 0.22, 1); }
-        .p-card:hover .p-visual img { transform: scale(1.1); }
-
-        /* OVERLAY AGOTADO */
-        .out-mask {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(255,255,255,0.9); display: none;
-            align-items: center; justify-content: center; z-index: 10;
-        }
-        .out-mask b { 
-            font-family: 'Cinzel'; font-size: 1.5rem; border: 3px solid #000;
-            padding: 10px 20px; transform: rotate(-10deg);
-        }
-        .is-out .out-mask { display: flex; }
-
-        .p-meta { padding: 20px 0; text-align: left; }
-        .p-meta .cat { font-size: 0.55rem; color: var(--accent); font-weight: 900; letter-spacing: 3px; margin-bottom: 8px; display: block; }
-        .p-meta .name { font-family: 'Cinzel'; font-size: 1rem; font-weight: 700; margin-bottom: 10px; }
-        .p-meta .price { font-size: 1.1rem; font-weight: 200; }
-
-        .btn-order {
-            width: 100%; padding: 18px; background: var(--b); color: var(--w);
-            border: none; font-size: 0.7rem; font-weight: 900; letter-spacing: 4px;
-            cursor: pointer; text-transform: uppercase; transition: 0.3s;
-        }
-        .btn-order:disabled { background: var(--g3); color: #888; cursor: not-allowed; }
-
-        /* ============================================================================
-           HUD DE CONTROL JEFE (VISIBILIDAD CORREGIDA)
-           ============================================================================ */
-        .boss-hud {
-            display: none; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px;
-            padding: 15px; border: 1px solid var(--b); background: var(--g1);
-            animation: slideIn 0.4s ease forwards;
-        }
-        .btn-boss {
-            padding: 10px; font-size: 0.55rem; font-weight: 900; cursor: pointer;
-            background: #fff; border: 1px solid var(--b); text-transform: uppercase;
-        }
-        .btn-boss.del { border-color: var(--error); color: var(--error); }
-        .btn-boss.del:hover { background: var(--error); color: #fff; }
-
-        /* MODALES ELITE */
-        .omni-modal {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(255,255,255,0.98); z-index: 50000; align-items: center; justify-content: center;
-        }
-        .modal-inner {
-            width: 90%; max-width: 450px; padding: 50px; background: #fff;
-            border: 1px solid var(--g2); text-align: center;
-        }
-        .modal-inner h2 { font-family: 'Cinzel'; font-size: 1.5rem; letter-spacing: 8px; margin-bottom: 30px; }
+        /* GRILLA */
+        .container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; padding: 20px 5%; max-width: 1200px; margin: 0 auto; }
+        .card { display: flex; flex-direction: column; border: 1px solid var(--g); padding: 10px; position: relative; }
+        .img-h { aspect-ratio: 1/1.2; background: var(--g); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+        .img-h img { width: 85%; transition: 0.4s; }
         
-        .omni-input {
-            width: 100%; padding: 18px; margin-bottom: 15px; border: 1px solid var(--g3);
-            background: var(--g1); font-family: 'Inter'; font-size: 0.9rem;
-        }
-        .omni-select {
-            width: 100%; padding: 18px; margin-bottom: 30px; border: 1px solid var(--g3);
-            background: var(--g1); font-weight: 900;
-        }
+        .sold { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.85); display: none; align-items: center; justify-content: center; z-index: 10; backdrop-filter: blur(2px); }
+        .sold b { border: 3px solid #000; padding: 5px 10px; font-weight: 900; font-size: 0.8rem; transform: rotate(-10deg); }
+        .is-out .sold { display: flex; }
 
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .catalog-grid { grid-template-columns: repeat(2, 1fr); gap: 20px 10px; padding: 30px 4%; }
-            .brand-logo { font-size: 1.1rem; letter-spacing: 5px; }
-            .nav-btn { padding: 8px 12px; font-size: 0.55rem; }
-            .p-meta .name { font-size: 0.75rem; height: 35px; overflow: hidden; }
-            .p-meta .price { font-size: 0.9rem; }
-            .btn-order { padding: 14px; font-size: 0.6rem; letter-spacing: 2px; }
-            .filter-strip { padding: 15px 4%; overflow-x: auto; justify-content: flex-start; }
-            .f-node { padding: 8px 15px; white-space: nowrap; }
+        .meta { padding: 15px 0; text-align: center; }
+        .meta .cat { font-size: 0.5rem; color: #888; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; }
+        .meta .name { font-size: 0.75rem; font-weight: 700; margin: 5px 0; height: 32px; overflow: hidden; }
+        .meta .price { font-size: 0.9rem; font-weight: 300; }
+
+        .btn-buy { width: 100%; padding: 15px; background: #000; color: #fff; border: none; font-size: 0.65rem; font-weight: 900; letter-spacing: 2px; cursor: pointer; }
+        .btn-buy:disabled { background: #ccc; cursor: not-allowed; }
+
+        /* 👑 PANEL DE CONTROL (BOSS HUD) 👑 */
+        .boss-controls { 
+            display: none; margin-top: 10px; padding-top: 10px; border-top: 2px solid #000;
+            grid-template-columns: 1fr 1fr; gap: 8px; background: #fff;
         }
+        .btn-admin { padding: 10px; font-size: 0.6rem; font-weight: 900; cursor: pointer; border: 1px solid #000; background: #fff; text-transform: uppercase; }
+        .btn-admin.del { background: var(--red); color: #fff; border: none; }
 
-        @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        footer { background: var(--b); color: #fff; padding: 60px 6%; text-align: center; margin-top: 100px; }
+        /* MODALES */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.98); z-index: 50000; align-items: center; justify-content: center; }
+        .m-content { width: 90%; max-width: 400px; padding: 40px; border: 2px solid #000; text-align: center; background: #fff; }
+        input, select { width: 100%; padding: 15px; margin-bottom: 10px; border: 1px solid #ddd; background: var(--g); font-size: 0.9rem; }
+        
+        @media (min-width: 768px) { .container { grid-template-columns: repeat(4, 1fr); } }
     </style>
 </head>
 <body>
 
-    <header class="main-nav">
-        <div class="brand-logo" id="key-trigger">ESSENCE</div>
-        <div class="auth-cluster">
-            <button class="nav-btn" onclick="openOmni('m-auth')">Entrar</button>
-            <button class="nav-btn black" onclick="openOmni('m-auth')">Socio 3%</button>
+    <header>
+        <div class="logo" id="boss-trigger">ESSENCE</div>
+        <div class="nav-r">
+            <button class="btn-n" onclick="openM('m-auth')">Login</button>
+            <button class="btn-n black" onclick="openM('m-auth')">Socio 3%</button>
         </div>
     </header>
 
-    <div class="promo-bar">PROGRAMA DE SOCIOS: GANA 3% POR REFERIDO</div>
+    <div class="socio-info">GANA 3% POR CADA VENTA REFERIDA</div>
 
-    <nav class="filter-strip">
-        <div class="f-node active" onclick="applyFilter('ALL', this)">Todo</div>
-        <div class="f-node" onclick="applyFilter('NICHO', this)">Nicho</div>
-        <div class="f-node" onclick="applyFilter('DESIGNER', this)">Diseñador</div>
-        <div class="f-node" onclick="applyFilter('ARABE', this)">Árabe</div>
-    </nav>
+    <div class="filter-box">
+        <div class="f-tag active" onclick="filter('ALL', this)">Todo</div>
+        <div class="f-tag" onclick="filter('NICHO', this)">Nicho</div>
+        <div class="f-tag" onclick="filter('DESIGNER', this)">Diseñador</div>
+        <div class="f-tag" onclick="filter('ARABE', this)">Árabe</div>
+    </div>
 
-    <main class="catalog-grid" id="main-grid"></main>
+    <main class="container" id="grid"></main>
 
-    <div class="omni-modal" id="m-boss">
-        <div class="modal-inner">
-            <h2>MASTER CARGO</h2>
-            <input id="in-n" class="omni-input" placeholder="Nombre Fragancia">
-            <input id="in-p" type="number" class="omni-input" placeholder="Precio ($)">
-            <input id="in-i" class="omni-input" placeholder="URL Imagen">
-            <select id="in-c" class="omni-select">
+    <div class="modal" id="m-boss">
+        <div class="m-content">
+            <h2 style="font-family:'Cinzel'; margin-bottom:20px;">MASTER PANEL</h2>
+            <input id="in-n" placeholder="Nombre de la Fragancia">
+            <input id="in-p" type="number" placeholder="Precio ($)">
+            <input id="in-i" placeholder="URL de Imagen">
+            <select id="in-c">
                 <option value="NICHO">NICHO</option>
                 <option value="DESIGNER">DISEÑADOR</option>
                 <option value="ARABE">ÁRABE</option>
             </select>
-            <button class="btn-order" onclick="actionAdd()">PUBLICAR PRODUCTO</button>
-            <p onclick="location.reload()" style="margin-top:30px; font-size:0.6rem; cursor:pointer; color:red; letter-spacing:2px;">CERRAR SESIÓN MAESTRA</p>
+            <button class="btn-buy" onclick="addPerfume()">PUBLICAR AHORA</button>
+            <button class="btn-n" style="width:100%; margin-top:10px;" onclick="closeM('m-boss')">VER TIENDA</button>
+            <p onclick="location.reload()" style="margin-top:20px; font-size:0.6rem; color:red; cursor:pointer; font-weight:900;">CERRAR SESIÓN MAESTRA</p>
         </div>
     </div>
 
-    <div class="omni-modal" id="m-auth">
-        <div class="modal-inner">
-            <h2>ACCESO SOCIO</h2>
-            <p style="font-size:0.65rem; color:#888; margin-bottom:20px; letter-spacing:2px;">GANA COMISIONES POR CADA VENTA</p>
-            <input id="u-n" class="omni-input" placeholder="Nombre Completo">
-            <input id="u-e" class="omni-input" placeholder="Correo Electrónico">
-            <button class="btn-order" onclick="actionRegister()">REGISTRARME</button>
-            <p onclick="closeOmni('m-auth')" style="margin-top:20px; font-size:0.6rem; cursor:pointer;">CANCELAR</p>
+    <div class="modal" id="m-auth">
+        <div class="m-content">
+            <h2 style="font-family:'Cinzel'; margin-bottom:20px;">REGISTRO SOCIO</h2>
+            <input id="u-n" placeholder="Nombre Completo">
+            <input id="u-e" placeholder="Email">
+            <button class="btn-buy" onclick="register()">ACCEDER AL PROGRAMA</button>
+            <p onclick="closeM('m-auth')" style="margin-top:20px; font-size:0.6rem; cursor:pointer;">VOLVER</p>
         </div>
     </div>
-
-    <div class="omni-modal" id="m-buy">
-        <div class="modal-inner">
-            <h2 id="buy-n"></h2>
-            <h1 id="buy-p" style="font-weight:200; margin-bottom:30px;"></h1>
-            <input id="buy-cli" class="omni-input" placeholder="Tu Nombre">
-            <button class="btn-order" onclick="actionSend()">PEDIR POR WHATSAPP</button>
-            <p onclick="closeOmni('m-buy')" style="margin-top:20px; font-size:0.6rem; cursor:pointer;">VOLVER</p>
-        </div>
-    </div>
-
-    <footer>
-        <div style="font-family:'Cinzel'; letter-spacing:10px; font-size:1.5rem; margin-bottom:20px;">ESSENCE</div>
-        <p style="font-size:0.6rem; opacity:0.5; letter-spacing:3px;">PANAMÁ • OMNIVERSE V40 • 2026</p>
-    </footer>
 
     <script>
-        /* SISTEMA DE GESTIÓN DE DATOS ESSENCE
-           LOGIC VERSION: 40.0.1
-        */
+        const WA_NUMBER = "50769028805";
+        const ADMIN_PASS = "542497";
 
-        const MASTER_PHONE = "50769028805";
-        const MASTER_KEY = "542497";
+        let products = JSON.parse(localStorage.getItem('essence_db')) || [
+            {id: 1, n: "Lafayette St Bond No 9", p: 295, i: "https://fimgs.net/images/perfume/nd.46169.jpg", c: "NICHO", s: true},
+            {id: 2, n: "Erba Pura Xerjoff", p: 250, i: "https://fimgs.net/images/perfume/nd.54003.jpg", c: "NICHO", s: true},
+            {id: 3, n: "Sauvage Elixir Dior", p: 160, i: "https://fimgs.net/images/perfume/nd.68305.jpg", c: "DESIGNER", s: true}
+        ];
 
-        let titanState = {
-            inventory: JSON.parse(localStorage.getItem('ess_v40_db')) || [
-                {id: 1, n: "Lafayette St Bond No 9", p: 295, i: "https://fimgs.net/images/perfume/nd.46169.jpg", c: "NICHO", s: true},
-                {id: 2, n: "Erba Pura Xerjoff", p: 250, i: "https://fimgs.net/images/perfume/nd.54003.jpg", c: "NICHO", s: true},
-                {id: 3, n: "Khamrah Lattafa", p: 55, i: "https://fimgs.net/images/perfume/nd.75805.jpg", c: "ARABE", s: true},
-                {id: 4, n: "Sauvage Elixir Dior", p: 160, i: "https://fimgs.net/images/perfume/nd.68305.jpg", c: "DESIGNER", s: true}
-            ],
-            session: JSON.parse(localStorage.getItem('ess_v40_ses')) || null,
-            isAdmin: false,
-            activeFilter: 'ALL',
-            clicks: 0,
-            activeP: null
-        };
+        let isAdmin = false;
+        let currentFilter = 'ALL';
 
-        // --- MOTOR DE RENDERIZADO ---
-        function coreRender() {
-            const grid = document.getElementById('main-grid');
+        function render() {
+            const grid = document.getElementById('grid');
             grid.innerHTML = "";
+            const items = currentFilter === 'ALL' ? products : products.filter(x => x.c === currentFilter);
 
-            const filtered = titanState.activeFilter === 'ALL' 
-                ? titanState.inventory 
-                : titanState.inventory.filter(p => p.c === titanState.activeFilter);
-
-            filtered.forEach(p => {
+            items.forEach(p => {
                 const card = document.createElement('div');
-                card.className = `p-card ${!p.s ? 'is-out' : ''}`;
+                card.className = `card ${!p.s ? 'is-out' : ''}`;
                 card.innerHTML = `
-                    <div class="p-visual">
-                        <img src="${p.i}" alt="${p.n}">
-                        <div class="out-mask"><b>AGOTADO</b></div>
+                    <div class="img-h">
+                        <img src="${p.i}">
+                        <div class="sold"><b>AGOTADO</b></div>
                     </div>
-                    <div class="p-meta">
+                    <div class="meta">
                         <span class="cat">${p.c}</span>
-                        <h3 class="name">${p.n}</h3>
+                        <div class="name">${p.n}</div>
                         <div class="price">$${p.p}.00</div>
                     </div>
-                    <button class="btn-order" ${!p.s ? 'disabled' : ''} onclick="initBuy(${p.id})">
-                        ${p.s ? 'ADQUIRIR' : 'SIN STOCK'}
-                    </button>
-
-                    <div class="boss-hud" id="hud-${p.id}" style="display: ${titanState.isAdmin ? 'grid' : 'none'}">
-                        <button class="btn-boss" onclick="actionToggleStock(${p.id})">${p.s ? 'AGOTAR' : 'ACTIVAR'}</button>
-                        <button class="btn-boss del" onclick="actionDelete(${p.id})">BORRAR</button>
+                    <button class="btn-buy" ${!p.s ? 'disabled' : ''} onclick="buy(${p.id})">COMPRAR</button>
+                    
+                    <div class="boss-controls" style="display: ${isAdmin ? 'grid' : 'none'}">
+                        <button class="btn-admin" onclick="toggleS(${p.id})">${p.s ? 'AGOTAR' : 'ACTIVAR'}</button>
+                        <button class="btn-admin del" onclick="delP(${p.id})">BORRAR</button>
                     </div>
                 `;
                 grid.appendChild(card);
             });
         }
 
-        // --- LÓGICA DE FILTROS ---
-        window.applyFilter = (cat, btn) => {
-            titanState.activeFilter = cat;
-            document.querySelectorAll('.f-node').forEach(n => n.classList.remove('active'));
-            btn.classList.add('active');
-            coreRender();
-        };
-
-        // --- ACCIONES DEL JEFE ---
-        window.actionAdd = () => {
-            const n = document.getElementById('in-n').value, 
-                  p = document.getElementById('in-p').value, 
-                  i = document.getElementById('in-i').value, 
-                  c = document.getElementById('in-c').value;
-            
+        /* LÓGICA JEFE */
+        window.addPerfume = () => {
+            const n = document.getElementById('in-n').value, p = document.getElementById('in-p').value, i = document.getElementById('in-i').value, c = document.getElementById('in-c').value;
             if(n && p && i) {
-                titanState.inventory.unshift({ id: Date.now(), n, p, i, c, s: true });
-                sync(); coreRender();
-                alert("PRODUCTO PUBLICADO CON ÉXITO.");
-            } else {
-                alert("ERROR: REVISA LOS CAMPOS.");
+                products.unshift({ id: Date.now(), n, p, i, c, s: true });
+                save(); render();
+                alert("CARGADO.");
             }
         };
 
-        window.actionDelete = (id) => {
-            if(confirm("¿ELIMINAR ESTE PERFUME DE LA TIENDA?")) {
-                titanState.inventory = titanState.inventory.filter(p => p.id !== id);
-                sync(); coreRender();
+        window.delP = (id) => {
+            if(confirm("¿ELIMINAR ESTE PRODUCTO?")) {
+                products = products.filter(x => x.id !== id);
+                save(); render();
             }
         };
 
-        window.actionToggleStock = (id) => {
-            const idx = titanState.inventory.findIndex(p => p.id === id);
-            titanState.inventory[idx].s = !titanState.inventory[idx].s;
-            sync(); coreRender();
+        window.toggleS = (id) => {
+            const index = products.findIndex(x => x.id === id);
+            products[index].s = !products[index].s;
+            save(); render();
         };
 
-        // --- ACCIONES DE USUARIO ---
-        window.initBuy = (id) => {
-            titanState.activeP = titanState.inventory.find(p => p.id === id);
-            document.getElementById('buy-n').innerText = titanState.activeP.n;
-            document.getElementById('buy-p').innerText = `$${titanState.activeP.p}.00`;
-            if(titanState.session) document.getElementById('buy-cli').value = titanState.session.name;
-            openOmni('m-buy');
+        /* LÓGICA GENERAL */
+        window.filter = (c, btn) => {
+            currentFilter = c;
+            document.querySelectorAll('.f-tag').forEach(x => x.classList.remove('active'));
+            btn.classList.add('active');
+            render();
         };
 
-        window.actionSend = () => {
-            const cli = document.getElementById('buy-cli').value || "Cliente";
-            const socio = titanState.session ? ` (Socio: ${titanState.session.name})` : "";
-            const msg = encodeURIComponent(`NUEVO PEDIDO ESSENCE\n\nProducto: ${titanState.activeP.n}\nPrecio: $${titanState.activeP.p}\nCliente: ${cli}${socio}`);
-            window.open(`https://wa.me/${MASTER_PHONE}?text=${msg}`);
+        window.buy = (id) => {
+            const p = products.find(x => x.id === id);
+            window.open(`https://wa.me/${WA_NUMBER}?text=Hola Essence, quiero comprar: ${p.n} ($${p.p})`);
         };
 
-        window.actionRegister = () => {
-            const n = document.getElementById('u-n').value, e = document.getElementById('u-e').value;
-            if(n && e) {
-                titanState.session = { name: n, email: e };
-                sync();
-                alert("REGISTRO EXITOSO. YA PUEDES EMPEZAR A REFERIR.");
-                location.reload();
-            }
+        window.register = () => {
+            alert("Registro enviado. Pronto recibirás tu código de socio.");
+            closeM('m-auth');
         };
 
-        // --- FUNCIONES CORE ---
-        function sync() {
-            localStorage.setItem('ess_v40_db', JSON.stringify(titanState.inventory));
-            localStorage.setItem('ess_v40_ses', JSON.stringify(titanState.session));
-        }
+        function save() { localStorage.setItem('essence_db', JSON.stringify(products)); }
+        function openM(id) { document.getElementById(id).style.display = 'flex'; }
+        function closeM(id) { document.getElementById(id).style.display = 'none'; }
 
-        function openOmni(id) { document.getElementById(id).style.display = 'flex'; }
-        function closeOmni(id) { document.getElementById(id).style.display = 'none'; }
-
-        // TRIGGER SECRETO: 3 CLICS LOGO
-        document.getElementById('key-trigger').onclick = () => {
-            titanState.clicks++;
-            if(titanState.clicks >= 3) {
-                const pass = prompt("ACCESO CENTRAL - LLAVE MAESTRA:");
-                if(pass === MASTER_KEY) {
-                    titanState.isAdmin = true;
-                    openOmni('m-boss');
-                    coreRender(); // Actualiza para mostrar botones de admin
+        // ACTIVAR MODO JEFE (3 CLICS EN EL LOGO)
+        let clicks = 0;
+        document.getElementById('boss-trigger').onclick = () => {
+            clicks++;
+            if(clicks >= 3) {
+                if(prompt("PASSWORD:") === ADMIN_PASS) {
+                    isAdmin = true;
+                    openM('m-boss');
+                    render();
                 }
-                titanState.clicks = 0;
+                clicks = 0;
             }
         };
 
-        // INICIO
-        coreRender();
-
+        render();
     </script>
 </body>
 </html>
