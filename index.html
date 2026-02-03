@@ -3,89 +3,552 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ESSENCE OMNIVERSE</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>ESSENCE OMNIVERSE | THE SUPREME CORPORATE SYSTEM</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
     <style>
-        :root { --gold: #c5a059; --b: #000; --w: #fff; --gray: #f9f9f9; }
-        * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
-        body { background: var(--w); color: var(--b); line-height: 1.6; }
+        /* [LÍNEA 25] MOTOR DE RENDERIZADO ULTRA-DETALLADO */
+        :root {
+            --essence-black: #000000;
+            --essence-gold-primary: #c5a059;
+            --essence-gold-secondary: #dfc18d;
+            --essence-white-pure: #ffffff;
+            --essence-white-soft: #fcfcfc;
+            --essence-gray-light: #f4f4f4;
+            --essence-gray-medium: #e0e0e0;
+            --essence-gray-dark: #333333;
+            --essence-shadow-soft: 0 10px 30px rgba(0,0,0,0.05);
+            --essence-shadow-hard: 0 20px 50px rgba(0,0,0,0.2);
+            --essence-transition-slow: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+            --essence-transition-fast: all 0.3s ease-in-out;
+        }
 
-        /* HEADER LIMPIO */
-        header { background: var(--b); padding: 25px 15px; text-align: center; position: sticky; top: 0; z-index: 1000; }
-        .logo { font-family: 'Cinzel'; font-size: 1.6rem; letter-spacing: 10px; color: var(--w); cursor: pointer; }
-        
-        .search-container { max-width: 500px; margin: 15px auto 0; width: 95%; }
-        .search-input { width: 100%; padding: 12px 20px; border-radius: 8px; border: none; background: #1a1a1a; color: #fff; font-size: 0.85rem; outline: none; text-align: center; }
+        /* [LÍNEA 45] RESET COMPLETO DE ARQUITECTURA */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+            background-color: var(--essence-white-pure);
+        }
 
-        /* NAVEGACIÓN */
-        nav { display: flex; background: var(--w); border-bottom: 1px solid #eee; position: sticky; top: 118px; z-index: 999; }
-        .nav-btn { flex: 1; padding: 15px; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; cursor: pointer; border: none; background: none; color: #999; letter-spacing: 1px; }
-        .nav-btn.active { color: #000; border-bottom: 2px solid #000; }
+        /* [LÍNEA 55] SISTEMA DE ANUNCIOS CINÉTICOS (ADS) */
+        .marquee-container {
+            background-color: var(--essence-gold-primary);
+            color: var(--essence-black);
+            padding: 15px 0;
+            overflow: hidden;
+            position: relative;
+            z-index: 9999;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
 
-        /* SECCIONES */
-        .section { display: none; padding: 20px 10px; max-width: 1200px; margin: 0 auto; animation: fadeIn 0.4s ease; }
-        .section.active { display: block; }
-        @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
+        .marquee-content {
+            display: flex;
+            white-space: nowrap;
+            animation: marquee-infinite 30s linear infinite;
+            font-family: 'Montserrat';
+            font-weight: 900;
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
 
-        /* GRID OPTIMIZADO PARA MÓVIL */
-        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-        .card { background: var(--w); border: 1px solid #f0f0f0; border-radius: 4px; padding: 8px; text-align: center; position: relative; }
-        .card img { width: 100%; aspect-ratio: 1/1; object-fit: contain; margin-bottom: 8px; background: var(--gray); border-radius: 4px; }
-        .card-name { font-weight: 700; font-size: 0.7rem; text-transform: uppercase; margin-bottom: 4px; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-        .card-price { color: var(--gold); font-size: 0.9rem; font-weight: 300; margin-bottom: 10px; display: block; }
+        .marquee-item {
+            padding: 0 50px;
+        }
 
-        /* BOTÓN DE WHATSAPP DIRECTO */
-        .btn-wa { width: 100%; padding: 12px; background: var(--b); color: var(--w); border: none; font-size: 0.6rem; font-weight: 700; letter-spacing: 1px; cursor: pointer; text-transform: uppercase; border-radius: 2px; }
-        .card.sold-out { opacity: 0.4; filter: grayscale(1); }
-        .sold-out-tag { position: absolute; top: 15px; right: 15px; background: red; color: #fff; padding: 3px 6px; font-size: 0.5rem; font-weight: 900; }
+        @keyframes marquee-infinite {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
 
-        /* DASHBOARD */
-        .admin-box { background: var(--gray); padding: 15px; border-radius: 8px; margin-bottom: 15px; border: 1px solid #eee; font-size: 0.8rem; }
-        .fab { position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px; background: var(--b); color: #fff; border-radius: 50%; display: none; align-items: center; justify-content: center; font-size: 1.5rem; z-index: 2000; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+        /* [LÍNEA 85] HEADER CORPORATIVO NIVEL MAGNATE */
+        header {
+            background-color: var(--essence-black);
+            padding-top: 60px;
+            padding-bottom: 60px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 8000;
+            border-bottom: 4px solid var(--essence-gold-primary);
+            box-shadow: 0 15px 45px rgba(0,0,0,0.3);
+            transition: var(--essence-transition-slow);
+        }
 
-        @media (min-width: 768px) { .grid { grid-template-columns: repeat(4, 1fr); gap: 25px; } }
+        .logo-text {
+            font-family: 'Cinzel', serif;
+            font-size: 3.2rem;
+            color: var(--essence-white-pure);
+            letter-spacing: 18px;
+            font-weight: 900;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: var(--essence-transition-slow);
+        }
+
+        .logo-text:hover {
+            color: var(--essence-gold-primary);
+            letter-spacing: 24px;
+            transform: scale(1.05);
+        }
+
+        /* [LÍNEA 115] BARRA DE USUARIO Y REGISTRO */
+        .user-auth-strip {
+            background-color: var(--essence-gray-light);
+            padding: 12px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--essence-gray-medium);
+            font-family: 'Montserrat';
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .user-identity { color: var(--essence-gray-dark); }
+        .auth-trigger {
+            color: var(--essence-gold-primary);
+            text-decoration: none;
+            cursor: pointer;
+            border-bottom: 1px solid transparent;
+            transition: 0.3s;
+        }
+        .auth-trigger:hover { border-bottom: 1px solid var(--essence-gold-primary); }
+
+        /* [LÍNEA 140] BUSCADOR DE ALTO RENDIMIENTO */
+        .search-engine-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 25px;
+        }
+
+        .search-engine-input {
+            width: 100%;
+            padding: 24px 35px;
+            border-radius: 60px;
+            border: 2px solid #222;
+            background-color: #0a0a0a;
+            color: var(--essence-white-pure);
+            font-family: 'Montserrat';
+            font-size: 1rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-align: center;
+            outline: none;
+            transition: var(--essence-transition-slow);
+        }
+
+        .search-engine-input:focus {
+            border-color: var(--essence-gold-primary);
+            box-shadow: 0 0 50px rgba(197,160,89,0.4);
+            background-color: #000;
+            transform: scale(1.02);
+        }
+
+        /* [LÍNEA 175] NAVEGACIÓN BOUTIQUE */
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: rgba(255,255,255,0.98);
+            backdrop-filter: blur(20px);
+            position: sticky;
+            top: 200px;
+            z-index: 7000;
+            border-bottom: 1px solid var(--essence-gray-medium);
+        }
+
+        .nav-button {
+            padding: 25px 40px;
+            font-family: 'Montserrat';
+            font-size: 0.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: #aaa;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: 0.4s;
+            position: relative;
+        }
+
+        .nav-button.active { color: var(--essence-black); }
+        .nav-button.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: var(--essence-gold-primary);
+        }
+
+        /* [LÍNEA 210] GRID DE PRODUCTOS MASIVO */
+        .content-section {
+            display: none;
+            padding: 80px 30px;
+            max-width: 1600px;
+            margin: 0 auto;
+            min-height: 100vh;
+            animation: section-reveal 1.2s ease-out;
+        }
+
+        .content-section.active { display: block; }
+
+        @keyframes section-reveal {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .master-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 60px 30px;
+        }
+
+        /* [LÍNEA 235] CARDS DE LUJO EXPANDIDAS */
+        .product-card-elite {
+            position: relative;
+            background-color: var(--essence-white-pure);
+            transition: var(--essence-transition-slow);
+            border: 1px solid transparent;
+        }
+
+        .product-card-elite:hover {
+            transform: translateY(-20px);
+        }
+
+        .card-visuals {
+            background-color: var(--essence-gray-light);
+            aspect-ratio: 1 / 1.3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid #f0f0f0;
+        }
+
+        .card-visuals img {
+            width: 85%;
+            height: 85%;
+            object-fit: contain;
+            transition: 1.2s cubic-bezier(0.1, 1, 0.2, 1);
+        }
+
+        .product-card-elite:hover img {
+            transform: scale(1.15) rotate(2deg);
+        }
+
+        .sold-out-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.85);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ff0000;
+            font-family: 'Cinzel';
+            font-weight: 900;
+            font-size: 1.5rem;
+            letter-spacing: 5px;
+            transform: rotate(-15deg);
+        }
+
+        .card-info {
+            padding: 30px 10px;
+            text-align: center;
+        }
+
+        .card-category {
+            font-size: 0.6rem;
+            font-weight: 800;
+            color: var(--essence-gold-primary);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--essence-black);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .card-price-tag {
+            font-size: 1.5rem;
+            font-weight: 200;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        /* [LÍNEA 295] BOTÓN DE ADQUISICIÓN */
+        .btn-acquire {
+            width: 100%;
+            padding: 22px;
+            background-color: var(--essence-black);
+            color: var(--essence-white-pure);
+            border: none;
+            font-family: 'Montserrat';
+            font-size: 0.8rem;
+            font-weight: 900;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-acquire:hover {
+            background-color: var(--essence-gold-primary);
+            box-shadow: 0 20px 40px rgba(197,160,89,0.3);
+        }
+
+        /* [LÍNEA 320] MODAL DE PAGO TRIPLE (YAPPY, TRANSF, CASH) */
+        .payment-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.95);
+            z-index: 20000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-container {
+            background-color: var(--essence-white-pure);
+            width: 100%;
+            max-width: 550px;
+            padding: 50px;
+            border-radius: 4px;
+            position: relative;
+            animation: modal-up 0.5s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+        }
+
+        @keyframes modal-up {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .payment-header {
+            font-family: 'Cinzel';
+            font-size: 1.8rem;
+            text-align: center;
+            margin-bottom: 40px;
+            letter-spacing: 5px;
+        }
+
+        .payment-method-card {
+            width: 100%;
+            padding: 25px;
+            border: 1px solid var(--essence-gray-medium);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .payment-method-card:hover {
+            border-color: var(--essence-gold-primary);
+            background-color: var(--essence-white-soft);
+            transform: translateX(10px);
+        }
+
+        .method-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--essence-black);
+            color: var(--essence-gold-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-right: 25px;
+            font-weight: 900;
+        }
+
+        .method-text b {
+            display: block;
+            font-family: 'Montserrat';
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .method-text span {
+            font-size: 0.7rem;
+            color: #888;
+        }
+
+        /* [LÍNEA 385] BOSS DASHBOARD INTEGRADO */
+        .admin-dashboard-container {
+            background-color: var(--essence-gray-light);
+            border-radius: 8px;
+            padding: 40px;
+            border: 1px solid #eee;
+        }
+
+        .data-table-elite {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: var(--essence-white-pure);
+            box-shadow: var(--essence-shadow-soft);
+        }
+
+        .data-table-elite th {
+            background-color: var(--essence-black);
+            color: var(--essence-white-pure);
+            padding: 20px;
+            text-align: left;
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .data-table-elite td {
+            padding: 20px;
+            border-bottom: 1px solid var(--essence-gray-medium);
+            font-size: 0.85rem;
+        }
+
+        /* [LÍNEA 420] BOTÓN FLOTANTE MASTER */
+        .master-fab {
+            position: fixed;
+            bottom: 50px;
+            right: 50px;
+            width: 85px;
+            height: 85px;
+            background-color: var(--essence-black);
+            color: var(--essence-white-pure);
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            z-index: 15000;
+            border: 3px solid var(--essence-gold-primary);
+            cursor: pointer;
+            box-shadow: var(--essence-shadow-hard);
+            transition: 0.3s;
+        }
+
+        .master-fab:hover { transform: scale(1.1) rotate(90deg); }
+
+        /* [LÍNEA 445] ADAPTACIÓN RESPONSIVA DINÁMICA */
+        @media (min-width: 1200px) { .master-grid { grid-template-columns: repeat(4, 1fr); gap: 80px 40px; } }
+        @media (max-width: 992px) { .logo-text { font-size: 2rem; letter-spacing: 10px; } header { padding: 40px 10px; } nav { top: 150px; } }
+        @media (max-width: 768px) { .master-grid { grid-template-columns: repeat(2, 1fr); gap: 30px 15px; } .nav-button { padding: 20px 15px; font-size: 0.6rem; letter-spacing: 2px; } }
+
     </style>
 </head>
 <body>
 
+    <div class="marquee-container">
+        <div class="marquee-content">
+            <div class="marquee-item">✨ ESSENCE OMNIVERSE: LA EXCELENCIA EN PERFUMERÍA TRIPLE A ✨</div>
+            <div class="marquee-item">🚀 ENVÍOS A TODO PANAMÁ VÍA UNO EXPRESS Y SERVIENTREGA 🚀</div>
+            <div class="marquee-item">💎 CALIDAD GARANTIZADA - DURACIÓN DE 8 A 12 HORAS 💎</div>
+            <div class="marquee-item">✨ NUEVAS FRAGANCIAS DE INVIERNO DISPONIBLES ✨</div>
+            <div class="marquee-item">✨ ESSENCE OMNIVERSE: LA EXCELENCIA EN PERFUMERÍA TRIPLE A ✨</div>
+            <div class="marquee-item">🚀 ENVÍOS A TODO PANAMÁ VÍA UNO EXPRESS Y SERVIENTREGA 🚀</div>
+        </div>
+    </div>
+
     <header>
-        <div class="logo" id="boss-key">ESSENCE</div>
-        <div class="search-container">
-            <input type="text" id="find" class="search-input" placeholder="Buscar fragancia..." onkeyup="filter()">
+        <div class="logo-text" id="master-trigger">ESSENCE</div>
+        <div class="search-engine-container">
+            <input type="text" id="live-search" class="search-engine-input" placeholder="BUSCAR EN EL OMNIVERSO..." onkeyup="filterEngine()">
         </div>
     </header>
 
+    <div class="user-auth-strip">
+        <div id="display-user">ESTADO: INVITADO DE HONOR</div>
+        <div class="auth-trigger" onclick="initRegistration()">REGISTRO DE CLIENTE ELITE</div>
+    </div>
+
     <nav>
-        <button class="nav-btn active" onclick="tab('home', this)">Fragancias</button>
-        <button class="nav-btn" onclick="tab('trace', this)">Rastreo</button>
-        <button class="nav-btn" id="nav-adm" style="display:none;" onclick="tab('adm', this)">Admin</button>
+        <button class="nav-button active" onclick="switchTab('catalogo', this)">Catálogo</button>
+        <button class="nav-button" onclick="switchTab('rastreo', this)">Rastreo</button>
+        <button class="nav-button" id="boss-nav" style="display:none;" onclick="switchTab('admin', this)">Panel Boss</button>
     </nav>
 
-    <section id="home" class="section active"><div class="grid" id="main-grid"></div></section>
+    <section id="catalogo" class="content-section active">
+        <div class="master-grid" id="product-injector"></div>
+    </section>
 
-    <section id="trace" class="section">
-        <div class="admin-box">
-            <h3 style="margin-bottom:10px">Consultar pedido</h3>
-            <input type="text" id="tr-name" class="search-input" style="background:#fff; border:1px solid #ddd; color:#000" placeholder="Nombre completo">
-            <button class="btn-wa" style="margin-top:10px" onclick="tracking()">Consultar Status</button>
+    <section id="rastreo" class="content-section">
+        <div class="admin-dashboard-container" style="text-align:center;">
+            <h2 style="font-family:'Cinzel'; letter-spacing:8px;">RASTREAR ORDEN</h2>
+            <p style="margin-bottom:40px; font-size:0.8rem; letter-spacing:2px;">INGRESE SU NOMBRE PARA CONSULTAR ESTATUS</p>
+            <input type="text" id="track-input" class="search-engine-input" style="background:#fff; color:#000; border:1px solid #ddd; max-width:500px" placeholder="NOMBRE COMPLETO">
+            <button class="btn-acquire" style="margin-top:40px; max-width:400px; margin-left:auto; margin-right:auto" onclick="trackViaWA()">CONSULTAR AHORA</button>
         </div>
     </section>
 
-    <section id="adm" class="section">
-        <h3 style="margin-bottom:15px">VENTAS REGISTRADAS</h3>
-        <div id="sales-log"></div>
-        <hr style="margin:20px 0">
-        <h3 style="margin-bottom:15px">INVENTARIO</h3>
-        <div id="adm-list"></div>
+    <section id="admin" class="content-section">
+        <h2 style="font-family:'Cinzel'; margin-bottom:40px;">REGISTRO DE OPERACIONES</h2>
+        <div class="admin-dashboard-container">
+            <table class="data-table-elite">
+                <thead><tr><th>FECHA</th><th>CLIENTE</th><th>PRODUCTO</th><th>PAGO</th></tr></thead>
+                <tbody id="sales-log"></tbody>
+            </table>
+        </div>
+        <h2 style="font-family:'Cinzel'; margin:60px 0 40px;">GESTIÓN DE INVENTARIO</h2>
+        <div id="inventory-manager"></div>
     </section>
 
-    <div class="fab" id="add-btn" onclick="addP()">+</div>
+    <div class="payment-modal" id="pay-modal">
+        <div class="modal-container">
+            <h2 class="payment-header">MÉTODO DE PAGO</h2>
+            
+            <div class="payment-method-card" onclick="processSale('YAPPY')">
+                <div class="method-icon">Y</div>
+                <div class="method-text"><b>Yappy (Banco General)</b><span>Pago instantáneo en Panamá</span></div>
+            </div>
+
+            <div class="payment-method-card" onclick="processSale('ACH')">
+                <div class="method-icon">A</div>
+                <div class="method-text"><b>Transferencia ACH</b><span>Bancos nacionales</span></div>
+            </div>
+
+            <div class="payment-method-card" onclick="processSale('EFECTIVO')">
+                <div class="method-icon">E</div>
+                <div class="method-text"><b>Efectivo</b><span>Pago contra entrega (Solo Ciudad)</span></div>
+            </div>
+
+            <button class="btn-acquire" style="background:#ff4d4d; margin-top:20px;" onclick="closePayment()">CANCELAR</button>
+        </div>
+    </div>
+
+    <div class="master-fab" id="boss-fab" onclick="addNewItem()">+</div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
         import { getFirestore, collection, addDoc, onSnapshot, updateDoc, deleteDoc, doc, query, orderBy } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
 
-        const config = {
+        // [LÍNEA 585] CONFIGURACIÓN CORPORATIVA
+        const firebaseConfig = {
             apiKey: "AIzaSyBkNAkJXoyxn9rkGv1mG5GPh9ge4FUjp8Y",
             authDomain: "essencev2.firebaseapp.com",
             projectId: "essencev2",
@@ -94,96 +557,127 @@
             appId: "1:201967001425:web:0a072cd4d2048e7a0dbd70"
         };
 
-        const app = initializeApp(config);
+        const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
+        const BOSS_WA = "50769028805";
+        let tempP = ""; let tempV = "";
 
-        // --- CARGAR PRODUCTOS ---
+        // [LÍNEA 605] MOTOR DE DATOS EN TIEMPO REAL
         onSnapshot(collection(db, "inventario_oficial"), (snap) => {
-            const grid = document.getElementById('main-grid');
-            const adm = document.getElementById('adm-list');
-            grid.innerHTML = ""; adm.innerHTML = "";
+            const grid = document.getElementById('product-injector');
+            const manager = document.getElementById('inventory-manager');
+            grid.innerHTML = ""; manager.innerHTML = "";
+            
             snap.forEach(d => {
-                const p = d.data(); const id = d.id;
-                const isOut = p.stock === 'off';
+                const item = d.data(); const id = d.id;
+                const isOut = item.stock === 'off';
 
                 grid.innerHTML += `
-                    <div class="card ${isOut ? 'sold-out' : ''}" data-n="${p.name.toLowerCase()}">
-                        ${isOut ? '<div class="sold-out-tag">AGOTADO</div>' : ''}
-                        <img src="${p.img}">
-                        <span class="card-name">${p.name}</span>
-                        <span class="card-price">$${p.price}</span>
-                        <button class="btn-wa" onclick="${isOut ? '' : `buy('${p.name}', '${p.price}')`}">${isOut ? 'No disponible' : 'Adquirir'}</button>
+                    <div class="product-card-elite ${isOut ? 'out' : ''}" data-search-name="${item.name.toLowerCase()}">
+                        ${isOut ? '<div class="sold-out-overlay">AGOTADO</div>' : ''}
+                        <div class="card-visuals"><img src="${item.img}"></div>
+                        <div class="card-info">
+                            <div class="card-category">ESSENCE OMNIVERSE</div>
+                            <div class="card-title">${item.name}</div>
+                            <div class="card-price-tag">$${item.price}</div>
+                            <button class="btn-acquire" onclick="${isOut ? '' : `initBuy('${item.name}', '${item.price}')`}">${isOut ? 'SIN STOCK' : 'ADQUIRIR AHORA'}</button>
+                        </div>
                     </div>`;
-                
-                adm.innerHTML += `<div class="admin-box" style="display:flex; justify-content:space-between; align-items:center;">
-                    <span>${p.name}</span>
+
+                manager.innerHTML += `<div class="admin-dashboard-container" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+                    <span><b>${item.name}</b> ($${item.price})</span>
                     <div>
-                        <button onclick="tgS('${id}','${p.stock}')" style="padding:4px">Stock</button>
-                        <button onclick="del('${id}')" style="color:red; margin-left:10px">X</button>
+                        <button onclick="toggleStock('${id}','${item.stock}')" style="padding:10px; cursor:pointer;">SWAP STOCK</button>
+                        <button onclick="killItem('${id}')" style="color:red; margin-left:20px; font-weight:bold; cursor:pointer;">BORRAR</button>
                     </div>
                 </div>`;
             });
         });
 
-        // --- COMPRA DIRECTA WHATSAPP ---
-        window.buy = async (name, price) => {
-            const user = prompt("Ingrese su nombre para la orden:");
-            if(!user) return;
-
-            // Guardar en tu base de datos para el Dashboard
-            await addDoc(collection(db, "ventas_essence"), {
-                cliente: user, producto: name, fecha: new Date().toLocaleString(), ts: new Date()
-            });
-
-            // Enviar a tu WhatsApp (50769028805)
-            const text = `🔥 *NUEVA ORDEN ESSENCE*%0A%0A👤 *Cliente:* ${user}%0A📦 *Fragancia:* ${name}%0A💰 *Precio:* $${price}%0A%0A_Por favor, confírmame disponibilidad._`;
-            window.open(`https://wa.me/50769028805?text=${text}`);
+        // [LÍNEA 645] LÓGICA DE COMPRA Y REGISTRO
+        window.initBuy = (n, v) => {
+            tempP = n; tempV = v;
+            document.getElementById('pay-modal').style.display = 'flex';
         };
 
-        // --- LOG DE VENTAS PARA DASHBOARD ---
+        window.processSale = async (method) => {
+            const client = localStorage.getItem('essence_user_name') || prompt("INGRESE SU NOMBRE PARA LA ORDEN:");
+            if(!client) return;
+
+            await addDoc(collection(db, "ventas_essence"), {
+                cliente: client, producto: tempP, metodo: method, fecha: new Date().toLocaleString(), ts: new Date()
+            });
+
+            const waText = `💎 *NUEVA ORDEN ESSENCE OMNIVERSE*%0A%0A👤 *CLIENTE:* ${client}%0A📦 *PRODUCTO:* ${tempP}%0A💰 *PRECIO:* $${tempV}%0A💳 *PAGO:* ${method}%0A%0A_Favor confirmar para proceder con el envío._`;
+            window.open(`https://wa.me/${BOSS_WA}?text=${waText}`);
+            closePayment();
+        };
+
+        window.initRegistration = () => {
+            const name = prompt("INGRESE SU NOMBRE PARA REGISTRO DE ÉLITE:");
+            if(name) {
+                localStorage.setItem('essence_user_name', name);
+                document.getElementById('display-user').innerText = "ESTADO: CLIENTE ELITE - " + name.toUpperCase();
+                alert("REGISTRO COMPLETADO EXITOSAMENTE.");
+            }
+        };
+
+        // [LÍNEA 685] DASHBOARD LOG
         onSnapshot(query(collection(db, "ventas_essence"), orderBy("ts", "desc")), (snap) => {
-            const log = document.getElementById('sales-log');
-            log.innerHTML = "";
+            const logBody = document.getElementById('sales-log');
+            logBody.innerHTML = "";
             snap.forEach(d => {
-                const v = d.data();
-                log.innerHTML += `<div class="admin-box" style="background:#fff"><b>${v.cliente}</b> pidió <b>${v.producto}</b> el ${v.fecha}</div>`;
+                const sale = d.data();
+                logBody.innerHTML += `<tr><td>${sale.fecha}</td><td>${sale.cliente}</td><td>${sale.producto}</td><td>${sale.metodo}</td></tr>`;
             });
         });
 
-        // --- FUNCIONES CORE ---
-        window.filter = () => {
-            const t = document.getElementById('find').value.toLowerCase();
-            document.querySelectorAll('.card').forEach(c => c.style.display = c.getAttribute('data-n').includes(t) ? "block" : "none");
+        // [LÍNEA 705] FUNCIONES DE SISTEMA
+        window.closePayment = () => document.getElementById('pay-modal').style.display = 'none';
+        window.switchTab = (id, btn) => {
+            document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-button').forEach(b => b.classList.remove('active'));
+            document.getElementById(id).classList.add('active'); btn.classList.add('active');
         };
-        window.tab = (id, b) => {
-            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-            document.querySelectorAll('.nav-btn').forEach(n => n.classList.remove('active'));
-            document.getElementById(id).classList.add('active'); b.classList.add('active');
+        window.filterEngine = () => {
+            const queryText = document.getElementById('live-search').value.toLowerCase();
+            document.querySelectorAll('.product-card-elite').forEach(card => {
+                card.style.display = card.getAttribute('data-search-name').includes(queryText) ? "block" : "none";
+            });
         };
-        window.tracking = () => {
-            const n = document.getElementById('tr-name').value;
-            if(n) window.open(`https://wa.me/50769028805?text=Hola,%20quisiera%20saber%20el%20estatus%20de%20mi%20pedido:%20${n}`);
+        window.trackViaWA = () => {
+            const name = document.getElementById('track-input').value;
+            if(name) window.open(`https://wa.me/${BOSS_WA}?text=Hola,%20solicito%20rastreo%20de%20mi%20pedido:%20${name}`);
         };
-        window.tgS = (id, s) => updateDoc(doc(db, "inventario_oficial", id), { stock: s === 'off' ? 'on' : 'off' });
-        window.del = (id) => confirm("¿Borrar?") && deleteDoc(doc(db, "inventario_oficial", id));
-        window.addP = async () => {
+
+        // [LÍNEA 730] ADMIN TOOLS
+        window.toggleStock = (id, s) => updateDoc(doc(db, "inventario_oficial", id), { stock: s === 'off' ? 'on' : 'off' });
+        window.killItem = (id) => confirm("¿ELIMINAR PRODUCTO?") && deleteDoc(doc(db, "inventario_oficial", id));
+        window.addNewItem = async () => {
             const n = prompt("Nombre:"), p = prompt("Precio:"), i = prompt("URL Imagen:");
             if(n && p && i) await addDoc(collection(db, "inventario_oficial"), { name:n, price:p, img:i, stock:'on' });
         };
 
-        let cl = 0;
-        document.getElementById('boss-key').onclick = () => {
-            if(++cl >= 3) {
-                if(prompt("PASSWORD:") === "542497") {
-                    document.getElementById('nav-adm').style.display = 'block';
-                    document.getElementById('add-btn').style.display = 'flex';
+        let bossClicks = 0;
+        document.getElementById('master-trigger').onclick = () => {
+            if(++bossClicks >= 3) {
+                if(prompt("MASTER KEY ACCESS:") === "542497") {
+                    document.getElementById('boss-nav').style.display = 'block';
+                    document.getElementById('boss-fab').style.display = 'flex';
                 }
-                cl = 0;
+                bossClicks = 0;
             }
+        };
+
+        // AUTO-LOGIN CHECK
+        window.onload = () => {
+            const saved = localStorage.getItem('essence_user_name');
+            if(saved) document.getElementById('display-user').innerText = "ESTADO: CLIENTE ELITE - " + saved.toUpperCase();
         };
     </script>
 </body>
 </html>
+
 
 
 
