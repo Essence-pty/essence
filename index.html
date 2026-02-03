@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ESSENCE | Luxury Management</title>
+    <title>ESSENCE | Luxury Management Elite</title>
     
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script type="text/javascript">
@@ -13,127 +13,503 @@
     </script>
 
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    
     <style>
-        :root { --gold: #b8952e; --black: #000; --white: #fff; --gray: #f9f9f9; --border: #eeeeee; }
-        body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--black); margin: 0; }
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 8%; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: #fff; z-index: 1000; }
-        .logo { font-family: 'Cinzel'; font-size: 1.8rem; letter-spacing: 6px; cursor: pointer; user-select: none; }
-        .user-bar { background: var(--gray); padding: 8px 8%; display: flex; justify-content: space-between; font-size: 0.65rem; border-bottom: 1px solid var(--border); }
-        .pts-badge { color: var(--gold); font-weight: 700; background: #fff; padding: 2px 8px; border-radius: 10px; border: 1px solid var(--border); }
-        .container { max-width: 1300px; margin: 40px auto; padding: 0 5%; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 40px; }
-        .p-card { text-align: center; padding: 15px; }
-        .img-box { background: var(--gray); aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center; margin-bottom: 15px; overflow: hidden; }
-        .img-box img { max-width: 90%; max-height: 90%; object-fit: contain; mix-blend-mode: multiply; }
-        .btn { border: 1px solid var(--black); background: transparent; padding: 12px; cursor: pointer; font-size: 0.65rem; letter-spacing: 2px; width: 100%; text-transform: uppercase; font-weight: 700; }
-        .btn:hover { background: var(--black); color: var(--white); }
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.98); z-index: 2000; align-items: center; justify-content: center; }
-        .modal-content { width: 90%; max-width: 350px; text-align: center; padding: 40px; border: 1px solid #eee; background: #fff; }
-        #bossPanel { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff; z-index: 3000; padding: 40px; overflow-y: auto; }
-        input, select { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid var(--border); box-sizing: border-box; }
+        :root {
+            --gold: #b8952e;
+            --black: #000;
+            --white: #fff;
+            --gray: #f9f9f9;
+            --border: #eeeeee;
+            --red: #c0392b;
+            --shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--white);
+            color: var(--black);
+            margin: 0;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* --- BARRA DE USUARIO --- */
+        .user-bar {
+            background: var(--gray);
+            padding: 12px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.7rem;
+            border-bottom: 1px solid var(--border);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .pts-badge {
+            color: var(--gold);
+            font-weight: 700;
+            background: #fff;
+            padding: 5px 15px;
+            border-radius: 25px;
+            border: 1px solid var(--border);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+
+        /* --- NAVEGACIÓN --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 28px 8%;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            background: rgba(255,255,255,0.98);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-family: 'Cinzel';
+            font-size: 2.2rem;
+            letter-spacing: 12px;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.4s ease;
+        }
+
+        .logo:hover {
+            color: var(--gold);
+            letter-spacing: 14px;
+        }
+        
+        .nav-link {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            cursor: pointer;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--gold);
+            transition: 0.3s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* --- CONTENEDOR DE PRODUCTOS --- */
+        .container {
+            max-width: 1400px;
+            margin: 60px auto;
+            padding: 0 5%;
+            min-height: 85vh;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 60px;
+        }
+        
+        .p-card {
+            text-align: center;
+            border: 1px solid transparent;
+            padding: 25px;
+            transition: all 0.5s ease;
+            background: #fff;
+            border-radius: 5px;
+            position: relative;
+        }
+
+        .p-card:hover {
+            border: 1px solid #f0f0f0;
+            transform: translateY(-8px);
+            box-shadow: var(--shadow);
+        }
+        
+        .img-box {
+            background: var(--gray);
+            aspect-ratio: 1/1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            overflow: hidden;
+            border-radius: 4px;
+        }
+
+        .img-box img {
+            max-width: 80%;
+            max-height: 80%;
+            object-fit: contain;
+            mix-blend-mode: multiply;
+            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .p-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .p-card h4 {
+            font-family: 'Cinzel';
+            font-size: 1.1rem;
+            margin: 20px 0 8px 0;
+            letter-spacing: 1.5px;
+            font-weight: 400;
+        }
+
+        .p-card b {
+            color: var(--gold);
+            font-size: 1.2rem;
+            display: block;
+            margin-bottom: 25px;
+            font-family: 'Inter';
+            font-weight: 300;
+        }
+
+        /* --- SISTEMA DE BOTONES --- */
+        .btn {
+            border: 1px solid var(--black);
+            background: transparent;
+            padding: 18px 30px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            width: 100%;
+            text-transform: uppercase;
+            font-weight: 700;
+            transition: all 0.4s ease;
+            outline: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:hover {
+            background: var(--black);
+            color: var(--white);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* --- MODALES DINÁMICOS --- */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.99);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            width: 90%;
+            max-width: 420px;
+            text-align: center;
+            padding: 60px 40px;
+            border: 1px solid var(--border);
+            background: #fff;
+            box-shadow: 0 30px 70px rgba(0,0,0,0.08);
+            border-radius: 10px;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 16px;
+            margin: 15px 0;
+            border: 1px solid var(--border);
+            box-sizing: border-box;
+            font-family: 'Inter';
+            font-size: 0.95rem;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: var(--gold);
+            outline: none;
+        }
+
+        /* --- PANEL DE CONTROL JEFE --- */
+        #bossPanel {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            z-index: 3000;
+            padding: 80px;
+            overflow-y: auto;
+        }
+
+        .admin-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-top: 50px;
+        }
+
+        .admin-box {
+            border: 1px solid #f0f0f0;
+            padding: 40px;
+            border-radius: 12px;
+            background: var(--gray);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+            font-size: 0.85rem;
+            background: #fff;
+        }
+
+        th, td {
+            padding: 18px;
+            border: 1px solid #eee;
+            text-align: center;
+        }
+
+        th {
+            background: #000;
+            color: #fff;
+            font-family: 'Cinzel';
+            letter-spacing: 2px;
+            font-weight: 400;
+        }
+
+        .status-banned { color: var(--red); font-weight: bold; }
+        .status-active { color: #27ae60; font-weight: bold; }
+
+        /* --- PANTALLA DE BANEO --- */
+        #bannedScreen {
+            display: none;
+            text-align: center;
+            padding: 180px 20px;
+        }
     </style>
 </head>
 <body>
 
 <div class="user-bar">
-    <span id="uNameTop">BIENVENIDO A ESSENCE</span>
-    <span id="uPtsTop">PUNTOS: <span class="pts-badge">0</span></span>
+    <div id="uNameTop">BIENVENIDO A ESSENCE BOUTIQUE</div>
+    <div id="uPtsTop">MIS PUNTOS: <span class="pts-badge">0 PTS</span></div>
 </div>
 
 <nav>
     <div class="logo" id="logoBtn">ESSENCE</div>
-    <div id="navAction"><span onclick="openM('modalReg')" style="cursor:pointer; font-size:0.65rem; font-weight:700;">REGISTRO</span></div>
+    <div id="navAction">
+        <span class="nav-link" onclick="openM('modalReg')">LOG IN / REGISTRO VIP</span>
+    </div>
 </nav>
 
-<div class="container">
+<div class="container" id="mainShop">
     <div id="mainGrid" class="grid"></div>
 </div>
 
+<div id="bannedScreen">
+    <h1 style="font-family:Cinzel; color:var(--red); font-size: 3rem; letter-spacing: 5px;">ACCESO DENEGADO</h1>
+    <p style="letter-spacing: 3px; color: #666;">Su cuenta ha sido suspendida por violar las políticas de ESSENCE.</p>
+    <button class="btn" style="width:auto; margin-top:40px;" onclick="location.reload()">VOLVER AL INICIO</button>
+</div>
+
 <div id="bossPanel">
-    <button class="btn" style="width:auto; float:right;" onclick="location.reload()">CERRAR</button>
-    <h2 style="font-family:Cinzel;">ADMINISTRACIÓN JEFE</h2>
-    <input id="pName" placeholder="Nombre">
-    <input id="pPrice" type="number" placeholder="Precio">
-    <input id="pImg" placeholder="Link de Foto">
-    <button class="btn" onclick="addP()">PUBLICAR EN TIENDA</button>
+    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom: 1px solid #eee; padding-bottom: 20px;">
+        <h1 style="font-family:Cinzel; margin:0; letter-spacing: 5px;">ESSENCE CONTROL CENTER</h1>
+        <button class="btn" style="width:auto; padding: 10px 30px;" onclick="location.reload()">LOGOUT</button>
+    </div>
+
+    <div class="admin-grid">
+        <div class="admin-box">
+            <h3 style="font-family:Cinzel; letter-spacing: 2px;">GESTIÓN DE PRODUCTOS</h3>
+            <p style="font-size: 0.8rem; color: #888;">Complete los campos para actualizar la vitrina.</p>
+            <input id="pName" placeholder="Nombre Comercial">
+            <input id="pPrice" type="number" placeholder="Precio Final ($)">
+            <input id="pImg" placeholder="Enlace de la Imagen (Directo)">
+            <button class="btn" onclick="addP()" style="background: #000; color: #fff; margin-top: 10px;">SUBIR A LA TIENDA</button>
+        </div>
+
+        <div class="admin-box">
+            <h3 style="font-family:Cinzel; letter-spacing: 2px;">CONTROL DE CLIENTES VIP</h3>
+            <table id="userTable">
+                <thead>
+                    <tr>
+                        <th>CLIENTE</th>
+                        <th>PTS</th>
+                        <th>STATUS</th>
+                        <th>GESTIÓN</th>
+                    </tr>
+                </thead>
+                <tbody id="userListBody"></tbody>
+            </table>
+        </div>
+    </div>
 </div>
 
 <div id="modalBuy" class="modal">
     <div class="modal-content">
-        <h2 style="font-family:Cinzel;">MÉTODO DE ENTREGA</h2>
+        <h2 style="font-family:Cinzel; letter-spacing:4px;">SOLICITUD DE PEDIDO</h2>
+        <div id="buyInfo" style="font-weight:700; color:var(--gold); margin:25px 0; border: 1px solid #eee; padding: 15px; background: #fafafa;"></div>
+        
+        <label style="font-size:0.65rem; letter-spacing:2px; display:block; text-align:left; font-weight: 700;">PREFERENCIA DE ENTREGA:</label>
         <select id="deliveryOption">
-            <option value="Envio Contraentrega">Envio Contraentrega</option>
-            <option value="Envio Pago">Envio Pago</option>
-            <option value="Retiro en Tienda">Retiro en Tienda</option>
+            <option value="Envio Contraentrega">Pago Contra Entrega (Efectivo)</option>
+            <option value="Envio Pago">Pago Anticipado (Yappy / Banco)</option>
+            <option value="Retiro en Tienda">Retirada en Local Físico</option>
         </select>
-        <button class="btn" onclick="confirmOrder()">CONFIRMAR WHATSAPP</button>
-        <p onclick="closeM('modalBuy')" style="font-size:0.6rem; cursor:pointer; margin-top:15px;">CANCELAR</p>
+        
+        <button class="btn" onclick="confirmOrder()" style="margin-top:25px;">CONFIRMAR POR WHATSAPP</button>
+        <p onclick="closeM('modalBuy')" style="font-size:0.65rem; cursor:pointer; margin-top:25px; text-decoration:underline; color: #999;">VOLVER AL CATÁLOGO</p>
     </div>
 </div>
 
 <div id="modalReg" class="modal">
     <div class="modal-content" id="step1">
-        <h2 style="font-family:Cinzel;">ACCESO VIP</h2>
-        <input id="regName" placeholder="Nombre">
-        <input id="regEmail" placeholder="Correo">
-        <button class="btn" onclick="sendGmailCode()">RECIBIR CÓDIGO</button>
+        <h2 style="font-family:Cinzel; letter-spacing:4px;">MEMBRESÍA VIP</h2>
+        <p style="font-size:0.8rem; color:#888; margin-bottom:35px;">Regístrese para ver precios exclusivos y acumular puntos.</p>
+        <input id="regName" placeholder="Nombre y Apellido">
+        <input id="regEmail" placeholder="Correo Electrónico">
+        <button class="btn" onclick="sendGmailCode()">ENVIAR LLAVE DE ACCESO</button>
     </div>
+
     <div class="modal-content" id="step2" style="display:none;">
-        <h2 style="font-family:Cinzel;">VERIFICACIÓN</h2>
-        <input id="regCode" placeholder="Código de 4 dígitos">
-        <button class="btn" onclick="completeReg()">ACTIVAR</button>
+        <h2 style="font-family:Cinzel; letter-spacing:3px;">VERIFICACIÓN</h2>
+        <p style="font-size:0.8rem; color:#888;">Hemos enviado un código a su Gmail.</p>
+        <input id="regCode" placeholder="CÓDIGO" maxlength="4" style="text-align:center; font-size:1.8rem; letter-spacing:15px; font-weight: bold;">
+        <button class="btn" onclick="completeReg()">VERIFICAR Y ENTRAR</button>
     </div>
 </div>
 
 <script>
+    /**
+     * CONFIGURACIÓN DE NÚCLEO ESSENCE
+     * Datos del Propietario
+     */
     const SERVICE_ID = "Essencepty"; 
     const TEMPLATE_ID = "template_buhgfdi";
-    const WHATSAPP_NUMBER = "50762143714";
+    const WHATSAPP_NUMBER = "50769028805"; // NÚMERO DEL JEFE ACTUALIZADO
 
-    let catalog = JSON.parse(localStorage.getItem('ess_catalog')) || [{n:"Prueba", p:0, i:""}];
+    // INICIALIZACIÓN DE DATOS
+    let catalog = JSON.parse(localStorage.getItem('ess_catalog')) || [
+        {n:"Khamrah Lattafa", p:45, i:"https://fimgs.net/images/perfume/nd.75805.jpg"},
+        {n:"Sauvage Elixir", p:155, i:"https://fimgs.net/images/perfume/nd.68305.jpg"}
+    ];
+    let usersDB = JSON.parse(localStorage.getItem('ess_users_db')) || {};
     let session = JSON.parse(localStorage.getItem('ess_session')) || null;
     let currentItem = null;
     let generatedCode = null;
     let bossClicks = 0;
 
+    // MOTOR DE RENDERIZADO DE TIENDA
     function renderShop() {
-        document.getElementById('mainGrid').innerHTML = catalog.map(p => `
+        const grid = document.getElementById('mainGrid');
+        grid.innerHTML = catalog.map((p, index) => `
             <div class="p-card">
-                <div class="img-box"><img src="${p.i || 'https://via.placeholder.com/200'}"></div>
+                <div class="img-box">
+                    <img src="${p.i || ''}" onerror="this.src='https://via.placeholder.com/400x400?text=ESSENCE+PERFUME'">
+                </div>
                 <h4>${p.n}</h4>
-                <b>$${session ? p.p : '---'}.00</b>
-                <button class="btn" style="margin-top:10px;" onclick="buyAction('${p.n}', ${p.p})">${session ? 'COMPRAR' : 'REGISTRATE'}</button>
+                <b>${session ? '$' + p.p + '.00' : 'REGÍSTRESE PARA VER PRECIO'}</b>
+                <button class="btn" onclick="buyAction('${p.n}', ${p.p})">
+                    ${session ? 'ORDENAR AHORA' : 'DESBLOQUEAR ACCESO'}
+                </button>
+                ${isBoss() ? `<button onclick="deleteP(${index})" style="color:red; background:none; border:none; cursor:pointer; margin-top:20px; font-size:0.6rem; letter-spacing:2px; font-weight:700;">[ ELIMINAR ]</button>` : ''}
             </div>`).join('');
     }
 
+    // GESTIÓN DE USUARIOS
+    function renderUsers() {
+        let html = "";
+        for(let e in usersDB) {
+            let u = usersDB[e];
+            html += `<tr>
+                <td style="text-align:left;">${u.name}<br><small style="color:#999">${u.email}</small></td>
+                <td style="font-weight:700;">${u.pts}</td>
+                <td class="${u.ban ? 'status-banned' : 'status-active'}">${u.ban ? 'SUSPENDIDO' : 'VIP ACTIVO'}</td>
+                <td>
+                    <button onclick="addPts('${u.email}')" style="cursor:pointer">+50</button>
+                    <button onclick="toggleBan('${u.email}')" style="color:red; cursor:pointer; margin-left:5px;">${u.ban ? 'ACTIVAR' : 'BAN'}</button>
+                </td>
+            </tr>`;
+        }
+        document.getElementById('userListBody').innerHTML = html;
+    }
+
+    // COMUNICACIÓN CON EMAILJS (GMAIL)
     window.sendGmailCode = () => {
         const email = document.getElementById('regEmail').value;
         const name = document.getElementById('regName').value;
+        if(!email.includes('@') || name.length < 3) return alert("Por favor complete su nombre y correo.");
+        
         generatedCode = Math.floor(1000 + Math.random() * 9000).toString();
-        emailjs.send(SERVICE_ID, TEMPLATE_ID, { to_name: name, user_email: email, code: generatedCode })
-            .then(() => {
-                alert("Código enviado!");
-                document.getElementById('step1').style.display='none';
-                document.getElementById('step2').style.display='block';
-            });
+
+        emailjs.send(SERVICE_ID, TEMPLATE_ID, {
+            to_name: name,
+            user_email: email,
+            code: generatedCode
+        }).then(() => {
+            alert("LLAVE DE SEGURIDAD ENVIADA. Revise su bandeja de entrada.");
+            document.getElementById('step1').style.display='none';
+            document.getElementById('step2').style.display='block';
+        }, (err) => {
+            alert("ERROR: No se pudo conectar con el servidor de correo.");
+        });
     };
 
+    // VERIFICACIÓN DE SESIÓN
     window.completeReg = () => {
         if(document.getElementById('regCode').value === generatedCode) {
-            session = { n: document.getElementById('regName').value };
+            const e = document.getElementById('regEmail').value;
+            const n = document.getElementById('regName').value;
+            if(!usersDB[e]) usersDB[e] = { name: n, email: e, pts: 0, ban: false };
+            saveDB();
+            session = usersDB[e];
             localStorage.setItem('ess_session', JSON.stringify(session));
             location.reload();
-        } else { alert("Código incorrecto"); }
+        } else {
+            alert("Código de verificación incorrecto.");
+        }
     };
 
-    window.buyAction = (n, p) => { if(!session) return openM('modalReg'); currentItem = {n, p}; openM('modalBuy'); };
+    // PROCESO DE COMPRA WHATSAPP
+    window.buyAction = (n, p) => {
+        if(!session) return openM('modalReg');
+        currentItem = { n, p };
+        document.getElementById('buyInfo').innerHTML = `<span style="font-size:0.8rem; color:#888">SOLICITUD:</span><br>${n.toUpperCase()}<br>$${p}.00`;
+        openM('modalBuy');
+    };
 
     window.confirmOrder = () => {
         const opt = document.getElementById('deliveryOption').value;
-        const text = encodeURIComponent(`Hola! Quiero el ${currentItem.n}. Método: ${opt}. Cliente: ${session.n}`);
-        window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`);
+        const msg = encodeURIComponent(`✨ *SOLICITUD DE PEDIDO - ESSENCE*\n\n👤 *Cliente:* ${session.name}\n📦 *Perfume:* ${currentItem.n}\n💰 *Precio:* $${currentItem.p}.00\n🚚 *Entrega:* ${opt}\n\n_Solicitado desde el portal VIP._`);
+        window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`);
     };
 
+    // FUNCIONES DEL JEFE (ADMIN)
     window.addP = () => {
         const n = document.getElementById('pName').value;
         const p = document.getElementById('pPrice').value;
@@ -142,14 +518,33 @@
             catalog.push({n, p, i});
             localStorage.setItem('ess_catalog', JSON.stringify(catalog));
             renderShop();
-            alert("Publicado!");
+            alert("PRODUCTO PUBLICADO.");
+            document.getElementById('pName').value = ""; document.getElementById('pPrice').value = ""; document.getElementById('pImg').value = "";
         }
     };
 
+    window.deleteP = (idx) => { 
+        if(confirm("¿Eliminar este producto permanentemente?")) {
+            catalog.splice(idx,1); 
+            localStorage.setItem('ess_catalog', JSON.stringify(catalog)); 
+            renderShop(); 
+        }
+    };
+    
+    window.addPts = (e) => { usersDB[e].pts += 50; saveDB(); };
+    window.toggleBan = (e) => { usersDB[e].ban = !usersDB[e].ban; saveDB(); };
+    function saveDB() { localStorage.setItem('ess_users_db', JSON.stringify(usersDB)); renderUsers(); }
+    function isBoss() { return document.getElementById('bossPanel').style.display === 'block'; }
+
+    // ACTIVACIÓN PANEL JEFE (3 CLICS LOGO)
     document.getElementById('logoBtn').onclick = () => {
         bossClicks++;
         if(bossClicks >= 3) {
-            if(prompt("PASS:") === "0000") document.getElementById('bossPanel').style.display='block';
+            if(prompt("SISTEMA BLOQUEADO. INGRESE CLAVE:") === "0000") {
+                document.getElementById('bossPanel').style.display='block';
+                renderUsers();
+                renderShop();
+            }
             bossClicks = 0;
         }
     };
@@ -157,15 +552,23 @@
     window.openM = (id) => document.getElementById(id).style.display='flex';
     window.closeM = (id) => document.getElementById(id).style.display='none';
 
+    // ARRANQUE DEL SISTEMA
     if(session) {
-        document.getElementById('uNameTop').innerText = "BIENVENIDO: " + session.n.toUpperCase();
+        if(usersDB[session.email] && usersDB[session.email].ban) {
+            document.getElementById('mainShop').style.display='none';
+            document.getElementById('bannedScreen').style.display='block';
+            document.querySelector('nav').style.display='none';
+            document.querySelector('.user-bar').style.background='#000';
+            document.querySelector('.user-bar').style.color='#fff';
+        }
+        document.getElementById('uNameTop').innerText = "VIP: " + session.name.toUpperCase();
+        document.getElementById('uPtsTop').innerHTML = `MIS PUNTOS: <span class="pts-badge">${usersDB[session.email] ? usersDB[session.email].pts : 0} PTS</span>`;
         document.getElementById('navAction').style.display = 'none';
     }
+
     renderShop();
 </script>
 </body>
 </html>
-</body>
 
-</html>
 
