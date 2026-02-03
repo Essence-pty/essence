@@ -3,108 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ESSENCE OMNIVERSE | CORPORATE SYSTEM</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@300;400;600;900&display=swap" rel="stylesheet">
+    <title>ESSENCE OMNIVERSE | ELITE SYSTEM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@100;300;400;700&display=swap" rel="stylesheet">
     <style>
-        :root { --gold: #b8952e; --b: #000; --w: #fff; --red: #d90429; --gray: #f4f4f4; --dark-gray: #8e8e93; }
-        * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter', sans-serif; }
+        :root { --gold: #c5a059; --b: #000; --w: #fff; --g: #1a1a1a; --soft: #f0f0f0; }
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
         body { background: var(--w); color: var(--b); overflow-x: hidden; }
 
-        /* HEADER */
-        header { height: 70px; background: #000; color: #fff; display: flex; justify-content: center; align-items: center; position: sticky; top: 0; z-index: 1000; }
-        .logo { font-family: 'Cinzel'; font-size: 1.4rem; letter-spacing: 8px; cursor: pointer; }
+        /* HEADER ELITE */
+        header { background: var(--b); padding: 30px 20px; text-align: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .logo { font-family: 'Cinzel'; font-size: 2.2rem; letter-spacing: 15px; color: var(--w); cursor: pointer; margin-bottom: 20px; transition: 0.5s; text-shadow: 0 0 15px rgba(255,255,255,0.2); }
         
-        /* BUSCADOR ESTILO MINIMAL */
-        .search-bar { padding: 15px 20px; background: #fff; border-bottom: 1px solid #eee; display: flex; align-items: center; }
-        .search-input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 0.8rem; outline: none; }
+        .search-wrapper { max-width: 600px; margin: 0 auto; position: relative; }
+        .search-input { width: 100%; padding: 15px 30px; border-radius: 50px; border: 1px solid #333; font-size: 0.9rem; outline: none; background: #111; color: #fff; transition: 0.4s; }
+        .search-input:focus { border-color: var(--gold); box-shadow: 0 0 20px rgba(197,160,89,0.3); background: #000; }
 
-        /* NAVEGACIÓN */
-        nav { display: flex; background: var(--gray); overflow-x: auto; white-space: nowrap; border-bottom: 1px solid #ddd; scrollbar-width: none; }
-        .nav-btn { flex: 1; padding: 15px 20px; font-size: 0.6rem; font-weight: 900; text-transform: uppercase; cursor: pointer; border: none; background: none; letter-spacing: 1px; color: var(--dark-gray); }
-        .nav-btn.active { background: #fff; border-bottom: 3px solid #000; color: #000; }
+        /* NAVEGACIÓN PROFESIONAL */
+        nav { display: flex; justify-content: center; background: rgba(255,255,255,0.8); backdrop-filter: blur(15px); sticky; top: 160px; border-bottom: 1px solid #eee; z-index: 999; }
+        .nav-btn { padding: 20px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; cursor: pointer; border: none; background: none; color: #999; letter-spacing: 3px; transition: 0.3s; }
+        .nav-btn.active { color: var(--b); border-bottom: 3px solid var(--gold); }
 
-        .section { display: none; padding: 20px; max-width: 1200px; margin: 0 auto; animation: fadeIn 0.4s ease; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        /* GRID CON ANIMACIÓN */
+        .section { display: none; padding: 40px 20px; max-width: 1400px; margin: 0 auto; animation: slideUp 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
+        @keyframes slideUp { from {opacity: 0; transform: translateY(30px);} to {opacity: 1; transform: translateY(0);} }
         .section.active { display: block; }
 
-        /* CATALOGO */
-        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
-        .card { border: 1px solid #eee; padding: 10px; position: relative; background: #fff; text-align: center; }
-        .card img { width: 100%; aspect-ratio: 1/1; object-fit: contain; margin-bottom: 10px; }
-        .card.sold-out { opacity: 0.5; filter: grayscale(1); }
-        .sold-out-tag { position: absolute; top: 10px; right: 10px; background: var(--red); color: #fff; padding: 4px 8px; font-size: 0.5rem; font-weight: 900; }
-
-        /* BOTONES */
-        .btn { width: 100%; padding: 12px; border: none; font-weight: 900; cursor: pointer; text-transform: uppercase; font-size: 0.65rem; transition: 0.3s; }
-        .btn-black { background: #000; color: #fff; margin-top: 5px; }
+        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; }
+        .card { background: #fff; border-radius: 4px; overflow: hidden; transition: 0.4s ease; border-bottom: 1px solid #eee; }
+        .card:hover { transform: translateY(-10px); }
+        .img-container { background: var(--soft); position: relative; overflow: hidden; border-radius: 8px; }
+        .card img { width: 100%; aspect-ratio: 1/1; object-fit: contain; transition: 0.8s; }
+        .card:hover img { transform: scale(1.1); }
         
-        /* TRACKING & POLICIES */
-        .card-info { background: #f9f9f9; padding: 20px; border-radius: 10px; margin-bottom: 15px; border: 1px solid #eee; }
-        .policy-title { font-weight: 900; font-size: 0.8rem; margin-bottom: 10px; display: block; text-transform: uppercase; border-left: 3px solid var(--gold); padding-left: 10px; }
+        .card-info { padding: 15px 5px; text-align: left; }
+        .card-name { font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; color: #1a1a1a; }
+        .card-price { font-size: 1.1rem; color: var(--gold); font-weight: 300; margin-bottom: 15px; }
+        
+        .btn-luxury { width: 100%; padding: 15px; background: var(--b); color: var(--w); border: none; font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; cursor: pointer; border-radius: 4px; transition: 0.4s; text-transform: uppercase; }
+        .btn-luxury:hover { background: var(--gold); color: #fff; }
 
-        /* ADMIN & FAB */
-        .fab { position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px; background: #000; color: #fff; border-radius: 50%; display: none; align-items: center; justify-content: center; font-size: 1.5rem; z-index: 2000; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
-        table { width: 100%; border-collapse: collapse; font-size: 0.65rem; }
-        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        /* POLÍTICAS PREMIUM */
+        .policy-card { background: #fafafa; padding: 35px; border-radius: 8px; margin-bottom: 25px; border: 1px solid #eee; transition: 0.3s; }
+        .policy-card:hover { border-color: var(--gold); }
+        .p-title { font-family: 'Cinzel'; font-weight: 900; font-size: 1.1rem; margin-bottom: 15px; color: var(--b); letter-spacing: 2px; }
+        .p-text { font-size: 0.9rem; line-height: 1.6; color: #666; font-weight: 300; }
 
-        @media (min-width: 768px) { .grid { grid-template-columns: repeat(4, 1fr); } }
+        /* FAB CUSTOM */
+        .fab { position: fixed; bottom: 40px; right: 40px; width: 65px; height: 65px; background: var(--gold); color: #fff; border-radius: 50%; display: none; align-items: center; justify-content: center; font-size: 1.8rem; box-shadow: 0 15px 40px rgba(197,160,89,0.4); z-index: 2000; cursor: pointer; border: 2px solid #fff; }
+
+        @media (min-width: 1024px) { .grid { grid-template-columns: repeat(4, 1fr); gap: 40px; } }
     </style>
 </head>
 <body>
 
-    <header><div class="logo" id="boss-key">ESSENCE</div></header>
-
-    <div class="search-bar">
-        <input type="text" id="busqueda" class="search-input" placeholder="Buscar fragancia... (Ej: Sauvage, Chanel)" onkeyup="filtrarProductos()">
-    </div>
+    <header>
+        <div class="logo" id="boss-key">ESSENCE</div>
+        <div class="search-wrapper">
+            <input type="text" id="busq" class="search-input" placeholder="BUSCAR FRAGANCIA..." onkeyup="filter()">
+        </div>
+    </header>
 
     <nav>
-        <button class="nav-btn active" onclick="showSec('home', this)">Perfumes</button>
-        <button class="nav-btn" onclick="showSec('rastreo', this)">Rastreo</button>
-        <button class="nav-btn" onclick="showSec('info', this)">Políticas</button>
-        <button class="nav-btn" id="nav-admin" style="display:none;" onclick="showSec('admin', this)">ADMIN</button>
+        <button class="nav-btn active" onclick="tab('home', this)">Colección</button>
+        <button class="nav-btn" onclick="tab('track', this)">Rastreo</button>
+        <button class="nav-btn" onclick="tab('policy', this)">Privacidad</button>
+        <button class="nav-btn" id="nav-admin" style="display:none;" onclick="tab('admin', this)">Dashboard</button>
     </nav>
 
     <section id="home" class="section active">
-        <div class="grid" id="grid-productos"></div>
+        <div class="grid" id="main-grid"></div>
     </section>
 
-    <section id="rastreo" class="section">
-        <div class="card-info">
-            <span class="policy-title">Rastrear mi pedido</span>
-            <p style="font-size: 0.8rem; margin-bottom: 15px;">Ingresa tu nombre o número de pedido para consultar el estatus con un agente.</p>
-            <input type="text" id="track-id" class="search-input" placeholder="Nombre o # de Pedido"><br><br>
-            <button class="btn btn-black" onclick="rastrearPedido()">CONSULTAR STATUS</button>
+    <section id="track" class="section">
+        <div class="policy-card" style="text-align: center;">
+            <div class="p-title">Rastreo de Pedido</div>
+            <p class="p-text">Nuestras fragancias viajan con el mayor cuidado.</p><br>
+            <input type="text" id="t-id" class="search-input" style="background:#fff; border:1px solid #ddd; color:#000" placeholder="Nombre completo"><br><br>
+            <button class="btn-luxury" onclick="track()">Consultar Guía</button>
         </div>
     </section>
 
-    <section id="info" class="section">
-        <div class="card-info">
-            <span class="policy-title">Garantía de Calidad</span>
-            <p style="font-size: 0.75rem; color: #444;">Nuestras fragancias son de alta gama. No aceptamos devoluciones una vez abierto el empaque por razones de higiene.</p>
-        </div>
-        <div class="card-info">
-            <span class="policy-title">Envíos y Entregas</span>
-            <p style="font-size: 0.75rem; color: #444;">Entregas en Ciudad de Panamá en 24h. Envíos al interior vía Uno Express o Ferguson.</p>
-        </div>
-        <div class="card-info">
-            <span class="policy-title">Pagos</span>
-            <p style="font-size: 0.75rem; color: #444;">Aceptamos Yappy (6902-8805), Efectivo y ACH Banco General.</p>
-        </div>
+    <section id="policy" class="section">
+        <div class="policy-card"><div class="p-title">Garantía Elite</div><p class="p-text">Cada pieza es inspeccionada bajo estándares de calidad internacional. No se admiten cambios en frascos con sello violado.</p></div>
+        <div class="policy-card"><div class="p-title">Logística Global</div><p class="p-text">Entregas prioritarias en Panamá (24h) y envíos certificados al interior vía Uno Express.</p></div>
     </section>
 
     <section id="admin" class="section">
-        <h3 style="margin-bottom:15px;">PANEL DE CONTROL</h3>
-        <div id="admin-productos-list"></div>
-        <br><hr><br>
-        <h3>REGISTRO DE VENTAS</h3>
-        <table id="tabla-pedidos">
-            <thead><tr><th>Fecha</th><th>Cliente</th><th>Producto</th></tr></thead>
-            <tbody id="body-pedidos"></tbody>
-        </table>
+        <div class="p-title">Gestión de Inventario</div>
+        <div id="adm-list"></div>
     </section>
 
-    <div class="fab" id="add-btn" onclick="subirManual()">+</div>
+    <div class="fab" id="add-btn" onclick="up()">+</div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
@@ -121,87 +110,63 @@
 
         const app = initializeApp(config);
         const db = getFirestore(app);
-        let todosLosProductos = [];
 
-        // --- CARGAR PRODUCTOS ---
         onSnapshot(collection(db, "inventario_oficial"), (snap) => {
-            const grid = document.getElementById('grid-productos');
-            const admList = document.getElementById('admin-productos-list');
-            grid.innerHTML = ""; admList.innerHTML = "";
-            todosLosProductos = [];
+            const grid = document.getElementById('main-grid');
+            const adm = document.getElementById('adm-list');
+            grid.innerHTML = ""; adm.innerHTML = "";
 
             snap.forEach(d => {
                 const p = d.data(); const id = d.id;
-                // Exclusión Magnate: Si el nombre tiene "Magnate", no lo subas si prefieres exclusividad de Essence
-                if(p.name.toLowerCase().includes("magnate")) return; 
-
-                todosLosProductos.push({...p, id});
-                
                 grid.innerHTML += `
-                    <div class="card ${p.stock === 'off' ? 'sold-out' : ''}" data-name="${p.name.toLowerCase()}">
-                        ${p.stock === 'off' ? '<div class="sold-out-tag">AGOTADO</div>' : ''}
-                        <img src="${p.img}">
-                        <div style="font-weight:900; font-size:0.7rem;">${p.name}</div>
-                        <div style="font-size:0.9rem; color: var(--gold);">$${p.price}</div>
-                        <button class="btn btn-black" onclick="crearPedido('${id}', '${p.name}', ${p.price})">ORDENAR</button>
-                    </div>`;
-
-                admList.innerHTML += `
-                    <div style="padding:10px; border-bottom:1px solid #eee; display:flex; justify-content:space-between; align-items:center;">
-                        <span style="font-size:0.7rem;">${p.name}</span>
-                        <div>
-                            <button onclick="toggleStock('${id}', '${p.stock}')" style="background:orange; color:white; border:none; padding:5px;">STOCK</button>
-                            <button onclick="eliminarProd('${id}')" style="background:red; color:white; border:none; padding:5px; margin-left:5px;">X</button>
+                    <div class="card" data-n="${p.name.toLowerCase()}">
+                        <div class="img-container"><img src="${p.img}"></div>
+                        <div class="card-info">
+                            <div class="card-name">${p.name}</div>
+                            <div class="card-price">$${p.price}</div>
+                            <button class="btn-luxury" onclick="order('${p.name}', ${p.price})">Añadir a Orden</button>
                         </div>
                     </div>`;
+                
+                adm.innerHTML += `<div style="padding:15px; border-bottom:1px solid #eee; display:flex; justify-content:space-between;">
+                    <span>${p.name}</span>
+                    <button onclick="del('${id}')" style="color:red">Eliminar</button>
+                </div>`;
             });
         });
 
-        // --- BUSCADOR ---
-        window.filtrarProductos = () => {
-            const term = document.getElementById('busqueda').value.toLowerCase();
-            const cards = document.querySelectorAll('.card');
-            cards.forEach(card => {
-                const name = card.getAttribute('data-name');
-                card.style.display = name.includes(term) ? "block" : "none";
-            });
+        window.filter = () => {
+            const t = document.getElementById('busq').value.toLowerCase();
+            document.querySelectorAll('.card').forEach(c => c.style.display = c.getAttribute('data-n').includes(t) ? "block" : "none");
         };
 
-        // --- RASTREO ---
-        window.rastrearPedido = () => {
-            const id = document.getElementById('track-id').value;
-            if(id) window.open(`https://wa.me/50769028805?text=Hola,%20quisiera%20saber%20el%20estatus%20de%20mi%20pedido:%20${id}`);
-            else alert("Escribe tu nombre o número de pedido");
-        };
-
-        // --- FUNCIONES CORE ---
-        window.crearPedido = async (id, n, pr) => {
-            const c = prompt("Ingresa tu nombre:");
-            if(c) {
-                await addDoc(collection(db, "pedidos_global"), { cliente: c, producto: n, precio: pr, fecha: new Date().toLocaleString() });
-                window.open(`https://wa.me/50769028805?text=Hola,%20soy%20${c}%20acabo%20de%20pedir%20${n}`);
-            }
-        };
-
-        window.toggleStock = (id, s) => updateDoc(doc(db, "inventario_oficial", id), { stock: s === 'off' ? 'on' : 'off' });
-        window.eliminarProd = (id) => confirm("¿Borrar?") && deleteDoc(doc(db, "inventario_oficial", id));
-        
-        window.subirManual = async () => {
-            const n = prompt("Nombre:"), p = prompt("Precio:"), i = prompt("URL Imagen:");
-            if(n && p && i) await addDoc(collection(db, "inventario_oficial"), { name:n, price:p, img:i, stock:'on' });
-        };
-
-        window.showSec = (id, btn) => {
+        window.tab = (id, b) => {
             document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
-            btn.classList.add('active');
+            document.querySelectorAll('.nav-btn').forEach(n => n.classList.remove('active'));
+            document.getElementById(id).classList.add('active'); b.classList.add('active');
+        };
+
+        window.order = (n, p) => {
+            const c = prompt("Su nombre para el registro:");
+            if(c) window.open(`https://wa.me/50769028805?text=Deseo%20adquirir:%20${n}%20($${p})`);
+        };
+
+        window.track = () => {
+            const n = document.getElementById('t-id').value;
+            if(n) window.open(`https://wa.me/50769028805?text=Consulta%20de%20guia:%20${n}`);
+        };
+
+        window.del = (id) => confirm("¿Confirmar eliminación?") && deleteDoc(doc(db, "inventario_oficial", id));
+        
+        window.up = async () => {
+            const n = prompt("Fragancia:"), p = prompt("Precio:"), i = prompt("URL Imagen:");
+            if(n && p && i) await addDoc(collection(db, "inventario_oficial"), { name:n, price:p, img:i });
         };
 
         let cl = 0;
         document.getElementById('boss-key').onclick = () => {
             if(++cl >= 3) {
-                if(prompt("MASTER KEY:") === "542497") {
+                if(prompt("ACCESS:") === "542497") {
                     document.getElementById('nav-admin').style.display = 'block';
                     document.getElementById('add-btn').style.display = 'flex';
                 }
@@ -211,12 +176,7 @@
     </script>
 </body>
 </html>
-                cl = 0;
-            }
-        };
-    </script>
-</body>
-</html>
+
 
 
 
