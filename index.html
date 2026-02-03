@@ -1,287 +1,171 @@
 <!DOCTYPE html>
-<html lang="es"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-<script type="text/javascript">
-   (function(){
-      emailjs.init("bPgMuFdLjStHvDuBQ"); 
-   })();
-</// --- CONFIGURACIÓN TÉCNICA FINAL ---
-    const SERVICE_ID = "Essencepty";           // Verificado en tu captura
-    const TEMPLATE_ID = "template_buhgfdi";    // Verificado en tu captura
-    const WHATSAPP_NUMBER = "507XXXXXXXX";     // Pon tu número real aquí
-    // ------------------------------------>window.sendGmailCode = () => {
-    // 1. Recogemos los datos que escribió el cliente
-    const email = document.getElementById('regEmail').value;
-    const name = document.getElementById('regName').value;
-
-    if (!email.includes('@')) return alert("Ingresa un correo real.");
-
-    // 2. Generamos el código secreto de 4 números
-    generatedCode = Math.floor(1000 + Math.random() * 9000).toString();
-
-    // 3. MANDAMOS EL GMAIL REAL (Usando tus IDs de las fotos)
-    emailjs.send("Essencepty", "template_buhgfdi", {
-        to_name: name,
-        user_email: email,
-        code: generatedCode
-    })
-    .then(() => {
-        alert("¡Código enviado al Gmail! Revisa tu bandeja.");
-        document.getElementById('step1').style.display = 'none';
-        document.getElementById('step2').style.display = 'block';
-    }, (err) => {
-        alert("Error: " + JSON.stringify(err));
-    });
-};
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ESSENCE | Luxury Elite Store</title>
+    <title>ESSENCE | Luxury Management</title>
+    
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+       (function(){
+          emailjs.init("bPgMuFdLjStHvDuBQ"); 
+       })();
+    </script>
+
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        :root { --gold: #b8952e; --black: #000; --white: #fff; --gray: #f9f9f9; --border: #eeeeee; --red: #c0392b; }
-        body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--black); margin: 0; padding: 0; }
-        
+        :root { --gold: #b8952e; --black: #000; --white: #fff; --gray: #f9f9f9; --border: #eeeeee; }
+        body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--black); margin: 0; }
         nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 8%; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: #fff; z-index: 1000; }
         .logo { font-family: 'Cinzel'; font-size: 1.8rem; letter-spacing: 6px; cursor: pointer; user-select: none; }
-        
-        .user-bar { background: var(--gray); padding: 8px 8%; display: flex; justify-content: space-between; font-size: 0.65rem; letter-spacing: 1px; border-bottom: 1px solid var(--border); }
+        .user-bar { background: var(--gray); padding: 8px 8%; display: flex; justify-content: space-between; font-size: 0.65rem; border-bottom: 1px solid var(--border); }
         .pts-badge { color: var(--gold); font-weight: 700; background: #fff; padding: 2px 8px; border-radius: 10px; border: 1px solid var(--border); }
-
         .container { max-width: 1300px; margin: 40px auto; padding: 0 5%; }
-        .category-header { font-family: 'Cinzel'; font-size: 0.75rem; letter-spacing: 4px; border-bottom: 1px solid #000; display: inline-block; margin-bottom: 30px; padding-bottom: 5px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 40px; margin-bottom: 60px; }
-        
-        .p-card { text-align: center; border: 1px solid transparent; padding: 15px; }
-        .img-box { background: var(--gray); aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center; padding: 20px; margin-bottom: 15px; overflow: hidden; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 40px; }
+        .p-card { text-align: center; padding: 15px; }
+        .img-box { background: var(--gray); aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center; margin-bottom: 15px; overflow: hidden; }
         .img-box img { max-width: 90%; max-height: 90%; object-fit: contain; mix-blend-mode: multiply; }
-        
         .btn { border: 1px solid var(--black); background: transparent; padding: 12px; cursor: pointer; font-size: 0.65rem; letter-spacing: 2px; width: 100%; text-transform: uppercase; font-weight: 700; }
         .btn:hover { background: var(--black); color: var(--white); }
-        
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.98); z-index: 2000; align-items: center; justify-content: center; }
-        .modal-content { width: 90%; max-width: 350px; text-align: center; border: 1px solid var(--border); padding: 40px; background: #fff; }
-        input, select { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid var(--border); box-sizing: border-box; font-family: 'Inter'; outline: none; }
-
+        .modal-content { width: 90%; max-width: 350px; text-align: center; padding: 40px; border: 1px solid #eee; background: #fff; }
         #bossPanel { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff; z-index: 3000; padding: 40px; overflow-y: auto; }
-        .admin-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 30px; }
-        .order-card { border: 1px solid #eee; padding: 15px; margin-bottom: 10px; font-size: 0.7rem; text-align: left; line-height: 1.4; }
-        .btn-mini { padding: 6px 12px; font-size: 0.6rem; cursor: pointer; border: none; font-weight: bold; margin-top: 10px; margin-right: 5px; color: white; border-radius: 4px; }
+        input, select { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid var(--border); box-sizing: border-box; }
     </style>
 </head>
 <body>
 
 <div class="user-bar">
     <span id="uNameTop">BIENVENIDO A ESSENCE</span>
-    <span id="uPtsTop">STATUS: <span style="color:red">LOGIN REQUERIDO</span></span>
+    <span id="uPtsTop">PUNTOS: <span class="pts-badge">0</span></span>
 </div>
 
 <nav>
     <div class="logo" id="logoBtn">ESSENCE</div>
-    <div id="navAction">
-        <span onclick="openM('modalReg')" style="cursor:pointer; font-size:0.65rem; font-weight:700; letter-spacing: 1px;">ACCESO VIP / REGISTRO</span>
-    </div>
+    <div id="navAction"><span onclick="openM('modalReg')" style="cursor:pointer; font-size:0.65rem; font-weight:700;">REGISTRO</span></div>
 </nav>
 
-<div class="container" id="shopContent">
-    <div class="category-header">PERFUMES ÁRABES</div>
-    <div id="arabGrid" class="grid"></div>
-
-    <div class="category-header">PERFUMES DE DISEÑADOR</div>
-    <div id="designGrid" class="grid"></div>
+<div class="container">
+    <div id="mainGrid" class="grid"></div>
 </div>
 
-<div id="bannedScreen" style="display:none; text-align:center; padding:100px 20px;">
-    <h1 style="font-family:Cinzel; color:var(--red);">CUENTA SUSPENDIDA</h1>
-    <p id="banTimeMsg">Has sido bloqueado por 72 horas por incumplimiento en pedido de Contra-entrega.</p>
+<div id="bossPanel">
+    <button class="btn" style="width:auto; float:right;" onclick="location.reload()">CERRAR</button>
+    <h2 style="font-family:Cinzel;">ADMINISTRACIÓN JEFE</h2>
+    <input id="pName" placeholder="Nombre">
+    <input id="pPrice" type="number" placeholder="Precio">
+    <input id="pImg" placeholder="Link de Foto">
+    <button class="btn" onclick="addP()">PUBLICAR EN TIENDA</button>
+</div>
+
+<div id="modalBuy" class="modal">
+    <div class="modal-content">
+        <h2 style="font-family:Cinzel;">MÉTODO DE ENTREGA</h2>
+        <select id="deliveryOption">
+            <option value="Envio Contraentrega">Envio Contraentrega</option>
+            <option value="Envio Pago">Envio Pago</option>
+            <option value="Retiro en Tienda">Retiro en Tienda</option>
+        </select>
+        <button class="btn" onclick="confirmOrder()">CONFIRMAR WHATSAPP</button>
+        <p onclick="closeM('modalBuy')" style="font-size:0.6rem; cursor:pointer; margin-top:15px;">CANCELAR</p>
+    </div>
 </div>
 
 <div id="modalReg" class="modal">
     <div class="modal-content" id="step1">
-        <h2 style="font-family:Cinzel;">REGISTRO VIP</h2>
-        <input id="regName" placeholder="Nombre completo">
-        <input id="regEmail" placeholder="Correo electrónico">
-        <button class="btn" onclick="sendCode()">ENVIAR CÓDIGO</button>
+        <h2 style="font-family:Cinzel;">ACCESO VIP</h2>
+        <input id="regName" placeholder="Nombre">
+        <input id="regEmail" placeholder="Correo">
+        <button class="btn" onclick="sendGmailCode()">RECIBIR CÓDIGO</button>
     </div>
     <div class="modal-content" id="step2" style="display:none;">
         <h2 style="font-family:Cinzel;">VERIFICACIÓN</h2>
-        <p style="font-size:0.7rem; color: #888;">Ingresa el código enviado a tu email</p>
-        <input id="regCode" placeholder="Código (Prueba: 1234)">
+        <input id="regCode" placeholder="Código de 4 dígitos">
         <button class="btn" onclick="completeReg()">ACTIVAR</button>
     </div>
 </div>
 
-<div id="modalPay" class="modal">
-    <div class="modal-content">
-        <h3 style="font-family:Cinzel;">FINALIZAR COMPRA</h3>
-        <p id="pSelName" style="color:var(--gold); font-weight:700;"></p>
-        <button class="btn" onclick="finishOrder('YAPPY')" style="margin-bottom:10px;">YAPPY</button>
-        <button class="btn" onclick="finishOrder('TRANSFERENCIA')" style="margin-bottom:10px;">TRANSFERENCIA</button>
-        <button class="btn" onclick="finishOrder('CONTRAENTREGA')" style="color:var(--red); border-color:var(--red);">CONTRA-ENTREGA*</button>
-        <p style="font-size:0.5rem; color:var(--red); margin-top:10px; font-weight:700;">*AVISO: Tienes 24h para pagar o serás bloqueado 3 días.</p>
-        <p onclick="closeM('modalPay')" style="cursor:pointer; text-decoration:underline; font-size:0.6rem; margin-top:15px;">CANCELAR</p>
-    </div>
-</div>
-
-<div id="bossPanel">
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px;">
-        <h2 style="font-family:Cinzel;">SISTEMA DE CONTROL</h2>
-        <button class="btn" style="width:auto; padding:5px 20px;" onclick="location.reload()">CERRAR PANEL</button>
-    </div>
-    <div class="admin-grid">
-        <div style="border:1px solid #eee; padding:20px;">
-            <h3>PUBLICAR PERFUME</h3>
-            <input id="pName" placeholder="Nombre">
-            <input id="pPrice" type="number" placeholder="Precio Base">
-            <input id="pImg" placeholder="Link de Foto (URL)">
-            <select id="pCat">
-                <option value="arab">ÁRABE</option>
-                <option value="design">DISEÑADOR (+$5)</option>
-            </select>
-            <button class="btn" style="background:#000; color:#fff;" onclick="addP()">SUBIR A TIENDA</button>
-        </div>
-        <div>
-            <h3>PEDIDOS Y CLIENTES</h3>
-            <div id="adminList"></div>
-        </div>
-    </div>
-</div>
-
 <script>
-    // --- DATA ---
-    let catalog = JSON.parse(localStorage.getItem('ess_catalog')) || {
-        arab: [{n:"Khamrah", p:45, i:"https://fimgs.net/images/perfume/nd.75805.jpg"}],
-        design: [{n:"Sauvage Elixir", p:155, i:"https://fimgs.net/images/perfume/nd.68305.jpg"}]
-    };
-    let usersDB = JSON.parse(localStorage.getItem('ess_users_db')) || {}; 
-    let orders = JSON.parse(localStorage.getItem('ess_orders')) || [];
+    const SERVICE_ID = "Essencepty"; 
+    const TEMPLATE_ID = "template_buhgfdi";
+    const WHATSAPP_NUMBER = "50762143714";
+
+    let catalog = JSON.parse(localStorage.getItem('ess_catalog')) || [{n:"Prueba", p:0, i:""}];
     let session = JSON.parse(localStorage.getItem('ess_session')) || null;
-    let selectedItem = null;
+    let currentItem = null;
+    let generatedCode = null;
     let bossClicks = 0;
 
-    // --- TIENDA ---
     function renderShop() {
-        const item = (p, pr) => `
+        document.getElementById('mainGrid').innerHTML = catalog.map(p => `
             <div class="p-card">
-                <div class="img-box"><img src="${p.i}" onerror="this.src='https://via.placeholder.com/200?text=Imagen+No+Disponible'"></div>
+                <div class="img-box"><img src="${p.i || 'https://via.placeholder.com/200'}"></div>
                 <h4>${p.n}</h4>
-                <div style="font-weight:700; margin-bottom:10px;">${session ? '$'+pr+'.00' : '---'}</div>
-                <button class="btn" onclick="openBuy('${p.n}', ${pr})">${session ? 'COMPRAR' : 'REGÍSTRATE'}</button>
-            </div>`;
-        document.getElementById('arabGrid').innerHTML = catalog.arab.map(p => item(p, p.p)).join('');
-        document.getElementById('designGrid').innerHTML = catalog.design.map(p => item(p, p.p + 5)).join('');
+                <b>$${session ? p.p : '---'}.00</b>
+                <button class="btn" style="margin-top:10px;" onclick="buyAction('${p.n}', ${p.p})">${session ? 'COMPRAR' : 'REGISTRATE'}</button>
+            </div>`).join('');
     }
 
-    window.openBuy = (n, p) => {
-        if(!session) return openM('modalReg');
-        selectedItem = {n, p};
-        document.getElementById('pSelName').innerText = n + " ($" + p + ")";
-        openM('modalPay');
-    };
-
-    window.finishOrder = (m) => {
-        const id = "ESS-" + Math.floor(Math.random()*9000);
-        const orderData = { id, u: session.e, i: selectedItem.n, p: selectedItem.p, m, status: 'Pendiente' };
-        orders.push(orderData);
-        localStorage.setItem('ess_orders', JSON.stringify(orders));
-
-        const wa = `https://wa.me/50700000000?text=${encodeURIComponent(`✨ *NUEVA ORDEN ${id}*\nCliente: ${session.n}\nPerfume: ${selectedItem.n}\nMonto: $${selectedItem.p}\nPago: ${m}`)}`;
-        window.open(wa);
-        location.reload();
-    };
-
-    // --- REGISTRO Y LOGIN ---
-    window.sendCode = () => {
-        if(!document.getElementById('regEmail').value.includes('@')) return alert("Email inválido");
-        document.getElementById('step1').style.display='none';
-        document.getElementById('step2').style.display='block';
-        alert("SISTEMA: Código enviado a " + document.getElementById('regEmail').value);
+    window.sendGmailCode = () => {
+        const email = document.getElementById('regEmail').value;
+        const name = document.getElementById('regName').value;
+        generatedCode = Math.floor(1000 + Math.random() * 9000).toString();
+        emailjs.send(SERVICE_ID, TEMPLATE_ID, { to_name: name, user_email: email, code: generatedCode })
+            .then(() => {
+                alert("Código enviado!");
+                document.getElementById('step1').style.display='none';
+                document.getElementById('step2').style.display='block';
+            });
     };
 
     window.completeReg = () => {
-        if(document.getElementById('regCode').value === "1234") {
-            const e = document.getElementById('regEmail').value;
-            const n = document.getElementById('regName').value;
-            if(!usersDB[e]) usersDB[e] = { n, e, pts: 0, banUntil: 0 };
-            localStorage.setItem('ess_users_db', JSON.stringify(usersDB));
-            session = usersDB[e];
+        if(document.getElementById('regCode').value === generatedCode) {
+            session = { n: document.getElementById('regName').value };
             localStorage.setItem('ess_session', JSON.stringify(session));
             location.reload();
-        } else { alert("Código incorrecto."); }
+        } else { alert("Código incorrecto"); }
     };
 
-    // --- PANEL JEFE ---
-    document.getElementById('logoBtn').onclick = () => {
-        bossClicks++;
-        if(bossClicks >= 3) {
-            if(prompt("PASS JEFE:") === "0000") {
-                document.getElementById('bossPanel').style.display='block';
-                renderAdmin();
-            }
-            bossClicks = 0;
-        }
+    window.buyAction = (n, p) => { if(!session) return openM('modalReg'); currentItem = {n, p}; openM('modalBuy'); };
+
+    window.confirmOrder = () => {
+        const opt = document.getElementById('deliveryOption').value;
+        const text = encodeURIComponent(`Hola! Quiero el ${currentItem.n}. Método: ${opt}. Cliente: ${session.n}`);
+        window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`);
     };
 
     window.addP = () => {
         const n = document.getElementById('pName').value;
-        const p = parseInt(document.getElementById('pPrice').value);
+        const p = document.getElementById('pPrice').value;
         const i = document.getElementById('pImg').value;
-        const c = document.getElementById('pCat').value;
-        if(!n || !p) return alert("Faltan datos");
-        catalog[c].push({n, p, i: i || "https://via.placeholder.com/200"});
-        localStorage.setItem('ess_catalog', JSON.stringify(catalog));
-        alert("¡Publicado!");
-        renderShop();
+        if(n && p) {
+            catalog.push({n, p, i});
+            localStorage.setItem('ess_catalog', JSON.stringify(catalog));
+            renderShop();
+            alert("Publicado!");
+        }
     };
 
-    function renderAdmin() {
-        document.getElementById('adminList').innerHTML = orders.slice().reverse().map((o, idx) => `
-            <div class="order-card">
-                <b>PEDIDO: ${o.id}</b> | Cliente: ${o.u}<br>
-                ${o.i} ($${o.p}) | Pago: ${o.m}<br>
-                <button class="btn-mini" style="background:#27ae60" onclick="bossAct('${o.u}', 'pts', ${orders.length-1-idx})">CONFIRMAR PAGO (+10 PTS)</button>
-                <button class="btn-mini" style="background:#c0392b" onclick="bossAct('${o.u}', 'ban', ${orders.length-1-idx})">BLOQUEAR CLIENTE (3 DÍAS)</button>
-            </div>
-        `).join('') || "No hay órdenes.";
-    }
-
-    window.bossAct = (email, act, idx) => {
-        if(act === 'pts') {
-            usersDB[email].pts += 10;
-            alert("10 Puntos sumados a " + email);
-        } else {
-            usersDB[email].banUntil = new Date().getTime() + (72 * 60 * 60 * 1000);
-            alert("Usuario suspendido.");
+    document.getElementById('logoBtn').onclick = () => {
+        bossClicks++;
+        if(bossClicks >= 3) {
+            if(prompt("PASS:") === "0000") document.getElementById('bossPanel').style.display='block';
+            bossClicks = 0;
         }
-        localStorage.setItem('ess_users_db', JSON.stringify(usersDB));
-        // Si el jefe es el mismo usuario, actualizamos sesion activa
-        if(session && session.e === email) {
-            session = usersDB[email];
-            localStorage.setItem('ess_session', JSON.stringify(session));
-        }
-        renderAdmin();
-        updateUI();
     };
-
-    // --- UI ---
-    function updateUI() {
-        if(session) {
-            const current = usersDB[session.e];
-            if(current.banUntil > new Date().getTime()) {
-                document.getElementById('shopContent').style.display = 'none';
-                document.getElementById('bannedScreen').style.display = 'block';
-            }
-            document.getElementById('uNameTop').innerText = "VIP: " + current.n.toUpperCase();
-            document.getElementById('uPtsTop').innerHTML = `MIS PUNTOS: <span class="pts-badge">${current.pts}</span>`;
-            document.getElementById('navAction').style.display = 'none';
-        }
-    }
 
     window.openM = (id) => document.getElementById(id).style.display='flex';
     window.closeM = (id) => document.getElementById(id).style.display='none';
 
+    if(session) {
+        document.getElementById('uNameTop').innerText = "BIENVENIDO: " + session.n.toUpperCase();
+        document.getElementById('navAction').style.display = 'none';
+    }
     renderShop();
-    updateUI();
 </script>
+</body>
+</html>
 </body>
 
 </html>
+
