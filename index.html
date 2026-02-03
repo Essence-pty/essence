@@ -3,83 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ESSENCE OMNIVERSE | LIVE SYSTEM</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <title>ESSENCE OMNIVERSE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@300;600;900&display=swap" rel="stylesheet">
     <style>
-        :root { --b: #000; --w: #fff; --g: #f8f8f8; --gold: #b8952e; --red: #ff3b30; }
+        :root { --b: #000; --w: #fff; --gold: #b8952e; --red: #ff3b30; --g: #f4f4f4; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        body { background: var(--w); color: var(--b); padding-top: 80px; padding-bottom: 50px; }
+        body { background: var(--w); color: var(--b); padding-top: 80px; }
 
-        header { height: 80px; width: 100%; position: fixed; top: 0; background: #fff; display: flex; justify-content: space-between; align-items: center; padding: 0 5%; border-bottom: 1px solid #eee; z-index: 10000; }
-        .logo { font-family: 'Cinzel'; font-size: 1.5rem; letter-spacing: 8px; cursor: pointer; font-weight: 900; }
+        header { height: 80px; width: 100%; position: fixed; top: 0; background: #fff; display: flex; justify-content: space-between; align-items: center; padding: 0 6%; border-bottom: 1px solid #eee; z-index: 10000; }
+        .logo { font-family: 'Cinzel'; font-size: 1.6rem; letter-spacing: 10px; cursor: pointer; font-weight: 900; }
         
-        .promo { background: #000; color: #fff; text-align: center; padding: 12px; font-size: 0.65rem; font-weight: 800; letter-spacing: 3px; margin-top: 0px; }
+        .promo { background: #000; color: #fff; text-align: center; padding: 12px; font-size: 0.6rem; font-weight: 800; letter-spacing: 4px; }
 
-        .filters { display: flex; justify-content: center; gap: 10px; padding: 25px 0; position: sticky; top: 80px; background: #fff; z-index: 9000; border-bottom: 1px solid #eee; }
-        .f-tag { padding: 10px 20px; border: 1px solid #ddd; font-size: 0.6rem; font-weight: 900; cursor: pointer; text-transform: uppercase; }
-        .f-tag.active { background: #000; color: #fff; }
+        .filters { display: flex; justify-content: center; gap: 10px; padding: 20px 0; position: sticky; top: 80px; background: #fff; z-index: 9000; border-bottom: 1px solid #eee; }
+        .f-tag { padding: 10px 20px; border: 1px solid #ddd; font-size: 0.55rem; font-weight: 900; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; }
+        .f-tag.active { background: #000; color: #fff; border-color: #000; }
 
         .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; padding: 20px 5%; max-width: 1400px; margin: 0 auto; }
-        .card { display: flex; flex-direction: column; border: 1px solid #f0f0f0; padding: 10px; position: relative; }
-        .img-h { aspect-ratio: 1/1.2; background: #f9f9f9; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+        .card { display: flex; flex-direction: column; border: 1px solid #eee; padding: 10px; position: relative; transition: 0.3s; }
+        .img-h { aspect-ratio: 1/1.2; background: var(--g); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
         .img-h img { width: 85%; }
         
         .sold { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.9); display: none; align-items: center; justify-content: center; z-index: 10; }
         .sold b { border: 3px solid #000; padding: 5px 10px; font-weight: 900; font-size: 0.8rem; transform: rotate(-10deg); }
         .is-out .sold { display: flex; }
 
-        .meta { padding: 15px 0; text-align: left; }
+        .meta { padding: 15px 0; }
         .meta .cat { font-size: 0.5rem; color: var(--gold); font-weight: 900; letter-spacing: 2px; text-transform: uppercase; }
-        .meta .name { font-size: 0.8rem; font-weight: 700; margin: 5px 0; height: 35px; overflow: hidden; }
+        .meta .name { font-size: 0.75rem; font-weight: 700; margin: 5px 0; height: 35px; overflow: hidden; }
         .meta .price { font-size: 1rem; font-weight: 300; }
 
-        .btn-buy { width: 100%; padding: 18px; background: #000; color: #fff; border: none; font-size: 0.7rem; font-weight: 900; letter-spacing: 2px; cursor: pointer; }
+        .btn-buy { width: 100%; padding: 18px; background: #000; color: #fff; border: none; font-size: 0.65rem; font-weight: 900; letter-spacing: 3px; cursor: pointer; }
         .btn-buy:disabled { background: #eee; color: #aaa; }
 
-        /* BOSS UI */
-        .boss-controls { display: none; margin-top: 10px; padding-top: 10px; border-top: 1px dashed #ccc; grid-template-columns: 1fr 1fr; gap: 5px; }
-        .btn-adm { padding: 10px; font-size: 0.55rem; font-weight: 900; cursor: pointer; border: 1px solid #000; background: #fff; text-transform: uppercase; }
+        /* BOSS SYSTEM */
+        .boss-ui { display: none; margin-top: 10px; padding-top: 10px; border-top: 1px dashed #ccc; grid-template-columns: 1fr 1fr; gap: 5px; }
+        .btn-adm { padding: 10px; font-size: 0.5rem; font-weight: 900; cursor: pointer; border: 1px solid #000; background: #fff; text-transform: uppercase; }
         .btn-adm.del { background: var(--red); color: #fff; border: none; }
 
         .fab { position: fixed; bottom: 30px; right: 20px; width: 60px; height: 60px; background: #000; color: #fff; border-radius: 50%; display: none; align-items: center; justify-content: center; font-size: 1.5rem; cursor: pointer; z-index: 15000; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
-        .admin-tag { display: none; background: var(--red); color: #fff; text-align: center; font-size: 0.6rem; padding: 5px; font-weight: 900; position: fixed; bottom: 0; width: 100%; z-index: 20000; }
+        .adm-bar { display: none; background: var(--red); color: #fff; text-align: center; font-size: 0.6rem; padding: 5px; font-weight: 900; position: fixed; bottom: 0; width: 100%; z-index: 20000; letter-spacing: 2px; }
 
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.98); z-index: 50000; align-items: center; justify-content: center; }
-        .m-box { width: 90%; max-width: 450px; padding: 40px; border: 2px solid #000; background: #fff; }
-        input, select { width: 100%; padding: 15px; margin-bottom: 10px; border: 1px solid #ddd; background: #f9f9f9; }
+        .m-box { width: 90%; max-width: 400px; padding: 40px; border: 2px solid #000; background: #fff; }
+        input, select { width: 100%; padding: 15px; margin-bottom: 10px; border: 1px solid #ddd; background: #f9f9f9; outline: none; }
 
         @media (min-width: 768px) { .grid { grid-template-columns: repeat(4, 1fr); } }
     </style>
 </head>
 <body>
 
-    <header><div class="logo" id="boss-btn">ESSENCE</div></header>
-    <div class="promo">ACCESO EXCLUSIVO OMNIVERSE | SOCIO 3%</div>
+    <header><div class="logo" id="master-btn">ESSENCE</div></header>
+    <div class="promo">SOCIOS ELITE: RECIBE 3% DE COMISIÓN DIRECTA</div>
 
     <nav class="filters">
-        <div class="f-tag active" onclick="setFilter('ALL', this)">Catálogo</div>
-        <div class="f-tag" onclick="setFilter('NICHO', this)">Nicho</div>
-        <div class="f-tag" onclick="setFilter('DESIGNER', this)">Designer</div>
+        <div class="f-tag active" onclick="setF('ALL', this)">Todo</div>
+        <div class="f-tag" onclick="setF('NICHO', this)">Nicho</div>
+        <div class="f-tag" onclick="setF('ARABE', this)">Árabe</div>
     </nav>
 
     <main class="grid" id="main-grid"></main>
 
-    <div class="fab" id="add-fab" onclick="openM('m-add')">+</div>
-    <div class="admin-tag" id="adm-tag">MODO ADMINISTRADOR - CAMBIOS EN VIVO</div>
+    <div class="fab" id="add-btn" onclick="openM('m-add')">+</div>
+    <div class="adm-bar" id="adm-tag">MODO ADMINISTRADOR ACTIVO</div>
 
     <div class="modal" id="m-add">
         <div class="m-box">
-            <h2 style="font-family:'Cinzel'; text-align:center;">CARGAR PIEZA</h2><br>
-            <input id="in-n" placeholder="Nombre de Fragancia">
+            <h2 style="font-family:'Cinzel'; text-align:center; font-size:1.2rem;">NUEVO INGRESO</h2><br>
+            <input id="in-n" placeholder="Nombre">
             <input id="in-p" type="number" placeholder="Precio ($)">
-            <input id="in-i" placeholder="URL de la Imagen">
+            <input id="in-i" placeholder="URL Imagen">
             <select id="in-c">
                 <option value="NICHO">NICHO</option>
                 <option value="DESIGNER">DESIGNER</option>
                 <option value="ARABE">ARABE</option>
             </select>
-            <button class="btn-buy" onclick="pushToFirebase()">PUBLICAR EN TODOS LOS CELULARES</button>
-            <p onclick="closeM('m-add')" style="text-align:center; margin-top:20px; font-size:0.6rem; cursor:pointer;">CANCELAR</p>
+            <button class="btn-buy" onclick="pushP()">GUARDAR EN LA NUBE</button>
+            <p onclick="closeM('m-add')" style="text-align:center; margin-top:20px; font-size:0.6rem; cursor:pointer; font-weight:900;">CANCELAR</p>
         </div>
     </div>
 
@@ -99,103 +99,71 @@
 
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);
-        const prodRef = ref(db, "productos");
+        const pRef = ref(db, "productos");
 
-        let isAdmin = false;
-        let currentFilter = 'ALL';
-        let products = [];
+        let isAdmin = false, currentF = 'ALL', prods = [];
 
-        // LEER DATOS EN TIEMPO REAL
-        onValue(prodRef, (snapshot) => {
-            const data = snapshot.val();
-            products = [];
-            if (data) {
-                Object.keys(data).forEach(key => {
-                    products.push({ id: key, ...data[key] });
-                });
-            }
+        onValue(pRef, (s) => {
+            const data = s.val();
+            prods = [];
+            if(data) Object.keys(data).forEach(k => prods.push({id: k, ...data[k]}));
             render();
         });
 
         function render() {
-            const grid = document.getElementById('main-grid');
-            grid.innerHTML = "";
-            const filtered = currentFilter === 'ALL' ? products : products.filter(p => p.c === currentFilter);
+            const g = document.getElementById('main-grid');
+            g.innerHTML = "";
+            const filtered = currentF === 'ALL' ? prods : prods.filter(p => p.c === currentF);
 
             filtered.forEach(p => {
-                const card = document.createElement('div');
-                card.className = `card ${!p.s ? 'is-out' : ''}`;
-                card.innerHTML = `
+                const div = document.createElement('div');
+                div.className = `card ${!p.s ? 'is-out' : ''}`;
+                div.innerHTML = `
                     <div class="img-h"><img src="${p.i}"><div class="sold"><b>AGOTADO</b></div></div>
                     <div class="meta">
                         <span class="cat">${p.c}</span>
-                        <div class="name">${p.name}</div>
+                        <div class="name">${p.n}</div>
                         <div class="price">$${p.p}.00</div>
                     </div>
-                    <button class="btn-buy" ${!p.s ? 'disabled' : ''} onclick="buy('${p.name}', ${p.p})">
-                        ${p.s ? 'ADQUIRIR' : 'SIN STOCK'}
+                    <button class="btn-buy" ${!p.s ? 'disabled' : ''} onclick="buy('${p.n}', ${p.p})">
+                        ${p.s ? 'COMPRAR' : 'SIN STOCK'}
                     </button>
-                    <div class="boss-controls" style="display: ${isAdmin ? 'grid' : 'none'}">
-                        <button class="btn-adm" onclick="toggleS('${p.id}', ${p.s})">${p.s ? 'AGOTAR' : 'ACTIVAR'}</button>
-                        <button class="btn-adm del" onclick="removeP('${p.id}')">ELIMINAR</button>
+                    <div class="boss-ui" style="display: ${isAdmin ? 'grid' : 'none'}">
+                        <button class="btn-adm" onclick="tgl('${p.id}', ${p.s})">${p.s ? 'AGOTAR' : 'ACTIVAR'}</button>
+                        <button class="btn-adm del" onclick="del('${p.id}')">ELIMINAR</button>
                     </div>
                 `;
-                grid.appendChild(card);
+                g.appendChild(div);
             });
         }
 
-        // FUNCIONES GLOBALIZADAS
-        window.pushToFirebase = () => {
-            const name = document.getElementById('in-n').value;
-            const p = document.getElementById('in-p').value;
-            const i = document.getElementById('in-i').value;
-            const c = document.getElementById('in-c').value;
-            if(name && p && i) {
-                push(prodRef, { name, p, i, c, s: true });
+        window.pushP = () => {
+            const n = document.getElementById('in-n').value, p = document.getElementById('in-p').value, i = document.getElementById('in-i').value, c = document.getElementById('in-c').value;
+            if(n && p && i) {
+                push(pRef, { n, p, i, c, s: true });
                 closeM('m-add');
-                document.getElementById('in-n').value = "";
-                document.getElementById('in-p').value = "";
-                document.getElementById('in-i').value = "";
+                document.getElementById('in-n').value = ''; document.getElementById('in-p').value = ''; document.getElementById('in-i').value = '';
             }
         };
 
-        window.toggleS = (id, currentStatus) => {
-            update(ref(db, `productos/${id}`), { s: !currentStatus });
-        };
-
-        window.removeP = (id) => {
-            if(confirm("¿BORRAR PERMANENTE PARA TODOS?")) {
-                remove(ref(db, `productos/${id}`));
-            }
-        };
-
-        window.buy = (name, price) => {
-            const msg = encodeURIComponent(`Hola Essence, quiero comprar: ${name} ($${price})`);
-            window.open(`https://wa.me/50769028805?text=${msg}`);
-        };
-
-        window.setFilter = (f, btn) => {
-            currentFilter = f;
-            document.querySelectorAll('.f-tag').forEach(t => t.classList.remove('active'));
-            btn.classList.add('active');
-            render();
-        };
-
+        window.tgl = (id, s) => update(ref(db, `productos/${id}`), { s: !s });
+        window.del = (id) => { if(confirm("¿BORRAR?")) remove(ref(db, `productos/${id}`)); };
+        window.buy = (n, p) => window.open(`https://wa.me/50769028805?text=Quiero%20${n}%20($${p})`);
+        window.setF = (f, b) => { currentF = f; document.querySelectorAll('.f-tag').forEach(t => t.classList.remove('active')); b.classList.add('active'); render(); };
         window.openM = (id) => document.getElementById(id).style.display = 'flex';
         window.closeM = (id) => document.getElementById(id).style.display = 'none';
 
-        // CLAVE MAESTRA
-        let clicks = 0;
-        document.getElementById('boss-btn').onclick = () => {
-            clicks++;
-            if(clicks >= 3) {
-                if(prompt("PASSWORD JEFE:") === "542497") {
+        let c = 0;
+        document.getElementById('master-btn').onclick = () => {
+            c++;
+            if(c >= 3) {
+                if(prompt("PASS:") === "542497") {
                     isAdmin = true;
-                    document.getElementById('add-fab').style.display = 'flex';
+                    document.getElementById('add-btn').style.display = 'flex';
                     document.getElementById('adm-tag').style.display = 'block';
                     render();
                 }
-                clicks = 0;
+                c = 0;
             }
         };
     </script>
