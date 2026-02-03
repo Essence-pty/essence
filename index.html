@@ -4,46 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>ESSENCE OMNIVERSE | CORPORATE SYSTEM</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@300;400;600;900&display=swap" rel="stylesheet">
     <style>
-        :root { --gold: #b8952e; --b: #000; --w: #fff; --red: #d90429; --gray: #f4f4f4; }
+        :root { --gold: #b8952e; --b: #000; --w: #fff; --red: #d90429; --gray: #f4f4f4; --dark-gray: #8e8e93; }
         * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter', sans-serif; }
-        body { background: var(--w); color: var(--b); }
+        body { background: var(--w); color: var(--b); overflow-x: hidden; }
 
-        /* HEADER & NAVIGATION */
+        /* HEADER */
         header { height: 70px; background: #000; color: #fff; display: flex; justify-content: center; align-items: center; position: sticky; top: 0; z-index: 1000; }
         .logo { font-family: 'Cinzel'; font-size: 1.4rem; letter-spacing: 8px; cursor: pointer; }
         
-        nav { display: flex; background: var(--gray); overflow-x: auto; white-space: nowrap; border-bottom: 1px solid #ddd; }
-        .nav-btn { flex: 1; padding: 15px 20px; font-size: 0.65rem; font-weight: 900; text-transform: uppercase; cursor: pointer; border: none; background: none; letter-spacing: 1px; }
-        .nav-btn.active { background: #fff; border-bottom: 3px solid #000; }
+        /* BUSCADOR ESTILO MINIMAL */
+        .search-bar { padding: 15px 20px; background: #fff; border-bottom: 1px solid #eee; display: flex; align-items: center; }
+        .search-input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 0.8rem; outline: none; }
 
-        .section { display: none; padding: 20px; max-width: 1200px; margin: 0 auto; }
+        /* NAVEGACIÓN */
+        nav { display: flex; background: var(--gray); overflow-x: auto; white-space: nowrap; border-bottom: 1px solid #ddd; scrollbar-width: none; }
+        .nav-btn { flex: 1; padding: 15px 20px; font-size: 0.6rem; font-weight: 900; text-transform: uppercase; cursor: pointer; border: none; background: none; letter-spacing: 1px; color: var(--dark-gray); }
+        .nav-btn.active { background: #fff; border-bottom: 3px solid #000; color: #000; }
+
+        .section { display: none; padding: 20px; max-width: 1200px; margin: 0 auto; animation: fadeIn 0.4s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .section.active { display: block; }
-
-        /* ANUNCIOS / HERO */
-        .banner { width: 100%; height: 200px; background: #111; color: #fff; display: flex; flex-direction: column; justify-content: center; align-items: center; margin-bottom: 20px; text-align: center; background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=800&q=80'); background-size: cover; background-position: center; }
-        .banner h2 { font-family: 'Cinzel'; font-size: 1.5rem; letter-spacing: 5px; }
 
         /* CATALOGO */
         .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
-        .card { border: 1px solid #eee; padding: 10px; position: relative; background: #fff; }
-        .card img { width: 100%; aspect-ratio: 1/1; object-fit: contain; }
-        .card.sold-out { opacity: 0.6; filter: grayscale(100%); }
-        .sold-out-tag { position: absolute; top: 10px; right: 10px; background: var(--red); color: #fff; padding: 4px 8px; font-size: 0.6rem; font-weight: 900; z-index: 10; }
+        .card { border: 1px solid #eee; padding: 10px; position: relative; background: #fff; text-align: center; }
+        .card img { width: 100%; aspect-ratio: 1/1; object-fit: contain; margin-bottom: 10px; }
+        .card.sold-out { opacity: 0.5; filter: grayscale(1); }
+        .sold-out-tag { position: absolute; top: 10px; right: 10px; background: var(--red); color: #fff; padding: 4px 8px; font-size: 0.5rem; font-weight: 900; }
 
         /* BOTONES */
-        .btn { width: 100%; padding: 12px; border: none; font-weight: 900; cursor: pointer; text-transform: uppercase; font-size: 0.7rem; margin-top: 5px; transition: 0.3s; }
-        .btn-black { background: #000; color: #fff; }
-        .btn-black:active { background: #333; transform: scale(0.98); }
+        .btn { width: 100%; padding: 12px; border: none; font-weight: 900; cursor: pointer; text-transform: uppercase; font-size: 0.65rem; transition: 0.3s; }
+        .btn-black { background: #000; color: #fff; margin-top: 5px; }
+        
+        /* TRACKING & POLICIES */
+        .card-info { background: #f9f9f9; padding: 20px; border-radius: 10px; margin-bottom: 15px; border: 1px solid #eee; }
+        .policy-title { font-weight: 900; font-size: 0.8rem; margin-bottom: 10px; display: block; text-transform: uppercase; border-left: 3px solid var(--gold); padding-left: 10px; }
 
-        /* TABLAS ADMIN */
-        table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 0.7rem; }
+        /* ADMIN & FAB */
+        .fab { position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px; background: #000; color: #fff; border-radius: 50%; display: none; align-items: center; justify-content: center; font-size: 1.5rem; z-index: 2000; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+        table { width: 100%; border-collapse: collapse; font-size: 0.65rem; }
         th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
-        th { background: #eee; font-weight: 900; }
-
-        /* FAB (BOTON FLOTANTE) */
-        .fab { position: fixed; bottom: 25px; right: 25px; width: 65px; height: 65px; background: #000; color: #fff; border-radius: 50%; display: none; align-items: center; justify-content: center; font-size: 2rem; z-index: 2000; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.4); }
 
         @media (min-width: 768px) { .grid { grid-template-columns: repeat(4, 1fr); } }
     </style>
@@ -52,53 +54,54 @@
 
     <header><div class="logo" id="boss-key">ESSENCE</div></header>
 
+    <div class="search-bar">
+        <input type="text" id="busqueda" class="search-input" placeholder="Buscar fragancia... (Ej: Sauvage, Chanel)" onkeyup="filtrarProductos()">
+    </div>
+
     <nav>
-        <button class="nav-btn active" onclick="showSec('home', this)">Tienda</button>
-        <button class="nav-btn" onclick="showSec('info', this)">Pagos/Trabajo</button>
-        <button class="nav-btn" id="nav-pedidos" onclick="showSec('pedidos', this)">Mis Pedidos</button>
-        <button class="nav-btn" id="nav-admin" style="display:none;" onclick="showSec('admin', this)">ADMIN DASHBOARD</button>
+        <button class="nav-btn active" onclick="showSec('home', this)">Perfumes</button>
+        <button class="nav-btn" onclick="showSec('rastreo', this)">Rastreo</button>
+        <button class="nav-btn" onclick="showSec('info', this)">Políticas</button>
+        <button class="nav-btn" id="nav-admin" style="display:none;" onclick="showSec('admin', this)">ADMIN</button>
     </nav>
 
     <section id="home" class="section active">
-        <div class="banner">
-            <h2>NUEVA COLECCIÓN</h2>
-            <p style="font-size: 0.7rem; letter-spacing: 2px;">DESCUBRE TU ESENCIA</p>
-        </div>
         <div class="grid" id="grid-productos"></div>
     </section>
 
-    <section id="info" class="section">
-        <div style="margin-bottom: 40px; background: #f9f9f9; padding: 20px; border-radius: 10px;">
-            <h3 style="font-family:'Cinzel';">MÉTODOS DE PAGO</h3><br>
-            <p>💰 <b>Yappy:</b> 6902-8805</p>
-            <p>🏦 <b>ACH:</b> Banco General</p>
-            <p>🤝 <b>Efectivo:</b> Entregas directas</p>
-        </div>
-        <hr><br>
-        <div>
-            <h3 style="font-family:'Cinzel';">TRABAJA CON NOSOTROS</h3><br>
-            <p>Únete al equipo ESSENCE y genera ingresos vendiendo fragancias exclusivas.</p><br>
-            <button class="btn btn-black" onclick="window.open('https://wa.me/50769028805?text=Hola,%20solicito%20info%20para%20vender')">CHATEAR CON RECLUTAMIENTO</button>
+    <section id="rastreo" class="section">
+        <div class="card-info">
+            <span class="policy-title">Rastrear mi pedido</span>
+            <p style="font-size: 0.8rem; margin-bottom: 15px;">Ingresa tu nombre o número de pedido para consultar el estatus con un agente.</p>
+            <input type="text" id="track-id" class="search-input" placeholder="Nombre o # de Pedido"><br><br>
+            <button class="btn btn-black" onclick="rastrearPedido()">CONSULTAR STATUS</button>
         </div>
     </section>
 
-    <section id="pedidos" class="section">
-        <h3 style="font-family:'Cinzel';">HISTORIAL DE PEDIDOS</h3>
-        <p style="font-size: 0.7rem; color: #666; margin-bottom: 10px;">Aquí aparecen las órdenes registradas en este dispositivo.</p>
-        <div id="mis-pedidos-list"></div>
+    <section id="info" class="section">
+        <div class="card-info">
+            <span class="policy-title">Garantía de Calidad</span>
+            <p style="font-size: 0.75rem; color: #444;">Nuestras fragancias son de alta gama. No aceptamos devoluciones una vez abierto el empaque por razones de higiene.</p>
+        </div>
+        <div class="card-info">
+            <span class="policy-title">Envíos y Entregas</span>
+            <p style="font-size: 0.75rem; color: #444;">Entregas en Ciudad de Panamá en 24h. Envíos al interior vía Uno Express o Ferguson.</p>
+        </div>
+        <div class="card-info">
+            <span class="policy-title">Pagos</span>
+            <p style="font-size: 0.75rem; color: #444;">Aceptamos Yappy (6902-8805), Efectivo y ACH Banco General.</p>
+        </div>
     </section>
 
     <section id="admin" class="section">
-        <h2 style="font-family:'Cinzel'; border-bottom: 2px solid #000; padding-bottom: 5px;">PANEL DE CONTROL</h2><br>
-        
-        <h3>📦 PEDIDOS TOTALES</h3>
+        <h3 style="margin-bottom:15px;">PANEL DE CONTROL</h3>
+        <div id="admin-productos-list"></div>
+        <br><hr><br>
+        <h3>REGISTRO DE VENTAS</h3>
         <table id="tabla-pedidos">
-            <thead><tr><th>Fecha</th><th>Cliente</th><th>Producto</th><th>Total</th></tr></thead>
+            <thead><tr><th>Fecha</th><th>Cliente</th><th>Producto</th></tr></thead>
             <tbody id="body-pedidos"></tbody>
-        </table><br><br>
-
-        <h3>🛠️ GESTIÓN DE CATÁLOGO</h3>
-        <div id="admin-productos-list" style="margin-top:15px;"></div>
+        </table>
     </section>
 
     <div class="fab" id="add-btn" onclick="subirManual()">+</div>
@@ -118,96 +121,76 @@
 
         const app = initializeApp(config);
         const db = getFirestore(app);
+        let todosLosProductos = [];
 
         // --- CARGAR PRODUCTOS ---
-        const qProd = query(collection(db, "inventario_oficial"), orderBy("name", "asc"));
-        onSnapshot(qProd, (snap) => {
+        onSnapshot(collection(db, "inventario_oficial"), (snap) => {
             const grid = document.getElementById('grid-productos');
             const admList = document.getElementById('admin-productos-list');
             grid.innerHTML = ""; admList.innerHTML = "";
+            todosLosProductos = [];
 
             snap.forEach(d => {
                 const p = d.data(); const id = d.id;
+                // Exclusión Magnate: Si el nombre tiene "Magnate", no lo subas si prefieres exclusividad de Essence
+                if(p.name.toLowerCase().includes("magnate")) return; 
+
+                todosLosProductos.push({...p, id});
                 
                 grid.innerHTML += `
-                    <div class="card ${p.stock === 'off' ? 'sold-out' : ''}">
+                    <div class="card ${p.stock === 'off' ? 'sold-out' : ''}" data-name="${p.name.toLowerCase()}">
                         ${p.stock === 'off' ? '<div class="sold-out-tag">AGOTADO</div>' : ''}
                         <img src="${p.img}">
-                        <div style="font-weight:900; font-size:0.7rem; margin-top:5px;">${p.name}</div>
+                        <div style="font-weight:900; font-size:0.7rem;">${p.name}</div>
                         <div style="font-size:0.9rem; color: var(--gold);">$${p.price}</div>
                         <button class="btn btn-black" onclick="crearPedido('${id}', '${p.name}', ${p.price})">ORDENAR</button>
-                    </div>
-                `;
+                    </div>`;
 
                 admList.innerHTML += `
-                    <div style="padding:15px; border:1px solid #ddd; margin-bottom:8px; display:flex; justify-content:space-between; align-items:center; border-radius:8px;">
-                        <span style="font-size:0.8rem; font-weight:700;">${p.name} ($${p.price})</span>
+                    <div style="padding:10px; border-bottom:1px solid #eee; display:flex; justify-content:space-between; align-items:center;">
+                        <span style="font-size:0.7rem;">${p.name}</span>
                         <div>
-                            <button onclick="toggleStock('${id}', '${p.stock}')" style="background:orange; padding:8px 12px; color:white; border:none; border-radius:5px; cursor:pointer; font-size:0.6rem; font-weight:900;">${p.stock === 'off' ? 'ACTIVAR' : 'AGOTAR'}</button>
-                            <button onclick="eliminarProd('${id}')" style="background:red; padding:8px 12px; color:white; border:none; border-radius:5px; cursor:pointer; margin-left:5px; font-size:0.6rem; font-weight:900;">X</button>
+                            <button onclick="toggleStock('${id}', '${p.stock}')" style="background:orange; color:white; border:none; padding:5px;">STOCK</button>
+                            <button onclick="eliminarProd('${id}')" style="background:red; color:white; border:none; padding:5px; margin-left:5px;">X</button>
                         </div>
-                    </div>
-                `;
+                    </div>`;
             });
         });
 
-        // --- MANEJO DE PEDIDOS ---
-        window.crearPedido = async (id, nombre, precio) => {
-            const cliente = prompt("Para confirmar, ingresa tu nombre:");
-            if(!cliente) return;
-            try {
-                await addDoc(collection(db, "pedidos_global"), {
-                    cliente, producto: nombre, precio, fecha: new Date().toLocaleString(), ts: new Date()
-                });
-                alert("PEDIDO REGISTRADO EXITOSAMENTE.");
-                window.open(`https://wa.me/50769028805?text=Hola,%20soy%20${cliente},%20deseo%20ordenar%20${nombre}`);
-            } catch (e) { alert("Error al pedir: " + e.message); }
-        };
-
-        const qPed = query(collection(db, "pedidos_global"), orderBy("ts", "desc"));
-        onSnapshot(qPed, (snap) => {
-            const body = document.getElementById('body-pedidos');
-            body.innerHTML = "";
-            snap.forEach(d => {
-                const ped = d.data();
-                body.innerHTML += `<tr><td>${ped.fecha}</td><td>${ped.cliente}</td><td>${ped.producto}</td><td>$${ped.precio}</td></tr>`;
+        // --- BUSCADOR ---
+        window.filtrarProductos = () => {
+            const term = document.getElementById('busqueda').value.toLowerCase();
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                const name = card.getAttribute('data-name');
+                card.style.display = name.includes(term) ? "block" : "none";
             });
-        });
-
-        // --- FUNCIONES ADMIN (EL MOTOR) ---
-        window.toggleStock = async (id, actual) => {
-            await updateDoc(doc(db, "inventario_oficial", id), { stock: actual === 'off' ? 'on' : 'off' });
         };
 
-        window.eliminarProd = async (id) => {
-            if(confirm("¿Eliminar permanentemente del catálogo?")) {
-                await deleteDoc(doc(db, "inventario_oficial", id));
+        // --- RASTREO ---
+        window.rastrearPedido = () => {
+            const id = document.getElementById('track-id').value;
+            if(id) window.open(`https://wa.me/50769028805?text=Hola,%20quisiera%20saber%20el%20estatus%20de%20mi%20pedido:%20${id}`);
+            else alert("Escribe tu nombre o número de pedido");
+        };
+
+        // --- FUNCIONES CORE ---
+        window.crearPedido = async (id, n, pr) => {
+            const c = prompt("Ingresa tu nombre:");
+            if(c) {
+                await addDoc(collection(db, "pedidos_global"), { cliente: c, producto: n, precio: pr, fecha: new Date().toLocaleString() });
+                window.open(`https://wa.me/50769028805?text=Hola,%20soy%20${c}%20acabo%20de%20pedir%20${n}`);
             }
         };
+
+        window.toggleStock = (id, s) => updateDoc(doc(db, "inventario_oficial", id), { stock: s === 'off' ? 'on' : 'off' });
+        window.eliminarProd = (id) => confirm("¿Borrar?") && deleteDoc(doc(db, "inventario_oficial", id));
         
-        // ESTA ES LA FUNCIÓN QUE NO TE DEJABA PUBLICAR
         window.subirManual = async () => {
-            const name = prompt("Nombre de la Fragancia:");
-            if(!name) return;
-            const price = prompt("Precio ($):");
-            if(!price) return;
-            const img = prompt("URL/Link de la foto:");
-            if(!img) return;
-
-            try {
-                await addDoc(collection(db, "inventario_oficial"), {
-                    name: name,
-                    price: price,
-                    img: img,
-                    stock: 'on'
-                });
-                alert("✅ PRODUCTO PUBLICADO EXITOSAMENTE");
-            } catch (error) {
-                alert("Error de permisos: " + error.message);
-            }
+            const n = prompt("Nombre:"), p = prompt("Precio:"), i = prompt("URL Imagen:");
+            if(n && p && i) await addDoc(collection(db, "inventario_oficial"), { name:n, price:p, img:i, stock:'on' });
         };
 
-        // --- NAVEGACIÓN ---
         window.showSec = (id, btn) => {
             document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
@@ -215,16 +198,12 @@
             btn.classList.add('active');
         };
 
-        // --- ACCESO MASTER ---
         let cl = 0;
         document.getElementById('boss-key').onclick = () => {
-            cl++;
-            if(cl >= 3) {
-                const pass = prompt("SISTEMA MASTER KEY:");
-                if(pass === "542497") {
+            if(++cl >= 3) {
+                if(prompt("MASTER KEY:") === "542497") {
                     document.getElementById('nav-admin').style.display = 'block';
                     document.getElementById('add-btn').style.display = 'flex';
-                    alert("DASHBOARD CORPORATIVO DESBLOQUEADO");
                 }
                 cl = 0;
             }
@@ -232,8 +211,12 @@
     </script>
 </body>
 </html>
-
-
+                cl = 0;
+            }
+        };
+    </script>
+</body>
+</html>
 
 
 
