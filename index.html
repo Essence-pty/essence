@@ -27,22 +27,23 @@
 
         /* CATALOGO */
         .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
-        .card { border: 1px solid #eee; padding: 10px; position: relative; }
+        .card { border: 1px solid #eee; padding: 10px; position: relative; background: #fff; }
         .card img { width: 100%; aspect-ratio: 1/1; object-fit: contain; }
         .card.sold-out { opacity: 0.6; filter: grayscale(100%); }
-        .sold-out-tag { position: absolute; top: 10px; right: 10px; background: var(--red); color: #fff; padding: 4px 8px; font-size: 0.6rem; font-weight: 900; }
+        .sold-out-tag { position: absolute; top: 10px; right: 10px; background: var(--red); color: #fff; padding: 4px 8px; font-size: 0.6rem; font-weight: 900; z-index: 10; }
 
         /* BOTONES */
-        .btn { width: 100%; padding: 12px; border: none; font-weight: 900; cursor: pointer; text-transform: uppercase; font-size: 0.7rem; margin-top: 5px; }
+        .btn { width: 100%; padding: 12px; border: none; font-weight: 900; cursor: pointer; text-transform: uppercase; font-size: 0.7rem; margin-top: 5px; transition: 0.3s; }
         .btn-black { background: #000; color: #fff; }
+        .btn-black:active { background: #333; transform: scale(0.98); }
 
         /* TABLAS ADMIN */
         table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 0.7rem; }
         th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
-        th { background: #eee; }
+        th { background: #eee; font-weight: 900; }
 
-        /* FAB */
-        .fab { position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; background: #000; color: #fff; border-radius: 50%; display: none; align-items: center; justify-content: center; font-size: 1.5rem; z-index: 2000; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        /* FAB (BOTON FLOTANTE) */
+        .fab { position: fixed; bottom: 25px; right: 25px; width: 65px; height: 65px; background: #000; color: #fff; border-radius: 50%; display: none; align-items: center; justify-content: center; font-size: 2rem; z-index: 2000; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.4); }
 
         @media (min-width: 768px) { .grid { grid-template-columns: repeat(4, 1fr); } }
     </style>
@@ -67,39 +68,40 @@
     </section>
 
     <section id="info" class="section">
-        <div style="margin-bottom: 40px;">
+        <div style="margin-bottom: 40px; background: #f9f9f9; padding: 20px; border-radius: 10px;">
             <h3 style="font-family:'Cinzel';">MÉTODOS DE PAGO</h3><br>
-            <p>• Yappy: 6902-8805</p>
-            <p>• Efectivo (Entregas personales)</p>
-            <p>• ACH Banco General</p>
+            <p>💰 <b>Yappy:</b> 6902-8805</p>
+            <p>🏦 <b>ACH:</b> Banco General</p>
+            <p>🤝 <b>Efectivo:</b> Entregas directas</p>
         </div>
         <hr><br>
         <div>
             <h3 style="font-family:'Cinzel';">TRABAJA CON NOSOTROS</h3><br>
-            <p>Conviértete en embajador de ESSENCE y gana comisiones por cada venta.</p><br>
-            <button class="btn btn-black" onclick="window.open('https://wa.me/50769028805?text=Deseo%20informacion%20para%20trabajar')">SOLICITAR INFO</button>
+            <p>Únete al equipo ESSENCE y genera ingresos vendiendo fragancias exclusivas.</p><br>
+            <button class="btn btn-black" onclick="window.open('https://wa.me/50769028805?text=Hola,%20solicito%20info%20para%20vender')">CHATEAR CON RECLUTAMIENTO</button>
         </div>
     </section>
 
     <section id="pedidos" class="section">
         <h3 style="font-family:'Cinzel';">HISTORIAL DE PEDIDOS</h3>
+        <p style="font-size: 0.7rem; color: #666; margin-bottom: 10px;">Aquí aparecen las órdenes registradas en este dispositivo.</p>
         <div id="mis-pedidos-list"></div>
     </section>
 
     <section id="admin" class="section">
-        <h2 style="font-family:'Cinzel'; border-bottom: 2px solid #000;">DASHBOARD GLOBAL</h2><br>
+        <h2 style="font-family:'Cinzel'; border-bottom: 2px solid #000; padding-bottom: 5px;">PANEL DE CONTROL</h2><br>
         
-        <h3>1. REGISTRO DE PEDIDOS</h3>
+        <h3>📦 PEDIDOS TOTALES</h3>
         <table id="tabla-pedidos">
             <thead><tr><th>Fecha</th><th>Cliente</th><th>Producto</th><th>Total</th></tr></thead>
             <tbody id="body-pedidos"></tbody>
         </table><br><br>
 
-        <h3>2. GESTIÓN DE INVENTARIO</h3>
+        <h3>🛠️ GESTIÓN DE CATÁLOGO</h3>
         <div id="admin-productos-list" style="margin-top:15px;"></div>
     </section>
 
-    <div class="fab" id="add-btn">+</div>
+    <div class="fab" id="add-btn" onclick="subirManual()">+</div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
@@ -117,8 +119,9 @@
         const app = initializeApp(config);
         const db = getFirestore(app);
 
-        // --- MANEJO DE PRODUCTOS ---
-        onSnapshot(collection(db, "inventario_oficial"), (snap) => {
+        // --- CARGAR PRODUCTOS ---
+        const qProd = query(collection(db, "inventario_oficial"), orderBy("name", "asc"));
+        onSnapshot(qProd, (snap) => {
             const grid = document.getElementById('grid-productos');
             const admList = document.getElementById('admin-productos-list');
             grid.innerHTML = ""; admList.innerHTML = "";
@@ -131,37 +134,38 @@
                         ${p.stock === 'off' ? '<div class="sold-out-tag">AGOTADO</div>' : ''}
                         <img src="${p.img}">
                         <div style="font-weight:900; font-size:0.7rem; margin-top:5px;">${p.name}</div>
-                        <div style="font-size:0.9rem;">$${p.price}</div>
+                        <div style="font-size:0.9rem; color: var(--gold);">$${p.price}</div>
                         <button class="btn btn-black" onclick="crearPedido('${id}', '${p.name}', ${p.price})">ORDENAR</button>
                     </div>
                 `;
 
                 admList.innerHTML += `
-                    <div style="padding:10px; border:1px solid #ddd; margin-bottom:5px; display:flex; justify-content:space-between; align-items:center;">
-                        <span style="font-size:0.8rem;">${p.name} ($${p.price})</span>
+                    <div style="padding:15px; border:1px solid #ddd; margin-bottom:8px; display:flex; justify-content:space-between; align-items:center; border-radius:8px;">
+                        <span style="font-size:0.8rem; font-weight:700;">${p.name} ($${p.price})</span>
                         <div>
-                            <button onclick="toggleStock('${id}', '${p.stock}')" style="background:orange; padding:5px; color:white; border:none; border-radius:3px; cursor:pointer;">${p.stock === 'off' ? 'Activar' : 'Agotar'}</button>
-                            <button onclick="eliminarProd('${id}')" style="background:red; padding:5px; color:white; border:none; border-radius:3px; cursor:pointer; margin-left:5px;">Borrar</button>
+                            <button onclick="toggleStock('${id}', '${p.stock}')" style="background:orange; padding:8px 12px; color:white; border:none; border-radius:5px; cursor:pointer; font-size:0.6rem; font-weight:900;">${p.stock === 'off' ? 'ACTIVAR' : 'AGOTAR'}</button>
+                            <button onclick="eliminarProd('${id}')" style="background:red; padding:8px 12px; color:white; border:none; border-radius:5px; cursor:pointer; margin-left:5px; font-size:0.6rem; font-weight:900;">X</button>
                         </div>
                     </div>
                 `;
             });
         });
 
-        // --- PEDIDOS ---
+        // --- MANEJO DE PEDIDOS ---
         window.crearPedido = async (id, nombre, precio) => {
-            const cliente = prompt("Tu nombre para el pedido:");
+            const cliente = prompt("Para confirmar, ingresa tu nombre:");
             if(!cliente) return;
             try {
                 await addDoc(collection(db, "pedidos_global"), {
-                    cliente, producto: nombre, precio, fecha: new Date().toLocaleString()
+                    cliente, producto: nombre, precio, fecha: new Date().toLocaleString(), ts: new Date()
                 });
-                alert("PEDIDO REGISTRADO.");
-                window.open(`https://wa.me/50769028805?text=Hola,%20soy%20${cliente},%20acabo%20de%20pedir%20${nombre}`);
-            } catch (e) { alert(e.message); }
+                alert("PEDIDO REGISTRADO EXITOSAMENTE.");
+                window.open(`https://wa.me/50769028805?text=Hola,%20soy%20${cliente},%20deseo%20ordenar%20${nombre}`);
+            } catch (e) { alert("Error al pedir: " + e.message); }
         };
 
-        onSnapshot(collection(db, "pedidos_global"), (snap) => {
+        const qPed = query(collection(db, "pedidos_global"), orderBy("ts", "desc"));
+        onSnapshot(qPed, (snap) => {
             const body = document.getElementById('body-pedidos');
             body.innerHTML = "";
             snap.forEach(d => {
@@ -170,17 +174,24 @@
             });
         });
 
-        // --- FUNCIONES ADMIN ---
-        window.toggleStock = (id, actual) => updateDoc(doc(db, "inventario_oficial", id), { stock: actual === 'off' ? 'on' : 'off' });
-        window.eliminarProd = (id) => confirm("¿Deseas eliminar este perfume del sistema?") && deleteDoc(doc(db, "inventario_oficial", id));
+        // --- FUNCIONES ADMIN (EL MOTOR) ---
+        window.toggleStock = async (id, actual) => {
+            await updateDoc(doc(db, "inventario_oficial", id), { stock: actual === 'off' ? 'on' : 'off' });
+        };
+
+        window.eliminarProd = async (id) => {
+            if(confirm("¿Eliminar permanentemente del catálogo?")) {
+                await deleteDoc(doc(db, "inventario_oficial", id));
+            }
+        };
         
-        // FUNCIÓN DE SUBIDA REPARADA
+        // ESTA ES LA FUNCIÓN QUE NO TE DEJABA PUBLICAR
         window.subirManual = async () => {
-            const name = prompt("Nombre del Perfume:");
+            const name = prompt("Nombre de la Fragancia:");
             if(!name) return;
             const price = prompt("Precio ($):");
             if(!price) return;
-            const img = prompt("URL de la Imagen (Link):");
+            const img = prompt("URL/Link de la foto:");
             if(!img) return;
 
             try {
@@ -188,12 +199,11 @@
                     name: name,
                     price: price,
                     img: img,
-                    stock: 'on',
-                    fecha_creado: new Date()
+                    stock: 'on'
                 });
-                alert("✅ ¡PRODUCTO AGREGADO AL CATÁLOGO!");
+                alert("✅ PRODUCTO PUBLICADO EXITOSAMENTE");
             } catch (error) {
-                alert("Error al subir: " + error.message);
+                alert("Error de permisos: " + error.message);
             }
         };
 
@@ -205,7 +215,7 @@
             btn.classList.add('active');
         };
 
-        // --- LOGIN JEFE ---
+        // --- ACCESO MASTER ---
         let cl = 0;
         document.getElementById('boss-key').onclick = () => {
             cl++;
@@ -213,10 +223,7 @@
                 const pass = prompt("SISTEMA MASTER KEY:");
                 if(pass === "542497") {
                     document.getElementById('nav-admin').style.display = 'block';
-                    const btnAdd = document.getElementById('add-btn');
-                    btnAdd.style.display = 'flex';
-                    // Aquí conectamos el botón con la función reparada
-                    btnAdd.onclick = window.subirManual;
+                    document.getElementById('add-btn').style.display = 'flex';
                     alert("DASHBOARD CORPORATIVO DESBLOQUEADO");
                 }
                 cl = 0;
@@ -225,6 +232,7 @@
     </script>
 </body>
 </html>
+
 
 
 
