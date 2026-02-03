@@ -338,18 +338,32 @@
         window.openM = (n, p) => { curP = n; curV = p; document.getElementById('pay-modal').style.display = 'flex'; };
         window.closeM = () => document.getElementById('pay-modal').style.display = 'none';
 
-        window.fin = async (metodo) => {
-            const cliente = localStorage.getItem('e_user') || prompt("NOMBRE COMPLETO PARA LA ORDEN:");
-            if(!cliente) return;
+     window.fin = async (metodo) => {
+    const cliente = localStorage.getItem('e_user') || prompt("NOMBRE COMPLETO PARA LA ORDEN:");
+    if(!cliente) return;
 
-            await addDoc(collection(db, "ventas_essence"), {
-                cliente, producto: curP, metodo, fecha: new Date().toLocaleString(), ts: new Date()
-            });
+    const txt = `👑 *ORDEN ESSENCE*%0A%0A👤 *Cliente:* ${cliente}%0A📦 *Producto:* ${curP}%0A💰 *Precio:* $${curV}%0A💳 *Método:* ${metodo}`;
+    const waUrl = `https://wa.me/${TEL}?text=${txt}`;
 
-            const txt = `👑 *ORDEN ESSENCE*%0A%0A👤 *Cliente:* ${cliente}%0A📦 *Producto:* ${curP}%0A💰 *Precio:* $${curV}%0A💳 *Método:* ${metodo}`;
-            window.open(`https://wa.me/${TEL}?text=${txt}`);
-            closeM();
-        };
+    // 1. DISPARO INMEDIATO (Esto evita que el iPhone bloquee la ventana)
+    const win = window.open(waUrl, '_blank');
+    
+    // 2. PLAN B: Si Safari bloquea la pestaña, redirigimos la actual
+    if(!win) {
+        window.location.href = waUrl;
+    }
+
+    // 3. REGISTRO EN BASE DE DATOS (Se hace en segundo plano mientras WhatsApp abre)
+    await addDoc(collection(db, "ventas_essence"), {
+        cliente, 
+        producto: curP, 
+        metodo, 
+        fecha: new Date().toLocaleString(), 
+        ts: new Date()
+    });
+
+    closeM();
+};
 
         // --- FUNCIONES EXTRA ---
         window.userReg = () => {
@@ -406,6 +420,7 @@
     </script>
 </body>
 </html>
+
 
 
 
