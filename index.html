@@ -29,22 +29,20 @@
         .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
         .card { border: 1px solid #eee; padding: 10px; position: relative; }
         .card img { width: 100%; aspect-ratio: 1/1; object-fit: contain; }
-        .card.sold-out { opacity: 0.6; grayscale: 100%; }
+        .card.sold-out { opacity: 0.6; filter: grayscale(100%); }
         .sold-out-tag { position: absolute; top: 10px; right: 10px; background: var(--red); color: #fff; padding: 4px 8px; font-size: 0.6rem; font-weight: 900; }
 
         /* BOTONES */
         .btn { width: 100%; padding: 12px; border: none; font-weight: 900; cursor: pointer; text-transform: uppercase; font-size: 0.7rem; margin-top: 5px; }
         .btn-black { background: #000; color: #fff; }
-        .btn-outline { background: #fff; border: 1px solid #000; }
-        .btn-red { background: var(--red); color: #fff; }
 
         /* TABLAS ADMIN */
         table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 0.7rem; }
         th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
         th { background: #eee; }
 
-        /* MODAL */
-        .fab { position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; background: #000; color: #fff; border-radius: 50%; display: none; align-items: center; justify-content: center; font-size: 1.5rem; z-index: 2000; cursor: pointer; }
+        /* FAB */
+        .fab { position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; background: #000; color: #fff; border-radius: 50%; display: none; align-items: center; justify-content: center; font-size: 1.5rem; z-index: 2000; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
 
         @media (min-width: 768px) { .grid { grid-template-columns: repeat(4, 1fr); } }
     </style>
@@ -71,9 +69,9 @@
     <section id="info" class="section">
         <div style="margin-bottom: 40px;">
             <h3 style="font-family:'Cinzel';">MÉTODOS DE PAGO</h3><br>
-            <p>• Yappy / ACH</p>
+            <p>• Yappy: 6902-8805</p>
             <p>• Efectivo (Entregas personales)</p>
-            <p>• Cripto (USDT)</p>
+            <p>• ACH Banco General</p>
         </div>
         <hr><br>
         <div>
@@ -91,7 +89,7 @@
     <section id="admin" class="section">
         <h2 style="font-family:'Cinzel'; border-bottom: 2px solid #000;">DASHBOARD GLOBAL</h2><br>
         
-        <h3>1. REGISTRO DE PEDIDOS Y USUARIOS</h3>
+        <h3>1. REGISTRO DE PEDIDOS</h3>
         <table id="tabla-pedidos">
             <thead><tr><th>Fecha</th><th>Cliente</th><th>Producto</th><th>Total</th></tr></thead>
             <tbody id="body-pedidos"></tbody>
@@ -101,7 +99,7 @@
         <div id="admin-productos-list" style="margin-top:15px;"></div>
     </section>
 
-    <div class="fab" id="add-btn" onclick="window.location.hash='add'; alert('Usa el formulario de la sección ADMIN para agregar productos.')">+</div>
+    <div class="fab" id="add-btn">+</div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
@@ -118,7 +116,6 @@
 
         const app = initializeApp(config);
         const db = getFirestore(app);
-        let isAdmin = false;
 
         // --- MANEJO DE PRODUCTOS ---
         onSnapshot(collection(db, "inventario_oficial"), (snap) => {
@@ -129,7 +126,6 @@
             snap.forEach(d => {
                 const p = d.data(); const id = d.id;
                 
-                // Vista Cliente
                 grid.innerHTML += `
                     <div class="card ${p.stock === 'off' ? 'sold-out' : ''}">
                         ${p.stock === 'off' ? '<div class="sold-out-tag">AGOTADO</div>' : ''}
@@ -140,13 +136,12 @@
                     </div>
                 `;
 
-                // Vista Admin
                 admList.innerHTML += `
                     <div style="padding:10px; border:1px solid #ddd; margin-bottom:5px; display:flex; justify-content:space-between; align-items:center;">
-                        <span>${p.name} ($${p.price})</span>
+                        <span style="font-size:0.8rem;">${p.name} ($${p.price})</span>
                         <div>
-                            <button onclick="toggleStock('${id}', '${p.stock}')" style="background:orange; padding:5px; color:white;">${p.stock === 'off' ? 'Activar' : 'Agotar'}</button>
-                            <button onclick="eliminarProd('${id}')" style="background:red; padding:5px; color:white;">Borrar</button>
+                            <button onclick="toggleStock('${id}', '${p.stock}')" style="background:orange; padding:5px; color:white; border:none; border-radius:3px; cursor:pointer;">${p.stock === 'off' ? 'Activar' : 'Agotar'}</button>
+                            <button onclick="eliminarProd('${id}')" style="background:red; padding:5px; color:white; border:none; border-radius:3px; cursor:pointer; margin-left:5px;">Borrar</button>
                         </div>
                     </div>
                 `;
@@ -161,7 +156,7 @@
                 await addDoc(collection(db, "pedidos_global"), {
                     cliente, producto: nombre, precio, fecha: new Date().toLocaleString()
                 });
-                alert("PEDIDO REGISTRADO. Nos contactaremos por WhatsApp.");
+                alert("PEDIDO REGISTRADO.");
                 window.open(`https://wa.me/50769028805?text=Hola,%20soy%20${cliente},%20acabo%20de%20pedir%20${nombre}`);
             } catch (e) { alert(e.message); }
         };
@@ -177,11 +172,29 @@
 
         // --- FUNCIONES ADMIN ---
         window.toggleStock = (id, actual) => updateDoc(doc(db, "inventario_oficial", id), { stock: actual === 'off' ? 'on' : 'off' });
-        window.eliminarProd = (id) => confirm("¿Borrar?") && deleteDoc(doc(db, "inventario_oficial", id));
+        window.eliminarProd = (id) => confirm("¿Deseas eliminar este perfume del sistema?") && deleteDoc(doc(db, "inventario_oficial", id));
         
+        // FUNCIÓN DE SUBIDA REPARADA
         window.subirManual = async () => {
-            const n = prompt("Nombre:"), p = prompt("Precio:"), i = prompt("URL Imagen:");
-            if(n && p && i) await addDoc(collection(db, "inventario_oficial"), { name:n, price:p, img:i, stock:'on' });
+            const name = prompt("Nombre del Perfume:");
+            if(!name) return;
+            const price = prompt("Precio ($):");
+            if(!price) return;
+            const img = prompt("URL de la Imagen (Link):");
+            if(!img) return;
+
+            try {
+                await addDoc(collection(db, "inventario_oficial"), {
+                    name: name,
+                    price: price,
+                    img: img,
+                    stock: 'on',
+                    fecha_creado: new Date()
+                });
+                alert("✅ ¡PRODUCTO AGREGADO AL CATÁLOGO!");
+            } catch (error) {
+                alert("Error al subir: " + error.message);
+            }
         };
 
         // --- NAVEGACIÓN ---
@@ -197,11 +210,13 @@
         document.getElementById('boss-key').onclick = () => {
             cl++;
             if(cl >= 3) {
-                if(prompt("SISTEMA MASTER KEY:") === "542497") {
-                    isAdmin = true;
+                const pass = prompt("SISTEMA MASTER KEY:");
+                if(pass === "542497") {
                     document.getElementById('nav-admin').style.display = 'block';
-                    document.getElementById('add-btn').style.display = 'flex';
-                    document.getElementById('add-btn').onclick = window.subirManual;
+                    const btnAdd = document.getElementById('add-btn');
+                    btnAdd.style.display = 'flex';
+                    // Aquí conectamos el botón con la función reparada
+                    btnAdd.onclick = window.subirManual;
                     alert("DASHBOARD CORPORATIVO DESBLOQUEADO");
                 }
                 cl = 0;
