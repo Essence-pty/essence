@@ -3,519 +3,297 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ESSENCE TITAN OMNI-REPRESENTATION | SUPREME CONTROL</title>
+    <title>ESSENCE | Luxury Fragrance Lab</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@100;300;400;600&display=swap" rel="stylesheet">
     
     <style>
-        /* ================================================================
-           ESSENCE TITAN SYSTEM ARCHITECTURE - V15.0
-           LOGIC EXPANSION: 5000+ LINE EQUIVALENT STRUCTURE
-           ================================================================
-        */
-
+        /* CSS MASTER: BLANCO, NEGRO, GRIS */
         :root {
-            --e-black: #000000;
-            --e-near-black: #0a0a0a;
-            --e-gold-deep: #8c6d1a;
-            --e-gold: #b8952e;
-            --e-gold-light: #f3cf7a;
-            --e-white: #ffffff;
-            --e-gray-100: #f5f5f7;
-            --e-gray-200: #e5e5ea;
-            --e-gray-300: #d1d1d6;
-            --e-red: #9b1c1c;
-            --e-green: #064e3b;
-            --e-shadow-soft: 0 10px 30px rgba(0,0,0,0.05);
-            --e-shadow-luxe: 0 40px 100px rgba(0,0,0,0.15);
-            --e-transition-slow: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-            --e-transition-fast: all 0.3s ease;
+            --black: #000000;
+            --white: #ffffff;
+            --gray-light: #f9f9f9;
+            --gray-med: #eeeeee;
+            --gray-dark: #333333;
+            --gold: #b8952e; /* Solo para detalles mínimos de lujo */
         }
 
-        /* --- GLOBAL RESET & BASE --- */
-        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; -webkit-font-smoothing: antialiased; }
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background-color: var(--e-white); 
-            color: var(--e-black); 
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--black); line-height: 1.5; }
 
-        /* --- SCROLLBAR ART --- */
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-track { background: var(--e-black); }
-        ::-webkit-scrollbar-thumb { background: var(--e-gold); }
+        /* HEADER MINIMALISTA */
+        header {
+            padding: 20px 5%; display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid var(--gray-med); position: sticky; top: 0; background: rgba(255,255,255,0.95); z-index: 1000;
+        }
+        .logo { font-family: 'Cinzel', serif; font-size: 1.5rem; font-weight: 700; letter-spacing: 8px; cursor: pointer; }
 
-        /* --- TITAN VIP HEADER (FIXED) --- */
-        .titan-status-bar {
-            background: var(--e-black); color: var(--e-white);
-            height: 45px; display: flex; align-items: center; justify-content: space-between;
-            padding: 0 6%; font-size: 0.65rem; letter-spacing: 5px; font-weight: 900;
-            text-transform: uppercase; border-bottom: 1px solid var(--e-gold-deep);
-            position: fixed; top: 0; width: 100%; z-index: 99999;
+        /* BANNERS DE ANUNCIO (PERFUMES DE FONDO) */
+        .hero {
+            height: 60vh; background: var(--black); display: flex; align-items: center; justify-content: center;
+            text-align: center; color: var(--white); position: relative; overflow: hidden;
         }
-        .pts-pill { background: var(--e-gold); color: #000; padding: 4px 14px; border-radius: 2px; }
-
-        /* --- SUPREME NAVIGATION --- */
-        nav.main-nav {
-            margin-top: 45px; height: 110px; background: rgba(255,255,255,0.92);
-            backdrop-filter: blur(30px); display: flex; justify-content: space-between;
-            align-items: center; padding: 0 6%; border-bottom: 1px solid var(--e-gray-200);
-            position: sticky; top: 45px; z-index: 9998;
-        }
-        .brand-logo { 
-            font-family: 'Cinzel', serif; font-size: 2.8rem; font-weight: 900; 
-            letter-spacing: 15px; cursor: pointer; transition: var(--e-transition-slow);
-            user-select: none;
-        }
-        .brand-logo:hover { color: var(--e-gold); letter-spacing: 20px; }
-
-        .nav-menu { display: flex; gap: 40px; align-items: center; }
-        .nav-item { 
-            font-size: 0.75rem; font-weight: 800; letter-spacing: 3px; 
-            text-transform: uppercase; cursor: pointer; color: var(--e-black); 
-            text-decoration: none; position: relative; transition: 0.3s;
-        }
-        .nav-item:hover { color: var(--e-gold); }
-        .nav-item.admin-only { color: var(--e-red); border: 1px solid var(--e-red); padding: 8px 15px; display: none; }
-
-        /* --- HERO REPRESENTATION --- */
-        .hero-titan { padding: 40px 6% 80px; }
-        .hero-frame {
-            width: 100%; height: 550px; background: var(--e-black); position: relative;
-            overflow: hidden; display: flex; align-items: center; justify-content: center;
-            box-shadow: var(--e-shadow-luxe);
-        }
-        .hero-img { 
-            position: absolute; width: 100%; height: 100%; object-fit: cover; 
-            opacity: 0.4; filter: contrast(1.2) grayscale(0.5); transition: 2s ease;
-        }
-        .hero-frame:hover .hero-img { transform: scale(1.1); opacity: 0.5; }
-        .hero-overlay { z-index: 10; text-align: center; }
-        .hero-overlay h1 { 
-            font-family: 'Cinzel'; color: var(--e-white); font-size: 5rem; 
-            letter-spacing: 25px; text-transform: uppercase; margin-bottom: 20px; 
-            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-        .hero-overlay p { color: var(--e-gold); font-size: 1rem; letter-spacing: 10px; font-weight: 300; text-transform: uppercase; }
-
-        /* --- THE GRID ENGINE --- */
-        .store-engine { padding: 100px 6%; max-width: 2000px; margin: 0 auto; }
-        .section-tag { 
-            font-family: 'Cinzel'; font-size: 3rem; letter-spacing: 15px; 
-            text-align: center; margin-bottom: 100px; position: relative;
-        }
-        .section-tag::after {
-            content: ''; position: absolute; bottom: -20px; left: 50%; transform: translateX(-50%);
-            width: 80px; height: 2px; background: var(--e-gold);
-        }
-
-        .omni-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
-            gap: 100px 50px;
-        }
-
-        /* --- TITAN PRODUCT ARCHITECTURE --- */
-        .titan-card {
-            background: #fff; position: relative; display: flex; flex-direction: column;
-            transition: var(--e-transition-slow); border: 1px solid transparent;
-        }
-        .titan-card:hover { transform: translateY(-10px); }
-
-        .image-pod {
-            background: var(--e-gray-100); aspect-ratio: 1/1.3; display: flex;
-            align-items: center; justify-content: center; position: relative;
-            overflow: hidden; transition: 0.5s;
-        }
-        .image-pod img { 
-            max-width: 75%; height: auto; transition: 1.2s cubic-bezier(0.19, 1, 0.22, 1);
-            filter: drop-shadow(0 30px 40px rgba(0,0,0,0.12));
-        }
-        .titan-card:hover .image-pod img { transform: scale(1.15) rotate(2deg); }
-
-        .exhaust-overlay {
+        .hero-bg {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(255,255,255,0.9); z-index: 40; display: none;
-            align-items: center; justify-content: center; backdrop-filter: blur(12px);
+            background: url('https://images.unsplash.com/photo-1543467941-216da93e3e0c?q=80&w=2070&auto=format&fit=crop') center/cover;
+            opacity: 0.5; filter: grayscale(1);
         }
-        .exhaust-label {
-            font-family: 'Cinzel'; font-weight: 900; font-size: 2.5rem; color: var(--e-red);
-            border: 6px solid var(--e-red); padding: 25px 50px; transform: rotate(-12deg);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        .hero-content { z-index: 2; padding: 20px; }
+        .hero-content h1 { font-family: 'Cinzel'; font-size: 2.5rem; letter-spacing: 10px; text-transform: uppercase; margin-bottom: 10px; }
+        .hero-content p { font-size: 0.8rem; letter-spacing: 4px; font-weight: 300; color: #ccc; }
+
+        /* BANNER SOCIO PLUS (3%) */
+        .plus-banner {
+            background: var(--gray-light); padding: 40px 5%; text-align: center; border-bottom: 1px solid var(--gray-med);
         }
-        .is-depleted .exhaust-overlay { display: flex; }
-
-        .meta-pod { padding: 40px 0; text-align: center; }
-        .meta-category { font-size: 0.7rem; color: var(--e-gold); letter-spacing: 5px; font-weight: 900; text-transform: uppercase; margin-bottom: 15px; display: block; }
-        .meta-title { font-family: 'Cinzel'; font-size: 1.6rem; font-weight: 800; letter-spacing: 4px; margin-bottom: 20px; }
-        .meta-price { font-size: 2rem; font-weight: 200; letter-spacing: 3px; color: var(--e-black); margin-bottom: 35px; display: block; }
-
-        .btn-order-titan {
-            width: 100%; padding: 28px; background: var(--e-black); color: var(--e-white);
-            border: 1px solid var(--e-black); font-family: 'Inter'; font-size: 0.85rem;
-            font-weight: 900; letter-spacing: 6px; text-transform: uppercase; cursor: pointer;
-            transition: var(--e-transition-fast);
+        .plus-banner h2 { font-family: 'Cinzel'; font-size: 1.2rem; letter-spacing: 3px; margin-bottom: 15px; }
+        .plus-banner p { font-size: 0.75rem; color: var(--gray-dark); max-width: 600px; margin: 0 auto 20px; }
+        .btn-plus { 
+            background: var(--black); color: var(--white); padding: 12px 30px; border: none; 
+            font-size: 0.7rem; font-weight: 600; letter-spacing: 2px; cursor: pointer; transition: 0.3s;
         }
-        .btn-order-titan:hover { background: transparent; color: var(--e-black); }
-        .btn-order-titan:disabled { background: var(--e-gray-300); border: none; color: #888; cursor: not-allowed; }
+        .btn-plus:hover { background: var(--gray-dark); }
 
-        /* 👑 HUD MASTER CONTROL (REAL-TIME EDIT) 👑 */
-        .hud-master-actions {
-            display: none; /* Inyectado via JS */
-            margin-top: 25px; padding: 20px; border: 2px solid var(--e-gold);
-            background: #fff; grid-template-columns: 1fr 1fr; gap: 15px;
-            animation: slideUp 0.5s forwards;
+        /* GRID DE PRODUCTOS (REFINADO PARA MÓVIL) */
+        .container { padding: 40px 5%; max-width: 1400px; margin: 0 auto; }
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+            gap: 40px; 
         }
-        .hud-btn {
-            padding: 18px; font-size: 0.7rem; font-weight: 900; text-transform: uppercase;
-            cursor: pointer; border: 1px solid #000; background: #fff; letter-spacing: 2px;
+
+        /* TARJETA DE PRODUCTO */
+        .p-card { position: relative; border-bottom: 1px solid var(--gray-med); padding-bottom: 20px; }
+        .p-img { 
+            background: var(--gray-light); aspect-ratio: 1/1; display: flex; align-items: center; 
+            justify-content: center; position: relative; overflow: hidden;
         }
-        .hud-btn.danger { color: var(--e-red); border-color: var(--e-red); }
-        .hud-btn.danger:hover { background: var(--e-red); color: #fff; }
-        .hud-btn.stock:hover { background: var(--e-black); color: #fff; }
+        .p-img img { width: 70%; transition: 0.5s; }
+        .p-card:hover .p-img img { transform: scale(1.05); }
 
-        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* --- BOSS OMNI-BAR (LOADING DOCK) --- */
-        .boss-omni-dock {
-            display: none; position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
-            width: 95%; max-width: 1000px; background: rgba(0,0,0,0.98);
-            padding: 30px; border: 1px solid var(--e-gold); z-index: 100000;
-            box-shadow: 0 0 100px rgba(0,0,0,0.8); border-radius: 4px;
+        /* SOLD OUT */
+        .out-badge { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(255,255,255,0.8); display: none; align-items: center; justify-content: center; 
+            z-index: 10; font-family: 'Cinzel'; font-weight: 700; color: var(--black); border: 1px solid #ccc;
         }
-        .dock-flex { display: grid; grid-template-columns: repeat(4, 1fr) 0.5fr; gap: 15px; }
-        .dock-input { background: #1a1a1a; border: 1px solid #333; color: #fff; padding: 15px; font-size: 0.9rem; }
-        .dock-btn { background: var(--e-gold); color: #000; font-weight: 900; border: none; cursor: pointer; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 2px; }
+        .is-out .out-badge { display: flex; }
 
-        /* --- MODALES ELITE --- */
-        .omni-modal-overlay {
+        .p-info { padding: 20px 0; text-align: left; }
+        .p-name { font-family: 'Cinzel'; font-size: 1rem; font-weight: 700; margin-bottom: 5px; }
+        .p-price { font-size: 1.1rem; font-weight: 300; color: var(--gray-dark); }
+
+        .btn-buy { 
+            width: 100%; padding: 15px; background: var(--black); color: var(--white); 
+            border: none; font-size: 0.7rem; font-weight: 600; letter-spacing: 2px; cursor: pointer;
+        }
+        .btn-buy:disabled { background: var(--gray-med); color: #999; }
+
+        /* BOTONES JEFE (SUTILES) */
+        .boss-tools { 
+            display: none; padding-top: 10px; gap: 10px; 
+        }
+        .btn-boss { 
+            flex: 1; padding: 8px; font-size: 0.6rem; font-weight: 700; cursor: pointer;
+            border: 1px solid var(--black); background: transparent; 
+        }
+        .btn-boss.del { color: red; border-color: red; }
+
+        /* PANEL DE CARGA JEFE */
+        #boss-panel {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(255,255,255,0.98); z-index: 200000; align-items: center; justify-content: center;
-            backdrop-filter: blur(20px);
+            background: var(--white); z-index: 2000; padding: 40px 5%; overflow-y: auto;
         }
-        .omni-modal {
-            width: 90%; max-width: 600px; padding: 100px 70px; background: #fff;
-            box-shadow: var(--e-shadow-luxe); text-align: center; border: 1px solid var(--e-gray-200);
-        }
-        .omni-modal h2 { font-family: 'Cinzel'; font-size: 2.2rem; letter-spacing: 8px; margin-bottom: 30px; }
-        .omni-modal input { width: 100%; padding: 22px; margin-bottom: 25px; border: 1px solid var(--e-gray-200); background: var(--e-gray-100); font-size: 1rem; }
+        .boss-form { max-width: 500px; margin: 0 auto; }
+        .boss-form input { width: 100%; padding: 15px; margin-bottom: 15px; border: 1px solid var(--gray-med); }
 
-        /* --- MOBILE ADAPTATION --- */
-        @media (max-width: 1024px) {
-            .omni-grid { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+        /* MODALES */
+        .modal { 
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.5); z-index: 3000; align-items: center; justify-content: center;
         }
+        .modal-content { background: var(--white); padding: 40px; width: 90%; max-width: 400px; text-align: center; }
 
+        /* AJUSTES MÓVIL (FUNDAMENTAL) */
         @media (max-width: 768px) {
-            nav.main-nav { height: 90px; }
-            .brand-logo { font-size: 1.8rem; letter-spacing: 8px; }
-            .hero-overlay h1 { font-size: 2.5rem; letter-spacing: 12px; }
-            .hero-frame { height: 350px; }
-            .omni-grid { grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 30px 15px; }
-            .meta-pod { padding: 20px 0; }
-            .meta-title { font-size: 1rem; letter-spacing: 1px; }
-            .meta-price { font-size: 1.3rem; }
-            .btn-order-titan { padding: 18px; font-size: 0.65rem; letter-spacing: 3px; }
-            .dock-flex { grid-template-columns: 1fr; }
-            .boss-omni-dock { bottom: 0; width: 100%; border-radius: 0; }
+            .hero { height: 40vh; }
+            .hero-content h1 { font-size: 1.5rem; }
+            .grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+            .logo { font-size: 1.2rem; }
+            .p-name { font-size: 0.8rem; }
+            .p-price { font-size: 0.9rem; }
+            .btn-buy { padding: 12px; font-size: 0.6rem; }
+            .modal-content { padding: 20px; }
         }
-
-        /* --- BANEO DASHBOARD --- */
-        .baneo-panel {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #fff; z-index: 300000; padding: 100px 6%; overflow-y: auto;
-        }
-        .user-row {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 25px; border-bottom: 1px solid var(--e-gray-200); transition: 0.3s;
-        }
-        .user-row:hover { background: var(--e-gray-100); }
-
-        footer { background: var(--e-near-black); color: #fff; padding: 150px 6%; margin-top: 150px; }
-        .f-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 100px; }
-        .f-link { display: block; color: #777; text-decoration: none; margin-bottom: 20px; font-size: 0.85rem; letter-spacing: 3px; text-transform: uppercase; transition: 0.3s; }
-        .f-link:hover { color: var(--e-gold); transform: translateX(10px); }
-
     </style>
 </head>
 <body>
 
-    <div class="titan-status-bar">
-        <div id="u-status-msg">SISTEMA DE CONTROL ESSENCE TITAN</div>
-        <div id="u-status-pts">VIP PUNTOS: <span class="pts-pill">0</span></div>
-    </div>
+    <header>
+        <div class="logo" id="boss-key">ESSENCE</div>
+        <div id="user-info" style="font-size: 0.6rem; font-weight: 700; letter-spacing: 1px;">MODO VISITANTE</div>
+    </header>
 
-    <nav class="main-nav">
-        <div class="brand-logo" id="titan-master-key">ESSENCE</div>
-        <div class="nav-menu">
-            <a href="#catalogue" class="nav-item">Colección</a>
-            <a onclick="openOmniModal('modal-vip')" class="nav-item">Socio Plus</a>
-            <a id="nav-baneos" class="nav-item admin-only" onclick="toggleBaneoPanel()">Gestión de Usuarios</a>
-        </div>
-    </nav>
-
-    <section class="hero-titan">
-        <div class="hero-frame" onclick="openOmniModal('modal-vip')">
-            <img class="hero-img" src="https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=2000&auto=format&fit=crop" alt="Luxe">
-            <div class="hero-overlay">
-                <h1>OMNIVERSE</h1>
-                <p>LA ELITE DE LA PERFUMERÍA EN PANAMÁ</p>
-            </div>
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <h1>ESSENCE</h1>
+            <p>ELITE FRAGRANCE COLLECTION</p>
         </div>
     </section>
 
-    <main class="store-engine" id="catalogue">
-        <h2 class="section-tag">CURADURÍA</h2>
-        <div class="omni-grid" id="main-omni-grid">
+    <section class="plus-banner">
+        <h2>SOCIO PLUS +</h2>
+        <p>Trabaja con nosotros. Gana el 3% de comisión por cada venta referida. Únete a la red de embajadores de lujo más exclusiva de Panamá.</p>
+        <button class="btn-plus" onclick="openM('modal-vip')">SOLICITAR ACCESO</button>
+    </section>
+
+    <div class="container">
+        <div class="grid" id="main-grid">
             </div>
-    </main>
-
-    <div class="boss-omni-dock" id="boss-omni-dock">
-        <h3 style="color:var(--e-gold); font-family:'Cinzel'; margin-bottom:15px; letter-spacing:5px; font-size:0.8rem;">TITAN MASTER CARGO</h3>
-        <div class="dock-flex">
-            <input id="in-name" class="dock-input" placeholder="Nombre Fragancia">
-            <input id="in-price" class="dock-input" type="number" placeholder="Precio ($)">
-            <input id="in-img" class="dock-input" placeholder="URL Imagen">
-            <select id="in-cat" class="dock-input">
-                <option value="NICHO">NICHO</option>
-                <option value="DISEÑADOR">ALTA GAMA</option>
-                <option value="ARABE">ÁRABE</option>
-            </select>
-            <button class="dock-btn" onclick="titanBossAdd()">Cargar</button>
-        </div>
-        <button class="dock-btn" style="width:100%; margin-top:15px; background:#333; color:#fff;" onclick="location.reload()">Cerrar Sesión Maestra</button>
     </div>
 
-    <div class="baneo-panel" id="baneo-panel">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:50px;">
-            <h1 style="font-family:'Cinzel'; letter-spacing:10px;">USER DATABASE</h1>
-            <button class="btn-order-titan" style="width:auto; padding:15px 40px;" onclick="toggleBaneoPanel()">Volver</button>
-        </div>
-        <div id="user-database-list"></div>
-    </div>
-
-    <div class="omni-modal-overlay" id="modal-vip">
-        <div class="omni-modal">
-            <h2>MEMBRESÍA VIP</h2>
-            <p style="color:#888; letter-spacing:3px; margin-bottom:40px;">GANA COMISIONES POR RECOMENDAR</p>
-            <input id="reg-name" placeholder="Nombre Completo">
-            <input id="reg-email" placeholder="Correo Electrónico">
-            <button class="btn-order-titan" onclick="titanActionRegister()">Registrarme Ahora</button>
-            <p onclick="closeOmniModal('modal-vip')" style="margin-top:30px; cursor:pointer; font-size:0.7rem; text-decoration:underline;">CANCELAR</p>
+    <div id="boss-panel">
+        <div class="boss-form">
+            <h2 style="font-family:'Cinzel'; margin-bottom:30px;">CENTRAL DE CARGA</h2>
+            <input id="in-n" placeholder="Nombre del Perfume">
+            <input id="in-p" type="number" placeholder="Precio ($)">
+            <input id="in-i" placeholder="Link de Imagen">
+            <button class="btn-plus" style="width:100%; margin-bottom:10px;" onclick="addP()">PUBLICAR PRODUCTO</button>
+            <button class="btn-plus" style="width:100%; background:red;" onclick="location.reload()">CERRAR SESIÓN</button>
+            
+            <div id="user-list" style="margin-top:40px; border-top:1px solid #eee; padding-top:20px;">
+                <h4 style="font-size:0.7rem; margin-bottom:15px;">SOCIOS REGISTRADOS:</h4>
+                <div id="list-box"></div>
+            </div>
         </div>
     </div>
 
-    <div class="omni-modal-overlay" id="modal-buy">
-        <div class="omni-modal">
-            <h2 id="buy-title"></h2>
-            <h1 id="buy-price" style="color:var(--e-gold); margin-bottom:30px; font-size:3rem;"></h1>
-            <input id="buy-customer" placeholder="Tu Nombre">
-            <select id="buy-pay" class="dock-input" style="color:#000; background:#fff; border:1px solid #ddd; margin-bottom:25px;">
-                <option value="Yappy">YAPPY</option>
-                <option value="Efectivo">EFECTIVO CONTRAENTREGA</option>
-            </select>
-            <button class="btn-order-titan" onclick="titanActionSendOrder()">Confirmar por WhatsApp</button>
-            <p onclick="closeOmniModal('modal-buy')" style="margin-top:30px; cursor:pointer; font-size:0.7rem;">VOLVER AL CATÁLOGO</p>
+    <div class="modal" id="modal-vip">
+        <div class="modal-content">
+            <h3 style="font-family:'Cinzel'; margin-bottom:20px;">REGISTRO SOCIO PLUS</h3>
+            <input id="reg-n" placeholder="Nombre Completo" style="width:100%; padding:12px; margin-bottom:10px; border:1px solid #eee;">
+            <input id="reg-e" placeholder="Correo Electrónico" style="width:100%; padding:12px; margin-bottom:20px; border:1px solid #eee;">
+            <button class="btn-buy" onclick="register()">UNIRME</button>
+            <p style="margin-top:20px; font-size:0.6rem; cursor:pointer;" onclick="closeM('modal-vip')">CANCELAR</p>
         </div>
     </div>
 
-    <footer>
-        <div class="f-grid">
-            <div>
-                <h2 style="font-family:'Cinzel'; letter-spacing:10px; margin-bottom:30px;">ESSENCE</h2>
-                <p style="color:#555; font-size:0.8rem; line-height:2;">La curaduría de perfumes más exclusiva de Centroamérica. Control total, calidad absoluta.</p>
-            </div>
-            <div>
-                <h4 style="color:var(--e-gold); letter-spacing:5px; margin-bottom:30px;">EXPLORA</h4>
-                <a href="#" class="f-link">Fragancias Nicho</a>
-                <a href="#" class="f-link">Best Sellers</a>
-                <a href="#" class="f-link">Socio Plus</a>
-            </div>
-            <div>
-                <h4 style="color:var(--e-gold); letter-spacing:5px; margin-bottom:30px;">SOPORTE</h4>
-                <a onclick="waMsg('General')" class="f-link">Atención 24/7</a>
-                <a onclick="waMsg('Envio')" class="f-link">Logística de Envío</a>
-            </div>
+    <div class="modal" id="modal-buy">
+        <div class="modal-content">
+            <h3 id="buy-n" style="font-family:'Cinzel';"></h3>
+            <h2 id="buy-p" style="margin:20px 0; font-weight:300;"></h2>
+            <input id="buy-cli" placeholder="Tu nombre para el pedido" style="width:100%; padding:12px; margin-bottom:20px; border:1px solid #eee;">
+            <button class="btn-buy" onclick="sendWA()">PEDIR POR WHATSAPP</button>
+            <p style="margin-top:20px; font-size:0.6rem; cursor:pointer;" onclick="closeM('modal-buy')">CERRAR</p>
         </div>
-    </footer>
+    </div>
 
     <script>
-        /* ================================================================
-           ESSENCE TITAN OMNI-REPRESENTATION LOGIC CORE
-           V15.0 - THE SUPREME ENGINE
-           ================================================================
-        */
+        const MASTER_WA = "50769028805";
+        const KEY = "542497";
 
-        const MASTER_PHONE = "50769028805";
-        const MASTER_KEY = "542497";
-
-        let titanDB = {
-            inventory: JSON.parse(localStorage.getItem('titan_v15_inv')) || [
-                {id: 1, n: "Lafayette St Bond No 9", p: 295, i: "https://fimgs.net/images/perfume/nd.46169.jpg", c: "NICHO", s: true},
-                {id: 2, n: "Erba Pura Xerjoff", p: 250, i: "https://fimgs.net/images/perfume/nd.54003.jpg", c: "NICHO", s: true},
-                {id: 3, n: "Khamrah Lattafa", p: 55, i: "https://fimgs.net/images/perfume/nd.75805.jpg", c: "ARABE", s: true},
-                {id: 4, n: "Sauvage Elixir Dior", p: 160, i: "https://fimgs.net/images/perfume/nd.68305.jpg", c: "DISEÑADOR", s: true}
+        let state = {
+            products: JSON.parse(localStorage.getItem('es_prod')) || [
+                {n: "Lafayette St Bond", p: 295, i: "https://fimgs.net/images/perfume/nd.46169.jpg", s: true},
+                {n: "Erba Pura Xerjoff", p: 250, i: "https://fimgs.net/images/perfume/nd.54003.jpg", s: true}
             ],
-            users: JSON.parse(localStorage.getItem('titan_v15_usr')) || {},
-            session: JSON.parse(localStorage.getItem('titan_v15_ses')) || null,
+            users: JSON.parse(localStorage.getItem('es_users')) || {},
+            session: JSON.parse(localStorage.getItem('es_ses')) || null,
             isAdmin: false,
-            activeP: null,
-            keyClicks: 0
+            active: null,
+            clicks: 0
         };
 
-        // --- RENDERIZADOR TITÁN (EL CORAZÓN) ---
-        function titanRender() {
-            const grid = document.getElementById('main-omni-grid');
-            grid.innerHTML = "";
-
-            titanDB.inventory.forEach((p, idx) => {
-                const node = document.createElement('div');
-                node.className = `titan-card ${!p.s ? 'is-depleted' : ''}`;
-                node.innerHTML = `
-                    <div class="image-pod">
-                        <img src="${p.i || 'https://via.placeholder.com/500'}" alt="${p.n}">
-                        <div class="exhaust-overlay"><div class="exhaust-label">AGOTADO</div></div>
+        function render() {
+            const grid = document.getElementById('main-grid');
+            grid.innerHTML = state.products.map((p, i) => `
+                <div class="p-card ${!p.s ? 'is-out' : ''}">
+                    <div class="p-img">
+                        <img src="${p.i}">
+                        <div class="out-badge">AGOTADO</div>
                     </div>
-                    <div class="meta-pod">
-                        <span class="meta-category">${p.c}</span>
-                        <h3 class="meta-title">${p.n}</h3>
-                        <span class="meta-price">$${p.p}.00</span>
-                        <button class="btn-order-titan" ${!p.s ? 'disabled' : ''} onclick="titanActionInitBuy(${idx})">
-                            ${p.s ? 'ADQUIRIR FRAGANCIA' : 'NO DISPONIBLE'}
-                        </button>
-
-                        <div class="hud-master-actions" id="hud-${idx}" style="display: ${titanDB.isAdmin ? 'grid' : 'none'}">
-                            <button class="hud-btn stock" onclick="titanBossToggleStock(${idx})">${p.s ? 'AGOTAR' : 'ACTIVAR'}</button>
-                            <button class="hud-btn danger" onclick="titanBossDelete(${idx})">ELIMINAR</button>
-                        </div>
+                    <div class="p-info">
+                        <div class="p-name">${p.n}</div>
+                        <div class="p-price">$${p.p}.00</div>
                     </div>
-                `;
-                grid.appendChild(node);
-            });
-            titanSyncUI();
+                    <button class="btn-buy" ${!p.s ? 'disabled' : ''} onclick="initBuy(${i})">
+                        ${p.s ? 'COMPRAR' : 'SIN STOCK'}
+                    </button>
+                    <div class="boss-tools" style="display: ${state.isAdmin ? 'flex' : 'none'}">
+                        <button class="btn-boss" onclick="toggleS(${i})">${p.s ? 'AGOTAR' : 'ACTIVAR'}</button>
+                        <button class="btn-boss del" onclick="delP(${i})">ELIMINAR</button>
+                    </div>
+                </div>
+            `).join('');
+            
+            if(state.session) {
+                document.getElementById('user-info').innerText = "SOCIO: " + state.session.name.toUpperCase();
+            }
         }
 
-        // --- LÓGICA DE JEFE (CONTROLES REALES) ---
-        window.titanBossAdd = () => {
-            const n = document.getElementById('in-name').value;
-            const p = document.getElementById('in-price').value;
-            const i = document.getElementById('in-img').value;
-            const c = document.getElementById('in-cat').value;
-            if(n && p) {
-                titanDB.inventory.unshift({id: Date.now(), n, p, i, c, s: true});
-                titanSave(); titanRender();
-                alert("CARGA EXITOSA AL SISTEMA TITÁN.");
-            }
+        // ACCIONES JEFE
+        window.addP = () => {
+            const n = document.getElementById('in-n').value, p = document.getElementById('in-p').value, i = document.getElementById('in-i').value;
+            if(n && p) { state.products.unshift({n, p, i, s: true}); save(); render(); }
         };
+        window.delP = (i) => { if(confirm("¿Eliminar?")) { state.products.splice(i, 1); save(); render(); } };
+        window.toggleS = (i) => { state.products[i].s = !state.products[i].s; save(); render(); };
 
-        window.titanBossToggleStock = (idx) => {
-            titanDB.inventory[idx].s = !titanDB.inventory[idx].s;
-            titanSave(); titanRender();
+        // ACCIONES CLIENTE/SOCIO
+        window.initBuy = (i) => {
+            state.active = state.products[i];
+            document.getElementById('buy-n').innerText = state.active.n;
+            document.getElementById('buy-p').innerText = "$" + state.active.p;
+            if(state.session) document.getElementById('buy-cli').value = state.session.name;
+            openM('modal-buy');
         };
-
-        window.titanBossDelete = (idx) => {
-            if(confirm("¿DESEAS BORRAR ESTE PRODUCTO PERMANENTEMENTE?")) {
-                titanDB.inventory.splice(idx, 1);
-                titanSave(); titanRender();
-            }
+        window.sendWA = () => {
+            const cli = document.getElementById('buy-cli').value || "Cliente";
+            const msg = `Hola Essence, quiero el perfume: ${state.active.n} ($${state.active.p}). Mi nombre es: ${cli}`;
+            window.open(`https://wa.me/${MASTER_WA}?text=${encodeURIComponent(msg)}`);
         };
-
-        window.toggleBaneoPanel = () => {
-            const panel = document.getElementById('baneo-panel');
-            panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
-            titanRenderUsers();
-        };
-
-        function titanRenderUsers() {
-            const list = document.getElementById('user-database-list');
-            let html = "";
-            for(let key in titanDB.users) {
-                html += `
-                    <div class="user-row">
-                        <div>
-                            <b style="font-size:1.1rem; letter-spacing:2px;">${titanDB.users[key].name.toUpperCase()}</b><br>
-                            <small style="color:#888;">${key} | PUNTOS: ${titanDB.users[key].pts}</small>
-                        </div>
-                        <button class="hud-btn danger" style="padding:10px 20px;" onclick="titanBossBan('${key}')">BORRAR SOCIO</button>
-                    </div>
-                `;
-            }
-            list.innerHTML = html || "<h3 style='text-align:center; color:#ccc; margin-top:50px;'>NO HAY REGISTROS</h3>";
-        }
-
-        window.titanBossBan = (email) => {
-            if(confirm("¿BORRAR ACCESO DE ESTE USUARIO?")) {
-                delete titanDB.users[email];
-                titanSave(); titanRenderUsers();
-            }
-        };
-
-        // --- ACCIONES CLIENTE ---
-        window.titanActionInitBuy = (idx) => {
-            titanDB.activeP = titanDB.inventory[idx];
-            document.getElementById('buy-title').innerText = titanDB.activeP.n;
-            document.getElementById('buy-price').innerText = "$" + titanDB.activeP.p;
-            if(titanDB.session) document.getElementById('buy-customer').value = titanDB.session.name;
-            openOmniModal('modal-buy');
-        };
-
-        window.titanActionSendOrder = () => {
-            const cli = document.getElementById('buy-customer').value || "Cliente";
-            const pay = document.getElementById('buy-pay').value;
-            const text = encodeURIComponent(`✨ *PEDIDO TITAN ESSENCE*\n\n🏆 *Fragancia:* ${titanDB.activeP.n}\n💰 *Precio:* $${titanDB.activeP.p}\n👤 *Cliente:* ${cli}\n💳 *Pago:* ${pay}`);
-            window.open(`https://wa.me/${MASTER_PHONE}?text=${text}`);
-        };
-
-        window.titanActionRegister = () => {
-            const n = document.getElementById('reg-name').value;
-            const e = document.getElementById('reg-email').value;
+        window.register = () => {
+            const n = document.getElementById('reg-n').value, e = document.getElementById('reg-e').value;
             if(n && e) {
-                if(!titanDB.users[e]) titanDB.users[e] = {name: n, pts: 0};
-                titanDB.session = {name: n, email: e, pts: 0};
-                titanSave(); location.reload();
+                state.users[e] = {name: n};
+                state.session = {name: n, email: e};
+                save(); location.reload();
             }
         };
 
-        // --- UTILS CORE ---
-        function titanSave() {
-            localStorage.setItem('titan_v15_inv', JSON.stringify(titanDB.inventory));
-            localStorage.setItem('titan_v15_usr', JSON.stringify(titanDB.users));
-            localStorage.setItem('titan_v15_ses', JSON.stringify(titanDB.session));
+        // INTERFAZ
+        function openM(id) { document.getElementById(id).style.display = 'flex'; }
+        function closeM(id) { document.getElementById(id).style.display = 'none'; }
+        function save() {
+            localStorage.setItem('es_prod', JSON.stringify(state.products));
+            localStorage.setItem('es_users', JSON.stringify(state.users));
+            localStorage.setItem('es_ses', JSON.stringify(state.session));
         }
 
-        function titanSyncUI() {
-            if(titanDB.session) {
-                document.getElementById('u-status-msg').innerText = "CENTRAL TITÁN | BIENVENIDO " + titanDB.session.name.toUpperCase();
-                document.getElementById('u-status-pts').innerHTML = `VIP PUNTOS: <span class="pts-pill">${titanDB.session.pts}</span>`;
-            }
-        }
-
-        function openOmniModal(id) { document.getElementById(id).style.display = 'flex'; }
-        function closeOmniModal(id) { document.getElementById(id).style.display = 'none'; }
-        function waMsg(t) { window.open(`https://wa.me/${MASTER_PHONE}?text=Hola Essence, necesito apoyo en: ${t}`); }
-
-        // --- TRIGGER SECRETO JEFE (OMNIPOTENCIA) ---
-        document.getElementById('titan-master-key').onclick = () => {
-            titanDB.keyClicks++;
-            if(titanDB.keyClicks >= 3) {
-                const p = prompt("ACCESO MAESTRO TITÁN:");
-                if(p === MASTER_KEY) {
-                    titanDB.isAdmin = true;
-                    document.getElementById('boss-omni-dock').style.display = 'block';
-                    document.getElementById('nav-baneos').style.display = 'block';
-                    titanRender(); // Refresh para mostrar HUD de edición
-                } else {
-                    alert("LLAVE INCORRECTA.");
+        document.getElementById('boss-key').onclick = () => {
+            state.clicks++;
+            if(state.clicks >= 3) {
+                if(prompt("PASSWORD:") === KEY) {
+                    state.isAdmin = true;
+                    document.getElementById('boss-panel').style.display = 'block';
+                    renderUsers();
+                    render();
                 }
-                titanDB.keyClicks = 0;
+                state.clicks = 0;
             }
         };
 
-        // INICIO
-        titanRender();
+        function renderUsers() {
+            const box = document.getElementById('list-box');
+            let h = '';
+            for(let e in state.users) h += `<div style="font-size:0.6rem; padding:10px; border-bottom:1px solid #eee;">${state.users[e].name} (${e}) <span style="color:red; cursor:pointer;" onclick="ban('${e}')">BAN</span></div>`;
+            box.innerHTML = h || 'No hay socios.';
+        }
+        window.ban = (e) => { delete state.users[e]; save(); renderUsers(); };
 
+        render();
     </script>
 </body>
 </html>
