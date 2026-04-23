@@ -6,25 +6,16 @@
 <title>ESSENCE | PREMIUM</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-:root {
-  --red:#ff2d2d;--red-deep:#c0000e;--bg:#f2f2f7;--white:#fff;
-  --text:#1c1c1e;--muted:#8e8e93;--border:rgba(0,0,0,0.07);
-  --sh:0 2px 14px rgba(0,0,0,0.07);--shmd:0 8px 28px rgba(0,0,0,0.10);
-  --r:18px;--tr:all 0.25s cubic-bezier(.4,0,.2,1);
-  --safe-bottom:env(safe-area-inset-bottom,0px);
-}
+:root{--red:#ff2d2d;--red-deep:#c0000e;--bg:#f2f2f7;--white:#fff;--text:#1c1c1e;--muted:#8e8e93;--border:rgba(0,0,0,0.07);--sh:0 2px 14px rgba(0,0,0,0.07);--shmd:0 8px 28px rgba(0,0,0,0.10);--r:18px;--tr:all 0.25s cubic-bezier(.4,0,.2,1);--safe-bottom:env(safe-area-inset-bottom,0px);--green:#34c759;--blue:#0066ff}
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{-webkit-text-size-adjust:100%}
 body{background:var(--bg);font-family:'Montserrat',sans-serif;color:var(--text);min-height:100vh;padding-bottom:calc(90px + var(--safe-bottom));overscroll-behavior:none}
-.scroll-area{-webkit-overflow-scrolling:touch;overflow-y:auto}
 header{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:800;height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
-.logo{font-weight:900;font-size:1.2rem;letter-spacing:7px;text-transform:uppercase}
-.header-right{display:flex;gap:8px;align-items:center}
+.logo{font-weight:900;font-size:1.2rem;letter-spacing:7px;text-transform:uppercase;cursor:default;user-select:none}
 .hbadge{background:var(--red);color:#fff;font-size:.58rem;font-weight:800;letter-spacing:.8px;padding:4px 10px;border-radius:50px;text-transform:uppercase}
-.hbtn{background:none;border:1px solid var(--border);border-radius:50px;padding:6px 12px;font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:700;color:var(--muted);cursor:pointer;transition:var(--tr)}
-.hbtn:active{transform:scale(.93)}
 .wrap{max-width:480px;margin:0 auto;padding:0 16px}
 .view{display:none}.view.active{display:block}
+/* PROMO HERO */
 .promo-hero{background:linear-gradient(135deg,var(--red) 0%,var(--red-deep) 100%);border-radius:24px;padding:26px 22px;margin:14px 0 18px;color:#fff;position:relative;overflow:hidden;box-shadow:0 12px 32px rgba(255,45,45,.28)}
 .promo-hero::before{content:'';position:absolute;top:-40px;right:-40px;width:150px;height:150px;background:rgba(255,255,255,.08);border-radius:50%}
 .promo-hero::after{content:'';position:absolute;bottom:-50px;left:30px;width:110px;height:110px;background:rgba(255,255,255,.06);border-radius:50%}
@@ -32,7 +23,8 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
 .promo-eye{font-size:.6rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;opacity:.8;margin-bottom:4px}
 .promo-price{font-size:2.3rem;font-weight:900;line-height:1;margin-bottom:4px}
 .promo-sub{font-size:.7rem;font-weight:600;opacity:.8}
-.edit-promo-btn{position:absolute;bottom:14px;right:14px;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.3);color:#fff;font-family:'Montserrat',sans-serif;font-size:.6rem;font-weight:800;padding:6px 12px;border-radius:50px;cursor:pointer;z-index:2}
+.edit-promo-btn{position:absolute;bottom:14px;right:14px;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.3);color:#fff;font-family:'Montserrat',sans-serif;font-size:.6rem;font-weight:800;padding:6px 12px;border-radius:50px;cursor:pointer;z-index:2;display:none}
+/* CATS + SEARCH */
 .cats{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:2px 0 18px;-webkit-overflow-scrolling:touch}
 .cats::-webkit-scrollbar{display:none}
 .cat{flex-shrink:0;background:var(--white);border:1px solid var(--border);padding:10px 18px;border-radius:50px;font-size:.7rem;font-weight:700;color:var(--muted);cursor:pointer;transition:var(--tr);user-select:none;box-shadow:var(--sh)}
@@ -44,9 +36,9 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
 .search-input:focus{box-shadow:0 0 0 2px rgba(255,45,45,.18),var(--sh)}
 .search-input::placeholder{color:var(--muted)}
 .slabel{font-size:.67rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+/* PRODUCT CARDS */
 .pgrid{display:flex;flex-direction:column;gap:12px}
-.pcard{background:var(--white);border-radius:22px;padding:15px;box-shadow:var(--sh);border:1px solid var(--border);display:flex;gap:14px;align-items:center;transition:var(--tr);animation:fadeUp .35s ease both}
-.pcard:active{transform:scale(.97)}
+.pcard{background:var(--white);border-radius:22px;padding:15px;box-shadow:var(--sh);border:1px solid var(--border);display:flex;gap:14px;align-items:center;transition:var(--tr)}
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 .pimg-wrap{width:86px;height:86px;flex-shrink:0;background:var(--bg);border-radius:14px;overflow:hidden;display:flex;align-items:center;justify-content:center}
 .pimg-wrap img{width:100%;height:100%;object-fit:contain}
@@ -54,10 +46,13 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
 .pname{font-size:.92rem;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:2px}
 .pdesc{font-size:.68rem;color:var(--muted);font-weight:500;margin-bottom:9px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .pbottom{display:flex;align-items:center;justify-content:space-between;gap:6px}
-.pprice{font-size:1.15rem;font-weight:900;color:var(--red)}
-.btn-want{background:#000;color:#fff;border:none;padding:9px 14px;border-radius:10px;font-family:'Montserrat',sans-serif;font-size:.63rem;font-weight:800;letter-spacing:.6px;text-transform:uppercase;cursor:pointer;transition:var(--tr);white-space:nowrap}
+.pprice{font-size:1.05rem;font-weight:900;color:var(--red);line-height:1}
+.price-orig{font-size:.65rem;font-weight:700;color:var(--muted);text-decoration:line-through;display:block}
+.price-disc{font-size:.62rem;font-weight:800;color:var(--green);display:block}
+.btn-want{background:#000;color:#fff;border:none;padding:9px 14px;border-radius:10px;font-family:'Montserrat',sans-serif;font-size:.63rem;font-weight:800;letter-spacing:.6px;text-transform:uppercase;cursor:pointer;transition:var(--tr);white-space:nowrap;flex-shrink:0}
 .btn-want:active{transform:scale(.93)}
-.pdel-btn{background:#fff0f0;color:var(--red);font-size:.6rem;font-weight:800;padding:6px 10px;border-radius:8px;cursor:pointer;border:none;font-family:'Montserrat',sans-serif;flex-shrink:0}
+.pdel-btn{background:#fff0f0;color:var(--red);font-size:.6rem;font-weight:800;padding:6px 10px;border-radius:8px;cursor:pointer;border:none;font-family:'Montserrat',sans-serif}
+/* SKELETON */
 .skel{background:linear-gradient(90deg,#e8e8e8 25%,#f5f5f5 50%,#e8e8e8 75%);background-size:200% 100%;animation:shimmer 1.4s infinite;border-radius:10px}
 @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
 .skel-card{background:var(--white);border-radius:22px;padding:15px;display:flex;gap:14px;box-shadow:var(--sh)}
@@ -67,58 +62,61 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
 .empty{text-align:center;padding:48px 20px;color:var(--muted)}
 .empty .ei{font-size:2.8rem;margin-bottom:10px}
 .empty p{font-size:.82rem;font-weight:600}
+/* TRACK */
 .track-card{background:var(--white);border-radius:24px;padding:26px 18px;box-shadow:var(--shmd);text-align:center;margin-top:14px}
 .track-title{font-size:1rem;font-weight:900;letter-spacing:.8px;text-transform:uppercase;margin-bottom:18px}
 .track-input{width:100%;padding:14px 16px;border:1.5px solid var(--border);border-radius:var(--r);font-family:'Montserrat',sans-serif;font-size:.88rem;font-weight:600;text-align:center;color:var(--text);outline:none;background:var(--bg);transition:var(--tr);margin-bottom:12px;-webkit-appearance:none}
 .track-input:focus{border-color:#000;background:var(--white)}
-.track-result{margin-top:16px;font-size:.85rem;font-weight:700;color:var(--red);min-height:22px}
+.track-result{margin-top:16px;font-size:.85rem;font-weight:700;min-height:22px}
 .track-badge{display:inline-block;background:#f0fff4;border:1px solid #86efac;color:#16a34a;border-radius:50px;padding:8px 16px;font-size:.75rem;font-weight:700;margin:3px 0}
+/* CHAT */
 .chat-wrap{margin-top:14px}
 .chat-header{background:var(--white);border-radius:22px 22px 0 0;padding:16px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;box-shadow:var(--sh)}
 .chat-avatar{width:38px;height:38px;background:linear-gradient(135deg,var(--red),var(--red-deep));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
 .chat-meta h4{font-size:.82rem;font-weight:800}
-.chat-meta p{font-size:.65rem;color:#34c759;font-weight:600}
-.chat-online{width:8px;height:8px;background:#34c759;border-radius:50%;display:inline-block;margin-right:4px}
+.chat-meta p{font-size:.65rem;color:var(--green);font-weight:600}
+.chat-online{width:8px;height:8px;background:var(--green);border-radius:50%;display:inline-block;margin-right:4px}
 .chat-messages{background:var(--white);min-height:320px;max-height:380px;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;-webkit-overflow-scrolling:touch}
 .msg{max-width:80%;padding:11px 14px;border-radius:16px;font-size:.8rem;font-weight:500;line-height:1.5;animation:fadeUp .2s ease}
 .msg.bot{background:var(--bg);color:var(--text);align-self:flex-start;border-bottom-left-radius:4px}
 .msg.user{background:#000;color:#fff;align-self:flex-end;border-bottom-right-radius:4px}
 .msg.bot.typing{display:flex;gap:4px;align-items:center;padding:12px 16px}
 .dot-typing{width:6px;height:6px;background:var(--muted);border-radius:50%;animation:dotb 1.2s infinite ease-in-out}
-.dot-typing:nth-child(2){animation-delay:.2s}
-.dot-typing:nth-child(3){animation-delay:.4s}
+.dot-typing:nth-child(2){animation-delay:.2s}.dot-typing:nth-child(3){animation-delay:.4s}
 @keyframes dotb{0%,80%,100%{transform:scale(.7);opacity:.4}40%{transform:scale(1);opacity:1}}
-.chat-footer{background:var(--white);border-radius:0 0 22px 22px;padding:10px 12px;display:flex;gap:8px;border-top:1px solid var(--border);box-shadow:var(--sh)}
+.chat-footer{background:var(--white);border-radius:0 0 22px 22px;padding:10px 12px;display:flex;gap:8px;border-top:1px solid var(--border)}
 .chat-input{flex:1;border:1.5px solid var(--border);border-radius:50px;padding:11px 16px;font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:500;outline:none;background:var(--bg);transition:var(--tr);-webkit-appearance:none}
 .chat-input:focus{border-color:#000;background:var(--white)}
 .chat-send{background:#000;color:#fff;border:none;border-radius:50px;width:40px;height:40px;font-size:1rem;cursor:pointer;flex-shrink:0;transition:var(--tr);display:flex;align-items:center;justify-content:center}
 .chat-send:active{transform:scale(.9)}
 .redirect-btn{background:var(--red);color:#fff;border:none;border-radius:12px;padding:10px 16px;font-family:'Montserrat',sans-serif;font-size:.72rem;font-weight:800;cursor:pointer;width:100%;margin-top:8px;transition:var(--tr);letter-spacing:.5px;text-transform:uppercase}
-.redirect-btn:active{transform:scale(.97)}
-.nav-dock{position:fixed;bottom:calc(14px + var(--safe-bottom));left:50%;transform:translateX(-50%);width:calc(100% - 36px);max-width:400px;background:rgba(255,255,255,.92);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-radius:100px;padding:6px;display:flex;gap:5px;box-shadow:0 8px 32px rgba(0,0,0,.12),0 2px 8px rgba(0,0,0,.06);border:1px solid var(--border);z-index:9000}
+/* NAV */
+.nav-dock{position:fixed;bottom:calc(14px + var(--safe-bottom));left:50%;transform:translateX(-50%);width:calc(100% - 36px);max-width:400px;background:rgba(255,255,255,.92);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-radius:100px;padding:6px;display:flex;gap:5px;box-shadow:0 8px 32px rgba(0,0,0,.12);border:1px solid var(--border);z-index:9000}
 .nav-btn{flex:1;padding:11px 6px;border-radius:50px;border:none;background:transparent;font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;cursor:pointer;transition:var(--tr);display:flex;align-items:center;justify-content:center;gap:4px}
 .nav-btn.active{background:#000;color:#fff}
 .nav-btn:active{transform:scale(.94)}
-.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);z-index:9500;align-items:flex-end}
+/* OVERLAYS / SHEETS */
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);z-index:9500;align-items:flex-end;justify-content:center}
 .overlay.open{display:flex}
-.sheet{background:var(--white);width:100%;border-radius:28px 28px 0 0;padding:10px 20px calc(28px + var(--safe-bottom));animation:sheetUp .3s cubic-bezier(.34,1.2,.64,1)}
+.sheet{background:var(--white);width:100%;max-width:480px;border-radius:28px 28px 0 0;padding:10px 20px calc(28px + var(--safe-bottom));animation:sheetUp .3s cubic-bezier(.34,1.2,.64,1)}
 @keyframes sheetUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
 .sheet-handle{width:34px;height:4px;background:#e5e5ea;border-radius:2px;margin:0 auto 20px}
 .sheet-title{font-size:.95rem;font-weight:900;letter-spacing:.4px;text-align:center;margin-bottom:18px}
 .pay-btn{width:100%;padding:15px;border-radius:var(--r);border:none;font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;letter-spacing:.6px;text-transform:uppercase;cursor:pointer;transition:var(--tr);margin-bottom:9px}
 .pay-btn:active{transform:scale(.97)}
 .pay-yappy{background:#6fcf40;color:#fff}
-.pay-ach{background:#0066ff;color:#fff}
+.pay-ach{background:var(--blue);color:#fff}
 .pay-cancel{background:#f2f2f7;color:var(--muted)}
 .upload-area{border:2px dashed #ddd;border-radius:var(--r);padding:20px;text-align:center;cursor:pointer;transition:var(--tr);margin:10px 0;background:var(--bg)}
-.upload-area.has-file{border-color:#34c759;background:#f0fff4}
+.upload-area.has-file{border-color:var(--green);background:#f0fff4}
 .upload-area input{display:none}
 .upload-area p{font-size:.75rem;font-weight:700;color:var(--muted);margin-top:6px}
 .upload-area .uicon{font-size:1.8rem}
 .upload-preview{width:100%;border-radius:10px;margin-top:8px;max-height:140px;object-fit:cover;display:none}
+/* FORMS / PANELS */
 .panel-wrap{max-width:480px;margin:0 auto;padding:0 16px}
 .login-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:80vh;gap:16px;text-align:center}
-.login-icon{font-size:3rem;margin-bottom:4px}
+.login-icon{font-size:3rem}
 .login-title{font-size:1.1rem;font-weight:900;letter-spacing:1px;text-transform:uppercase}
 .login-sub{font-size:.75rem;color:var(--muted);font-weight:600}
 .login-input{width:100%;max-width:280px;padding:15px 18px;border:1.5px solid var(--border);border-radius:var(--r);font-family:'Montserrat',sans-serif;font-size:.9rem;font-weight:700;text-align:center;outline:none;background:var(--white);transition:var(--tr);letter-spacing:4px;-webkit-appearance:none}
@@ -129,15 +127,14 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
 .login-err{font-size:.72rem;font-weight:700;color:var(--red);min-height:18px}
 .panel-section{margin-top:14px}
 .panel-card{background:var(--white);border-radius:22px;padding:18px;box-shadow:var(--sh);margin-bottom:12px}
-.panel-card h3{font-size:.82rem;font-weight:900;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px;color:var(--text)}
+.panel-card h3{font-size:.82rem;font-weight:900;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px}
 .form-row{display:flex;flex-direction:column;gap:8px;margin-bottom:10px}
 .form-label{font-size:.65rem;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--muted)}
-.form-input{padding:12px 14px;border:1.5px solid var(--border);border-radius:12px;font-family:'Montserrat',sans-serif;font-size:.85rem;font-weight:600;color:var(--text);outline:none;background:var(--bg);transition:var(--tr);-webkit-appearance:none}
+.form-input{padding:12px 14px;border:1.5px solid var(--border);border-radius:12px;font-family:'Montserrat',sans-serif;font-size:.85rem;font-weight:600;color:var(--text);outline:none;background:var(--bg);transition:var(--tr);-webkit-appearance:none;width:100%}
 .form-input:focus{border-color:#000;background:var(--white)}
 .btn-red{background:var(--red);color:#fff;border:none;padding:13px 18px;border-radius:12px;font-family:'Montserrat',sans-serif;font-size:.75rem;font-weight:800;letter-spacing:.6px;text-transform:uppercase;cursor:pointer;transition:var(--tr);width:100%}
 .btn-red:active{transform:scale(.97)}
-.btn-green{background:#34c759;color:#fff;border:none;padding:11px 16px;border-radius:10px;font-family:'Montserrat',sans-serif;font-size:.72rem;font-weight:800;cursor:pointer;transition:var(--tr)}
-.btn-green:active{transform:scale(.95)}
+/* ORDER CARDS */
 .order-card{background:var(--bg);border-radius:16px;padding:14px;margin-bottom:10px;border:1px solid var(--border)}
 .order-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
 .order-name{font-size:.85rem;font-weight:800}
@@ -147,90 +144,176 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
 .order-actions{display:flex;gap:8px}
 .obtn{flex:1;padding:10px;border:none;border-radius:10px;font-family:'Montserrat',sans-serif;font-size:.68rem;font-weight:800;cursor:pointer;letter-spacing:.4px;text-transform:uppercase;transition:var(--tr)}
 .obtn:active{transform:scale(.95)}
-.obtn.approve{background:#34c759;color:#fff}
+.obtn.approve{background:var(--green);color:#fff}
 .obtn.reject{background:#ff3b30;color:#fff}
-.status-badge{font-size:.6rem;font-weight:800;padding:4px 9px;border-radius:50px;text-transform:uppercase}
+.status-badge{font-size:.6rem;font-weight:800;padding:4px 9px;border-radius:50px;text-transform:uppercase;white-space:nowrap}
 .status-badge.pending{background:#fff3cd;color:#856404}
 .status-badge.approved{background:#d1fae5;color:#065f46}
 .status-badge.rejected{background:#fee2e2;color:#991b1b}
 .agent-conv{background:var(--bg);border-radius:14px;padding:13px;cursor:pointer;transition:var(--tr);border:1px solid var(--border);margin-bottom:8px}
-.agent-conv:active{transform:scale(.97)}
 .agent-conv h4{font-size:.82rem;font-weight:800;margin-bottom:3px}
 .agent-conv p{font-size:.7rem;color:var(--muted);font-weight:500}
-.img-modal-content{background:var(--white);width:100%;border-radius:24px 24px 0 0;padding:20px}
-.img-modal-content img{width:100%;border-radius:14px;max-height:60vh;object-fit:contain}
+.img-modal-content{background:var(--white);width:100%;max-width:480px;border-radius:24px 24px 0 0;padding:20px}
 .notif-dot{width:7px;height:7px;background:var(--red);border-radius:50%;display:inline-block}
 .logout-btn{background:none;border:1px solid var(--border);font-family:'Montserrat',sans-serif;font-size:.65rem;font-weight:700;color:var(--muted);cursor:pointer;padding:6px 12px;border-radius:50px}
+/* TOAST */
 .toast{position:fixed;bottom:calc(90px + var(--safe-bottom) + 10px);left:50%;transform:translateX(-50%) translateY(20px);background:#1c1c1e;color:#fff;padding:13px 22px;border-radius:50px;font-size:.78rem;font-weight:700;z-index:99999;opacity:0;transition:all .3s cubic-bezier(.34,1.2,.64,1);pointer-events:none;white-space:nowrap;max-width:90vw;text-align:center}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-/* ── CHECKOUT FLOW ── */
-.checkout-sheet{background:var(--white);width:100%;border-radius:28px 28px 0 0;padding:10px 20px calc(32px + var(--safe-bottom));animation:sheetUp .3s cubic-bezier(.34,1.2,.64,1);max-height:92vh;overflow-y:auto}
-.cstep{display:none}.cstep.active{display:block;animation:fadeUp .25s ease}
-.cstep-title{font-size:1.05rem;font-weight:900;letter-spacing:.3px;text-align:center;margin-bottom:20px;color:var(--text)}
+
+/* ══════════════════════════════
+   ROBOT MASCOT
+══════════════════════════════ */
+.robot-mascot{position:fixed;bottom:calc(82px + var(--safe-bottom) + 60px);right:18px;z-index:8999;cursor:pointer;animation:robotFloat 3s ease-in-out infinite}
+@keyframes robotFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.robot-mascot:active{transform:scale(.88)!important;animation:none}
+.robot-body{position:relative;width:52px;height:52px}
+.robot-svg{width:52px;height:52px;filter:drop-shadow(0 4px 12px rgba(0,0,0,.2))}
+.robot-bubble{position:absolute;bottom:calc(100% + 6px);right:0;background:#000;color:#fff;font-size:.6rem;font-weight:800;padding:6px 10px;border-radius:10px 10px 2px 10px;white-space:nowrap;opacity:0;transform:scale(.8) translateY(4px);transition:all .25s cubic-bezier(.34,1.3,.64,1);pointer-events:none;letter-spacing:.3px}
+.robot-mascot:hover .robot-bubble{opacity:1;transform:scale(1) translateY(0)}
+
+/* ══════════════════════════════
+   CHECKOUT FLOW
+══════════════════════════════ */
+.checkout-sheet{background:var(--white);width:100%;max-width:480px;border-radius:28px 28px 0 0;padding:10px 20px calc(32px + var(--safe-bottom));animation:sheetUp .3s cubic-bezier(.34,1.2,.64,1);max-height:92vh;overflow-y:auto}
+.cstep{display:none}.cstep.active{display:block;animation:fadeUp .22s ease}
+.cstep-title{font-size:1.05rem;font-weight:900;text-align:center;margin-bottom:20px}
 .checkout-product-pill{background:var(--bg);border:1px solid var(--border);border-radius:50px;padding:8px 16px;font-size:.72rem;font-weight:800;color:var(--muted);text-align:center;margin-bottom:16px}
-.cback-btn{display:inline-flex;align-items:center;font-size:.78rem;font-weight:800;color:var(--muted);cursor:pointer;margin-bottom:14px;padding:4px 0}
+.cback-btn{display:inline-flex;align-items:center;font-size:.78rem;font-weight:800;color:var(--muted);cursor:pointer;margin-bottom:14px;padding:4px 0;gap:2px}
 .pay-methods{display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
 .pay-method-card{display:flex;align-items:center;gap:14px;padding:16px;border-radius:18px;border:1.5px solid var(--border);background:var(--white);cursor:pointer;transition:var(--tr);font-family:'Montserrat',sans-serif;text-align:left;box-shadow:var(--sh);width:100%}
-.pay-method-card:active{transform:scale(.97)}
-.yappy-card:hover,.yappy-card:focus{border-color:#6fcf40;background:#f6fff0}
-.ach-card:hover,.ach-card:focus{border-color:#0066ff;background:#f0f5ff}
+.pay-method-card:active{transform:scale(.97);box-shadow:none}
+.yappy-card{border-left:4px solid #6fcf40}
+.ach-card{border-left:4px solid var(--blue)}
 .pmc-icon{font-size:1.5rem;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:12px;background:var(--bg);flex-shrink:0}
-.pmc-info{flex:1;min-width:0}
+.pmc-info{flex:1}
 .pmc-name{font-size:.9rem;font-weight:800;color:var(--text);margin-bottom:2px}
-.pmc-sub{font-size:.65rem;font-weight:600;color:var(--muted)}
-.pmc-arrow{font-size:1.4rem;color:var(--muted)}
-.pay-instruction-card{border-radius:20px;padding:18px;margin-bottom:18px;display:flex;align-items:center;gap:14px}
-.yappy-instr{background:linear-gradient(135deg,#f0fff4,#e8fde8);border:1.5px solid #6fcf4060}
-.ach-instr{background:linear-gradient(135deg,#eff6ff,#e8f0ff);border:1.5px solid #0066ff40}
+.pmc-sub{font-size:.63rem;font-weight:600;color:var(--muted)}
+.pmc-arrow{font-size:1.3rem;color:var(--muted)}
+/* instrucciones */
+.pay-instr-card{border-radius:20px;padding:18px;margin-bottom:18px;display:flex;align-items:center;gap:14px}
+.yappy-instr{background:linear-gradient(135deg,#f0fff4,#e6fde4);border:1.5px solid #6fcf4060}
+.ach-instr{background:linear-gradient(135deg,#eff6ff,#e4edff);border:1.5px solid #0066ff40}
 .instr-icon{font-size:1.8rem;width:48px;height:48px;display:flex;align-items:center;justify-content:center;border-radius:14px;background:rgba(255,255,255,.8);flex-shrink:0}
 .instr-body{flex:1;min-width:0}
 .instr-label{font-size:.58rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
-.instr-number{font-size:1.3rem;font-weight:900;color:var(--text);letter-spacing:1px;cursor:pointer;transition:var(--tr);word-break:break-all}
-.instr-number:active{opacity:.6;transform:scale(.96)}
-.instr-copy-hint{font-size:.56rem;font-weight:700;color:var(--muted);margin-top:2px;letter-spacing:.5px;text-transform:uppercase}
+.instr-number{font-size:1.3rem;font-weight:900;color:var(--text);letter-spacing:.5px;cursor:pointer;word-break:break-all}
+.instr-number:active{opacity:.6}
+.instr-copy-hint{font-size:.55rem;font-weight:700;color:var(--muted);margin-top:2px;letter-spacing:.5px;text-transform:uppercase}
 .instr-steps{display:flex;flex-direction:column;gap:10px;margin-bottom:18px}
 .instr-step{display:flex;align-items:center;gap:12px;font-size:.78rem;font-weight:600;color:var(--text);line-height:1.4}
 .istep-n{width:24px;height:24px;background:#000;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.62rem;font-weight:900;flex-shrink:0}
+/* waiting */
 .waiting-wrap{display:flex;flex-direction:column;align-items:center;padding:10px 0 4px;text-align:center}
 .waiting-lottie{position:relative;width:86px;height:86px;display:flex;align-items:center;justify-content:center;margin-bottom:18px}
-.pulse-ring{position:absolute;width:86px;height:86px;border-radius:50%;border:3px solid #34c759;animation:pulsering 1.8s ease-out infinite}
+.pulse-ring{position:absolute;width:86px;height:86px;border-radius:50%;border:3px solid var(--green);animation:pulsering 1.8s ease-out infinite}
 .pulse-ring.r2{animation-delay:.75s;opacity:.5}
 @keyframes pulsering{0%{transform:scale(.65);opacity:.9}100%{transform:scale(1.55);opacity:0}}
 .pulse-icon{font-size:2.2rem;position:relative;z-index:1;animation:popIn .45s cubic-bezier(.34,1.6,.64,1) both}
 @keyframes popIn{from{transform:scale(0)}to{transform:scale(1)}}
-.waiting-title{font-size:1.1rem;font-weight:900;color:var(--text);margin-bottom:6px}
+.waiting-title{font-size:1.1rem;font-weight:900;margin-bottom:6px}
 .waiting-sub{font-size:.75rem;font-weight:600;color:var(--muted);margin-bottom:22px}
 .waiting-timer-box{background:var(--bg);border:1px solid var(--border);border-radius:22px;padding:18px 20px;width:100%;margin-bottom:16px}
 .wtimer-label{font-size:.58rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
-.wtimer-display{font-size:2.6rem;font-weight:900;color:var(--text);letter-spacing:3px;font-variant-numeric:tabular-nums;margin-bottom:12px}
+.wtimer-display{font-size:2.6rem;font-weight:900;letter-spacing:3px;font-variant-numeric:tabular-nums;margin-bottom:12px}
 .wtimer-bar-wrap{background:#e5e5ea;border-radius:50px;height:6px;overflow:hidden}
-.wtimer-bar{height:100%;background:linear-gradient(90deg,#34c759,#30d158);border-radius:50px;transition:width 1s linear;width:100%}
+.wtimer-bar{height:100%;background:linear-gradient(90deg,var(--green),#30d158);border-radius:50px;transition:width 1s linear;width:100%}
 .waiting-info{font-size:.72rem;font-weight:600;color:var(--muted);display:flex;align-items:flex-start;gap:7px;text-align:left;line-height:1.5;max-width:280px}
-.wi-dot{width:8px;height:8px;background:#34c759;border-radius:50%;flex-shrink:0;margin-top:4px;animation:blink 1.5s infinite}
+.wi-dot{width:8px;height:8px;background:var(--green);border-radius:50%;flex-shrink:0;margin-top:4px;animation:blink 1.5s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* ══════════════════════════════
+   REGISTRO / LOGIN USUARIO
+══════════════════════════════ */
+.user-banner{background:linear-gradient(135deg,#000,#2d2d2d);border-radius:18px;padding:14px 16px;margin-bottom:16px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:var(--tr)}
+.user-banner:active{transform:scale(.97)}
+.ub-icon{font-size:1.4rem;width:40px;height:40px;background:rgba(255,255,255,.1);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ub-info{flex:1;min-width:0}
+.ub-title{font-size:.8rem;font-weight:800;color:#fff;margin-bottom:2px}
+.ub-sub{font-size:.62rem;font-weight:600;color:rgba(255,255,255,.55)}
+.ub-badge{background:var(--red);color:#fff;font-size:.55rem;font-weight:900;padding:3px 8px;border-radius:50px;letter-spacing:.5px;text-transform:uppercase;white-space:nowrap}
+.ub-discount{background:var(--green);color:#fff;font-size:.58rem;font-weight:900;padding:4px 10px;border-radius:50px}
+/* tab auth */
+.auth-tabs{display:flex;gap:0;margin-bottom:18px;background:var(--bg);border-radius:14px;padding:4px}
+.auth-tab{flex:1;padding:10px;border:none;background:transparent;font-family:'Montserrat',sans-serif;font-size:.72rem;font-weight:800;color:var(--muted);cursor:pointer;border-radius:10px;transition:var(--tr)}
+.auth-tab.active{background:var(--white);color:var(--text);box-shadow:var(--sh)}
 </style>
 </head>
 <body>
-
 <div id="toast" class="toast"></div>
 
-<header id="main-header">
-  <div class="logo" id="secret-logo" onclick="secretTap()" style="cursor:default;user-select:none">ESSENCE</div>
-  <div class="header-right">
+<header>
+  <div class="logo" id="secret-logo" onclick="secretTap()">ESSENCE</div>
+  <div style="display:flex;gap:8px;align-items:center">
     <span class="hbadge" id="promo-badge-header">2×$120</span>
+    <div id="header-user-btn" style="display:none;cursor:pointer" onclick="openAuthModal()">
+      <div style="width:28px;height:28px;background:#000;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:900;color:#fff" id="header-user-avatar">U</div>
+    </div>
   </div>
 </header>
 
+<!-- ROBOT MASCOT -->
+<div class="robot-mascot" onclick="goView('chat');setTimeout(()=>redirectToWhatsApp(),400)" title="Hablar con agente">
+  <div class="robot-body">
+    <svg class="robot-svg" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- antena -->
+      <line x1="26" y1="4" x2="26" y2="10" stroke="#ff2d2d" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="26" cy="3" r="2.5" fill="#ff2d2d"/>
+      <!-- cabeza -->
+      <rect x="10" y="10" width="32" height="22" rx="7" fill="#1c1c1e"/>
+      <!-- ojos -->
+      <rect x="16" y="17" width="8" height="6" rx="3" fill="#00e5ff"/>
+      <rect x="28" y="17" width="8" height="6" rx="3" fill="#00e5ff"/>
+      <!-- brillo ojos -->
+      <rect x="17" y="18" width="2" height="2" rx="1" fill="white" opacity=".7"/>
+      <rect x="29" y="18" width="2" height="2" rx="1" fill="white" opacity=".7"/>
+      <!-- boca -->
+      <rect x="18" y="26" width="16" height="3" rx="1.5" fill="#ff2d2d" opacity=".8"/>
+      <rect x="20" y="26" width="3" height="3" rx="1" fill="#ff6060"/>
+      <rect x="25" y="26" width="3" height="3" rx="1" fill="#ff6060"/>
+      <!-- cuello -->
+      <rect x="23" y="32" width="6" height="4" rx="2" fill="#1c1c1e"/>
+      <!-- cuerpo -->
+      <rect x="8" y="36" width="36" height="13" rx="8" fill="#1c1c1e"/>
+      <!-- botones cuerpo -->
+      <circle cx="19" cy="42" r="2.5" fill="#ff2d2d"/>
+      <circle cx="26" cy="42" r="2.5" fill="#00e5ff"/>
+      <circle cx="33" cy="42" r="2.5" fill="#34c759"/>
+      <!-- brazos -->
+      <rect x="1" y="37" width="7" height="10" rx="3.5" fill="#1c1c1e"/>
+      <rect x="44" y="37" width="7" height="10" rx="3.5" fill="#1c1c1e"/>
+    </svg>
+    <div class="robot-bubble">¡Hablar con agente!</div>
+  </div>
+</div>
+
 <!-- ── CLIENTE ── -->
 <div id="app-client">
-  <div id="view-shop" class="view active scroll-area">
+  <div id="view-shop" class="view active" style="-webkit-overflow-scrolling:touch;overflow-y:auto">
     <div class="wrap">
-      <div class="promo-hero" id="promo-hero">
+      <!-- BANNER USUARIO -->
+      <div id="user-banner-logged" class="user-banner" style="display:none" onclick="openAuthModal()">
+        <div class="ub-icon">👤</div>
+        <div class="ub-info">
+          <div class="ub-title" id="ub-name-txt">Usuario</div>
+          <div class="ub-sub">Miembro ESSENCE · Descuento activo</div>
+        </div>
+        <div class="ub-discount">5% OFF</div>
+      </div>
+      <div id="user-banner-guest" class="user-banner" onclick="openAuthModal()">
+        <div class="ub-icon">🎁</div>
+        <div class="ub-info">
+          <div class="ub-title">Crea tu cuenta gratis</div>
+          <div class="ub-sub">Obtén 5% de descuento en toda la tienda</div>
+        </div>
+        <div class="ub-badge">5% OFF</div>
+      </div>
+
+      <div class="promo-hero">
         <div class="promo-pill" id="promo-pill-txt">⚡ Temporada</div>
         <div class="promo-eye">Oferta especial</div>
         <div class="promo-price" id="promo-price-txt">2 × $120</div>
         <div class="promo-sub" id="promo-sub-txt">Combina cualquier fragancia premium</div>
-        <button class="edit-promo-btn" id="edit-promo-btn" style="display:none" onclick="openEditPromo()">✏️ Editar</button>
+        <button class="edit-promo-btn" id="edit-promo-btn" onclick="openEditPromo()">✏️ Editar</button>
       </div>
       <div class="cats" id="cat-bar">
         <div class="cat active" data-cat="all">Todos</div>
@@ -254,7 +337,7 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
     <div class="wrap">
       <div class="track-card">
         <div class="track-title">📦 Rastrea tu pedido</div>
-        <input type="text" class="track-input" id="track-id" placeholder="Tu nombre o ID de pedido">
+        <input type="text" class="track-input" id="track-id" placeholder="Tu nombre completo">
         <button class="btn-full black" onclick="trackOrder()">Consultar Estado</button>
         <div class="track-result" id="track-result"></div>
       </div>
@@ -295,7 +378,7 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
     <input type="password" class="login-input" id="jefe-code" placeholder="••••" onkeydown="if(event.key==='Enter')jefeLogin()">
     <div class="login-err" id="jefe-err"></div>
     <button class="btn-full black" onclick="jefeLogin()">Entrar</button>
-    <button class="logout-btn" onclick="backToApp()">← Volver</button>
+    <button class="logout-btn" style="margin-top:4px" onclick="backToApp()">← Volver</button>
   </div>
   <div id="jefe-panel" style="display:none">
     <div class="panel-wrap panel-section">
@@ -315,8 +398,7 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
         <div class="form-row">
           <div class="form-label">Foto del producto</div>
           <div class="upload-area" id="prod-upload-area" onclick="document.getElementById('prod-img-file').click()">
-            <div class="uicon">📷</div>
-            <p>Toca para subir imagen</p>
+            <div class="uicon">📷</div><p>Toca para subir imagen</p>
             <input type="file" id="prod-img-file" accept="image/*" onchange="previewProdImg(event)">
             <img id="prod-img-preview" class="upload-preview">
           </div>
@@ -325,9 +407,9 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
       </div>
       <div class="panel-card">
         <h3>🎯 Editar Oferta</h3>
-        <div class="form-row"><div class="form-label">Título promo (ej: 2 × $120)</div><input class="form-input" id="j-promo-price" placeholder="2 × $120"></div>
+        <div class="form-row"><div class="form-label">Título promo</div><input class="form-input" id="j-promo-price" placeholder="2 × $120"></div>
         <div class="form-row"><div class="form-label">Subtítulo</div><input class="form-input" id="j-promo-sub" placeholder="Combina cualquier fragancia"></div>
-        <div class="form-row"><div class="form-label">Etiqueta (pill)</div><input class="form-input" id="j-promo-pill" placeholder="⚡ Temporada"></div>
+        <div class="form-row"><div class="form-label">Etiqueta pill</div><input class="form-input" id="j-promo-pill" placeholder="⚡ Temporada"></div>
         <button class="btn-red" onclick="openEditPromo()">Guardar oferta</button>
       </div>
       <div class="panel-card">
@@ -355,7 +437,7 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
     <input type="password" class="login-input" id="agente-code" placeholder="••••" onkeydown="if(event.key==='Enter')agenteLogin()">
     <div class="login-err" id="agente-err"></div>
     <button class="btn-full black" onclick="agenteLogin()">Entrar</button>
-    <button class="logout-btn" onclick="backToApp()">← Volver</button>
+    <button class="logout-btn" style="margin-top:4px" onclick="backToApp()">← Volver</button>
   </div>
   <div id="agente-panel" style="display:none">
     <div class="panel-wrap panel-section">
@@ -364,15 +446,17 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
         <button class="logout-btn" onclick="logoutAgente()">Salir</button>
       </div>
       <div class="panel-card">
-        <h3>💬 Chat con Clientes</h3>
-        <p style="font-size:.75rem;color:var(--muted);font-weight:600;margin-bottom:12px">Clientes que solicitaron hablar con un agente:</p>
-        <div id="agent-convs"><div style="font-size:.78rem;color:var(--muted);font-weight:600;text-align:center;padding:20px">Sin conversaciones pendientes</div></div>
+        <h3>💬 Chat con Clientes (IA activa)</h3>
+        <p style="font-size:.75rem;color:var(--muted);font-weight:600;margin-bottom:12px">Clientes que solicitaron agente humano:</p>
+        <div id="agent-convs"><div style="font-size:.78rem;color:var(--muted);text-align:center;padding:20px">Sin conversaciones</div></div>
       </div>
       <div class="panel-card" id="agent-chat-panel" style="display:none">
-        <h3 id="agent-chat-title">Chat con cliente</h3>
+        <h3 id="agent-chat-title">Chat</h3>
         <div class="chat-messages" id="agent-chat-messages" style="min-height:220px;border-radius:14px;background:var(--bg);padding:12px"></div>
-        <div class="chat-footer" style="margin-top:10px;border-radius:14px;border:1px solid var(--border)">
-          <input type="text" class="chat-input" id="agent-reply-input" placeholder="Responder…" onkeydown="if(event.key==='Enter')sendAgentReply()">
+        <div style="margin-top:8px;font-size:.65rem;font-weight:800;color:var(--muted);letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px">Respuesta IA sugerida:</div>
+        <div id="agent-ai-suggestion" style="background:#f0f5ff;border:1px solid #0066ff30;border-radius:12px;padding:10px;font-size:.75rem;font-weight:600;color:#0055cc;margin-bottom:10px;min-height:36px;cursor:pointer" onclick="useAiSuggestion()" title="Toca para usar esta respuesta"></div>
+        <div class="chat-footer" style="margin-top:0;border-radius:14px;border:1px solid var(--border)">
+          <input type="text" class="chat-input" id="agent-reply-input" placeholder="Escribe o usa la sugerencia IA…" onkeydown="if(event.key==='Enter')sendAgentReply()">
           <button class="chat-send" onclick="sendAgentReply()">➤</button>
         </div>
       </div>
@@ -388,7 +472,7 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
   </nav>
 </div>
 
-<!-- ── MODALES ── -->
+<!-- ══ MODAL ACCESO ESPECIAL ══ -->
 <div class="overlay" id="access-modal" onclick="if(event.target.id==='access-modal')closeAccessModal()">
   <div class="sheet">
     <div class="sheet-handle"></div>
@@ -399,82 +483,109 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
   </div>
 </div>
 
-<!-- ── CHECKOUT MODAL (flujo completo) ── -->
-<div class="overlay" id="checkout-modal">
-  <div class="checkout-sheet" id="checkout-sheet">
+<!-- ══ MODAL AUTH USUARIO ══ -->
+<div class="overlay" id="auth-modal" onclick="if(event.target.id==='auth-modal')closeAuthModal()">
+  <div class="sheet">
     <div class="sheet-handle"></div>
-    <!-- STEP 1: elegir método -->
+    <div id="auth-logged-view" style="display:none;text-align:center;padding:10px 0 16px">
+      <div style="font-size:3rem;margin-bottom:8px">👤</div>
+      <div style="font-size:1rem;font-weight:900;margin-bottom:4px" id="auth-modal-name"></div>
+      <div style="font-size:.72rem;font-weight:700;color:var(--muted);margin-bottom:4px" id="auth-modal-email"></div>
+      <div style="background:#d1fae5;color:#065f46;font-size:.7rem;font-weight:800;padding:5px 14px;border-radius:50px;display:inline-block;margin-bottom:20px">✅ 5% de descuento activo</div>
+      <button class="pay-btn pay-cancel" onclick="logoutUser()">Cerrar sesión</button>
+    </div>
+    <div id="auth-form-view">
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="tab-login" onclick="switchAuthTab('login')">Iniciar sesión</button>
+        <button class="auth-tab" id="tab-register" onclick="switchAuthTab('register')">Crear cuenta</button>
+      </div>
+      <!-- login -->
+      <div id="auth-login-form">
+        <div class="form-row"><div class="form-label">Correo</div><input class="form-input" id="auth-email" type="email" placeholder="tu@correo.com"></div>
+        <div class="form-row" style="margin-top:8px"><div class="form-label">Contraseña</div><input class="form-input" id="auth-pass" type="password" placeholder="••••••"></div>
+        <div class="login-err" id="auth-err" style="margin:8px 0"></div>
+        <button class="btn-red" onclick="loginUser()">Entrar</button>
+      </div>
+      <!-- register -->
+      <div id="auth-register-form" style="display:none">
+        <div class="form-row"><div class="form-label">Nombre completo</div><input class="form-input" id="reg-name" placeholder="Tu nombre"></div>
+        <div class="form-row" style="margin-top:8px"><div class="form-label">Correo</div><input class="form-input" id="reg-email" type="email" placeholder="tu@correo.com"></div>
+        <div class="form-row" style="margin-top:8px"><div class="form-label">Contraseña</div><input class="form-input" id="reg-pass" type="password" placeholder="Mínimo 6 caracteres"></div>
+        <div class="login-err" id="reg-err" style="margin:8px 0"></div>
+        <button class="btn-red" onclick="registerUser()">Crear cuenta y obtener 5% OFF</button>
+      </div>
+      <button class="pay-btn pay-cancel" style="margin-top:8px" onclick="closeAuthModal()">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ CHECKOUT MODAL ══ -->
+<div class="overlay" id="checkout-modal" onclick="if(event.target.id==='checkout-modal')closeCheckout()">
+  <div class="checkout-sheet">
+    <div class="sheet-handle"></div>
+    <!-- PASO 1: método -->
     <div id="step-method" class="cstep active">
-      <div class="checkout-product-pill" id="checkout-pill"></div>
+      <div class="checkout-product-pill" id="checkout-pill">Producto</div>
       <div class="cstep-title">¿Cómo quieres pagar?</div>
       <div class="pay-methods">
         <button class="pay-method-card yappy-card" onclick="selectMethod('YAPPY')">
           <div class="pmc-icon">💚</div>
-          <div class="pmc-info">
-            <div class="pmc-name">Yappy</div>
-            <div class="pmc-sub">Pago instantáneo</div>
-          </div>
+          <div class="pmc-info"><div class="pmc-name">Yappy</div><div class="pmc-sub">Pago instantáneo · Al instante</div></div>
           <div class="pmc-arrow">›</div>
         </button>
         <button class="pay-method-card ach-card" onclick="selectMethod('ACH')">
           <div class="pmc-icon">🏦</div>
-          <div class="pmc-info">
-            <div class="pmc-name">Transferencia ACH</div>
-            <div class="pmc-sub">Banco nacional</div>
-          </div>
+          <div class="pmc-info"><div class="pmc-name">Transferencia ACH</div><div class="pmc-sub">Banco nacional</div></div>
           <div class="pmc-arrow">›</div>
         </button>
       </div>
-      <button class="pay-btn pay-cancel" style="margin-top:6px" onclick="closeCheckout()">Cancelar</button>
+      <button class="pay-btn pay-cancel" onclick="closeCheckout()">Cancelar</button>
     </div>
-
-    <!-- STEP 2a: instrucciones YAPPY -->
+    <!-- PASO 2a: Yappy -->
     <div id="step-yappy" class="cstep">
       <div class="cback-btn" onclick="backToMethod()">‹ Volver</div>
       <div class="cstep-title">Paga con Yappy 💚</div>
-      <div class="pay-instruction-card yappy-instr">
+      <div class="pay-instr-card yappy-instr">
         <div class="instr-icon">📱</div>
         <div class="instr-body">
           <div class="instr-label">Envía el pago a este número</div>
-          <div class="instr-number" onclick="copyNum('6902-8805')" id="yappy-num">6902-8805</div>
+          <div class="instr-number" onclick="copyNum('6902-8805')">6902-8805</div>
           <div class="instr-copy-hint">Toca para copiar</div>
         </div>
       </div>
       <div class="instr-steps">
         <div class="instr-step"><span class="istep-n">1</span><span>Abre tu app Yappy</span></div>
-        <div class="instr-step"><span class="istep-n">2</span><span>Envía <strong id="yappy-amount-txt"></strong> al número de arriba</span></div>
-        <div class="instr-step"><span class="istep-n">3</span><span>Toma captura del comprobante</span></div>
+        <div class="instr-step"><span class="istep-n">2</span><span>Envía <strong id="yappy-amount-txt"></strong> al número <strong>6902-8805</strong></span></div>
+        <div class="instr-step"><span class="istep-n">3</span><span>Toma captura del comprobante y regresa aquí</span></div>
       </div>
-      <button class="btn-red" onclick="goToUpload()">Ya pagué → Subir comprobante</button>
+      <button class="btn-red" onclick="goToUpload()">✅ Ya pagué → Subir comprobante</button>
     </div>
-
-    <!-- STEP 2b: instrucciones ACH -->
+    <!-- PASO 2b: ACH -->
     <div id="step-ach" class="cstep">
       <div class="cback-btn" onclick="backToMethod()">‹ Volver</div>
       <div class="cstep-title">Transferencia ACH 🏦</div>
-      <div class="pay-instruction-card ach-instr">
+      <div class="pay-instr-card ach-instr">
         <div class="instr-icon">🔢</div>
         <div class="instr-body">
           <div class="instr-label">Número de cuenta</div>
-          <div class="instr-number" onclick="copyNum('0408000050774')" id="ach-num">0408000050774</div>
+          <div class="instr-number" onclick="copyNum('0408000050774')">0408000050774</div>
           <div class="instr-copy-hint">Toca para copiar</div>
         </div>
       </div>
       <div class="instr-steps">
         <div class="instr-step"><span class="istep-n">1</span><span>Abre tu banca en línea</span></div>
-        <div class="instr-step"><span class="istep-n">2</span><span>Transfiere <strong id="ach-amount-txt"></strong> a la cuenta de arriba</span></div>
-        <div class="instr-step"><span class="istep-n">3</span><span>Descarga o toma foto del comprobante</span></div>
+        <div class="instr-step"><span class="istep-n">2</span><span>Transfiere <strong id="ach-amount-txt"></strong> a la cuenta <strong>0408000050774</strong></span></div>
+        <div class="instr-step"><span class="istep-n">3</span><span>Descarga o toma captura del comprobante</span></div>
       </div>
-      <button class="btn-red" onclick="goToUpload()">Ya pagué → Subir comprobante</button>
+      <button class="btn-red" onclick="goToUpload()">✅ Ya pagué → Subir comprobante</button>
     </div>
-
-    <!-- STEP 3: subir comprobante -->
+    <!-- PASO 3: subir comprobante -->
     <div id="step-upload" class="cstep">
-      <div class="cback-btn" id="back-from-upload" onclick="backToInstructions()">‹ Volver</div>
+      <div class="cback-btn" onclick="backToInstructions()">‹ Volver</div>
       <div class="cstep-title">Sube tu comprobante 📎</div>
       <div class="upload-area" id="comp-upload-area" onclick="document.getElementById('comp-file').click()">
         <div class="uicon">📸</div>
-        <p>Toca para subir foto</p>
+        <p>Toca para subir foto del comprobante</p>
         <input type="file" id="comp-file" accept="image/*" onchange="previewComp(event)">
         <img id="comp-preview" class="upload-preview">
       </div>
@@ -482,13 +593,11 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
       <button class="btn-red" id="confirm-order-btn" onclick="confirmOrder()">✅ Confirmar Pedido</button>
       <button class="pay-btn pay-cancel" style="margin-top:8px" onclick="closeCheckout()">Cancelar</button>
     </div>
-
-    <!-- STEP 4: contador de verificación -->
+    <!-- PASO 4: contador -->
     <div id="step-waiting" class="cstep">
       <div class="waiting-wrap">
         <div class="waiting-lottie">
-          <div class="pulse-ring"></div>
-          <div class="pulse-ring r2"></div>
+          <div class="pulse-ring"></div><div class="pulse-ring r2"></div>
           <div class="pulse-icon">✅</div>
         </div>
         <div class="waiting-title">¡Comprobante enviado!</div>
@@ -500,7 +609,7 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
         </div>
         <div class="waiting-info">
           <span class="wi-dot"></span>
-          Una vez aprobado te contactaremos por WhatsApp 6902-8805
+          Una vez aprobado te contactaremos por WhatsApp al 6902-8805 para coordinar la entrega.
         </div>
         <button class="pay-btn pay-cancel" style="margin-top:18px" onclick="closeCheckout()">Cerrar</button>
       </div>
@@ -508,6 +617,7 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
   </div>
 </div>
 
+<!-- ══ PROMO MODAL ══ -->
 <div class="overlay" id="promo-modal" onclick="if(event.target.id==='promo-modal')closePromoModal()">
   <div class="sheet">
     <div class="sheet-handle"></div>
@@ -520,6 +630,7 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
   </div>
 </div>
 
+<!-- ══ IMG VIEWER ══ -->
 <div class="overlay" id="img-viewer" onclick="document.getElementById('img-viewer').classList.remove('open')">
   <div class="img-modal-content">
     <div class="sheet-handle"></div>
@@ -527,605 +638,573 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
   </div>
 </div>
 
-<!-- ── FIREBASE (ES Module) ── -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getFirestore, collection, addDoc, onSnapshot, doc, updateDoc, getDoc, setDoc, getDocs, query, orderBy, where, deleteDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyATWNabsIZvdV0NuONWpKBT2vZEGWxTg1c",
-  authDomain: "essence3-2d1de.firebaseapp.com",
-  projectId: "essence3-2d1de",
-  storageBucket: "essence3-2d1de.appspot.com",
-  messagingSenderId: "244822107655",
-  appId: "1:244822107655:web:1d656b1a8eb3969c262ca2"
+  apiKey:"AIzaSyATWNabsIZvdV0NuONWpKBT2vZEGWxTg1c",
+  authDomain:"essence3-2d1de.firebaseapp.com",
+  projectId:"essence3-2d1de",
+  storageBucket:"essence3-2d1de.appspot.com",
+  messagingSenderId:"244822107655",
+  appId:"1:244822107655:web:1d656b1a8eb3969c262ca2"
 };
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const storage = getStorage(app);
+const fbApp = initializeApp(firebaseConfig);
+const db = getFirestore(fbApp);
+const storage = getStorage(fbApp);
+const auth = getAuth(fbApp);
 
 // ── TOAST ──
-function showToast(msg, dur=3200){
-  const t = document.getElementById('toast');
-  t.textContent = msg; t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), dur);
+function showToast(msg,dur=3200){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),dur);
 }
-window.showToast = showToast;
+window.showToast=showToast;
 
 // ── STATE ──
-let currentN="", currentP="", currentPayMethod="";
+let currentN="",currentP=0,currentPayMethod="";
 let activeCategory="all";
-let isBoss=false, isAgent=false;
-let prodImgFile=null;
-let activeAgentClient=null;
-let allProducts=[];
-let chatHistory=[];
-let promoData = { price:"2 × $120", sub:"Combina cualquier fragancia premium", pill:"⚡ Temporada" };
+let isBoss=false,isAgent=false;
+let prodImgFile=null,activeAgentClient=null;
+let allProducts=[],chatHistory=[];
+let promoData={price:"2 × $120",sub:"Combina cualquier fragancia premium",pill:"⚡ Temporada"};
+let currentUser=null;
+let countdownInterval=null;
+
+// ── AUTH ──
+onAuthStateChanged(auth,async user=>{
+  currentUser=user;
+  if(user){
+    const snap=await getDoc(doc(db,"usuarios",user.uid));
+    const udata=snap.exists()?snap.data():{nombre:user.email};
+    currentUser._nombre=udata.nombre||user.email;
+    document.getElementById('user-banner-guest').style.display='none';
+    document.getElementById('user-banner-logged').style.display='flex';
+    document.getElementById('ub-name-txt').textContent=udata.nombre||'Usuario';
+    document.getElementById('header-user-btn').style.display='block';
+    document.getElementById('header-user-avatar').textContent=(udata.nombre||'U')[0].toUpperCase();
+    document.getElementById('auth-modal-name').textContent=udata.nombre||'Usuario';
+    document.getElementById('auth-modal-email').textContent=user.email;
+    document.getElementById('auth-logged-view').style.display='block';
+    document.getElementById('auth-form-view').style.display='none';
+  } else {
+    currentUser=null;
+    document.getElementById('user-banner-guest').style.display='flex';
+    document.getElementById('user-banner-logged').style.display='none';
+    document.getElementById('header-user-btn').style.display='none';
+    document.getElementById('auth-logged-view').style.display='none';
+    document.getElementById('auth-form-view').style.display='block';
+  }
+  renderProducts();
+});
+
+window.openAuthModal=()=>document.getElementById('auth-modal').classList.add('open');
+window.closeAuthModal=()=>document.getElementById('auth-modal').classList.remove('open');
+window.switchAuthTab=(tab)=>{
+  document.getElementById('tab-login').classList.toggle('active',tab==='login');
+  document.getElementById('tab-register').classList.toggle('active',tab==='register');
+  document.getElementById('auth-login-form').style.display=tab==='login'?'block':'none';
+  document.getElementById('auth-register-form').style.display=tab==='register'?'block':'none';
+};
+
+window.loginUser=async()=>{
+  const email=document.getElementById('auth-email').value.trim();
+  const pass=document.getElementById('auth-pass').value;
+  const errEl=document.getElementById('auth-err');
+  if(!email||!pass){errEl.textContent='Completa todos los campos';return;}
+  try{
+    await signInWithEmailAndPassword(auth,email,pass);
+    closeAuthModal(); showToast('✅ ¡Bienvenido de vuelta!');
+  }catch(e){
+    errEl.textContent=e.code==='auth/user-not-found'||e.code==='auth/wrong-password'?'Correo o contraseña incorrectos':'Error al iniciar sesión';
+  }
+};
+
+window.registerUser=async()=>{
+  const nombre=document.getElementById('reg-name').value.trim();
+  const email=document.getElementById('reg-email').value.trim();
+  const pass=document.getElementById('reg-pass').value;
+  const errEl=document.getElementById('reg-err');
+  if(!nombre||!email||!pass){errEl.textContent='Completa todos los campos';return;}
+  if(pass.length<6){errEl.textContent='La contraseña debe tener al menos 6 caracteres';return;}
+  try{
+    const cred=await createUserWithEmailAndPassword(auth,email,pass);
+    await setDoc(doc(db,"usuarios",cred.user.uid),{nombre,email,descuento:5,fecha:new Date().toLocaleString("es-PA")});
+    closeAuthModal(); showToast('🎉 ¡Cuenta creada! Ya tienes 5% OFF');
+  }catch(e){
+    errEl.textContent=e.code==='auth/email-already-in-use'?'Este correo ya está registrado':'Error al crear cuenta';
+  }
+};
+
+window.logoutUser=async()=>{
+  await signOut(auth);
+  closeAuthModal(); showToast('👋 Sesión cerrada');
+};
 
 // ── PROMO ──
 async function loadPromo(){
-  try {
-    const d = await getDoc(doc(db, "config", "promo"));
-    if(d.exists()){ promoData = d.data(); applyPromo(); }
-  } catch(e){ console.warn("loadPromo:", e); }
+  try{const d=await getDoc(doc(db,"config","promo"));if(d.exists()){promoData=d.data();applyPromo();}}catch(e){}
 }
 function applyPromo(){
-  document.getElementById('promo-price-txt').textContent = promoData.price || "2 × $120";
-  document.getElementById('promo-sub-txt').textContent   = promoData.sub  || "";
-  document.getElementById('promo-pill-txt').textContent  = promoData.pill || "";
-  document.getElementById('promo-badge-header').textContent = promoData.price || "2×$120";
+  document.getElementById('promo-price-txt').textContent=promoData.price||"2 × $120";
+  document.getElementById('promo-sub-txt').textContent=promoData.sub||"";
+  document.getElementById('promo-pill-txt').textContent=promoData.pill||"";
+  document.getElementById('promo-badge-header').textContent=promoData.price||"2×$120";
 }
 loadPromo();
 
 // ── PRODUCTOS ──
-onSnapshot(collection(db, "inventario_oficial"), snap => {
-  allProducts = [];
-  snap.forEach(d => allProducts.push({id: d.id, ...d.data()}));
+onSnapshot(collection(db,"inventario_oficial"),snap=>{
+  allProducts=[];
+  snap.forEach(d=>allProducts.push({id:d.id,...d.data()}));
   renderProducts();
-  if(isBoss) renderJefeInventory();
+  if(isBoss)renderJefeInventory();
 });
 
+function calcPrice(price){
+  if(currentUser){return+(price*0.95).toFixed(2);}
+  return price;
+}
+
 function renderProducts(){
-  const list = document.getElementById('product-list');
-  const q = (document.getElementById('search') || {}).value || "";
-  const filtered = allProducts.filter(i => {
-    const nm = i.name.toLowerCase().includes(q.toLowerCase());
-    const ct = activeCategory === 'all' || (i.cat || '').toLowerCase() === activeCategory;
-    return nm && ct;
+  const list=document.getElementById('product-list');
+  const q=(document.getElementById('search')||{}).value||"";
+  const filtered=allProducts.filter(i=>{
+    const nm=i.name.toLowerCase().includes(q.toLowerCase());
+    const ct=activeCategory==='all'||(i.cat||'').toLowerCase()===activeCategory;
+    return nm&&ct;
   });
-  if(!filtered.length){
-    list.innerHTML = `<div class="empty"><div class="ei">🧴</div><p>No hay perfumes disponibles</p></div>`;
-    return;
-  }
-  list.innerHTML = filtered.map((i, idx) => `
-    <div class="pcard" style="animation-delay:${idx*55}ms">
-      <div class="pimg-wrap"><img src="${i.img || 'https://placehold.co/86x86/f2f2f7/8e8e93?text=🧴'}" alt="${i.name}" loading="lazy" onerror="this.src='https://placehold.co/86x86/f2f2f7/8e8e93?text=🧴'"></div>
+  if(!filtered.length){list.innerHTML=`<div class="empty"><div class="ei">🧴</div><p>No hay perfumes disponibles</p></div>`;return;}
+  list.innerHTML=filtered.map((i,idx)=>{
+    const finalPrice=calcPrice(i.price);
+    const hasDiscount=currentUser&&finalPrice<i.price;
+    const priceHtml=hasDiscount
+      ?`<div class="pprice"><span class="price-orig">$${i.price}</span><span style="font-size:1.05rem;font-weight:900;color:var(--red)">$${finalPrice}</span><span class="price-disc">-5% miembro</span></div>`
+      :`<div class="pprice">$${i.price}</div>`;
+    return `<div class="pcard" style="animation:fadeUp .35s ease ${idx*55}ms both">
+      <div class="pimg-wrap"><img src="${i.img||'https://placehold.co/86x86/f2f2f7/8e8e93?text=🧴'}" alt="${i.name}" loading="lazy" onerror="this.src='https://placehold.co/86x86/f2f2f7/8e8e93?text=🧴'"></div>
       <div class="pinfo">
         <div class="pname">${i.name}</div>
-        <div class="pdesc">${i.desc || 'Fragancia Original Premium'}</div>
+        <div class="pdesc">${i.desc||'Fragancia Original Premium'}</div>
         <div class="pbottom">
-          <span class="pprice">$${i.price}</span>
-          <button class="btn-want" onclick="openPay(${JSON.stringify(i.name)},${JSON.stringify(String(i.price))})">¡Lo quiero!</button>
+          ${priceHtml}
+          <button class="btn-want" onclick="openPay(${JSON.stringify(i.name)},${finalPrice})">¡Lo quiero!</button>
         </div>
       </div>
-    </div>`).join('');
+    </div>`;
+  }).join('');
 }
 
 function renderJefeInventory(){
-  const el = document.getElementById('jefe-inventory'); if(!el) return;
-  if(!allProducts.length){
-    el.innerHTML = `<div class="empty"><div class="ei">📦</div><p>Sin productos</p></div>`;
-    return;
-  }
-  el.innerHTML = allProducts.map(i => `
+  const el=document.getElementById('jefe-inventory');if(!el)return;
+  if(!allProducts.length){el.innerHTML=`<div class="empty"><div class="ei">📦</div><p>Sin productos</p></div>`;return;}
+  el.innerHTML=allProducts.map(i=>`
     <div class="pcard">
-      <div class="pimg-wrap"><img src="${i.img || 'https://placehold.co/86x86/f2f2f7/8e8e93?text=🧴'}" onerror="this.src='https://placehold.co/86x86/f2f2f7/8e8e93?text=🧴'" loading="lazy"></div>
+      <div class="pimg-wrap"><img src="${i.img||'https://placehold.co/86x86/f2f2f7/8e8e93?text=🧴'}" onerror="this.src='https://placehold.co/86x86/f2f2f7/8e8e93?text=🧴'" loading="lazy"></div>
       <div class="pinfo">
         <div class="pname">${i.name}</div>
-        <div class="pdesc">${i.cat || ''} · $${i.price}</div>
+        <div class="pdesc">${i.cat||''} · $${i.price}</div>
         <button class="pdel-btn" onclick="deleteProduct(${JSON.stringify(i.id)},${JSON.stringify(i.name)})">🗑️ Eliminar</button>
       </div>
     </div>`).join('');
 }
 
-window.filterProducts = () => renderProducts();
-
-document.querySelectorAll('.cat').forEach(c => {
-  c.addEventListener('click', () => {
-    document.querySelectorAll('.cat').forEach(x => x.classList.remove('active'));
-    c.classList.add('active');
-    activeCategory = c.dataset.cat;
-    renderProducts();
+window.filterProducts=()=>renderProducts();
+document.querySelectorAll('.cat').forEach(c=>{
+  c.addEventListener('click',()=>{
+    document.querySelectorAll('.cat').forEach(x=>x.classList.remove('active'));
+    c.classList.add('active');activeCategory=c.dataset.cat;renderProducts();
   });
 });
 
-// ── CHECKOUT MULTI-STEP FLOW ──
-let countdownInterval = null;
+// ── CHECKOUT ──
+function showCStep(id){document.querySelectorAll('.cstep').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');}
 
-function showCheckoutStep(stepId){
-  document.querySelectorAll('.cstep').forEach(s => s.classList.remove('active'));
-  document.getElementById(stepId).classList.add('active');
-}
-
-window.openPay = (n, p) => {
-  currentN = n; currentP = p;
-  // set product pill
-  document.getElementById('checkout-pill').textContent = `${n}  ·  $${p}`;
-  // reset to step 1
-  showCheckoutStep('step-method');
-  // reset upload area
-  const prev = document.getElementById('comp-preview');
-  if(prev){ prev.style.display='none'; prev.src=''; }
-  const area = document.getElementById('comp-upload-area');
-  if(area) area.classList.remove('has-file');
-  const bn = document.getElementById('buyer-name');
-  if(bn) bn.value = '';
-  const cf = document.getElementById('comp-file');
-  if(cf) cf.value = '';
+window.openPay=(n,p)=>{
+  currentN=n; currentP=p;
+  document.getElementById('checkout-pill').textContent=`${n}  ·  $${p}`;
+  showCStep('step-method');
+  // reset upload
+  const prev=document.getElementById('comp-preview');
+  if(prev){prev.style.display='none';prev.src='';}
+  const area=document.getElementById('comp-upload-area');
+  if(area)area.classList.remove('has-file');
+  const bn=document.getElementById('buyer-name');
+  if(bn)bn.value=currentUser?currentUser._nombre||'':'';
+  const cf=document.getElementById('comp-file');
+  if(cf)cf.value='';
+  const btn=document.getElementById('confirm-order-btn');
+  if(btn){btn.disabled=false;btn.textContent='✅ Confirmar Pedido';}
   document.getElementById('checkout-modal').classList.add('open');
 };
 
-window.closeCheckout = () => {
+window.closeCheckout=()=>{
   document.getElementById('checkout-modal').classList.remove('open');
-  if(countdownInterval){ clearInterval(countdownInterval); countdownInterval=null; }
+  if(countdownInterval){clearInterval(countdownInterval);countdownInterval=null;}
 };
-
-window.selectMethod = (m) => {
-  currentPayMethod = m;
-  if(m === 'YAPPY'){
-    document.getElementById('yappy-amount-txt').textContent = `$${currentP}`;
-    showCheckoutStep('step-yappy');
-  } else {
-    document.getElementById('ach-amount-txt').textContent = `$${currentP}`;
-    showCheckoutStep('step-ach');
-  }
+window.selectMethod=(m)=>{
+  currentPayMethod=m;
+  if(m==='YAPPY'){document.getElementById('yappy-amount-txt').textContent=`$${currentP}`;showCStep('step-yappy');}
+  else{document.getElementById('ach-amount-txt').textContent=`$${currentP}`;showCStep('step-ach');}
 };
-
-window.backToMethod = () => showCheckoutStep('step-method');
-
-window.goToUpload = () => showCheckoutStep('step-upload');
-
-window.backToInstructions = () => {
-  showCheckoutStep(currentPayMethod === 'YAPPY' ? 'step-yappy' : 'step-ach');
+window.backToMethod=()=>showCStep('step-method');
+window.goToUpload=()=>showCStep('step-upload');
+window.backToInstructions=()=>showCStep(currentPayMethod==='YAPPY'?'step-yappy':'step-ach');
+window.copyNum=(num)=>{
+  navigator.clipboard.writeText(num).then(()=>showToast(`✅ Copiado: ${num}`)).catch(()=>showToast(`Número: ${num}`));
 };
-
-window.copyNum = (num) => {
-  navigator.clipboard.writeText(num).then(() => showToast(`✅ Número copiado: ${num}`)).catch(() => showToast(`Número: ${num}`));
-};
-
-window.previewComp = (e) => {
-  const f = e.target.files[0]; if(!f) return;
-  const prev = document.getElementById('comp-preview');
-  prev.src = URL.createObjectURL(f); prev.style.display = 'block';
+window.previewComp=(e)=>{
+  const f=e.target.files[0];if(!f)return;
+  const prev=document.getElementById('comp-preview');
+  prev.src=URL.createObjectURL(f);prev.style.display='block';
   document.getElementById('comp-upload-area').classList.add('has-file');
 };
 
-window.confirmOrder = async () => {
-  const name = document.getElementById('buyer-name').value.trim();
-  const file = document.getElementById('comp-file').files[0];
-
-  if(!name){ showToast("⚠️ Ingresa tu nombre"); return; }
-  if(!file){ showToast("⚠️ Sube el comprobante de pago"); return; }
-
-  const btn = document.getElementById('confirm-order-btn');
-  btn.textContent = "⏳ Subiendo…"; btn.disabled = true;
-
-  try {
-    const storRef = ref(storage, `comprobantes/${Date.now()}_${name}`);
-    await uploadBytes(storRef, file);
-    const imgUrl = await getDownloadURL(storRef);
-
-    await addDoc(collection(db, "ventas_essence"), {
-      cliente: name,
-      perfume: currentN,
-      precio: currentP,
-      pago: currentPayMethod,
-      comprobante: imgUrl,
-      fecha: new Date().toLocaleString("es-PA"),
-      status: "pending"
+window.confirmOrder=async()=>{
+  const name=document.getElementById('buyer-name').value.trim();
+  const file=document.getElementById('comp-file').files[0];
+  if(!name){showToast("⚠️ Ingresa tu nombre");return;}
+  if(!file){showToast("⚠️ Sube el comprobante de pago");return;}
+  const btn=document.getElementById('confirm-order-btn');
+  btn.textContent="⏳ Subiendo…";btn.disabled=true;
+  try{
+    const storRef=ref(storage,`comprobantes/${Date.now()}_${name}`);
+    await uploadBytes(storRef,file);
+    const imgUrl=await getDownloadURL(storRef);
+    await addDoc(collection(db,"ventas_essence"),{
+      cliente:name,perfume:currentN,precio:currentP,pago:currentPayMethod,
+      comprobante:imgUrl,fecha:new Date().toLocaleString("es-PA"),status:"pending",
+      usuario_uid:currentUser?currentUser.uid:null
     });
-
-    // Ir al paso del contador
-    showCheckoutStep('step-waiting');
-    const TOTAL = 300;
-    let tiempo = TOTAL;
-    const bar = document.getElementById('wt-bar');
-    const display = document.getElementById('wt-display');
-    if(countdownInterval) clearInterval(countdownInterval);
-    countdownInterval = setInterval(() => {
+    // contador
+    showCStep('step-waiting');
+    const TOTAL=300;let tiempo=TOTAL;
+    const bar=document.getElementById('wt-bar');
+    const disp=document.getElementById('wt-display');
+    if(countdownInterval)clearInterval(countdownInterval);
+    countdownInterval=setInterval(()=>{
       tiempo--;
-      const m = Math.floor(tiempo/60), s = tiempo % 60;
-      if(display) display.textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
-      if(bar) bar.style.width = `${(tiempo/TOTAL)*100}%`;
-      if(tiempo <= 0){ clearInterval(countdownInterval); countdownInterval=null; if(display) display.textContent = '00:00'; }
-    }, 1000);
-
-  } catch(err){
-    console.error(err);
-    showToast("❌ Error al subir. Verifica tu conexión.");
-    btn.disabled = false;
-    btn.textContent = "✅ Confirmar Pedido";
+      const m=Math.floor(tiempo/60),s=tiempo%60;
+      if(disp)disp.textContent=`${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+      if(bar)bar.style.width=`${(tiempo/TOTAL)*100}%`;
+      if(tiempo<=0){clearInterval(countdownInterval);countdownInterval=null;}
+    },1000);
+  }catch(err){
+    console.error(err);showToast("❌ Error al subir. Verifica tu conexión.");
+    btn.disabled=false;btn.textContent="✅ Confirmar Pedido";
   }
 };
 
 // ── TRACKING ──
-window.trackOrder = async () => {
-  const id = document.getElementById('track-id').value.trim();
-  const res = document.getElementById('track-result');
-  if(!id) return;
-  res.innerHTML = '<div style="display:flex;gap:4px;justify-content:center"><span style="width:6px;height:6px;background:var(--muted);border-radius:50%;display:inline-block;animation:dotb 1.2s infinite ease-in-out"></span><span style="width:6px;height:6px;background:var(--muted);border-radius:50%;display:inline-block;animation:dotb 1.2s .2s infinite ease-in-out"></span><span style="width:6px;height:6px;background:var(--muted);border-radius:50%;display:inline-block;animation:dotb 1.2s .4s infinite ease-in-out"></span></div>';
-  try {
-    const snap = await getDocs(query(collection(db, "ventas_essence"), where("cliente", "==", id)));
-    if(snap.empty){ res.textContent = "No se encontró pedido. Verifica tu nombre."; return; }
-    let html = '';
-    snap.forEach(d => {
-      const o = d.data();
-      const s = o.status === 'approved' ? '✅ Aprobado' : o.status === 'rejected' ? '❌ Rechazado' : '⏳ En revisión';
-      html += `<div class="track-badge">${o.perfume || ''} · ${s}</div><br>`;
+window.trackOrder=async()=>{
+  const id=document.getElementById('track-id').value.trim();
+  const res=document.getElementById('track-result');
+  if(!id)return;
+  res.innerHTML='<span style="color:var(--muted)">Buscando…</span>';
+  try{
+    const snap=await getDocs(query(collection(db,"ventas_essence"),where("cliente","==",id)));
+    if(snap.empty){res.textContent="No se encontró pedido. Verifica tu nombre.";return;}
+    let html='';
+    snap.forEach(d=>{
+      const o=d.data();
+      const s=o.status==='approved'?'✅ Aprobado':o.status==='rejected'?'❌ Rechazado':'⏳ En revisión';
+      html+=`<div class="track-badge">${o.perfume||''} · ${s}</div><br>`;
     });
-    res.innerHTML = html;
-  } catch(e){ res.textContent = "Error al consultar."; }
+    res.innerHTML=html;
+  }catch(e){res.textContent="Error al consultar.";}
 };
 
-// ── ÓRDENES (JEFE) ──
+// ── ÓRDENES JEFE ──
 function loadOrders(){
-  const el = document.getElementById('orders-list'); if(!el) return;
-  onSnapshot(query(collection(db, "ventas_essence"), orderBy("fecha", "desc")), snap => {
-    const all = [];
-    snap.forEach(d => all.push({id: d.id, ...d.data()}));
-    const pending = all.filter(o => o.status === 'pending');
-    const dot = document.getElementById('notif-dot');
-    if(dot) dot.style.display = pending.length ? 'inline-block' : 'none';
-    if(!pending.length){
-      el.innerHTML = `<div style="font-size:.78rem;color:var(--muted);font-weight:600;text-align:center;padding:20px">Sin órdenes pendientes 🎉</div>`;
-      return;
-    }
-    el.innerHTML = pending.map(o => `
+  const el=document.getElementById('orders-list');if(!el)return;
+  onSnapshot(query(collection(db,"ventas_essence"),orderBy("fecha","desc")),snap=>{
+    const pending=[];
+    snap.forEach(d=>{const o=d.data();if(o.status==='pending')pending.push({id:d.id,...o});});
+    const dot=document.getElementById('notif-dot');
+    if(dot)dot.style.display=pending.length?'inline-block':'none';
+    if(!pending.length){el.innerHTML=`<div style="font-size:.78rem;color:var(--muted);font-weight:600;text-align:center;padding:20px">Sin órdenes pendientes 🎉</div>`;return;}
+    el.innerHTML=pending.map(o=>`
       <div class="order-card">
         <div class="order-top">
           <div>
             <div class="order-name">${o.cliente}</div>
-            <div class="order-perfume">${o.perfume || ''} · $${o.precio || ''}</div>
-            <div class="order-pago">💳 ${o.pago || ''}</div>
+            <div class="order-perfume">${o.perfume||''} · $${o.precio||''}</div>
+            <div class="order-pago">💳 ${o.pago||''}</div>
           </div>
           <span class="status-badge pending">Pendiente</span>
         </div>
-        ${o.comprobante
-          ? `<img src="${o.comprobante}" class="order-img" onclick="viewImg('${o.comprobante}')" alt="comprobante">`
-          : '<div style="font-size:.7rem;color:var(--muted);font-weight:600;margin:6px 0">Sin comprobante</div>'}
+        ${o.comprobante?`<img src="${o.comprobante}" class="order-img" onclick="viewImg('${o.comprobante}')" alt="comprobante">`:'<div style="font-size:.7rem;color:var(--muted);font-weight:600;margin:6px 0">Sin comprobante</div>'}
         <div class="order-actions">
           <button class="obtn approve" onclick="approveOrder(${JSON.stringify(o.id)},${JSON.stringify(o.cliente)},${JSON.stringify(o.perfume||'')})">✅ Aprobar</button>
-          <button class="obtn reject"  onclick="rejectOrder(${JSON.stringify(o.id)},${JSON.stringify(o.cliente)})">❌ Rechazar</button>
+          <button class="obtn reject" onclick="rejectOrder(${JSON.stringify(o.id)},${JSON.stringify(o.cliente)})">❌ Rechazar</button>
         </div>
       </div>`).join('');
   });
 }
 
-window.approveOrder = async (id, cliente, perfume) => {
-  await updateDoc(doc(db, "ventas_essence", id), {status: 'approved'});
+window.approveOrder=async(id,cliente,perfume)=>{
+  await updateDoc(doc(db,"ventas_essence",id),{status:'approved'});
   showToast(`✅ Orden de ${cliente} aprobada`);
   window.open(`https://wa.me/50769028805?text=${encodeURIComponent(`✅ ORDEN APROBADA\nCliente: ${cliente}\nPerfume: ${perfume}\nYa puedes coordinar la entrega.`)}`);
 };
-window.rejectOrder = async (id, cliente) => {
-  await updateDoc(doc(db, "ventas_essence", id), {status: 'rejected'});
+window.rejectOrder=async(id,cliente)=>{
+  await updateDoc(doc(db,"ventas_essence",id),{status:'rejected'});
   showToast(`❌ Orden de ${cliente} rechazada`);
 };
 
-// ── AGREGAR PRODUCTO ──
-window.previewProdImg = (e) => {
-  const f = e.target.files[0]; if(!f) return;
-  prodImgFile = f;
-  const prev = document.getElementById('prod-img-preview');
-  prev.src = URL.createObjectURL(f); prev.style.display = 'block';
+window.previewProdImg=(e)=>{
+  const f=e.target.files[0];if(!f)return;
+  prodImgFile=f;
+  const prev=document.getElementById('prod-img-preview');
+  prev.src=URL.createObjectURL(f);prev.style.display='block';
   document.getElementById('prod-upload-area').classList.add('has-file');
 };
-
-window.addProduct = async () => {
-  const name  = document.getElementById('j-name').value.trim();
-  const desc  = document.getElementById('j-desc').value.trim();
-  const price = document.getElementById('j-price').value.trim();
-  const cat   = document.getElementById('j-cat').value;
-  if(!name || !price){ showToast("⚠️ Nombre y precio son obligatorios"); return; }
-  let imgUrl = '';
-  const btn = document.getElementById('btn-add-product');
-  btn.textContent = "Guardando…"; btn.disabled = true;
-  try {
-    if(prodImgFile){
-      const storRef = ref(storage, `productos/${Date.now()}_${prodImgFile.name}`);
-      await uploadBytes(storRef, prodImgFile);
-      imgUrl = await getDownloadURL(storRef);
-    }
-    await addDoc(collection(db, "inventario_oficial"), {name, desc, price: parseFloat(price), cat, img: imgUrl, fecha: new Date()});
-    document.getElementById('j-name').value = '';
-    document.getElementById('j-desc').value = '';
-    document.getElementById('j-price').value = '';
-    prodImgFile = null;
-    document.getElementById('prod-img-preview').style.display = 'none';
-    document.getElementById('prod-upload-area').classList.remove('has-file');
-    document.getElementById('prod-img-file').value = '';
-    showToast("✅ Producto agregado al catálogo");
-  } catch(e){ showToast("❌ Error al agregar producto"); console.error(e); }
-  btn.textContent = "Agregar al catálogo"; btn.disabled = false;
+window.addProduct=async()=>{
+  const name=document.getElementById('j-name').value.trim();
+  const desc=document.getElementById('j-desc').value.trim();
+  const price=document.getElementById('j-price').value.trim();
+  const cat=document.getElementById('j-cat').value;
+  if(!name||!price){showToast("⚠️ Nombre y precio son obligatorios");return;}
+  let imgUrl='';
+  const btn=document.getElementById('btn-add-product');
+  btn.textContent="Guardando…";btn.disabled=true;
+  try{
+    if(prodImgFile){const sr=ref(storage,`productos/${Date.now()}_${prodImgFile.name}`);await uploadBytes(sr,prodImgFile);imgUrl=await getDownloadURL(sr);}
+    await addDoc(collection(db,"inventario_oficial"),{name,desc,price:parseFloat(price),cat,img:imgUrl,fecha:new Date()});
+    document.getElementById('j-name').value='';document.getElementById('j-desc').value='';document.getElementById('j-price').value='';
+    prodImgFile=null;document.getElementById('prod-img-preview').style.display='none';
+    document.getElementById('prod-upload-area').classList.remove('has-file');document.getElementById('prod-img-file').value='';
+    showToast("✅ Producto agregado");
+  }catch(e){showToast("❌ Error al agregar");}
+  btn.textContent="Agregar al catálogo";btn.disabled=false;
 };
-
-window.deleteProduct = async (id, name) => {
-  if(!confirm(`¿Eliminar "${name}"?`)) return;
-  await deleteDoc(doc(db, "inventario_oficial", id));
+window.deleteProduct=async(id,name)=>{
+  if(!confirm(`¿Eliminar "${name}"?`))return;
+  await deleteDoc(doc(db,"inventario_oficial",id));
   showToast(`🗑️ "${name}" eliminado`);
 };
 
-// ── PROMO MODALES ──
-window.openEditPromo = () => {
-  document.getElementById('pm-price').value = promoData.price || '';
-  document.getElementById('pm-sub').value   = promoData.sub   || '';
-  document.getElementById('pm-pill').value  = promoData.pill  || '';
+// ── PROMO MODAL ──
+window.openEditPromo=()=>{
+  document.getElementById('pm-price').value=promoData.price||'';
+  document.getElementById('pm-sub').value=promoData.sub||'';
+  document.getElementById('pm-pill').value=promoData.pill||'';
   document.getElementById('promo-modal').classList.add('open');
 };
-window.closePromoModal = () => document.getElementById('promo-modal').classList.remove('open');
-window.savePromoModal = async () => {
-  promoData.price = document.getElementById('pm-price').value.trim() || promoData.price;
-  promoData.sub   = document.getElementById('pm-sub').value.trim()   || promoData.sub;
-  promoData.pill  = document.getElementById('pm-pill').value.trim()  || promoData.pill;
-  await setDoc(doc(db, "config", "promo"), promoData);
-  applyPromo(); closePromoModal();
-  showToast("✅ Oferta actualizada");
+window.closePromoModal=()=>document.getElementById('promo-modal').classList.remove('open');
+window.savePromoModal=async()=>{
+  promoData.price=document.getElementById('pm-price').value.trim()||promoData.price;
+  promoData.sub=document.getElementById('pm-sub').value.trim()||promoData.sub;
+  promoData.pill=document.getElementById('pm-pill').value.trim()||promoData.pill;
+  await setDoc(doc(db,"config","promo"),promoData);
+  applyPromo();closePromoModal();showToast("✅ Oferta actualizada");
 };
 
-// ── AI CHAT ──
-const SYSTEM_PROMPT = `Eres NOVA, la asistente virtual de ESSENCE — una tienda premium de perfumes en Panamá. Tienes personalidad cálida, moderna y entusiasta. Hablas como una persona real, no como un robot. Usas emojis ocasionalmente para dar vida a tus respuestas. Eres experta en fragancias.
+// ── NOVA IA CHAT ──
+const SYSTEM_PROMPT=`Eres NOVA, la asistente virtual de ESSENCE — una tienda premium de perfumes en Panamá. Personalidad cálida, moderna y entusiasta. Hablas como persona real. Usas emojis ocasionalmente.
 
-=== INFORMACIÓN DE ESSENCE ===
+CATÁLOGO: Perfumes de Dama, Caballero y Unisex. Precios $40-$150. Oferta: 2 x $120.
+ENTREGAS: Todo Panamá. 24h Ciudad, 48h interior. Sin costo de envío en ciudad.
+PAGO: Yappy al 6902-8805. ACH cuenta 0408000050774. El cliente sube comprobante en la app.
+PROCESO: Elige perfume → ¡Lo quiero! → Pagar → Subir comprobante → Jefe aprueba → WhatsApp.
+CONTACTO: WhatsApp 6902-8805. Lunes-Sábado 8am-8pm.
+USUARIOS: Si crean cuenta obtienen 5% de descuento automático.
 
-CATÁLOGO Y PRECIOS:
-- Tenemos perfumes de Dama, Caballero y Unisex
-- Precios desde $40 hasta $150 dependiendo de la fragancia
-- Oferta actual: 2 perfumes por $120 (cualquier combinación del catálogo)
-- Todas las fragancias son inspiradas en marcas de lujo internacionales
-
-ENTREGAS:
-- Hacemos entregas en todo Panamá
-- Tiempo de entrega: 24 horas en Ciudad de Panamá, 48 horas en el interior
-- La entrega se coordina por WhatsApp al 6902-8805 una vez que el jefe aprueba el pedido
-- No hay costo de envío en pedidos dentro de la ciudad
-
-MÉTODOS DE PAGO:
-- Yappy: al número 6902-8805
-- Transferencia ACH: banco confirmado por el equipo
-- El cliente sube el comprobante directamente en la app
-- No se acepta efectivo ni tarjeta por el momento
-
-PROCESO DE COMPRA:
-1. El cliente elige su perfume y toca "¡Lo quiero!"
-2. Selecciona método de pago (Yappy o ACH)
-3. Sube foto del comprobante
-4. El jefe revisa y aprueba en el panel
-5. Una vez aprobado, se coordina la entrega por WhatsApp
-
-POLÍTICAS:
-- No se aceptan devoluciones en fragancias ya abiertas o usadas
-- Si el producto llega dañado, tienes 48 horas para reportarlo con foto al WhatsApp
-- En caso de error en el pedido, se gestiona de inmediato
-
-RASTREO:
-- El cliente puede rastrear su pedido en la sección "Rastreo" usando su nombre
-
-CONTACTO:
-- WhatsApp: 6902-8805
-- Atención: Lunes a Sábado 8am - 8pm
-
-=== TU COMPORTAMIENTO ===
-- Sé conversacional, cálida y genuinamente útil
-- Si no sabes algo del inventario actual, sugiere preguntar por WhatsApp
-- Si el cliente quiere hablar con una persona, diles que toquen "Hablar con un agente humano"
-- Responde en español panameño natural`;
+Sé conversacional y genuina. Si quieren agente humano, diles que toquen el botón rojo. Responde en español panameño natural.`;
 
 async function initChat(){
-  document.getElementById('chat-messages').innerHTML = '';
-  chatHistory = [];
-  appendMsg('bot', '¡Hola! 🌸 Soy NOVA, tu asistente de ESSENCE. ¿En qué te puedo ayudar hoy?');
+  document.getElementById('chat-messages').innerHTML='';chatHistory=[];
+  appendMsg('bot','¡Hola! 🌸 Soy NOVA, tu asistente de ESSENCE. ¿En qué te puedo ayudar hoy?');
 }
 initChat();
 
-function appendMsg(role, text){
-  const msgs = document.getElementById('chat-messages');
-  const d = document.createElement('div');
-  d.className = `msg ${role}`; d.textContent = text;
-  msgs.appendChild(d); msgs.scrollTop = msgs.scrollHeight;
+function appendMsg(role,text){
+  const msgs=document.getElementById('chat-messages');
+  const d=document.createElement('div');d.className=`msg ${role}`;d.textContent=text;
+  msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;
 }
 function appendTyping(){
-  const msgs = document.getElementById('chat-messages');
-  const d = document.createElement('div');
-  d.className = 'msg bot typing'; d.id = 'typing-indicator';
-  d.innerHTML = '<span class="dot-typing"></span><span class="dot-typing"></span><span class="dot-typing"></span>';
-  msgs.appendChild(d); msgs.scrollTop = msgs.scrollHeight;
+  const msgs=document.getElementById('chat-messages');
+  const d=document.createElement('div');d.className='msg bot typing';d.id='typing-indicator';
+  d.innerHTML='<span class="dot-typing"></span><span class="dot-typing"></span><span class="dot-typing"></span>';
+  msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;
 }
-function removeTyping(){ const t = document.getElementById('typing-indicator'); if(t) t.remove(); }
+function removeTyping(){const t=document.getElementById('typing-indicator');if(t)t.remove();}
 
-window.sendChat = async () => {
-  const inp = document.getElementById('chat-input');
-  const text = inp.value.trim(); if(!text) return;
-  appendMsg('user', text); inp.value = '';
-  chatHistory.push({role: 'user', content: text});
+async function callAnthropicAPI(messages,systemPrompt){
+  const res=await fetch('https://api.anthropic.com/v1/messages',{
+    method:'POST',
+    headers:{
+      'Content-Type':'application/json',
+      'x-api-key':'sk-ant-api03-placeholder-replace-with-real-key',
+      'anthropic-version':'2023-06-01',
+      'anthropic-dangerous-allow-browser':'true'
+    },
+    body:JSON.stringify({model:'claude-haiku-4-5-20251001',max_tokens:800,system:systemPrompt,messages})
+  });
+  const data=await res.json();
+  if(data.error)throw new Error(data.error.message);
+  return data.content?.map(c=>c.text||'').join('')||'Lo siento, intenta de nuevo.';
+}
+
+window.sendChat=async()=>{
+  const inp=document.getElementById('chat-input');
+  const text=inp.value.trim();if(!text)return;
+  appendMsg('user',text);inp.value='';
+  chatHistory.push({role:'user',content:text});
   appendTyping();
-  try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
-        system: SYSTEM_PROMPT,
-        messages: chatHistory
-      })
-    });
-    const data = await res.json();
-    const reply = data.content?.map(c => c.text || '').join('') || 'Lo siento, intenta de nuevo.';
-    removeTyping(); appendMsg('bot', reply);
-    chatHistory.push({role: 'assistant', content: reply});
-    await addDoc(collection(db, "chat_sessions"), {user_msg: text, bot_reply: reply, fecha: new Date(), redirected: false});
-  } catch(e){ removeTyping(); appendMsg('bot', 'Error de conexión. Intenta de nuevo.'); }
+  try{
+    const reply=await callAnthropicAPI(chatHistory,SYSTEM_PROMPT);
+    removeTyping();appendMsg('bot',reply);
+    chatHistory.push({role:'assistant',content:reply});
+    await addDoc(collection(db,"chat_sessions"),{user_msg:text,bot_reply:reply,fecha:new Date()});
+  }catch(e){removeTyping();appendMsg('bot','Error de conexión. Intenta de nuevo.');}
 };
 
-window.redirectToWhatsApp = async () => {
-  const name = prompt("¿Cuál es tu nombre?"); if(!name) return;
-  await addDoc(collection(db, "agent_requests"), {cliente: name, messages: chatHistory, fecha: new Date(), status: 'pending', agentReply: []});
+window.redirectToWhatsApp=async()=>{
+  const name=prompt("¿Cuál es tu nombre?");if(!name)return;
+  await addDoc(collection(db,"agent_requests"),{cliente:name,messages:chatHistory,fecha:new Date(),status:'pending',agentReply:[]});
   window.open(`https://wa.me/50769028805?text=${encodeURIComponent(`Hola, soy ${name} y quisiera hablar con un agente de ESSENCE.`)}`);
 };
 
-// ── PANEL AGENTE ──
+// ── AGENTE CON IA ──
+const AGENT_SYSTEM=`Eres un asistente de soporte para agentes de ESSENCE, una tienda de perfumes premium en Panamá. 
+Un cliente está chateando y el agente humano necesita una respuesta sugerida.
+Genera una respuesta profesional, amigable y en español panameño que el agente puede enviar al cliente.
+Responde SOLO con el texto de la respuesta sugerida, sin explicaciones adicionales.
+Contexto: Tienda de perfumes, WhatsApp 6902-8805, pagos Yappy/ACH, entregas en Panamá.`;
+
+async function generateAgentSuggestion(convMessages){
+  const el=document.getElementById('agent-ai-suggestion');
+  if(!el)return;
+  el.textContent='⏳ Generando sugerencia IA…';
+  try{
+    const reply=await callAnthropicAPI(convMessages,AGENT_SYSTEM);
+    el.textContent=reply;
+    el.dataset.suggestion=reply;
+  }catch(e){el.textContent='(IA no disponible — escribe tu respuesta manual)';}
+}
+
+window.useAiSuggestion=()=>{
+  const el=document.getElementById('agent-ai-suggestion');
+  const inp=document.getElementById('agent-reply-input');
+  if(el&&inp&&el.dataset.suggestion){inp.value=el.dataset.suggestion;inp.focus();}
+};
+
 function loadAgentPanel(){
-  onSnapshot(query(collection(db, "agent_requests"), orderBy("fecha", "desc")), snap => {
-    const el = document.getElementById('agent-convs'); if(!el) return;
-    if(snap.empty){ el.innerHTML = `<div style="font-size:.78rem;color:var(--muted);font-weight:600;text-align:center;padding:20px">Sin conversaciones pendientes</div>`; return; }
-    el.innerHTML = '';
-    snap.forEach(d => {
-      const o = d.data();
-      const btn = document.createElement('div');
-      btn.className = 'agent-conv';
-      btn.innerHTML = `<h4>${o.cliente}</h4><p>${o.fecha || ''}</p>`;
-      btn.onclick = () => openAgentChat(d.id, o);
+  onSnapshot(query(collection(db,"agent_requests"),orderBy("fecha","desc")),snap=>{
+    const el=document.getElementById('agent-convs');if(!el)return;
+    if(snap.empty){el.innerHTML=`<div style="font-size:.78rem;color:var(--muted);text-align:center;padding:20px">Sin conversaciones</div>`;return;}
+    el.innerHTML='';
+    snap.forEach(d=>{
+      const o=d.data();
+      const btn=document.createElement('div');btn.className='agent-conv';
+      btn.innerHTML=`<h4>${o.cliente}</h4><p>${o.fecha||''}</p>`;
+      btn.onclick=()=>openAgentChat(d.id,o);
       el.appendChild(btn);
     });
   });
-  onSnapshot(query(collection(db, "ventas_essence"), orderBy("fecha", "desc")), snap => {
-    const el = document.getElementById('agent-orders'); if(!el) return;
-    if(snap.empty){ el.innerHTML = `<div style="font-size:.78rem;color:var(--muted);font-weight:600;text-align:center;padding:16px">Sin órdenes</div>`; return; }
-    el.innerHTML = '<div style="display:flex;flex-direction:column;gap:8px">' +
-      [...snap.docs].map(d => {
-        const o = d.data();
-        const s = o.status === 'approved'
-          ? `<span class="status-badge approved">Aprobado</span>`
-          : o.status === 'rejected'
-          ? `<span class="status-badge rejected">Rechazado</span>`
-          : `<span class="status-badge pending">Pendiente</span>`;
-        return `<div class="order-card"><div class="order-top"><div><div class="order-name">${o.cliente}</div><div class="order-perfume">${o.perfume || ''}</div></div>${s}</div></div>`;
-      }).join('') + '</div>';
+  onSnapshot(query(collection(db,"ventas_essence"),orderBy("fecha","desc")),snap=>{
+    const el=document.getElementById('agent-orders');if(!el)return;
+    if(snap.empty){el.innerHTML=`<div style="font-size:.78rem;color:var(--muted);text-align:center;padding:16px">Sin órdenes</div>`;return;}
+    el.innerHTML='<div style="display:flex;flex-direction:column;gap:8px">'+[...snap.docs].map(d=>{
+      const o=d.data();
+      const s=o.status==='approved'?`<span class="status-badge approved">Aprobado</span>`:o.status==='rejected'?`<span class="status-badge rejected">Rechazado</span>`:`<span class="status-badge pending">Pendiente</span>`;
+      return `<div class="order-card"><div class="order-top"><div><div class="order-name">${o.cliente}</div><div class="order-perfume">${o.perfume||''}</div></div>${s}</div></div>`;
+    }).join('')+'</div>';
   });
 }
 
-function openAgentChat(id, o){
-  activeAgentClient = {id, ...o};
-  document.getElementById('agent-chat-title').textContent = `Chat con ${o.cliente}`;
-  const el = document.getElementById('agent-chat-messages'); el.innerHTML = '';
-  (o.messages || []).forEach(m => {
-    const d = document.createElement('div');
-    d.className = `msg ${m.role === 'user' ? 'user' : 'bot'}`;
-    d.textContent = m.content; el.appendChild(d);
-  });
-  (o.agentReply || []).forEach(r => {
-    const d = document.createElement('div');
-    d.className = 'msg user'; d.textContent = `[Agente]: ${r}`; el.appendChild(d);
-  });
-  el.scrollTop = el.scrollHeight;
-  document.getElementById('agent-chat-panel').style.display = 'block';
+function openAgentChat(id,o){
+  activeAgentClient={id,...o};
+  document.getElementById('agent-chat-title').textContent=`Chat con ${o.cliente}`;
+  const el=document.getElementById('agent-chat-messages');el.innerHTML='';
+  const msgs=[...(o.messages||[])];
+  msgs.forEach(m=>{const d=document.createElement('div');d.className=`msg ${m.role==='user'?'user':'bot'}`;d.textContent=m.content;el.appendChild(d);});
+  (o.agentReply||[]).forEach(r=>{const d=document.createElement('div');d.className='msg user';d.textContent=`[Agente]: ${r}`;el.appendChild(d);});
+  el.scrollTop=el.scrollHeight;
+  document.getElementById('agent-chat-panel').style.display='block';
+  // generar sugerencia IA
+  if(msgs.length>0)generateAgentSuggestion(msgs);
 }
 
-window.sendAgentReply = async () => {
-  const inp = document.getElementById('agent-reply-input');
-  const text = inp.value.trim(); if(!text || !activeAgentClient) return;
-  inp.value = '';
-  const el = document.getElementById('agent-chat-messages');
-  const d = document.createElement('div'); d.className = 'msg user'; d.textContent = `[Agente]: ${text}`;
-  el.appendChild(d); el.scrollTop = el.scrollHeight;
-  const replies = (activeAgentClient.agentReply || []);
-  replies.push(text);
-  await updateDoc(doc(db, "agent_requests", activeAgentClient.id), {agentReply: replies});
+window.sendAgentReply=async()=>{
+  const inp=document.getElementById('agent-reply-input');
+  const text=inp.value.trim();if(!text||!activeAgentClient)return;
+  inp.value='';
+  const el=document.getElementById('agent-chat-messages');
+  const d=document.createElement('div');d.className='msg user';d.textContent=`[Agente]: ${text}`;
+  el.appendChild(d);el.scrollTop=el.scrollHeight;
+  const replies=(activeAgentClient.agentReply||[]);replies.push(text);
+  await updateDoc(doc(db,"agent_requests",activeAgentClient.id),{agentReply:replies});
   window.open(`https://wa.me/50769028805?text=${encodeURIComponent(`[AGENTE ESSENCE]\nCliente: ${activeAgentClient.cliente}\nRespuesta: ${text}`)}`);
+  // actualizar sugerencia
+  const updatedMsgs=[...(activeAgentClient.messages||[]),{role:'assistant',content:text}];
+  generateAgentSuggestion(updatedMsgs);
 };
 
 // ── ACCESS / LOGIN ──
-window.showAccessModal = () => document.getElementById('access-modal').classList.add('open');
-window.closeAccessModal = () => document.getElementById('access-modal').classList.remove('open');
+window.showAccessModal=()=>document.getElementById('access-modal').classList.add('open');
+window.closeAccessModal=()=>document.getElementById('access-modal').classList.remove('open');
+window.goJefe=()=>{closeAccessModal();document.getElementById('app-client').style.display='none';document.getElementById('app-jefe').style.display='block';document.getElementById('app-agente').style.display='none';};
+window.goAgente=()=>{closeAccessModal();document.getElementById('app-client').style.display='none';document.getElementById('app-agente').style.display='block';document.getElementById('app-jefe').style.display='none';};
+window.backToApp=()=>{document.getElementById('app-client').style.display='block';document.getElementById('app-jefe').style.display='none';document.getElementById('app-agente').style.display='none';};
 
-window.goJefe = () => {
-  closeAccessModal();
-  document.getElementById('app-client').style.display = 'none';
-  document.getElementById('app-jefe').style.display = 'block';
-  document.getElementById('app-agente').style.display = 'none';
+window.jefeLogin=()=>{
+  const code=document.getElementById('jefe-code').value;
+  if(code==='2020'){
+    isBoss=true;
+    document.getElementById('jefe-login').style.display='none';
+    document.getElementById('jefe-panel').style.display='block';
+    document.getElementById('jefe-nav').style.display='flex';
+    document.getElementById('edit-promo-btn').style.display='block';
+    loadOrders();renderJefeInventory();
+  }else{document.getElementById('jefe-err').textContent='Código incorrecto';setTimeout(()=>document.getElementById('jefe-err').textContent='',2000);}
 };
-window.goAgente = () => {
-  closeAccessModal();
-  document.getElementById('app-client').style.display = 'none';
-  document.getElementById('app-agente').style.display = 'block';
-  document.getElementById('app-jefe').style.display = 'none';
+window.logoutJefe=()=>{
+  isBoss=false;
+  document.getElementById('jefe-panel').style.display='none';document.getElementById('jefe-login').style.display='flex';
+  document.getElementById('jefe-nav').style.display='none';document.getElementById('jefe-code').value='';
+  document.getElementById('edit-promo-btn').style.display='none';backToApp();
 };
-window.backToApp = () => {
-  document.getElementById('app-client').style.display = 'block';
-  document.getElementById('app-jefe').style.display = 'none';
-  document.getElementById('app-agente').style.display = 'none';
+window.agenteLogin=()=>{
+  const code=document.getElementById('agente-code').value;
+  if(code==='2021'){
+    isAgent=true;
+    document.getElementById('agente-login').style.display='none';document.getElementById('agente-panel').style.display='block';
+    document.getElementById('agente-nav').style.display='flex';loadAgentPanel();
+  }else{document.getElementById('agente-err').textContent='Código incorrecto';setTimeout(()=>document.getElementById('agente-err').textContent='',2000);}
 };
-
-window.jefeLogin = () => {
-  const code = document.getElementById('jefe-code').value;
-  if(code === '2020'){
-    isBoss = true;
-    document.getElementById('jefe-login').style.display = 'none';
-    document.getElementById('jefe-panel').style.display = 'block';
-    document.getElementById('jefe-nav').style.display = 'flex';
-    document.getElementById('edit-promo-btn').style.display = 'block';
-    loadOrders(); renderJefeInventory();
-  } else {
-    document.getElementById('jefe-err').textContent = 'Código incorrecto';
-    setTimeout(() => document.getElementById('jefe-err').textContent = '', 2000);
-  }
-};
-window.logoutJefe = () => {
-  isBoss = false;
-  document.getElementById('jefe-panel').style.display = 'none';
-  document.getElementById('jefe-login').style.display = 'flex';
-  document.getElementById('jefe-nav').style.display = 'none';
-  document.getElementById('jefe-code').value = '';
-  document.getElementById('edit-promo-btn').style.display = 'none';
-  backToApp();
-};
-
-window.agenteLogin = () => {
-  const code = document.getElementById('agente-code').value;
-  if(code === '2021'){
-    isAgent = true;
-    document.getElementById('agente-login').style.display = 'none';
-    document.getElementById('agente-panel').style.display = 'block';
-    document.getElementById('agente-nav').style.display = 'flex';
-    loadAgentPanel();
-  } else {
-    document.getElementById('agente-err').textContent = 'Código incorrecto';
-    setTimeout(() => document.getElementById('agente-err').textContent = '', 2000);
-  }
-};
-window.logoutAgente = () => {
-  isAgent = false;
-  document.getElementById('agente-panel').style.display = 'none';
-  document.getElementById('agente-login').style.display = 'flex';
-  document.getElementById('agente-nav').style.display = 'none';
-  document.getElementById('agente-code').value = '';
-  backToApp();
+window.logoutAgente=()=>{
+  isAgent=false;
+  document.getElementById('agente-panel').style.display='none';document.getElementById('agente-login').style.display='flex';
+  document.getElementById('agente-nav').style.display='none';document.getElementById('agente-code').value='';backToApp();
 };
 
 // ── NAVEGACIÓN ──
-window.goView = (v) => {
-  ['shop','track','chat'].forEach(x => {
-    document.getElementById(`view-${x}`).classList.toggle('active', x === v);
-    document.getElementById(`nb-${x}`).classList.toggle('active', x === v);
+window.goView=(v)=>{
+  ['shop','track','chat'].forEach(x=>{
+    document.getElementById(`view-${x}`).classList.toggle('active',x===v);
+    document.getElementById(`nb-${x}`).classList.toggle('active',x===v);
   });
-  if(v === 'chat' && document.getElementById('chat-messages').children.length === 0) initChat();
+  if(v==='chat'&&document.getElementById('chat-messages').children.length===0)initChat();
 };
 
 // ── SECRET TAP ──
-let secretCount = 0, secretTimer = null;
-window.secretTap = () => {
-  secretCount++;
-  clearTimeout(secretTimer);
-  secretTimer = setTimeout(() => { secretCount = 0; }, 2000);
-  if(secretCount === 8){ secretCount = 0; showAccessModal(); }
+let secretCount=0,secretTimer=null;
+window.secretTap=()=>{
+  secretCount++;clearTimeout(secretTimer);
+  secretTimer=setTimeout(()=>{secretCount=0;},2000);
+  if(secretCount===8){secretCount=0;showAccessModal();}
 };
 
 // ── IMAGE VIEWER ──
-window.viewImg = (src) => {
-  document.getElementById('img-viewer-src').src = src;
-  document.getElementById('img-viewer').classList.add('open');
-};
+window.viewImg=(src)=>{document.getElementById('img-viewer-src').src=src;document.getElementById('img-viewer').classList.add('open');};
 
 </script>
 </body>
