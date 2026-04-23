@@ -5,6 +5,31 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>ESSENCE | PREMIUM</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  // EmailJS — ve a emailjs.com, crea cuenta gratis y reemplaza estos 3 valores:
+  const EMAILJS_PUBLIC_KEY  = "TU_PUBLIC_KEY";   // Account → API Keys
+  const EMAILJS_SERVICE_ID  = "TU_SERVICE_ID";   // Email Services → Service ID
+  const EMAILJS_TEMPLATE_ID = "TU_TEMPLATE_ID";  // Email Templates → Template ID
+  document.addEventListener('DOMContentLoaded', () => {
+    if(EMAILJS_PUBLIC_KEY !== "TU_PUBLIC_KEY") emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+  });
+  async function sendOrderEmail(cliente, perfume, precio, pago, comprobante) {
+    if(EMAILJS_PUBLIC_KEY === "TU_PUBLIC_KEY") { console.warn("EmailJS no configurado"); return; }
+    try {
+      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+        to_email:    "essenceperfumpty@gmail.com",
+        to_name:     "ESSENCE",
+        cliente,
+        perfume,
+        precio:      "$" + precio,
+        pago,
+        comprobante: comprobante || "Sin imagen",
+        fecha:       new Date().toLocaleString("es-PA")
+      });
+    } catch(e) { console.error("EmailJS error:", e); }
+  }
+</script>
 <style>
 :root {
   --red: #ff2d2d; --red-deep: #c0000e;
@@ -221,6 +246,10 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
 
 /* Toggle */
 .logout-btn{background:none;border:none;font-family:'Montserrat',sans-serif;font-size:.65rem;font-weight:700;color:var(--muted);cursor:pointer;padding:6px 12px;border-radius:50px;border:1px solid var(--border)}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:calc(90px + var(--safe-bottom) + 10px);left:50%;transform:translateX(-50%) translateY(20px);background:#1c1c1e;color:#fff;padding:13px 22px;border-radius:50px;font-size:.78rem;font-weight:700;z-index:99999;opacity:0;transition:all .3s cubic-bezier(.34,1.2,.64,1);pointer-events:none;white-space:nowrap;max-width:90vw;text-align:center}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 </style>
 </head>
 <body>
@@ -475,7 +504,7 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
       <img id="comp-preview" class="upload-preview">
     </div>
     <input type="text" class="form-input" id="buyer-name" placeholder="Tu nombre completo" style="margin:10px 0">
-    <button class="btn-red" onclick="confirmOrder()">Confirmar Pedido</button>
+    <button class="btn-red" id="confirm-order-btn" onclick="confirmOrder()">Confirmar Pedido</button>
     <button class="pay-btn pay-cancel" style="margin-top:8px" onclick="closeUpload()">Cancelar</button>
   </div>
 </div>
@@ -627,25 +656,31 @@ window.confirmOrder = async ()=>{
   const name=document.getElementById('buyer-name').value.trim();
   if(!name){ alert("Ingresa tu nombre"); return; }
   if(!compFile){ alert("Sube el comprobante de pago"); return; }
+  const btn=document.getElementById('confirm-order-btn');
+  btn.textContent="Subiendo…"; btn.disabled=true;
   try {
-    const btn=document.querySelector('#upload-modal .btn-red');
-    btn.textContent="Subiendo…"; btn.disabled=true;
-    // upload image to Firebase Storage
+    // upload comprobante to Firebase Storage
     const storRef = ref(storage, `comprobantes/${Date.now()}_${compFile.name}`);
     await uploadBytes(storRef, compFile);
     const imgUrl = await getDownloadURL(storRef);
-    // save order
+    // save order to Firestore
     await addDoc(collection(db,"ventas_essence"),{
       cliente:name, perfume:currentN, precio:currentP,
       pago:currentPayMethod, comprobante:imgUrl,
       fecha:new Date(), status:"pending"
     });
+    // send email notification
+    await sendOrderEmail(name, currentN, currentP, currentPayMethod, imgUrl);
+    // reset button
     btn.textContent="Confirmar Pedido"; btn.disabled=false;
     closeUpload();
-    // notify via WhatsApp
-    window.open(`https://wa.me/50769028805?text=${encodeURIComponent(`🔥 NUEVA ORDEN\nCliente: ${name}\nPerfume: ${currentN}\nPrecio: $${currentP}\nPago: ${currentPayMethod}\nComprobante adjunto en panel`)}`);
-    alert(`✅ ¡Pedido enviado, ${name}! El jefe revisará tu comprobante.`);
-  } catch(err){ alert("Error al procesar. Intenta de nuevo."); console.error(err); }
+    // show success
+    showToast(`✅ ¡Pedido enviado! El jefe lo revisará pronto.`);
+  } catch(err){
+    console.error(err);
+    btn.textContent="Confirmar Pedido"; btn.disabled=false;
+    alert("Error al subir. Verifica tu conexión e intenta de nuevo.");
+  }
 };
 
 // ── TRACKING ──
@@ -1014,13 +1049,13 @@ window.goView = (v)=>{
   if(v==='chat' && document.getElementById('chat-messages').children.length===0) initChat();
 };
 
-// ── SECRET TAP (28 veces en el logo) ──
+// ── SECRET TAP (8 veces en el logo) ──
 let secretCount = 0, secretTimer = null;
 window.secretTap = () => {
   secretCount++;
   clearTimeout(secretTimer);
   secretTimer = setTimeout(() => { secretCount = 0; }, 2000);
-  if (secretCount === 28) {
+  if (secretCount === 8) {
     secretCount = 0;
     showAccessModal();
   }
@@ -1032,6 +1067,8 @@ window.viewImg = (src)=>{
   document.getElementById('img-viewer').classList.add('open');
 };
 </script>
+
+<div class="toast" id="toast"></div>
 </body>
 </html>
 
