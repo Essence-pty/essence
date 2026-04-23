@@ -229,10 +229,9 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
      HEADER
 ════════════════════════════════ -->
 <header id="main-header">
-  <div class="logo">ESSENCE</div>
+  <div class="logo" id="secret-logo" onclick="secretTap()" style="cursor:default;user-select:none">ESSENCE</div>
   <div class="header-right">
     <span class="hbadge" id="promo-badge-header">2×$120</span>
-    <button class="hbtn" onclick="showAccessModal()">🔐 Acceso</button>
   </div>
 </header>
 
@@ -976,6 +975,18 @@ window.goView = (v)=>{
     document.getElementById(`nb-${x}`).classList.toggle('active',x===v);
   });
   if(v==='chat' && document.getElementById('chat-messages').children.length===0) initChat();
+};
+
+// ── SECRET TAP (28 veces en el logo) ──
+let secretCount = 0, secretTimer = null;
+window.secretTap = () => {
+  secretCount++;
+  clearTimeout(secretTimer);
+  secretTimer = setTimeout(() => { secretCount = 0; }, 2000);
+  if (secretCount === 28) {
+    secretCount = 0;
+    showAccessModal();
+  }
 };
 
 // ── IMAGE VIEWER ──
