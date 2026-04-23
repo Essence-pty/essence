@@ -1087,36 +1087,41 @@ window.secretTap = () => {
 window.viewImg = (src)=>{
   document.getElementById('img-viewer-src').src=src;
   document.getElementById('img-viewer').classList.add('open');
-};// --- FUNCIÓN DE CONFIRMACIÓN DE PEDIDO ---
+}// --- ESTA ES LA QUE VA A FUNCIONAR SÍ O SÍ ---
 window.confirmOrder = async function() {
     const nameInput = document.getElementById('buyer-name');
-    const fileInput = document.getElementById('comp-file');
     const btn = document.getElementById('confirm-order-btn');
 
-    if (!nameInput || !nameInput.value) return alert("Fren, pon tu nombre completo");
-    if (!fileInput || !fileInput.files[0]) return alert("Sube la foto del comprobante");
+    if (!nameInput || !nameInput.value) return alert("Pon tu nombre completo, fren");
 
-    btn.innerText = "Enviando...";
+    btn.innerText = "PROCESANDO...";
     btn.disabled = true;
 
     try {
+        // Usamos la base de datos que conectamos al principio
+        const db = window.db;
         const { collection, addDoc } = window.dbFunctions;
-        
-        await addDoc(collection(window.db, "pedidos"), {
+
+        if (!db || !collection) {
+            throw new Error("Firebase no está cargado. Revisa la conexión al principio del archivo.");
+        }
+
+        // Guardamos el pedido
+        await addDoc(collection(db, "pedidos"), {
             cliente: nameInput.value,
-            metodo: window.currentPayMethod || "Yappy/ACH",
-            producto: window.selectedProduct ? window.selectedProduct.name : "Pack 2x120",
-            fecha: new Date().toLocaleString("es-PA"),
+            fecha: new Date().toISOString(),
+            metodo: "Yappy/ACH",
+            producto: "Pack Essence 2x120",
             estado: "pendiente"
         });
 
-        alert("¡Pedido enviado! 🔥 Revisa tu WhatsApp.");
-        location.reload(); 
+        alert("¡PEDIDO RECIBIDO! 🔥 En breve te contactamos.");
+        location.reload();
 
     } catch (error) {
-        console.error("Error:", error);
-        alert("Error de Firebase: Revisa que las Reglas estén en 'true'");
-        btn.innerText = "Confirmar Pedido";
+        console.error("Errorazo:", error);
+        alert("Fallo al enviar: " + error.message);
+        btn.innerText = "CONFIRMAR PEDIDO";
         btn.disabled = false;
     }
 };
