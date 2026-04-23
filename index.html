@@ -163,12 +163,51 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
 .logout-btn{background:none;border:1px solid var(--border);font-family:'Montserrat',sans-serif;font-size:.65rem;font-weight:700;color:var(--muted);cursor:pointer;padding:6px 12px;border-radius:50px}
 .toast{position:fixed;bottom:calc(90px + var(--safe-bottom) + 10px);left:50%;transform:translateX(-50%) translateY(20px);background:#1c1c1e;color:#fff;padding:13px 22px;border-radius:50px;font-size:.78rem;font-weight:700;z-index:99999;opacity:0;transition:all .3s cubic-bezier(.34,1.2,.64,1);pointer-events:none;white-space:nowrap;max-width:90vw;text-align:center}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-.counter-wrap{text-align:center;padding:20px 10px}
-.counter-wrap .counter-icon{font-size:3rem;margin-bottom:10px}
-.counter-wrap h2{font-size:1rem;font-weight:900;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px}
-.counter-wrap p{font-size:.75rem;color:var(--muted);font-weight:600;margin-bottom:16px}
-.counter-time{font-size:2.8rem;font-weight:900;color:var(--red);letter-spacing:2px;margin:10px 0}
-.counter-sub{font-size:.7rem;color:var(--muted);font-weight:600}
+/* ── CHECKOUT FLOW ── */
+.checkout-sheet{background:var(--white);width:100%;border-radius:28px 28px 0 0;padding:10px 20px calc(32px + var(--safe-bottom));animation:sheetUp .3s cubic-bezier(.34,1.2,.64,1);max-height:92vh;overflow-y:auto}
+.cstep{display:none}.cstep.active{display:block;animation:fadeUp .25s ease}
+.cstep-title{font-size:1.05rem;font-weight:900;letter-spacing:.3px;text-align:center;margin-bottom:20px;color:var(--text)}
+.checkout-product-pill{background:var(--bg);border:1px solid var(--border);border-radius:50px;padding:8px 16px;font-size:.72rem;font-weight:800;color:var(--muted);text-align:center;margin-bottom:16px}
+.cback-btn{display:inline-flex;align-items:center;font-size:.78rem;font-weight:800;color:var(--muted);cursor:pointer;margin-bottom:14px;padding:4px 0}
+.pay-methods{display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
+.pay-method-card{display:flex;align-items:center;gap:14px;padding:16px;border-radius:18px;border:1.5px solid var(--border);background:var(--white);cursor:pointer;transition:var(--tr);font-family:'Montserrat',sans-serif;text-align:left;box-shadow:var(--sh);width:100%}
+.pay-method-card:active{transform:scale(.97)}
+.yappy-card:hover,.yappy-card:focus{border-color:#6fcf40;background:#f6fff0}
+.ach-card:hover,.ach-card:focus{border-color:#0066ff;background:#f0f5ff}
+.pmc-icon{font-size:1.5rem;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:12px;background:var(--bg);flex-shrink:0}
+.pmc-info{flex:1;min-width:0}
+.pmc-name{font-size:.9rem;font-weight:800;color:var(--text);margin-bottom:2px}
+.pmc-sub{font-size:.65rem;font-weight:600;color:var(--muted)}
+.pmc-arrow{font-size:1.4rem;color:var(--muted)}
+.pay-instruction-card{border-radius:20px;padding:18px;margin-bottom:18px;display:flex;align-items:center;gap:14px}
+.yappy-instr{background:linear-gradient(135deg,#f0fff4,#e8fde8);border:1.5px solid #6fcf4060}
+.ach-instr{background:linear-gradient(135deg,#eff6ff,#e8f0ff);border:1.5px solid #0066ff40}
+.instr-icon{font-size:1.8rem;width:48px;height:48px;display:flex;align-items:center;justify-content:center;border-radius:14px;background:rgba(255,255,255,.8);flex-shrink:0}
+.instr-body{flex:1;min-width:0}
+.instr-label{font-size:.58rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.instr-number{font-size:1.3rem;font-weight:900;color:var(--text);letter-spacing:1px;cursor:pointer;transition:var(--tr);word-break:break-all}
+.instr-number:active{opacity:.6;transform:scale(.96)}
+.instr-copy-hint{font-size:.56rem;font-weight:700;color:var(--muted);margin-top:2px;letter-spacing:.5px;text-transform:uppercase}
+.instr-steps{display:flex;flex-direction:column;gap:10px;margin-bottom:18px}
+.instr-step{display:flex;align-items:center;gap:12px;font-size:.78rem;font-weight:600;color:var(--text);line-height:1.4}
+.istep-n{width:24px;height:24px;background:#000;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.62rem;font-weight:900;flex-shrink:0}
+.waiting-wrap{display:flex;flex-direction:column;align-items:center;padding:10px 0 4px;text-align:center}
+.waiting-lottie{position:relative;width:86px;height:86px;display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+.pulse-ring{position:absolute;width:86px;height:86px;border-radius:50%;border:3px solid #34c759;animation:pulsering 1.8s ease-out infinite}
+.pulse-ring.r2{animation-delay:.75s;opacity:.5}
+@keyframes pulsering{0%{transform:scale(.65);opacity:.9}100%{transform:scale(1.55);opacity:0}}
+.pulse-icon{font-size:2.2rem;position:relative;z-index:1;animation:popIn .45s cubic-bezier(.34,1.6,.64,1) both}
+@keyframes popIn{from{transform:scale(0)}to{transform:scale(1)}}
+.waiting-title{font-size:1.1rem;font-weight:900;color:var(--text);margin-bottom:6px}
+.waiting-sub{font-size:.75rem;font-weight:600;color:var(--muted);margin-bottom:22px}
+.waiting-timer-box{background:var(--bg);border:1px solid var(--border);border-radius:22px;padding:18px 20px;width:100%;margin-bottom:16px}
+.wtimer-label{font-size:.58rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.wtimer-display{font-size:2.6rem;font-weight:900;color:var(--text);letter-spacing:3px;font-variant-numeric:tabular-nums;margin-bottom:12px}
+.wtimer-bar-wrap{background:#e5e5ea;border-radius:50px;height:6px;overflow:hidden}
+.wtimer-bar{height:100%;background:linear-gradient(90deg,#34c759,#30d158);border-radius:50px;transition:width 1s linear;width:100%}
+.waiting-info{font-size:.72rem;font-weight:600;color:var(--muted);display:flex;align-items:flex-start;gap:7px;text-align:left;line-height:1.5;max-width:280px}
+.wi-dot{width:8px;height:8px;background:#34c759;border-radius:50%;flex-shrink:0;margin-top:4px;animation:blink 1.5s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
 </style>
 </head>
 <body>
@@ -360,31 +399,112 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
   </div>
 </div>
 
-<div class="overlay" id="pay-modal" onclick="if(event.target.id==='pay-modal')closePay()">
-  <div class="sheet">
+<!-- ── CHECKOUT MODAL (flujo completo) ── -->
+<div class="overlay" id="checkout-modal">
+  <div class="checkout-sheet" id="checkout-sheet">
     <div class="sheet-handle"></div>
-    <div class="sheet-title">¿Cómo deseas pagar?</div>
-    <div id="pay-product-info" style="text-align:center;font-size:.8rem;font-weight:700;color:var(--muted);margin-bottom:14px"></div>
-    <button class="pay-btn pay-yappy" onclick="selectPay('YAPPY')">💚 Yappy</button>
-    <button class="pay-btn pay-ach" onclick="selectPay('ACH')">🏦 Transferencia ACH</button>
-    <button class="pay-btn pay-cancel" onclick="closePay()">Cancelar</button>
-  </div>
-</div>
-
-<div class="overlay" id="upload-modal" onclick="if(event.target.id==='upload-modal')closeUpload()">
-  <div class="sheet" id="upload-sheet">
-    <div class="sheet-handle"></div>
-    <div class="sheet-title">📎 Subir Comprobante</div>
-    <p style="font-size:.78rem;font-weight:600;color:var(--muted);text-align:center;margin-bottom:14px">Sube la foto de tu comprobante de pago</p>
-    <div class="upload-area" id="comp-upload-area" onclick="document.getElementById('comp-file').click()">
-      <div class="uicon">📸</div>
-      <p>Toca para subir foto</p>
-      <input type="file" id="comp-file" accept="image/*" onchange="previewComp(event)">
-      <img id="comp-preview" class="upload-preview">
+    <!-- STEP 1: elegir método -->
+    <div id="step-method" class="cstep active">
+      <div class="checkout-product-pill" id="checkout-pill"></div>
+      <div class="cstep-title">¿Cómo quieres pagar?</div>
+      <div class="pay-methods">
+        <button class="pay-method-card yappy-card" onclick="selectMethod('YAPPY')">
+          <div class="pmc-icon">💚</div>
+          <div class="pmc-info">
+            <div class="pmc-name">Yappy</div>
+            <div class="pmc-sub">Pago instantáneo</div>
+          </div>
+          <div class="pmc-arrow">›</div>
+        </button>
+        <button class="pay-method-card ach-card" onclick="selectMethod('ACH')">
+          <div class="pmc-icon">🏦</div>
+          <div class="pmc-info">
+            <div class="pmc-name">Transferencia ACH</div>
+            <div class="pmc-sub">Banco nacional</div>
+          </div>
+          <div class="pmc-arrow">›</div>
+        </button>
+      </div>
+      <button class="pay-btn pay-cancel" style="margin-top:6px" onclick="closeCheckout()">Cancelar</button>
     </div>
-    <input type="text" class="form-input" id="buyer-name" placeholder="Tu nombre completo" style="margin:10px 0">
-    <button class="btn-red" id="confirm-order-btn" onclick="confirmOrder()">Confirmar Pedido</button>
-    <button class="pay-btn pay-cancel" style="margin-top:8px" onclick="closeUpload()">Cancelar</button>
+
+    <!-- STEP 2a: instrucciones YAPPY -->
+    <div id="step-yappy" class="cstep">
+      <div class="cback-btn" onclick="backToMethod()">‹ Volver</div>
+      <div class="cstep-title">Paga con Yappy 💚</div>
+      <div class="pay-instruction-card yappy-instr">
+        <div class="instr-icon">📱</div>
+        <div class="instr-body">
+          <div class="instr-label">Envía el pago a este número</div>
+          <div class="instr-number" onclick="copyNum('6902-8805')" id="yappy-num">6902-8805</div>
+          <div class="instr-copy-hint">Toca para copiar</div>
+        </div>
+      </div>
+      <div class="instr-steps">
+        <div class="instr-step"><span class="istep-n">1</span><span>Abre tu app Yappy</span></div>
+        <div class="instr-step"><span class="istep-n">2</span><span>Envía <strong id="yappy-amount-txt"></strong> al número de arriba</span></div>
+        <div class="instr-step"><span class="istep-n">3</span><span>Toma captura del comprobante</span></div>
+      </div>
+      <button class="btn-red" onclick="goToUpload()">Ya pagué → Subir comprobante</button>
+    </div>
+
+    <!-- STEP 2b: instrucciones ACH -->
+    <div id="step-ach" class="cstep">
+      <div class="cback-btn" onclick="backToMethod()">‹ Volver</div>
+      <div class="cstep-title">Transferencia ACH 🏦</div>
+      <div class="pay-instruction-card ach-instr">
+        <div class="instr-icon">🔢</div>
+        <div class="instr-body">
+          <div class="instr-label">Número de cuenta</div>
+          <div class="instr-number" onclick="copyNum('0408000050774')" id="ach-num">0408000050774</div>
+          <div class="instr-copy-hint">Toca para copiar</div>
+        </div>
+      </div>
+      <div class="instr-steps">
+        <div class="instr-step"><span class="istep-n">1</span><span>Abre tu banca en línea</span></div>
+        <div class="instr-step"><span class="istep-n">2</span><span>Transfiere <strong id="ach-amount-txt"></strong> a la cuenta de arriba</span></div>
+        <div class="instr-step"><span class="istep-n">3</span><span>Descarga o toma foto del comprobante</span></div>
+      </div>
+      <button class="btn-red" onclick="goToUpload()">Ya pagué → Subir comprobante</button>
+    </div>
+
+    <!-- STEP 3: subir comprobante -->
+    <div id="step-upload" class="cstep">
+      <div class="cback-btn" id="back-from-upload" onclick="backToInstructions()">‹ Volver</div>
+      <div class="cstep-title">Sube tu comprobante 📎</div>
+      <div class="upload-area" id="comp-upload-area" onclick="document.getElementById('comp-file').click()">
+        <div class="uicon">📸</div>
+        <p>Toca para subir foto</p>
+        <input type="file" id="comp-file" accept="image/*" onchange="previewComp(event)">
+        <img id="comp-preview" class="upload-preview">
+      </div>
+      <input type="text" class="form-input" id="buyer-name" placeholder="Tu nombre completo" style="margin:10px 0 14px">
+      <button class="btn-red" id="confirm-order-btn" onclick="confirmOrder()">✅ Confirmar Pedido</button>
+      <button class="pay-btn pay-cancel" style="margin-top:8px" onclick="closeCheckout()">Cancelar</button>
+    </div>
+
+    <!-- STEP 4: contador de verificación -->
+    <div id="step-waiting" class="cstep">
+      <div class="waiting-wrap">
+        <div class="waiting-lottie">
+          <div class="pulse-ring"></div>
+          <div class="pulse-ring r2"></div>
+          <div class="pulse-icon">✅</div>
+        </div>
+        <div class="waiting-title">¡Comprobante enviado!</div>
+        <div class="waiting-sub">Estamos verificando tu pago</div>
+        <div class="waiting-timer-box">
+          <div class="wtimer-label">Tiempo estimado de respuesta</div>
+          <div class="wtimer-display" id="wt-display">05:00</div>
+          <div class="wtimer-bar-wrap"><div class="wtimer-bar" id="wt-bar"></div></div>
+        </div>
+        <div class="waiting-info">
+          <span class="wi-dot"></span>
+          Una vez aprobado te contactaremos por WhatsApp 6902-8805
+        </div>
+        <button class="pay-btn pay-cancel" style="margin-top:18px" onclick="closeCheckout()">Cerrar</button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -521,37 +641,58 @@ document.querySelectorAll('.cat').forEach(c => {
   });
 });
 
-// ── PAYMENT FLOW ──
+// ── CHECKOUT MULTI-STEP FLOW ──
+let countdownInterval = null;
+
+function showCheckoutStep(stepId){
+  document.querySelectorAll('.cstep').forEach(s => s.classList.remove('active'));
+  document.getElementById(stepId).classList.add('active');
+}
+
 window.openPay = (n, p) => {
   currentN = n; currentP = p;
-  document.getElementById('pay-product-info').textContent = `${n} · $${p}`;
-  document.getElementById('pay-modal').classList.add('open');
+  // set product pill
+  document.getElementById('checkout-pill').textContent = `${n}  ·  $${p}`;
+  // reset to step 1
+  showCheckoutStep('step-method');
+  // reset upload area
+  const prev = document.getElementById('comp-preview');
+  if(prev){ prev.style.display='none'; prev.src=''; }
+  const area = document.getElementById('comp-upload-area');
+  if(area) area.classList.remove('has-file');
+  const bn = document.getElementById('buyer-name');
+  if(bn) bn.value = '';
+  const cf = document.getElementById('comp-file');
+  if(cf) cf.value = '';
+  document.getElementById('checkout-modal').classList.add('open');
 };
-window.closePay = () => document.getElementById('pay-modal').classList.remove('open');
-window.selectPay = (m) => { currentPayMethod = m; closePay(); openUpload(); };
-window.openUpload = () => document.getElementById('upload-modal').classList.add('open');
-window.closeUpload = () => {
-  document.getElementById('upload-modal').classList.remove('open');
-  document.getElementById('comp-preview').style.display = 'none';
-  document.getElementById('comp-upload-area').classList.remove('has-file');
-  document.getElementById('buyer-name').value = '';
-  document.getElementById('comp-file').value = '';
-  // Reset sheet content in case countdown was shown
-  const sheet = document.getElementById('upload-sheet');
-  sheet.innerHTML = `
-    <div class="sheet-handle"></div>
-    <div class="sheet-title">📎 Subir Comprobante</div>
-    <p style="font-size:.78rem;font-weight:600;color:var(--muted);text-align:center;margin-bottom:14px">Sube la foto de tu comprobante de pago</p>
-    <div class="upload-area" id="comp-upload-area" onclick="document.getElementById('comp-file').click()">
-      <div class="uicon">📸</div>
-      <p>Toca para subir foto</p>
-      <input type="file" id="comp-file" accept="image/*" onchange="previewComp(event)">
-      <img id="comp-preview" class="upload-preview">
-    </div>
-    <input type="text" class="form-input" id="buyer-name" placeholder="Tu nombre completo" style="margin:10px 0">
-    <button class="btn-red" id="confirm-order-btn" onclick="confirmOrder()">Confirmar Pedido</button>
-    <button class="pay-btn pay-cancel" style="margin-top:8px" onclick="closeUpload()">Cancelar</button>
-  `;
+
+window.closeCheckout = () => {
+  document.getElementById('checkout-modal').classList.remove('open');
+  if(countdownInterval){ clearInterval(countdownInterval); countdownInterval=null; }
+};
+
+window.selectMethod = (m) => {
+  currentPayMethod = m;
+  if(m === 'YAPPY'){
+    document.getElementById('yappy-amount-txt').textContent = `$${currentP}`;
+    showCheckoutStep('step-yappy');
+  } else {
+    document.getElementById('ach-amount-txt').textContent = `$${currentP}`;
+    showCheckoutStep('step-ach');
+  }
+};
+
+window.backToMethod = () => showCheckoutStep('step-method');
+
+window.goToUpload = () => showCheckoutStep('step-upload');
+
+window.backToInstructions = () => {
+  showCheckoutStep(currentPayMethod === 'YAPPY' ? 'step-yappy' : 'step-ach');
+};
+
+window.copyNum = (num) => {
+  navigator.clipboard.writeText(num).then(() => showToast(`✅ Número copiado: ${num}`)).catch(() => showToast(`Número: ${num}`));
 };
 
 window.previewComp = (e) => {
@@ -562,17 +703,14 @@ window.previewComp = (e) => {
 };
 
 window.confirmOrder = async () => {
-  const nameInput = document.getElementById('buyer-name');
-  const fileInput = document.getElementById('comp-file');
-  const name = nameInput.value.trim();
-  const file = fileInput.files[0];
+  const name = document.getElementById('buyer-name').value.trim();
+  const file = document.getElementById('comp-file').files[0];
 
   if(!name){ showToast("⚠️ Ingresa tu nombre"); return; }
   if(!file){ showToast("⚠️ Sube el comprobante de pago"); return; }
 
   const btn = document.getElementById('confirm-order-btn');
-  btn.textContent = "Subiendo...";
-  btn.disabled = true;
+  btn.textContent = "⏳ Subiendo…"; btn.disabled = true;
 
   try {
     const storRef = ref(storage, `comprobantes/${Date.now()}_${name}`);
@@ -589,35 +727,26 @@ window.confirmOrder = async () => {
       status: "pending"
     });
 
-    // Mostrar contador de verificación
-    const sheet = document.getElementById('upload-sheet');
-    sheet.innerHTML = `
-      <div class="counter-wrap">
-        <div class="counter-icon">✅</div>
-        <h2>¡Pedido recibido!</h2>
-        <p>Estamos verificando tu pago. Tiempo estimado:</p>
-        <div class="counter-time" id="counter-timer">05:00</div>
-        <div class="counter-sub">Te contactaremos por WhatsApp para coordinar la entrega</div>
-        <button class="btn-red" style="margin-top:20px" onclick="closeUpload()">Cerrar</button>
-      </div>
-    `;
-
-    let tiempo = 300;
-    const interval = setInterval(() => {
+    // Ir al paso del contador
+    showCheckoutStep('step-waiting');
+    const TOTAL = 300;
+    let tiempo = TOTAL;
+    const bar = document.getElementById('wt-bar');
+    const display = document.getElementById('wt-display');
+    if(countdownInterval) clearInterval(countdownInterval);
+    countdownInterval = setInterval(() => {
       tiempo--;
-      const timerEl = document.getElementById('counter-timer');
-      if(timerEl){
-        let m = Math.floor(tiempo/60), s = tiempo % 60;
-        timerEl.textContent = `${m}:${s<10?'0'+s:s}`;
-      }
-      if(tiempo <= 0) clearInterval(interval);
+      const m = Math.floor(tiempo/60), s = tiempo % 60;
+      if(display) display.textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+      if(bar) bar.style.width = `${(tiempo/TOTAL)*100}%`;
+      if(tiempo <= 0){ clearInterval(countdownInterval); countdownInterval=null; if(display) display.textContent = '00:00'; }
     }, 1000);
 
   } catch(err){
     console.error(err);
     showToast("❌ Error al subir. Verifica tu conexión.");
     btn.disabled = false;
-    btn.textContent = "Confirmar Pedido";
+    btn.textContent = "✅ Confirmar Pedido";
   }
 };
 
