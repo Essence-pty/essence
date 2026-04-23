@@ -1087,6 +1087,38 @@ window.secretTap = () => {
 window.viewImg = (src)=>{
   document.getElementById('img-viewer-src').src=src;
   document.getElementById('img-viewer').classList.add('open');
+};// --- FUNCIÓN DE CONFIRMACIÓN DE PEDIDO ---
+window.confirmOrder = async function() {
+    const nameInput = document.getElementById('buyer-name');
+    const fileInput = document.getElementById('comp-file');
+    const btn = document.getElementById('confirm-order-btn');
+
+    if (!nameInput || !nameInput.value) return alert("Fren, pon tu nombre completo");
+    if (!fileInput || !fileInput.files[0]) return alert("Sube la foto del comprobante");
+
+    btn.innerText = "Enviando...";
+    btn.disabled = true;
+
+    try {
+        const { collection, addDoc } = window.dbFunctions;
+        
+        await addDoc(collection(window.db, "pedidos"), {
+            cliente: nameInput.value,
+            metodo: window.currentPayMethod || "Yappy/ACH",
+            producto: window.selectedProduct ? window.selectedProduct.name : "Pack 2x120",
+            fecha: new Date().toLocaleString("es-PA"),
+            estado: "pendiente"
+        });
+
+        alert("¡Pedido enviado! 🔥 Revisa tu WhatsApp.");
+        location.reload(); 
+
+    } catch (error) {
+        console.error("Error:", error);
+        alert("Error de Firebase: Revisa que las Reglas estén en 'true'");
+        btn.innerText = "Confirmar Pedido";
+        btn.disabled = false;
+    }
 };
 </script>
 
