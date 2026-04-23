@@ -7,49 +7,51 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
-  // EmailJS — ve a emailjs.com, crea cuenta gratis y reemplaza estos 3 valores:
-  const EMAILJS_PUBLIC_KEY  = "TU_PUBLIC_KEY";   // Account → API Keys
-  const EMAILJS_SERVICE_ID  = "TU_SERVICE_ID";   // Email Services → Service ID
-  const EMAILJS_TEMPLATE_ID = "TU_TEMPLATE_ID";  // Email Templates → Template ID
-  document.addEventListener('DOMContentLoaded', () => {
-    if(EMAILJS_PUBLIC_KEY !== "TU_PUBLIC_KEY") emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
-  });
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script type="module">
+  // 1. IMPORTAR FIREBASE (Lo que hace que la página funcione)
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getFirestore, collection, addDoc, getDocs, query, where, orderBy, onSnapshot, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+  // 2. TU CONFIGURACIÓN (La que se veía arriba en tu captura)
+  const firebaseConfig = {
+    apiKey: "AIzaSyATWNxX...", // Asegúrate de que estos datos sean los de tu Firebase nuevo
+    authDomain: "essencev2-fff9e.firebaseapp.com",
+    projectId: "essencev2-fff9e",
+    storageBucket: "essencev2-fff9e.appspot.com",
+    messagingSenderId: "1056525656534",
+    appId: "1:1056525656534:web:865511b894174309e51c6c"
+  };
+
+  // 3. INICIALIZAR
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // Hacerlo global para que tus 1000 líneas de código lo encuentren
+  window.db = db;
+  window.dbFunctions = { collection, addDoc, getDocs, query, where, orderBy, onSnapshot, doc, updateDoc, deleteDoc };
+
+  console.log("🚀 Firebase conectado correctamente");
+</script>
+
+<script>
+  // Tu configuración de EmailJS que ya tenías
+  const EMAILJS_PUBLIC_KEY  = "TU_PUBLIC_KEY";  
+  const EMAILJS_SERVICE_ID  = "TU_SERVICE_ID";  
+  const EMAILJS_TEMPLATE_ID = "TU_TEMPLATE_ID"; 
+  
+  if(EMAILJS_PUBLIC_KEY !== "TU_PUBLIC_KEY") emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+
   async function sendOrderEmail(cliente, perfume, precio, pago, comprobante) {
-    if(EMAILJS_PUBLIC_KEY === "TU_PUBLIC_KEY") { console.warn("EmailJS no configurado"); return; }
+    if(EMAILJS_PUBLIC_KEY === "TU_PUBLIC_KEY") return;
     try {
       await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-        to_email:    "essenceperfumpty@gmail.com",
-        to_name:     "ESSENCE",
-        cliente,
-        perfume,
-        precio:      "$" + precio,
-        pago,
-        comprobante: comprobante || "Sin imagen",
-        fecha:       new Date().toLocaleString("es-PA")
+        to_email: "essenceperfumpty@gmail.com",
+        cliente, perfume, precio: "$" + precio, pago, comprobante
       });
     } catch(e) { console.error("EmailJS error:", e); }
   }
-</script>// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyATWNabslZVdV0Nu0NWpKBT2vZEGWxTg1c",
-  authDomain: "essence3-2d1de.firebaseapp.com",
-  projectId: "essence3-2d1de",
-  storageBucket: "essence3-2d1de.firebasestorage.app",
-  messagingSenderId: "244822107655",
-  appId: "1:244822107655:web:1d656b1a8eb3969c262ca2",
-  measurementId: "G-EDTMLDJWRL"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+</script>
 <style>
 :root {
   --red: #ff2d2d; --red-deep: #c0000e;
