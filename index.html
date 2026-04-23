@@ -12,13 +12,12 @@
   // 1. IMPORTAR FIREBASE (Lo que hace que la página funcione)
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
   import { getFirestore, collection, addDoc, getDocs, query, where, orderBy, onSnapshot, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
   // 2. TU CONFIGURACIÓN (La que se veía arriba en tu captura)
  const firebaseConfig = {
   apiKey: "AIzaSyATWNabsIZvdV0NuONWpKBT2vZEGWxTg1c",
   authDomain: "essence3-2d1de.firebaseapp.com",
-  projectId: "essence3-2d1de", // <-- CAMBIA ESTO (antes decía v2)
-  storageBucket: "essence3-2d1de.appspot.com",
+  authDomain: "essence3-2d1de.firebaseapp.com",
+    projectId: "essence3-2d1de",
   messagingSenderId: "244822107655",
   appId: "1:244822107655:web:1d656b1a8eb3969c262ca2"
 };
@@ -26,7 +25,9 @@
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
-  // Hacerlo global para que tus 1000 líneas de código lo encuentren
+// ESTO UNE EL INICIO CON EL FINAL DEL CÓDIGO
+window.db = db;
+window.dbFunctions = { collection, addDoc, onSnapshot, doc };  // Hacerlo global para que tus 1000 líneas de código lo encuentren
   window.db = db;
   window.dbFunctions = { collection, addDoc, getDocs, query, where, orderBy, onSnapshot, doc, updateDoc, deleteDoc };
 
@@ -1086,13 +1087,14 @@ window.secretTap = () => {
 window.viewImg = (src)=>{
   document.getElementById('img-viewer-src').src=src;
   document.getElementById('img-viewer').classList.add('open');
-}// --- FUNCIÓN DE CONFIRMACIÓN CON SEGUIMIENTO EN TIEMPO REAL (Línea 1090) ---
+}// --- FUNCIÓN DE CONFIRMACIÓN CON CONTADOR Y APROBACIÓN REAL-TIME ---
 window.confirmOrder = async function() {
     const nameInput = document.getElementById('buyer-name');
     const btn = document.getElementById('confirm-order-btn');
+    // Buscamos el contenedor del modal para transformarlo
     const modalContent = document.querySelector('.sheet'); 
 
-    if (!nameInput || !nameInput.value) return alert("Por favor, pon tu nombre completo");
+    if (!nameInput || !nameInput.value) return alert("Fren, pon tu nombre completo");
 
     btn.innerText = "ENVIANDO...";
     btn.disabled = true;
@@ -1101,46 +1103,58 @@ window.confirmOrder = async function() {
         const db = window.db;
         const { collection, addDoc, onSnapshot, doc } = window.dbFunctions;
 
-        // 1. Enviamos el pedido a Firebase y guardamos la ID del documento
+        // 1. Enviamos el pedido a la base de datos ESSENCE3
         const docRef = await addDoc(collection(db, "pedidos"), {
             cliente: nameInput.value,
             fecha: new Date().toLocaleString("es-PA"),
             estado: "pendiente",
-            whatsapp: "Pendiente" 
+            visto: false
         });
 
         const pedidoId = docRef.id;
 
-        // 2. Cambiamos la interfaz al contador de espera
+        // 2. TRANSFORMAMOS LA INTERFAZ: Borramos el formulario y ponemos el contador
         modalContent.innerHTML = `
-            <div id="status-container" style="text-align:center; padding: 20px; font-family: sans-serif;">
-                <div id="status-icon" style="font-size: 50px; margin-bottom: 10px;">⏳</div>
-                <h2 id="status-title" style="color: #f39c12; margin-bottom: 10px;">Esperando Confirmación</h2>
-                <p id="status-text">Estamos verificando tu pago en el sistema...</p>
+            <div id="status-container" style="text-align:center; padding: 30px; font-family: 'Arial', sans-serif;">
+                <div id="status-icon" style="font-size: 60px; margin-bottom: 15px;">⏳</div>
+                <h2 id="status-title" style="color: #f39c12; margin-bottom: 10px; font-weight: bold;">Esperando Confirmación</h2>
+                <p style="color: #555; font-size: 14px;">Estamos verificando tu transferencia en el sistema...</p>
                 
-                <div id="timer-box" style="background: #f8f9fa; border-radius: 15px; padding: 15px; margin: 20px 0;">
-                    <div id="timer" style="font-size: 35px; font-weight: bold; color: #e74c3c;">05:00</div>
-                    <p style="font-size: 12px; color: #7f8c8d; margin-top: 5px;">Tiempo estimado de verificación</p>
+                <div style="background: #fff5e6; border-radius: 20px; padding: 25px; margin: 25px 0; border: 2px solid #f39c12; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                    <div id="timer" style="font-size: 48px; font-weight: bold; color: #e67e22; letter-spacing: 2px;">05:00</div>
+                    <p style="font-size: 12px; color: #d35400; margin-top: 5px; font-weight: bold; text-transform: uppercase;">Tiempo de respuesta estimado</p>
                 </div>
 
-                <div class="loading-bar" style="width: 100%; background: #eee; height: 8px; border-radius: 4px; overflow: hidden;">
-                    <div id="progress" style="width: 30%; background: #f39c12; height: 100%; transition: 0.5s;"></div>
+                <div style="width: 100%; background: #eee; height: 8px; border-radius: 4px; overflow: hidden; margin-top: 10px;">
+                    <div id="progress" style="width: 20%; background: #f39c12; height: 100%; transition: 1s linear;"></div>
                 </div>
+                <p style="font-size: 11px; color: #999; margin-top: 20px;">Por favor, mantén esta ventana abierta.</p>
             </div>
         `;
 
-        // 3. Iniciamos el contador visual (5 mins)
+        // 3. LÓGICA DEL CONTADOR (5 minutos)
         let tiempo = 300;
         const timerElement = document.getElementById('timer');
+        const progressElement = document.getElementById('progress');
+        
         const countdown = setInterval(() => {
             let mins = Math.floor(tiempo / 60);
             let segs = tiempo % 60;
             timerElement.innerHTML = `${mins}:${segs < 10 ? '0' + segs : segs}`;
-            if (tiempo <= 0) clearInterval(countdown);
-            else tiempo--;
+            
+            // Animación de la barra de progreso
+            let porcentaje = ((300 - tiempo) / 300) * 100;
+            progressElement.style.width = porcentaje + "%";
+
+            if (tiempo <= 0) {
+                clearInterval(countdown);
+                timerElement.innerHTML = "¡Casi listo!";
+            } else {
+                tiempo--;
+            }
         }, 1000);
 
-        // 4. ESCUCHA EN TIEMPO REAL: Si tú cambias el estado en el Panel de Jefe, esto se activa
+        // 4. ESCUCHA EN TIEMPO REAL (Cuando tú apruebes en tu Panel de Jefe)
         onSnapshot(doc(db, "pedidos", pedidoId), (snap) => {
             const data = snap.data();
             
@@ -1148,30 +1162,32 @@ window.confirmOrder = async function() {
                 clearInterval(countdown); // Detenemos el reloj
                 
                 // CAMBIO VISUAL A "APROBADO"
-                const container = document.getElementById('status-container');
-                container.innerHTML = `
-                    <div style="animation: fadeIn 0.5s ease-in;">
-                        <div style="font-size: 60px; margin-bottom: 10px;">✅</div>
-                        <h2 style="color: #27ae60;">¡PEDIDO APROBADO!</h2>
-                        <p style="margin-bottom: 20px;">Tu pago ha sido verificado correctamente.</p>
-                        <div style="background: #eafaf1; padding: 15px; border-radius: 10px; border: 1px solid #2ecc71;">
-                            <p style="font-weight: bold; color: #27ae60; margin: 0;">📦 Preparando Envío</p>
-                            <p style="font-size: 13px; margin: 5px 0 0;">Te contactaremos por WhatsApp en unos minutos.</p>
+                document.getElementById('status-container').innerHTML = `
+                    <div style="animation: bounceIn 0.8s ease; text-align:center;">
+                        <div style="font-size: 75px; color: #27ae60; margin-bottom: 15px;">✅</div>
+                        <h2 style="color: #27ae60; font-size: 26px; font-weight: bold;">¡PAGO APROBADO!</h2>
+                        <p style="color: #2c3e50; font-size: 15px; margin-bottom: 20px;">Tu orden ha sido confirmada con éxito.</p>
+                        
+                        <div style="background: #eafaf1; padding: 20px; border-radius: 15px; border: 2px dashed #27ae60;">
+                            <p style="font-weight: bold; color: #27ae60; margin: 0; font-size: 16px;">📦 PREPARANDO TU ENVÍO</p>
+                            <p style="font-size: 13px; color: #2ecc71; margin-top: 8px;">Un agente te contactará por WhatsApp para coordinar la entrega.</p>
                         </div>
-                        <button onclick="location.reload()" style="margin-top: 25px; background: #27ae60; color: white; border: none; padding: 12px 25px; border-radius: 8px; cursor: pointer; font-weight: bold; width: 100%;">Finalizar</button>
+                        
+                        <button onclick="location.reload()" style="margin-top: 30px; background: #27ae60; color: white; border: none; padding: 16px; border-radius: 12px; font-weight: bold; width: 100%; cursor: pointer; font-size: 16px; box-shadow: 0 4px 15px rgba(39, 174, 96, 0.4);">
+                            Entendido y finalizar
+                        </button>
                     </div>
                 `;
                 
-                // Reproducir un sonido de notificación opcional
-                const audio = new Audio('https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3');
-                audio.play().catch(() => {}); 
+                // Sonido de notificación de éxito
+                new Audio('https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3').play().catch(()=>{});
             }
         });
 
     } catch (error) {
         console.error(error);
-        alert("Error crítico: " + error.message);
-        btn.innerText = "Confirmar Pedido";
+        alert("Error al procesar: " + error.message);
+        btn.innerText = "CONFIRMAR PEDIDO";
         btn.disabled = false;
     }
 };
