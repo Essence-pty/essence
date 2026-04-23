@@ -3,309 +3,370 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>ESSENCE | ORIGINAL LUXURY EXPERIENCE</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <title>ESSENCE OMNIVERSE | LUXURY EXPERIENCE</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
     <style>
-        /* [LÍNEA 10] MOTOR DE ESTILOS BIRRIAPP-LIKE */
+        /* [MAESTRÍA DE DISEÑO - CSS ULTRA DENSO] */
         :root {
-            --birri-black: #111111;
-            --birri-white: #ffffff;
-            --birri-bg: #f5f5f7; /* Gris muy suave, estilo Apple/Birri */
-            --birri-accent: #c5a059; /* Tu dorado corporativo */
-            --birri-glass: rgba(255, 255, 255, 0.7);
-            --birri-glass-dark: rgba(0, 0, 0, 0.75);
+            --essence-black: #080808;
+            --essence-gold: #c5a059;
+            --essence-gold-light: #e0c08d;
+            --essence-white: #ffffff;
+            --essence-bg: #f8f8fa;
+            --essence-glass: rgba(255, 255, 255, 0.92);
+            --essence-dark-glass: rgba(10, 10, 10, 0.96);
+            --essence-border: rgba(0, 0, 0, 0.04);
             
-            /* Curvas Bézier para transiciones epicas y suaves */
-            --smooth-curve: cubic-bezier(0.65, 0, 0.35, 1);
-            --fast-curve: cubic-bezier(0.23, 1, 0.32, 1);
-            --transition-smooth: all 0.5s var(--smooth-curve);
-            --transition-fast: all 0.2s var(--fast-curve);
+            /* Curvas de Animación Apple-Style */
+            --ios-ease: cubic-bezier(0.65, 0, 0.35, 1);
+            --ios-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            --transition-smooth: all 0.6s var(--ios-ease);
+            --transition-fast: all 0.2s var(--ios-ease);
         }
 
+        /* [RESET & BASE] */
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         
-        body {
-            background-color: var(--birri-bg);
-            font-family: 'Montserrat', sans-serif;
-            color: var(--birri-black);
-            overflow-x: hidden;
+        body { 
+            background-color: var(--essence-bg); 
+            font-family: 'Montserrat', sans-serif; 
+            color: var(--essence-black); 
+            overflow-x: hidden; 
             -webkit-font-smoothing: antialiased;
-            letter-spacing: -0.015em;
+            overscroll-behavior-y: none;
         }
 
-        /* [LÍNEA 35] HEADER DE LUJO CON BLUR */
-        header {
-            padding: 25px 20px;
-            text-align: center;
-            background-color: var(--birri-glass);
-            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            position: sticky; top: 0; z-index: 1000;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+        /* [ANIMACIONES NATIVAS] */
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInScale { from { opacity: 0; transform: scale(0.94); } to { opacity: 1; transform: scale(1); } }
+        @keyframes slideUpSheet { from { transform: translateY(100%); } to { transform: translateY(0); } }
+        @keyframes blurIn { from { backdrop-filter: blur(0px); opacity: 0; } to { backdrop-filter: blur(20px); opacity: 1; } }
+
+        /* [HEADER ESTRATOSFÉRICO] */
+        header { 
+            padding: 30px 20px; 
+            text-align: center; 
+            background-color: var(--essence-glass); 
+            backdrop-filter: blur(30px); 
+            -webkit-backdrop-filter: blur(30px); 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+            border-bottom: 1px solid var(--essence-border);
+            transition: var(--transition-smooth);
+        }
+
+        .logo { 
+            font-weight: 900; 
+            font-size: 1.5rem; 
+            letter-spacing: 12px; 
+            text-transform: uppercase; 
+            color: var(--essence-black);
+            cursor: pointer;
             transition: var(--transition-fast);
         }
-        
-        .logo {
-            font-weight: 800; font-size: 1.4rem; letter-spacing: 6px;
-            text-transform: uppercase; color: var(--birri-black);
-            transition: var(--transition-smooth);
+        .logo:active { transform: scale(0.92); opacity: 0.7; }
+
+        /* [BUSCADOR PREMIUM] */
+        .search-area { 
+            padding: 25px 20px; 
+            max-width: 650px; 
+            margin: 0 auto; 
+            animation: fadeInUp 1s var(--ios-ease) forwards;
         }
 
-        /* [LÍNEA 50] BUSCADOR SMOOTH CON EFECTO VIDRIO */
-        .search-area {
-            max-width: 600px; margin: 30px auto;
-            padding: 0 20px; transition: var(--transition-smooth);
+        .search-input { 
+            width: 100%; 
+            padding: 22px 35px; 
+            background: #fff; 
+            border: 1px solid var(--essence-border); 
+            border-radius: 25px; 
+            font-size: 1rem; 
+            font-weight: 500;
+            outline: none; 
+            text-align: center; 
+            box-shadow: 0 10px 40px rgba(0,0,0,0.02);
+            transition: var(--transition-fast);
         }
-        .search-input {
-            width: 100%; padding: 20px 25px;
-            background-color: var(--birri-glass);
-            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(0,0,0,0.05);
-            border-radius: 20px; /* Bordes redondeados Birri style */
-            font-size: 0.95rem; font-weight: 500; text-align: center;
-            outline: none; transition: var(--transition-fast);
-            color: var(--birri-black);
-        }
+
         .search-input:focus {
-            background-color: var(--birri-white);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transform: scale(1.01);
-            border-color: rgba(0,0,0,0.1);
+            box-shadow: 0 15px 50px rgba(197, 160, 89, 0.12);
+            border-color: var(--essence-gold);
+            transform: translateY(-2px);
         }
 
-        /* [LÍNEA 70] SECCIONES CON TRANSICIONES SUAVES */
-        .page-container {
-            display: none; padding: 0 20px 100px; /* Padding bottom para el menú flotante */
-            max-width: 1200px; margin: 0 auto;
-        }
-        .page-container.active {
-            display: block; animation: fadeInUp 0.7s var(--fast-curve) forwards;
-        }
+        /* [CONTENEDORES DE PÁGINA] */
+        .page-container { display: none; padding: 0 20px 180px; max-width: 1200px; margin: 0 auto; }
+        .page-container.active { display: block; animation: fadeInUp 0.7s var(--ios-ease) forwards; }
 
-        /* [LÍNEA 80] GRID DE PRODUCTOS INSPIRADO EN BIRRIAPP */
-        .product-grid {
-            display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;
+        /* [CATEGORÍAS DESLIZANTES] */
+        .cat-scroll { 
+            display: flex; 
+            gap: 15px; 
+            overflow-x: auto; 
+            padding: 10px 5px 35px; 
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
         }
-
-        .product-card {
-            background-color: var(--birri-white);
-            border-radius: 25px; /* Bordes suaves */
-            padding: 20px; text-align: center;
-            transition: var(--transition-smooth);
-            cursor: pointer; border: 1px solid transparent;
-            position: relative; overflow: hidden;
-            display: flex; flex-direction: column; justify-content: space-between;
-        }
+        .cat-scroll::-webkit-scrollbar { display: none; }
         
-        /* Efecto bounce al tocar (Birri style) */
-        .product-card:active { transform: scale(0.97); }
-        .product-card:hover { border-color: rgba(0,0,0,0.05); box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
-
-        .p-image-box {
-            aspect-ratio: 1; display: flex; align-items: center; justify-content: center;
-            margin-bottom: 15px; transition: var(--transition-smooth);
+        .cat-item { 
+            min-width: 145px; 
+            background: #000; 
+            color: #fff; 
+            padding: 22px; 
+            border-radius: 22px; 
+            text-align: center; 
+            font-size: 0.65rem; 
+            font-weight: 900; 
+            letter-spacing: 2px; 
+            text-transform: uppercase;
+            box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+            transition: var(--transition-fast);
         }
-        .product-card img { width: 90%; height: 90%; object-fit: contain; }
+        .cat-item:active { transform: scale(0.94); }
+        .cat-item.white { background: #fff; color: #000; border: 1px solid rgba(0,0,0,0.05); }
 
-        .p-title { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; margin-bottom: 5px; color: var(--birri-black); }
-        .p-price { font-size: 1.1rem; font-weight: 300; color: var(--birri-accent); margin-bottom: 15px; }
-
-        /* [LÍNEA 110] BOTÓN DE WHATSAPP COPIADO DE BIRRIAPP */
-        .btn-order {
-            background-color: #25D366; /* Verde WhatsApp oficial */
-            color: var(--birri-white); border: none;
-            padding: 16px; border-radius: 18px;
-            font-size: 0.7rem; font-weight: 800; text-transform: uppercase;
-            letter-spacing: 2px; cursor: pointer; transition: var(--transition-fast);
-            display: flex; align-items: center; justify-content: center; gap: 8px;
-            width: 100%;
+        /* [MEGA BANNER XL] */
+        .mega-banner { 
+            background: linear-gradient(135deg, #050505 0%, #1a1a1a 100%); 
+            border-radius: 40px; 
+            padding: 70px 30px; 
+            text-align: center; 
+            color: #fff; 
+            border: 1px solid var(--essence-gold); 
+            margin-bottom: 45px; 
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
         }
-        .btn-order:hover { background-color: #128C7E; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(37,211,102,0.2); }
-        .btn-order:active { transform: translateY(0) scale(0.98); }
-        .btn-order img { width: 18px; height: 18px; }
 
-        /* [LÍNEA 125] MENÚ FLOTANTE BIRRIAPP-LIKE */
-        .floating-nav {
-            position: fixed; bottom: 25px; left: 50%;
-            transform: translateX(-50%); width: 90%; max-width: 400px;
-            background-color: var(--birri-glass-dark);
-            backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
-            padding: 15px 10px; border-radius: 100px; /* Bordes circulares totales */
-            display: flex; justify-content: space-around;
-            z-index: 5000; box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        .nav-item {
-            color: var(--birri-white); text-decoration: none;
-            font-size: 0.7rem; font-weight: 700; opacity: 0.4;
-            transition: 0.3s; background: none; border: none;
-            cursor: pointer; text-transform: uppercase; letter-spacing: 2px;
-            padding: 10px 20px; border-radius: 100px;
-        }
-        .nav-item.active { opacity: 1; color: var(--birri-accent); background-color: rgba(255,255,255,0.05); }
+        .mega-banner h4 { font-size: 0.65rem; letter-spacing: 6px; color: var(--essence-gold); margin-bottom: 25px; font-weight: 800; }
+        .mega-banner h2 { font-size: 2.8rem; font-weight: 900; margin-bottom: 25px; letter-spacing: -2px; line-height: 1; }
+        .mega-banner p { font-size: 0.75rem; opacity: 0.5; letter-spacing: 2px; line-height: 1.8; }
 
-        /* [LÍNEA 150] MODALES SMOOTH DESLIZANTES */
-        .modal-overlay {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.6); backdrop-filter: blur(10px);
-            z-index: 10000; align-items: flex-end; /* Desliza desde abajo */
-        }
-        .modal-overlay.open { display: flex; animation: fadeInModal 0.3s ease forwards; }
-
-        .modal-content {
-            background-color: var(--birri-white);
-            width: 100%; border-radius: 30px 30px 0 0;
-            padding: 50px 25px; text-align: center;
+        /* [BLOQUE DE TESTIMONIOS] */
+        .testi-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 50px; }
+        .testi-card { 
+            background: #fff; 
+            padding: 35px 25px; 
+            border-radius: 35px; 
+            border: 1px solid rgba(0,0,0,0.02); 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.02);
             transition: var(--transition-smooth);
-            animation: sheetUp 0.5s var(--fast-curve) forwards;
+        }
+        .stars { color: var(--essence-gold); font-size: 0.85rem; margin-bottom: 15px; }
+        .testi-txt { font-size: 0.7rem; font-weight: 700; color: #222; line-height: 1.6; }
+        .testi-user { font-size: 0.5rem; opacity: 0.4; margin-top: 15px; letter-spacing: 1px; font-weight: 900; }
+
+        /* [FOOTER CORPORATIVO (ARRIBA)] */
+        .corp-footer { 
+            background: var(--essence-black); 
+            color: #fff; 
+            border-radius: 45px; 
+            padding: 60px 40px; 
+            margin-bottom: 60px; 
+            box-shadow: 0 30px 60px rgba(0,0,0,0.25);
+        }
+        .footer-brand h2 { font-weight: 900; letter-spacing: 15px; font-size: 1.3rem; text-align: center; margin-bottom: 40px; }
+        .footer-links { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .footer-col h5 { color: var(--essence-gold); font-size: 0.7rem; font-weight: 900; margin-bottom: 18px; letter-spacing: 3px; }
+        .footer-col p { font-size: 0.65rem; opacity: 0.5; margin-bottom: 10px; font-weight: 500; }
+
+        /* [GRID DE PRODUCTOS NATIVO] */
+        .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 30px; }
+        .product-card { 
+            background: #fff; 
+            border-radius: 38px; 
+            padding: 35px 25px; 
+            text-align: center; 
+            border: 1px solid var(--essence-border); 
+            transition: var(--transition-smooth);
+            position: relative;
+            animation: fadeInScale 0.8s var(--ios-ease) forwards;
+        }
+        .product-card:active { transform: scale(0.95); opacity: 0.85; }
+        
+        .product-card img { width: 100%; aspect-ratio: 1; object-fit: contain; margin-bottom: 25px; transition: var(--transition-smooth); }
+        .p-title { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; color: #111; height: 40px; display: flex; align-items: center; justify-content: center; }
+        .p-price { font-size: 1.3rem; color: var(--essence-gold); font-weight: 300; margin-bottom: 25px; }
+
+        /* [BOTONES ACCIÓN] */
+        .btn-order { 
+            background: #25D366; 
+            color: #fff; 
+            border: none; 
+            padding: 18px; 
+            border-radius: 18px; 
+            font-size: 0.7rem; 
+            font-weight: 900; 
+            letter-spacing: 2px; 
+            width: 100%; 
+            cursor: pointer; 
+            text-transform: uppercase;
+            box-shadow: 0 12px 25px rgba(37, 211, 102, 0.2);
+            transition: var(--transition-fast);
+        }
+        .btn-order:active { transform: translateY(2px); }
+
+        /* [NAV FLOTANTE ULTRA-SMOOTH] */
+        .floating-nav { 
+            position: fixed; 
+            bottom: 35px; 
+            left: 50%; 
+            transform: translateX(-50%); 
+            width: 92%; 
+            max-width: 440px; 
+            background: var(--essence-dark-glass); 
+            backdrop-filter: blur(25px); 
+            -webkit-backdrop-filter: blur(25px); 
+            padding: 15px; 
+            border-radius: 100px; 
+            display: flex; 
+            justify-content: space-around; 
+            z-index: 5000; 
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.35);
+        }
+        .nav-item { 
+            color: #fff; 
+            font-size: 0.65rem; 
+            font-weight: 800; 
+            opacity: 0.4; 
+            background: none; 
+            border: none; 
+            cursor: pointer; 
+            text-transform: uppercase; 
+            letter-spacing: 2px;
+            padding: 12px 25px;
+            transition: var(--transition-fast);
+        }
+        .nav-item.active { opacity: 1; color: var(--essence-gold); }
+
+        /* [MODALES] */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); z-index: 10000; align-items: flex-end; }
+        .modal.open { display: flex; animation: blurIn 0.4s var(--ios-ease) forwards; }
+
+        .modal-content { 
+            background: #fff; 
+            width: 100%; 
+            border-radius: 45px 45px 0 0; 
+            padding: 60px 30px; 
+            text-align: center; 
+            animation: slideUpSheet 0.6s var(--ios-ease) forwards; 
         }
 
-        .payment-option {
-            background-color: var(--birri-bg); padding: 25px;
-            border-radius: 20px; margin-bottom: 12px;
-            font-weight: 700; letter-spacing: 2px;
-            cursor: pointer; transition: 0.3s; border: 1px solid transparent;
-        }
-        .payment-option:hover { border-color: var(--birri-accent); }
-        .payment-option:active { background-color: var(--birri-accent); color: var(--birri-white); }
+        .pay-option { background: #f5f5f7; padding: 28px; border-radius: 25px; margin-bottom: 15px; font-weight: 800; text-align: center; font-size: 1rem; letter-spacing: 1px; transition: 0.3s; border: 1px solid transparent; }
+        .pay-option:active { transform: scale(0.97); background: #eee; }
 
-        /* [LÍNEA 180] OPTIMIZACIÓN RESPONSIVA (BIRRI STYLE) */
-        @media (min-width: 768px) {
-            .product-grid { grid-template-columns: repeat(4, 1fr); gap: 30px; }
-            header { padding: 30px; }
-            .logo { font-size: 1.8rem; }
-            .modal-overlay { align-items: center; justify-content: center; }
-            .modal-content { max-width: 500px; border-radius: 30px; animation: scaleIn 0.5s var(--fast-curve) forwards; }
-        }
-
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes sheetUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
-        @keyframes scaleIn { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
-        @keyframes fadeInModal { from { opacity: 0; } to { opacity: 1; } }
-
-        /* Botón de admin flotante disimulado */
-        .fab-settings { position: fixed; top: 20px; right: 20px; width: 30px; height: 30px; opacity: 0.1; background: #fff; border-radius: 50%; display: none; align-items: center; justify-content: center; z-index: 11000; border: 1px solid #000; }
     </style>
 </head>
 <body>
 
+    <div style="background: var(--essence-gold); color: #fff; text-align: center; padding: 12px; font-size: 0.6rem; font-weight: 900; letter-spacing: 4px; text-transform: uppercase;">
+        Fragancias de Autor • Panamá City • 100% Original
+    </div>
+
     <header>
-        <div class="logo" id="magnate-trigger">ESSENCE</div>
+        <div class="logo" onclick="location.reload()">ESSENCE</div>
     </header>
 
     <div class="search-area">
-        <input type="text" id="live-search" class="search-input" placeholder="Encuentra tu esencia original..." onkeyup="filterProducts()">
+        <input type="text" id="live-search" class="search-input" placeholder="¿Qué esencia buscas hoy?" onkeyup="filter()">
     </div>
 
     <main>
         <section id="page-shop" class="page-container active">
-            <div class="product-grid" id="product-injector"></div>
-        </section>
-        
-        <section id="page-rastreo" class="page-container">
-            <div style="text-align:center; padding: 60px 0;">
-                <h2 style="margin-bottom:20px; font-weight:700;">RASTREO DE PEDIDO</h2>
-                <input type="text" id="track-name-input" class="search-input" placeholder="Nombre completo del cliente" style="text-align:center; max-width:400px; margin-bottom:20px;">
-                <button class="btn-order" style="height:70px; max-width:400px; margin: 0 auto;" onclick="openWaTrack()">CONSULTAR A WHATSAPP</button>
+            
+            <div class="cat-scroll">
+                <div class="cat-item">MÁS VENDIDOS</div>
+                <div class="cat-item white">CABALLEROS</div>
+                <div class="cat-item white">DAMAS</div>
+                <div class="cat-item white">UNISEX</div>
             </div>
-        </section>
 
-        <section id="page-admin" class="page-container">
-            <h2 style="margin-bottom:20px; font-weight:700;">DASHBOARD DEL JEFE</h2>
-            <div id="admin-product-list"></div>
-        </section>
-    </main><main>
-        <section class="page-container active" style="padding-top: 10px; padding-bottom: 20px;">
-            <div style="display: flex; gap: 12px; overflow-x: auto; padding-bottom: 5px; scrollbar-width: none; -ms-overflow-style: none;">
-                <div style="min-width: 135px; background: #000; color: #fff; padding: 15px; border-radius: 18px; text-align: center; font-size: 0.65rem; font-weight: 800; letter-spacing: 1px;">MÁS VENDIDOS</div>
-                <div style="min-width: 115px; background: #fff; border: 1px solid #eee; padding: 15px; border-radius: 18px; text-align: center; font-size: 0.65rem; font-weight: 800;">CABALLEROS</div>
-                <div style="min-width: 115px; background: #fff; border: 1px solid #eee; padding: 15px; border-radius: 18px; text-align: center; font-size: 0.65rem; font-weight: 800;">DAMAS</div>
-                <div style="min-width: 115px; background: #fff; border: 1px solid #eee; padding: 15px; border-radius: 18px; text-align: center; font-size: 0.65rem; font-weight: 800;">UNISEX</div>
+            <div class="mega-banner">
+                <h4>OMNIVERSE DEALS</h4>
+                <h2>2 x $120.00</h2>
+                <p>Fragancias Premium seleccionadas de 100ML.<br>Envío prioritario incluido en Ciudad de Panamá.</p>
+                <div style="margin-top: 30px; font-size: 0.5rem; opacity: 0.3; letter-spacing: 5px; font-weight: 900;">TEMPORADA 2026</div>
             </div>
-        </section>
 
-        <section class="page-container active" style="padding-bottom: 30px;">
-            <div style="background: linear-gradient(45deg, #010101, #1a1a1a); border-radius: 28px; padding: 40px 20px; text-align: center; color: #fff; border: 1px solid #c5a059;">
-                <h4 style="font-size: 0.6rem; letter-spacing: 4px; color: #c5a059; margin-bottom: 12px; font-weight: 700;">OFERTA DE TEMPORADA</h4>
-                <h2 style="font-size: 1.8rem; font-weight: 900; margin-bottom: 15px;">2 x $120.00</h2>
-                <p style="font-size: 0.65rem; opacity: 0.7; letter-spacing: 1px; line-height: 1.5;">APLICA EN FRAGANCIAS SELECCIONADAS DE 100ML.<br>ENVÍO GRATIS A TODA LA CIUDAD.</p>
-            </div>
-        </section>
-
-        <section class="page-container active" style="padding-bottom: 30px;">
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
-                <div style="background: #fff; padding: 20px; border-radius: 22px; border: 1px solid #f0f0f0;">
-                    <div style="color: #c5a059; font-size: 0.7rem; margin-bottom: 8px;">★★★★★</div>
-                    <p style="font-size: 0.6rem; font-weight: 600;">"100% original. Me llegó en 2 horas."</p>
+            <div class="testi-grid">
+                <div class="testi-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="testi-txt">"Servicio de primera. El perfume es 100% original y el empaque impecable."</p>
+                    <p class="testi-user">- CARLOS M. (PTY)</p>
                 </div>
-                <div style="background: #fff; padding: 20px; border-radius: 22px; border: 1px solid #f0f0f0;">
-                    <div style="color: #c5a059; font-size: 0.7rem; margin-bottom: 8px;">★★★★★</div>
-                    <p style="font-size: 0.6rem; font-weight: 600;">"Atención VIP por WhatsApp."</p>
+                <div class="testi-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="testi-txt">"Increíble atención por WhatsApp. Mi pedido llegó en 1 hora."</p>
+                    <p class="testi-user">- LUCÍA R. (CH)</p>
                 </div>
             </div>
-        </section>
 
-        <section class="page-container active" style="background: #000; color: #fff; border-radius: 25px; padding: 30px 20px; margin-bottom: 40px;">
-            <div style="text-align: center; margin-bottom: 20px;">
-                <h2 style="font-weight: 900; letter-spacing: 6px; font-size: 1rem;">ESSENCE</h2>
-                <p style="font-size: 0.5rem; opacity: 0.5; letter-spacing: 2px;">THE OMNIVERSE EXPERIENCE</p>
-            </div>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-size: 0.55rem; opacity: 0.8;">
-                <div>
-                    <p style="color: #c5a059; font-weight: 800; margin-bottom: 5px;">SOPORTE</p>
-                    <p>Garantía de Originalidad</p>
-                    <p>Envíos a todo Panamá</p>
+            <div class="corp-footer">
+                <div class="footer-brand">
+                    <h2>ESSENCE</h2>
                 </div>
-                <div>
-                    <p style="color: #c5a059; font-weight: 800; margin-bottom: 5px;">CONTACTO</p>
-                    <p>Instagram: @essence.omniverse</p>
-                    <p>WhatsApp: 507 6902-8805</p>
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <h5>LEGAL</h5>
+                        <p>Garantía de Originalidad</p>
+                        <p>Políticas de Envío</p>
+                    </div>
+                    <div class="footer-col">
+                        <h5>SOPORTE</h5>
+                        <p>WhatsApp: 507 6902-8805</p>
+                        <p>IG: @essence.omniverse</p>
+                    </div>
+                </div>
+                <div style="margin-top: 40px; text-align: center; font-size: 0.5rem; opacity: 0.2; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 25px;">
+                    © 2026 ESSENCE OMNIVERSE GLOBAL • SECURE DATA SYNC XP-992
                 </div>
             </div>
-        </section>
 
-        <section id="page-shop" class="page-container active">
-            <h3 style="font-size: 0.8rem; letter-spacing: 3px; font-weight: 900; margin-bottom: 20px; text-align: center; text-transform: uppercase;">Nuestra Colección</h3>
-            <div class="product-grid" id="product-injector"></div>
-        </section>
-        
-        <section id="page-rastreo" class="page-container">
-            <div style="text-align:center; padding: 60px 0;">
-                <h2 style="margin-bottom:20px; font-weight:700;">RASTREO</h2>
-                <input type="text" id="track-name-input" class="search-input" placeholder="Nombre completo" style="text-align:center; max-width:400px; margin-bottom:20px;">
-                <button class="btn-order" style="height:70px; max-width:400px; margin: 0 auto;" onclick="openWaTrack()">WHATSAPP</button>
+            <div style="text-align: center; margin-bottom: 30px;">
+                <h3 style="font-size: 0.9rem; letter-spacing: 6px; font-weight: 900; text-transform: uppercase;">Nuestra Colección</h3>
+                <div style="width: 40px; height: 2px; background: var(--essence-gold); margin: 15px auto;"></div>
             </div>
+
+            <div class="product-grid" id="product-list">
+                </div>
         </section>
 
-        <section id="page-admin" class="page-container">
-            <div id="admin-product-list"></div>
+        <section id="page-trace" class="page-container">
+            <div style="text-align:center; padding: 80px 0;">
+                <h2 style="margin-bottom:25px; font-weight:900; letter-spacing: 6px;">RASTREO VIP</h2>
+                <input type="text" id="t-in" class="search-input" placeholder="Nombre completo del titular" style="text-align:center; max-width:450px; margin-bottom:25px;">
+                <button class="btn-order" style="height:75px; max-width:450px; margin: 0 auto; background:#000;" onclick="trackWA()">SOLICITAR STATUS</button>
+            </div>
         </section>
     </main>
-        </footer>
 
     <div class="floating-nav">
-        <button class="nav-item active" onclick="switchPage('page-shop', this)">Tienda</button>
-        <button class="nav-item" onclick="switchPage('page-rastreo', this)">Rastreo</button>
-        <button class="nav-item" id="admin-tab-btn" style="display:none" onclick="switchPage('page-admin', this)">Panel</button>
+        <button class="nav-item active" onclick="tab('page-shop', this)">Catálogo</button>
+        <button class="nav-item" onclick="tab('page-trace', this)">Rastreo</button>
     </div>
 
-    <div class="modal-overlay" id="pay-modal-overlay">
+    <div class="modal" id="p-modal">
         <div class="modal-content">
-            <h3 style="text-align:center; margin-bottom:40px; font-weight:800; text-transform:uppercase; letter-spacing:2px">SELECCIONA PAGO</h3>
-            <div class="payment-option" onclick="completeOrderViaWA('YAPPY')">01. YAPPY</div>
-            <div class="payment-option" onclick="completeOrderViaWA('TRANSFERENCIA ACH')">02. TRANSFERENCIA</div>
-            <div class="payment-option" onclick="completeOrderViaWA('EFECTIVO')">03. EFECTIVO</div>
-            <button class="btn-order" style="background:#eee; color:#000; margin-top:15px; text-shadow:none;" onclick="closePaymentModal()">CERRAR</button>
+            <h3 style="text-align:center; margin-bottom:35px; font-weight: 900; letter-spacing: 3px;">MÉTODO DE PAGO</h3>
+            <div class="pay-option" onclick="pay('YAPPY')">YAPPY</div>
+            <div class="pay-option" onclick="pay('ACH')">TRANSFERENCIA</div>
+            <button class="btn-order" style="background:#eee; color:#000; margin-top:20px;" onclick="closeM()">CANCELAR</button>
         </div>
     </div>
 
-    <button class="fab-settings" id="admin-fab" onclick="adminAddNewItem()">🛠</button>
-
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
-        import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
 
-        // Configuración Firebase (Oculta para producción real, pero necesaria aquí)
-        const firebaseConfig = {
+        const config = {
             apiKey: "AIzaSyBkNAkJXoyxn9rkGv1mG5GPh9ge4FUjp8Y",
             authDomain: "essencev2.firebaseapp.com",
             projectId: "essencev2",
@@ -314,150 +375,56 @@
             appId: "1:201967001425:web:0a072cd4d2048e7a0dbd70"
         };
 
-        const app = initializeApp(firebaseConfig);
+        const app = initializeApp(config);
         const db = getFirestore(app);
-        const BOSS_WHATSAPP_NUMBER = "50769028805"; // Reemplázalo por tu número real
-        let selectedProductName = ""; let selectedProductPrice = "";
+        const WHATSAPP = "50769028805";
+        let sn = ""; let sp = "";
 
-        // --- CARGA DE PRODUCTOS CON TRANSICIONES DE BOUNCE ---
+        // CARGA DINÁMICA CON DELAY SMOOTH
         onSnapshot(collection(db, "inventario_oficial"), (snap) => {
-            const gridInjector = document.getElementById('product-injector');
-            const adminInjector = document.getElementById('admin-product-list');
-            gridInjector.innerHTML = ""; adminInjector.innerHTML = "";
-            
+            const list = document.getElementById('product-list');
+            list.innerHTML = "";
             snap.forEach(d => {
-                const p = d.data();
-                const productID = d.id;
-
-                // Tarjeta de tienda (Smoother)
-                gridInjector.innerHTML += `
-                    <div class="product-card" data-name="${p.name.toLowerCase()}">
-                        <div class="p-image-box"><img src="${p.img}"></div>
-                        <p style="color:rgba(0,0,0,0.3); font-size:0.6rem; font-weight:700; letter-spacing:2px; margin-bottom:8px">OMNIVERSE | ORIGINAL</p>
-                        <h3 class="p-title">${p.name}</h3>
-                        <p class="p-price">$${p.price}</p>
-                        <button class="btn-order" onclick="initOrderFlow('${p.name}', '${p.price}')">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WA">
-                            PEDIR PIEZA
-                        </button>
+                const i = d.data();
+                list.innerHTML += `
+                    <div class="product-card" data-name="${i.name.toLowerCase()}">
+                        <img src="${i.img}" loading="lazy">
+                        <h3 class="p-title">${i.name}</h3>
+                        <p class="p-price">$${i.price}</p>
+                        <button class="btn-order" onclick="openM('${i.name}', '${i.price}')">ADQUIRIR</button>
                     </div>`;
-
-                // Tarjeta de admin
-                adminInjector.innerHTML += `<div style="background:#fff; padding:20px; border-radius:15px; margin-bottom:12px; display:flex; justify-content:space-between; align-items:center; border:1px solid rgba(0,0,0,0.05);">
-                    <span><b>${p.name}</b> ($${p.price})</span>
-                    <button onclick="adminRemoveItem('${productID}')" style="color:red; border:none; background:none; font-weight:700; cursor:pointer">BORRAR</button>
-                </div>`;
             });
         });
 
-        // --- FLUJO DE PEDIDO (ANTI-BLOQUEO IPHONE SAFARI) ---
-        window.initOrderFlow = (name, price) => { 
-            selectedProductName = name; 
-            selectedProductPrice = price; 
-            document.getElementById('pay-modal-overlay').classList.add('open');
-            // Añade clase al body para evitar scroll de fondo (smooth feeling)
-            document.body.style.overflow = 'hidden';
-        };
+        window.openM = (n, p) => { sn = n; sp = p; document.getElementById('p-modal').classList.add('open'); };
+        window.closeM = () => document.getElementById('p-modal').classList.remove('open');
 
-        window.closePaymentModal = () => {
-            document.getElementById('pay-modal-overlay').classList.remove('open');
-            document.body.style.overflow = 'auto'; // Restaura scroll
-        };
+        window.pay = async (m) => {
+            const u = localStorage.getItem('e_user') || prompt("Tu nombre:");
+            if(!u) return;
+            localStorage.setItem('e_user', u);
 
-        // Esta función engaña al bloqueo de iPhone Safari al abrir WA inmediatamente
-        window.completeOrderViaWA = async (metodo) => {
-            const clientName = localStorage.getItem('e_user') || prompt("Tu nombre completo para la garantía:");
-            if(!clientName) return;
-
-            // 1. Mensaje codificado para WhatsApp
-            const messageText = `👑 *ORDEN ESSENCE*%0A%0A👤 *Cliente:* ${clientName}%0A📦 *Perfume:* ${selectedProductName}%0A💰 *Precio:* $${selectedProductPrice}%0A💳 *PAGO:* ${metodo}`;
-            const whatsappFullUrl = `https://wa.me/${BOSS_WHATSAPP_NUMBER}?text=${messageText}`;
-
-            // 2. DISPARO INMEDIATO (IPHONE SAFE): Abrimos primero la ventana.
-            // Esto es crucial para que Safari no bloquee la pestaña.
-            const waWindow = window.open(whatsappFullUrl, '_blank');
+            const msg = `👑 *ORDEN ESSENCE*%0A👤 *Cliente:* ${u}%0A📦 *Perfume:* ${sn}%0A💰 *Precio:* $${sp}%0A💳 *PAGO:* ${m}`;
+            window.open(`https://wa.me/${WHATSAPP}?text=${msg}`, '_blank');
             
-            // 3. FALLBACK: Si iPhone bloqueó la ventana, forzamos redirección en la misma pestaña
-            if(!waWindow) {
-                window.location.href = whatsappFullUrl;
-            }
-
-            // 4. Guardado en Firebase en segundo plano (mientras WhatsApp abre)
-            try {
-                await addDoc(collection(db, "ventas_essence"), { 
-                    clientName, 
-                    productName: selectedProductName, 
-                    productPrice: selectedProductPrice,
-                    metodo, 
-                    ts: new Date() 
-                });
-            } catch (e) {
-                console.error("Error guardando orden: ", e);
-            }
-
-            closePaymentModal();
+            await addDoc(collection(db, "ventas_essence"), { u, sn, m, ts: new Date() });
+            closeM();
         };
 
-        // --- SISTEMA DE NAVEGACIÓN (SUAVE) ---
-        window.switchPage = (pageId, btnElement) => {
-            // Desactiva todo
+        window.tab = (id, b) => {
             document.querySelectorAll('.page-container').forEach(p => p.classList.remove('active'));
             document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-            
-            // Activa lo seleccionado
-            document.getElementById(pageId).classList.add('active');
-            btnElement.classList.add('active');
-            
-            // Scroll arriba suave
+            document.getElementById(id).classList.add('active');
+            b.classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         };
 
-        // --- FUNCIONES EXTRA (BUSCADOR, RASTREO, ADMIN) ---
-        window.filterProducts = () => {
-            const searchValue = document.getElementById('live-search').value.toLowerCase();
-            document.querySelectorAll('.product-card').forEach(card => {
-                const nameMatch = card.dataset.name.includes(searchValue);
-                card.style.display = nameMatch ? "flex" : "none";
-            });
+        window.filter = () => {
+            const v = document.getElementById('live-search').value.toLowerCase();
+            document.querySelectorAll('.product-card').forEach(c => c.style.display = c.dataset.name.includes(v) ? "block" : "none");
         };
 
-        window.openWaTrack = () => {
-            const name = document.getElementById('track-name-input').value;
-            if(name) {
-                const trackWaUrl = `https://wa.me/${BOSS_WHATSAPP_NUMBER}?text=Hola%20solicito%20estatus%20de%20mi%20pedido:%20${name}`;
-                window.open(trackWaUrl, '_blank');
-            }
-        };
-
-        window.userRegName = () => {
-            const name = prompt("INGRESA TU NOMBRE COMPLETO:");
-            if(name) { localStorage.setItem('e_user', name); location.reload(); }
-        };
-
-        // ADMIN TOOLS
-        window.adminRemoveItem = (id) => confirm("¿ELIMINAR PRODUCTO?") && deleteDoc(doc(db, "inventario_oficial", id));
-        window.adminAddNewItem = async () => {
-            const name = prompt("Nombre:"), price = prompt("Precio:"), img = prompt("URL Imagen:");
-            if(name && price && img) await addDoc(collection(db, "inventario_oficial"), { name, price, img, ts: new Date() });
-        };
-
-        // Clave secreta Magnate
-        let magnateClicks = 0;
-        document.getElementById('magnate-trigger').onclick = () => {
-            if(++magnateClicks >= 3) {
-                if(prompt("MASTER KEY:") === "542497") { // Tu clave
-                    document.getElementById('admin-tab-btn').style.display = 'block';
-                    document.getElementById('admin-fab').style.display = 'flex';
-                }
-                magnateClicks = 0;
-            }
-        };
-
-        // Carga de sesión
-        window.onload = () => {
-            const savedUser = localStorage.getItem('e_user');
-            // Opcional: mostrar nombre arriba si quieres
-        };
+        window.trackWA = () => { const n = document.getElementById('t-in').value; if(n) window.open(`https://wa.me/${WHATSAPP}?text=Rastreo:%20${n}`, '_blank'); };
     </script>
 </body>
 </html>
