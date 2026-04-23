@@ -7,84 +7,44 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script type="module">
-  // 1. IMPORTAR FIREBASE (Lo que hace que la página funcione)
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-  import { getFirestore, collection, addDoc, getDocs, query, where, orderBy, onSnapshot, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-  // 2. TU CONFIGURACIÓN (La que se veía arriba en tu captura)
- const firebaseConfig = {
-  apiKey: "AIzaSyATWNabsIZvdV0NuONWpKBT2vZEGWxTg1c",
-  authDomain: "essence3-2d1de.firebaseapp.com",
-  authDomain: "essence3-2d1de.firebaseapp.com",
-    projectId: "essence3-2d1de",
-  messagingSenderId: "244822107655",
-  appId: "1:244822107655:web:1d656b1a8eb3969c262ca2"
-};
-  // 3. INICIALIZAR
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-
-// ESTO UNE EL INICIO CON EL FINAL DEL CÓDIGO
-window.db = db;
-window.dbFunctions = { collection, addDoc, onSnapshot, doc };  // Hacerlo global para que tus 1000 líneas de código lo encuentren
-  window.db = db;
-  window.dbFunctions = { collection, addDoc, getDocs, query, where, orderBy, onSnapshot, doc, updateDoc, deleteDoc };
-
-  console.log("🚀 Firebase conectado correctamente");
-</script>
-
-<script>
-  // Tu configuración de EmailJS que ya tenías
-  const EMAILJS_PUBLIC_KEY  = "TU_PUBLIC_KEY";  
-  const EMAILJS_SERVICE_ID  = "TU_SERVICE_ID";  
-  const EMAILJS_TEMPLATE_ID = "TU_TEMPLATE_ID"; 
-  
-  if(EMAILJS_PUBLIC_KEY !== "TU_PUBLIC_KEY") emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
-
+  const EMAILJS_PUBLIC_KEY  = "TU_PUBLIC_KEY";
+  const EMAILJS_SERVICE_ID  = "TU_SERVICE_ID";
+  const EMAILJS_TEMPLATE_ID = "TU_TEMPLATE_ID";
+  document.addEventListener('DOMContentLoaded', () => {
+    if(EMAILJS_PUBLIC_KEY !== "TU_PUBLIC_KEY") emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+  });
   async function sendOrderEmail(cliente, perfume, precio, pago, comprobante) {
-    if(EMAILJS_PUBLIC_KEY === "TU_PUBLIC_KEY") return;
+    if(EMAILJS_PUBLIC_KEY === "TU_PUBLIC_KEY") { console.warn("EmailJS no configurado"); return; }
     try {
       await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-        to_email: "essenceperfumpty@gmail.com",
-        cliente, perfume, precio: "$" + precio, pago, comprobante
+        to_email: "essenceperfumpty@gmail.com", to_name: "ESSENCE",
+        cliente, perfume, precio: "$" + precio, pago,
+        comprobante: comprobante || "Sin imagen",
+        fecha: new Date().toLocaleString("es-PA")
       });
     } catch(e) { console.error("EmailJS error:", e); }
   }
 </script>
 <style>
 :root {
-  --red: #ff2d2d; --red-deep: #c0000e;
-  --bg: #f2f2f7; --white: #fff;
-  --text: #1c1c1e; --muted: #8e8e93;
-  --border: rgba(0,0,0,0.07);
-  --sh: 0 2px 14px rgba(0,0,0,0.07);
-  --shmd: 0 8px 28px rgba(0,0,0,0.10);
-  --r: 18px; --tr: all 0.25s cubic-bezier(.4,0,.2,1);
-  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --red:#ff2d2d;--red-deep:#c0000e;--bg:#f2f2f7;--white:#fff;
+  --text:#1c1c1e;--muted:#8e8e93;--border:rgba(0,0,0,0.07);
+  --sh:0 2px 14px rgba(0,0,0,0.07);--shmd:0 8px 28px rgba(0,0,0,0.10);
+  --r:18px;--tr:all 0.25s cubic-bezier(.4,0,.2,1);
+  --safe-bottom:env(safe-area-inset-bottom,0px);
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{-webkit-text-size-adjust:100%}
 body{background:var(--bg);font-family:'Montserrat',sans-serif;color:var(--text);min-height:100vh;padding-bottom:calc(90px + var(--safe-bottom));overscroll-behavior:none}
-
-/* ── SCROLL SMOOTHNESS iOS ── */
 .scroll-area{-webkit-overflow-scrolling:touch;overflow-y:auto}
-
-/* ── HEADER ── */
 header{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:800;height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
 .logo{font-weight:900;font-size:1.2rem;letter-spacing:7px;text-transform:uppercase}
 .header-right{display:flex;gap:8px;align-items:center}
 .hbadge{background:var(--red);color:#fff;font-size:.58rem;font-weight:800;letter-spacing:.8px;padding:4px 10px;border-radius:50px;text-transform:uppercase}
 .hbtn{background:none;border:1px solid var(--border);border-radius:50px;padding:6px 12px;font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:700;color:var(--muted);cursor:pointer;transition:var(--tr)}
 .hbtn:active{transform:scale(.93)}
-
-/* ── WRAP ── */
 .wrap{max-width:480px;margin:0 auto;padding:0 16px}
-
-/* ── VIEWS ── */
 .view{display:none}.view.active{display:block}
-
-/* ── PROMO HERO ── */
 .promo-hero{background:linear-gradient(135deg,var(--red) 0%,var(--red-deep) 100%);border-radius:24px;padding:26px 22px;margin:14px 0 18px;color:#fff;position:relative;overflow:hidden;box-shadow:0 12px 32px rgba(255,45,45,.28)}
 .promo-hero::before{content:'';position:absolute;top:-40px;right:-40px;width:150px;height:150px;background:rgba(255,255,255,.08);border-radius:50%}
 .promo-hero::after{content:'';position:absolute;bottom:-50px;left:30px;width:110px;height:110px;background:rgba(255,255,255,.06);border-radius:50%}
@@ -92,28 +52,18 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
 .promo-eye{font-size:.6rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;opacity:.8;margin-bottom:4px}
 .promo-price{font-size:2.3rem;font-weight:900;line-height:1;margin-bottom:4px}
 .promo-sub{font-size:.7rem;font-weight:600;opacity:.8}
-
-/* ── EDITABLE PROMO (JEFE) ── */
 .edit-promo-btn{position:absolute;bottom:14px;right:14px;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.3);color:#fff;font-family:'Montserrat',sans-serif;font-size:.6rem;font-weight:800;padding:6px 12px;border-radius:50px;cursor:pointer;z-index:2}
-
-/* ── CATS ── */
 .cats{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:2px 0 18px;-webkit-overflow-scrolling:touch}
 .cats::-webkit-scrollbar{display:none}
 .cat{flex-shrink:0;background:var(--white);border:1px solid var(--border);padding:10px 18px;border-radius:50px;font-size:.7rem;font-weight:700;color:var(--muted);cursor:pointer;transition:var(--tr);user-select:none;box-shadow:var(--sh)}
 .cat.active{background:#000;color:#fff;border-color:#000}
 .cat:active{transform:scale(.93)}
-
-/* ── SEARCH ── */
 .search-wrap{position:relative;margin-bottom:18px}
 .search-icon{position:absolute;left:15px;top:50%;transform:translateY(-50%);font-size:.95rem;pointer-events:none}
 .search-input{width:100%;padding:14px 16px 14px 40px;border:none;border-radius:var(--r);background:var(--white);font-family:'Montserrat',sans-serif;font-size:.87rem;font-weight:500;color:var(--text);outline:none;box-shadow:var(--sh);transition:var(--tr);-webkit-appearance:none}
 .search-input:focus{box-shadow:0 0 0 2px rgba(255,45,45,.18),var(--sh)}
 .search-input::placeholder{color:var(--muted)}
-
-/* ── SECTION LABEL ── */
 .slabel{font-size:.67rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
-
-/* ── PRODUCT CARDS ── */
 .pgrid{display:flex;flex-direction:column;gap:12px}
 .pcard{background:var(--white);border-radius:22px;padding:15px;box-shadow:var(--sh);border:1px solid var(--border);display:flex;gap:14px;align-items:center;transition:var(--tr);animation:fadeUp .35s ease both}
 .pcard:active{transform:scale(.97)}
@@ -127,31 +77,22 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
 .pprice{font-size:1.15rem;font-weight:900;color:var(--red)}
 .btn-want{background:#000;color:#fff;border:none;padding:9px 14px;border-radius:10px;font-family:'Montserrat',sans-serif;font-size:.63rem;font-weight:800;letter-spacing:.6px;text-transform:uppercase;cursor:pointer;transition:var(--tr);white-space:nowrap}
 .btn-want:active{transform:scale(.93)}
-/* jefe: delete btn on card */
-.pdel-btn{background:#fff0f0;border:1px solid #ffd5d5;color:var(--red);font-size:.6rem;font-weight:800;padding:6px 10px;border-radius:8px;cursor:pointer;border:none;font-family:'Montserrat',sans-serif;flex-shrink:0}
-
-/* ── SKELETONS ── */
+.pdel-btn{background:#fff0f0;color:var(--red);font-size:.6rem;font-weight:800;padding:6px 10px;border-radius:8px;cursor:pointer;border:none;font-family:'Montserrat',sans-serif;flex-shrink:0}
 .skel{background:linear-gradient(90deg,#e8e8e8 25%,#f5f5f5 50%,#e8e8e8 75%);background-size:200% 100%;animation:shimmer 1.4s infinite;border-radius:10px}
 @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
 .skel-card{background:var(--white);border-radius:22px;padding:15px;display:flex;gap:14px;box-shadow:var(--sh)}
 .skel-img{width:86px;height:86px;flex-shrink:0;border-radius:14px}
 .skel-info{flex:1;display:flex;flex-direction:column;gap:8px;padding-top:4px}
 .skel-line{height:11px;border-radius:6px}
-
-/* ── EMPTY ── */
 .empty{text-align:center;padding:48px 20px;color:var(--muted)}
 .empty .ei{font-size:2.8rem;margin-bottom:10px}
 .empty p{font-size:.82rem;font-weight:600}
-
-/* ── TRACK VIEW ── */
 .track-card{background:var(--white);border-radius:24px;padding:26px 18px;box-shadow:var(--shmd);text-align:center;margin-top:14px}
 .track-title{font-size:1rem;font-weight:900;letter-spacing:.8px;text-transform:uppercase;margin-bottom:18px}
 .track-input{width:100%;padding:14px 16px;border:1.5px solid var(--border);border-radius:var(--r);font-family:'Montserrat',sans-serif;font-size:.88rem;font-weight:600;text-align:center;color:var(--text);outline:none;background:var(--bg);transition:var(--tr);margin-bottom:12px;-webkit-appearance:none}
 .track-input:focus{border-color:#000;background:var(--white)}
 .track-result{margin-top:16px;font-size:.85rem;font-weight:700;color:var(--red);min-height:22px}
 .track-badge{display:inline-block;background:#f0fff4;border:1px solid #86efac;color:#16a34a;border-radius:50px;padding:8px 16px;font-size:.75rem;font-weight:700;margin:3px 0}
-
-/* ── AI CHAT ── */
 .chat-wrap{margin-top:14px}
 .chat-header{background:var(--white);border-radius:22px 22px 0 0;padding:16px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;box-shadow:var(--sh)}
 .chat-avatar{width:38px;height:38px;background:linear-gradient(135deg,var(--red),var(--red-deep));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
@@ -174,40 +115,28 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
 .chat-send:active{transform:scale(.9)}
 .redirect-btn{background:var(--red);color:#fff;border:none;border-radius:12px;padding:10px 16px;font-family:'Montserrat',sans-serif;font-size:.72rem;font-weight:800;cursor:pointer;width:100%;margin-top:8px;transition:var(--tr);letter-spacing:.5px;text-transform:uppercase}
 .redirect-btn:active{transform:scale(.97)}
-
-/* ── NAV DOCK ── */
 .nav-dock{position:fixed;bottom:calc(14px + var(--safe-bottom));left:50%;transform:translateX(-50%);width:calc(100% - 36px);max-width:400px;background:rgba(255,255,255,.92);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-radius:100px;padding:6px;display:flex;gap:5px;box-shadow:0 8px 32px rgba(0,0,0,.12),0 2px 8px rgba(0,0,0,.06);border:1px solid var(--border);z-index:9000}
 .nav-btn{flex:1;padding:11px 6px;border-radius:50px;border:none;background:transparent;font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;cursor:pointer;transition:var(--tr);display:flex;align-items:center;justify-content:center;gap:4px}
 .nav-btn.active{background:#000;color:#fff}
 .nav-btn:active{transform:scale(.94)}
-
-/* ── MODAL / SHEET ── */
 .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);z-index:9500;align-items:flex-end}
 .overlay.open{display:flex}
 .sheet{background:var(--white);width:100%;border-radius:28px 28px 0 0;padding:10px 20px calc(28px + var(--safe-bottom));animation:sheetUp .3s cubic-bezier(.34,1.2,.64,1)}
 @keyframes sheetUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
 .sheet-handle{width:34px;height:4px;background:#e5e5ea;border-radius:2px;margin:0 auto 20px}
 .sheet-title{font-size:.95rem;font-weight:900;letter-spacing:.4px;text-align:center;margin-bottom:18px}
-
-/* ── PAY BUTTONS ── */
 .pay-btn{width:100%;padding:15px;border-radius:var(--r);border:none;font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;letter-spacing:.6px;text-transform:uppercase;cursor:pointer;transition:var(--tr);margin-bottom:9px}
 .pay-btn:active{transform:scale(.97)}
 .pay-yappy{background:#6fcf40;color:#fff}
 .pay-ach{background:#0066ff;color:#fff}
 .pay-cancel{background:#f2f2f7;color:var(--muted)}
-
-/* ── FILE UPLOAD ── */
 .upload-area{border:2px dashed #ddd;border-radius:var(--r);padding:20px;text-align:center;cursor:pointer;transition:var(--tr);margin:10px 0;background:var(--bg)}
 .upload-area.has-file{border-color:#34c759;background:#f0fff4}
 .upload-area input{display:none}
 .upload-area p{font-size:.75rem;font-weight:700;color:var(--muted);margin-top:6px}
 .upload-area .uicon{font-size:1.8rem}
 .upload-preview{width:100%;border-radius:10px;margin-top:8px;max-height:140px;object-fit:cover;display:none}
-
-/* ── JEFE / AGENTE PANELS ── */
 .panel-wrap{max-width:480px;margin:0 auto;padding:0 16px}
-
-/* Login screen */
 .login-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:80vh;gap:16px;text-align:center}
 .login-icon{font-size:3rem;margin-bottom:4px}
 .login-title{font-size:1.1rem;font-weight:900;letter-spacing:1px;text-transform:uppercase}
@@ -218,8 +147,6 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
 .btn-full.black{background:#000;color:#fff}
 .btn-full.black:active{transform:scale(.97)}
 .login-err{font-size:.72rem;font-weight:700;color:var(--red);min-height:18px}
-
-/* Panel sections */
 .panel-section{margin-top:14px}
 .panel-card{background:var(--white);border-radius:22px;padding:18px;box-shadow:var(--sh);margin-bottom:12px}
 .panel-card h3{font-size:.82rem;font-weight:900;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px;color:var(--text)}
@@ -231,8 +158,6 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
 .btn-red:active{transform:scale(.97)}
 .btn-green{background:#34c759;color:#fff;border:none;padding:11px 16px;border-radius:10px;font-family:'Montserrat',sans-serif;font-size:.72rem;font-weight:800;cursor:pointer;transition:var(--tr)}
 .btn-green:active{transform:scale(.95)}
-
-/* Órdenes pendientes */
 .order-card{background:var(--bg);border-radius:16px;padding:14px;margin-bottom:10px;border:1px solid var(--border)}
 .order-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
 .order-name{font-size:.85rem;font-weight:800}
@@ -248,37 +173,21 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
 .status-badge.pending{background:#fff3cd;color:#856404}
 .status-badge.approved{background:#d1fae5;color:#065f46}
 .status-badge.rejected{background:#fee2e2;color:#991b1b}
-
-/* Agente chat */
-.agent-conv-list{display:flex;flex-direction:column;gap:10px}
 .agent-conv{background:var(--bg);border-radius:14px;padding:13px;cursor:pointer;transition:var(--tr);border:1px solid var(--border)}
 .agent-conv:active{transform:scale(.97)}
 .agent-conv h4{font-size:.82rem;font-weight:800;margin-bottom:3px}
 .agent-conv p{font-size:.7rem;color:var(--muted);font-weight:500}
-
-/* Image modal */
 .img-modal-content{background:var(--white);width:100%;border-radius:24px 24px 0 0;padding:20px}
 .img-modal-content img{width:100%;border-radius:14px;max-height:60vh;object-fit:contain}
-
-/* Notifications dot */
 .notif-dot{width:7px;height:7px;background:var(--red);border-radius:50%;display:inline-block}
-
-/* Smooth page transitions */
 .view{animation:fadeUp .25s ease}
-
-/* Toggle */
 .logout-btn{background:none;border:none;font-family:'Montserrat',sans-serif;font-size:.65rem;font-weight:700;color:var(--muted);cursor:pointer;padding:6px 12px;border-radius:50px;border:1px solid var(--border)}
-
-/* ── TOAST ── */
 .toast{position:fixed;bottom:calc(90px + var(--safe-bottom) + 10px);left:50%;transform:translateX(-50%) translateY(20px);background:#1c1c1e;color:#fff;padding:13px 22px;border-radius:50px;font-size:.78rem;font-weight:700;z-index:99999;opacity:0;transition:all .3s cubic-bezier(.34,1.2,.64,1);pointer-events:none;white-space:nowrap;max-width:90vw;text-align:center}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 </style>
 </head>
 <body>
 
-<!-- ════════════════════════════════
-     HEADER
-════════════════════════════════ -->
 <header id="main-header">
   <div class="logo" id="secret-logo" onclick="secretTap()" style="cursor:default;user-select:none">ESSENCE</div>
   <div class="header-right">
@@ -286,12 +195,8 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
   </div>
 </header>
 
-<!-- ════════════════════════════════
-     MAIN APP (CLIENTE)
-════════════════════════════════ -->
+<!-- ── CLIENTE ── -->
 <div id="app-client">
-
-  <!-- SHOP VIEW -->
   <div id="view-shop" class="view active scroll-area">
     <div class="wrap">
       <div class="promo-hero" id="promo-hero">
@@ -301,19 +206,16 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
         <div class="promo-sub" id="promo-sub-txt">Combina cualquier fragancia premium</div>
         <button class="edit-promo-btn" id="edit-promo-btn" style="display:none" onclick="openEditPromo()">✏️ Editar</button>
       </div>
-
       <div class="cats" id="cat-bar">
         <div class="cat active" data-cat="all">Todos</div>
         <div class="cat" data-cat="dama">Dama</div>
         <div class="cat" data-cat="caballero">Caballero</div>
         <div class="cat" data-cat="unisex">Unisex</div>
       </div>
-
       <div class="search-wrap">
         <span class="search-icon">🔍</span>
         <input type="text" class="search-input" id="search" placeholder="Busca tu perfume favorito…" oninput="filterProducts()">
       </div>
-
       <div class="slabel">Catálogo</div>
       <div class="pgrid" id="product-list">
         <div class="skel-card"><div class="skel skel-img"></div><div class="skel-info"><div class="skel skel-line" style="width:70%"></div><div class="skel skel-line" style="width:50%"></div><div class="skel skel-line" style="width:40%"></div></div></div>
@@ -322,7 +224,6 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
     </div>
   </div>
 
-  <!-- TRACK VIEW -->
   <div id="view-track" class="view">
     <div class="wrap">
       <div class="track-card">
@@ -334,7 +235,6 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
     </div>
   </div>
 
-  <!-- AI CHAT VIEW -->
   <div id="view-chat" class="view">
     <div class="wrap chat-wrap">
       <div class="chat-header">
@@ -353,7 +253,6 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
     </div>
   </div>
 
-  <!-- NAV DOCK -->
   <nav class="nav-dock" id="client-nav">
     <button class="nav-btn active" id="nb-shop" onclick="goView('shop')">🛍️ Tienda</button>
     <button class="nav-btn" id="nb-track" onclick="goView('track')">📦 Rastreo</button>
@@ -361,9 +260,7 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
   </nav>
 </div>
 
-<!-- ════════════════════════════════
-     JEFE PANEL
-════════════════════════════════ -->
+<!-- ── JEFE ── -->
 <div id="app-jefe" style="display:none">
   <div id="jefe-login" class="login-screen">
     <div class="login-icon">👑</div>
@@ -374,16 +271,12 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
     <button class="btn-full black" onclick="jefeLogin()">Entrar</button>
     <button class="logout-btn" onclick="backToApp()">← Volver</button>
   </div>
-
   <div id="jefe-panel" style="display:none">
     <div class="panel-wrap panel-section">
-
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;margin-top:14px">
         <div style="font-size:1rem;font-weight:900;letter-spacing:2px">PANEL JEFE 👑</div>
         <button class="logout-btn" onclick="logoutJefe()">Salir</button>
       </div>
-
-      <!-- AGREGAR PRODUCTO -->
       <div class="panel-card">
         <h3>➕ Agregar Perfume</h3>
         <div class="form-row"><div class="form-label">Nombre</div><input class="form-input" id="j-name" placeholder="Ej: Bleu de Chanel"></div>
@@ -402,10 +295,8 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
             <img id="prod-img-preview" class="upload-preview">
           </div>
         </div>
-        <button class="btn-red" onclick="addProduct()">Agregar al catálogo</button>
+        <button class="btn-red" id="btn-add-product" onclick="addProduct()">Agregar al catálogo</button>
       </div>
-
-      <!-- EDITAR OFERTA -->
       <div class="panel-card">
         <h3>🎯 Editar Oferta</h3>
         <div class="form-row"><div class="form-label">Título promo (ej: 2 × $120)</div><input class="form-input" id="j-promo-price" placeholder="2 × $120"></div>
@@ -413,31 +304,23 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
         <div class="form-row"><div class="form-label">Etiqueta (pill)</div><input class="form-input" id="j-promo-pill" placeholder="⚡ Temporada"></div>
         <button class="btn-red" onclick="savePromo()">Guardar oferta</button>
       </div>
-
-      <!-- ÓRDENES PENDIENTES -->
       <div class="panel-card">
         <h3>📋 Órdenes Pendientes <span class="notif-dot" id="notif-dot" style="display:none"></span></h3>
         <div id="orders-list"><div style="font-size:.78rem;color:var(--muted);font-weight:600;text-align:center;padding:20px">Cargando órdenes…</div></div>
       </div>
-
-      <!-- INVENTARIO ACTUAL -->
       <div class="panel-card">
         <h3>📦 Inventario Actual</h3>
         <div class="pgrid" id="jefe-inventory"></div>
       </div>
-
     </div>
   </div>
-
   <nav class="nav-dock" id="jefe-nav" style="display:none">
     <button class="nav-btn active">👑 Jefe</button>
     <button class="logout-btn" onclick="logoutJefe()" style="flex:1;border-radius:50px;font-size:.62rem">Salir</button>
   </nav>
 </div>
 
-<!-- ════════════════════════════════
-     AGENTE PANEL
-════════════════════════════════ -->
+<!-- ── AGENTE ── -->
 <div id="app-agente" style="display:none">
   <div id="agente-login" class="login-screen">
     <div class="login-icon">🎧</div>
@@ -448,22 +331,17 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
     <button class="btn-full black" onclick="agenteLogin()">Entrar</button>
     <button class="logout-btn" onclick="backToApp()">← Volver</button>
   </div>
-
   <div id="agente-panel" style="display:none">
     <div class="panel-wrap panel-section">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;margin-top:14px">
         <div style="font-size:1rem;font-weight:900;letter-spacing:2px">PANEL AGENTE 🎧</div>
         <button class="logout-btn" onclick="logoutAgente()">Salir</button>
       </div>
-
       <div class="panel-card">
         <h3>💬 Chat con Clientes</h3>
         <p style="font-size:.75rem;color:var(--muted);font-weight:600;margin-bottom:12px">Clientes que solicitaron hablar con un agente:</p>
-        <div id="agent-convs">
-          <div style="font-size:.78rem;color:var(--muted);font-weight:600;text-align:center;padding:20px">Sin conversaciones pendientes</div>
-        </div>
+        <div id="agent-convs"><div style="font-size:.78rem;color:var(--muted);font-weight:600;text-align:center;padding:20px">Sin conversaciones pendientes</div></div>
       </div>
-
       <div class="panel-card" id="agent-chat-panel" style="display:none">
         <h3 id="agent-chat-title">Chat con cliente</h3>
         <div class="chat-messages" id="agent-chat-messages" style="min-height:220px;border-radius:14px;background:var(--bg);padding:12px"></div>
@@ -472,25 +350,19 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
           <button class="chat-send" onclick="sendAgentReply()">➤</button>
         </div>
       </div>
-
       <div class="panel-card">
         <h3>📋 Todas las Órdenes</h3>
         <div id="agent-orders"></div>
       </div>
     </div>
   </div>
-
   <nav class="nav-dock" id="agente-nav" style="display:none">
     <button class="nav-btn active">🎧 Agente</button>
     <button class="logout-btn" onclick="logoutAgente()" style="flex:1;border-radius:50px;font-size:.62rem">Salir</button>
   </nav>
 </div>
 
-<!-- ════════════════════════════════
-     MODALES
-════════════════════════════════ -->
-
-<!-- Access Modal -->
+<!-- ── MODALES ── -->
 <div class="overlay" id="access-modal" onclick="if(event.target.id==='access-modal')closeAccessModal()">
   <div class="sheet">
     <div class="sheet-handle"></div>
@@ -501,7 +373,6 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
   </div>
 </div>
 
-<!-- Payment Modal -->
 <div class="overlay" id="pay-modal" onclick="if(event.target.id==='pay-modal')closePay()">
   <div class="sheet">
     <div class="sheet-handle"></div>
@@ -513,7 +384,6 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
   </div>
 </div>
 
-<!-- Upload Comprobante Modal -->
 <div class="overlay" id="upload-modal" onclick="if(event.target.id==='upload-modal')closeUpload()">
   <div class="sheet">
     <div class="sheet-handle"></div>
@@ -531,7 +401,6 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
   </div>
 </div>
 
-<!-- Edit Promo Modal -->
 <div class="overlay" id="promo-modal" onclick="if(event.target.id==='promo-modal')closePromoModal()">
   <div class="sheet">
     <div class="sheet-handle"></div>
@@ -544,7 +413,6 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
   </div>
 </div>
 
-<!-- Image Viewer Modal -->
 <div class="overlay" id="img-viewer" onclick="document.getElementById('img-viewer').classList.remove('open')">
   <div class="img-modal-content">
     <div class="sheet-handle"></div>
@@ -552,9 +420,7 @@ header{background:var(--white);border-bottom:1px solid var(--border);position:st
   </div>
 </div>
 
-<!-- ════════════════════════════════
-     FIREBASE + LOGIC
-════════════════════════════════ -->
+<!-- ── FIREBASE + LÓGICA ── -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
 import { getFirestore, collection, onSnapshot, addDoc, getDocs, deleteDoc, doc, updateDoc, query, where, orderBy, setDoc, getDoc }
@@ -562,17 +428,29 @@ import { getFirestore, collection, onSnapshot, addDoc, getDocs, deleteDoc, doc, 
 import { getStorage, ref, uploadBytes, getDownloadURL }
   from "https://www.gstatic.com/firebasejs/9.15.0/firebase-storage.js";
 
+// ════════════════════════════════
+//  ✅ TU CONFIGURACIÓN FIREBASE
+// ════════════════════════════════
 const cfg = {
-  apiKey:"AIzaSyBkNAkJXoyxn9rkGv1mG5GPh9ge4FUjp8Y",
-  authDomain:"essencev2.firebaseapp.com",
-  projectId:"essencev2",
-  storageBucket:"essencev2.firebasestorage.app",
-  messagingSenderId:"201967001425",
-  appId:"1:201967001425:web:0a072cd4d2048e7a0dbd70"
+  apiKey:            "AIzaSyATWNabsIZvdV0NuONWpKBT2vZEGWxTg1c",
+  authDomain:        "essence3-2d1de.firebaseapp.com",
+  projectId:         "essence3-2d1de",
+  storageBucket:     "essence3-2d1de.appspot.com",
+  messagingSenderId: "244822107655",
+  appId:             "1:244822107655:web:1d656b1a8eb3969c262ca2"
 };
+
 const firebaseApp = initializeApp(cfg);
-const db  = getFirestore(firebaseApp);
+const db      = getFirestore(firebaseApp);
 const storage = getStorage(firebaseApp);
+
+// ── TOAST ──
+function showToast(msg, dur=3200){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), dur);
+}
+window.showToast = showToast;
 
 // ── STATE ──
 let currentN="", currentP="", currentPayMethod="";
@@ -581,15 +459,14 @@ let isBoss=false, isAgent=false;
 let compFile=null, prodImgFile=null;
 let activeAgentClient=null;
 
-// ── PROMO defaults ──
+// ── PROMO ──
 let promoData = { price:"2 × $120", sub:"Combina cualquier fragancia premium", pill:"⚡ Temporada" };
 
-// Load promo from Firestore
 async function loadPromo(){
   try {
     const d = await getDoc(doc(db,"config","promo"));
-    if(d.exists()) { promoData = d.data(); applyPromo(); }
-  } catch(e){}
+    if(d.exists()){ promoData=d.data(); applyPromo(); }
+  } catch(e){ console.warn("loadPromo:", e); }
 }
 function applyPromo(){
   document.getElementById('promo-price-txt').textContent = promoData.price||"2 × $120";
@@ -601,54 +478,58 @@ loadPromo();
 
 // ── PRODUCTOS ──
 let allProducts = [];
-onSnapshot(collection(db,"inventario_oficial"), (snap)=>{
-  allProducts = [];
-  snap.forEach(d=>{ allProducts.push({id:d.id, ...d.data()}); });
+onSnapshot(collection(db,"inventario_oficial"), snap=>{
+  allProducts=[];
+  snap.forEach(d=>allProducts.push({id:d.id,...d.data()}));
   renderProducts();
   if(isBoss) renderJefeInventory();
 });
 
 function renderProducts(){
-  const list = document.getElementById('product-list');
-  const q = (document.getElementById('search')||{}).value||"";
-  let filtered = allProducts.filter(i=>{
-    const nm = i.name.toLowerCase().includes(q.toLowerCase());
-    const ct = activeCategory==='all' || (i.cat||'').toLowerCase()===activeCategory;
-    return nm && ct;
+  const list=document.getElementById('product-list');
+  const q=(document.getElementById('search')||{}).value||"";
+  const filtered=allProducts.filter(i=>{
+    const nm=i.name.toLowerCase().includes(q.toLowerCase());
+    const ct=activeCategory==='all'||(i.cat||'').toLowerCase()===activeCategory;
+    return nm&&ct;
   });
-  if(!filtered.length){ list.innerHTML=`<div class="empty"><div class="ei">🧴</div><p>No hay perfumes disponibles</p></div>`; return; }
-  list.innerHTML = filtered.map((i,idx)=>`
-    <div class="pcard" style="animation-delay:${idx*55}ms" data-name="${i.name.toLowerCase()}" data-cat="${(i.cat||'').toLowerCase()}">
+  if(!filtered.length){
+    list.innerHTML=`<div class="empty"><div class="ei">🧴</div><p>No hay perfumes disponibles</p></div>`;
+    return;
+  }
+  list.innerHTML=filtered.map((i,idx)=>`
+    <div class="pcard" style="animation-delay:${idx*55}ms">
       <div class="pimg-wrap"><img src="${i.img||'https://placehold.co/86x86/f2f2f7/8e8e93?text=🧴'}" alt="${i.name}" loading="lazy" onerror="this.src='https://placehold.co/86x86/f2f2f7/8e8e93?text=🧴'"></div>
       <div class="pinfo">
         <div class="pname">${i.name}</div>
         <div class="pdesc">${i.desc||'Fragancia Original Premium'}</div>
         <div class="pbottom">
           <span class="pprice">$${i.price}</span>
-          <button class="btn-want" onclick="openPay('${i.name}','${i.price}')">¡Lo quiero!</button>
+          <button class="btn-want" onclick="openPay(${JSON.stringify(i.name)},${JSON.stringify(String(i.price))})">¡Lo quiero!</button>
         </div>
       </div>
     </div>`).join('');
 }
 
 function renderJefeInventory(){
-  const el = document.getElementById('jefe-inventory');
-  if(!el) return;
-  if(!allProducts.length){ el.innerHTML=`<div class="empty"><div class="ei">📦</div><p>Sin productos</p></div>`; return; }
-  el.innerHTML = allProducts.map(i=>`
+  const el=document.getElementById('jefe-inventory'); if(!el) return;
+  if(!allProducts.length){
+    el.innerHTML=`<div class="empty"><div class="ei">📦</div><p>Sin productos</p></div>`;
+    return;
+  }
+  el.innerHTML=allProducts.map(i=>`
     <div class="pcard">
       <div class="pimg-wrap"><img src="${i.img||'https://placehold.co/86x86/f2f2f7/8e8e93?text=🧴'}" onerror="this.src='https://placehold.co/86x86/f2f2f7/8e8e93?text=🧴'" loading="lazy"></div>
       <div class="pinfo">
         <div class="pname">${i.name}</div>
         <div class="pdesc">${i.cat||''} · $${i.price}</div>
-        <button class="pdel-btn" onclick="deleteProduct('${i.id}','${i.name}')">🗑️ Eliminar</button>
+        <button class="pdel-btn" onclick="deleteProduct(${JSON.stringify(i.id)},${JSON.stringify(i.name)})">🗑️ Eliminar</button>
       </div>
     </div>`).join('');
 }
 
-window.filterProducts = ()=> renderProducts();
+window.filterProducts=()=>renderProducts();
 
-// cats
 document.querySelectorAll('.cat').forEach(c=>{
   c.addEventListener('click',()=>{
     document.querySelectorAll('.cat').forEach(x=>x.classList.remove('active'));
@@ -659,61 +540,65 @@ document.querySelectorAll('.cat').forEach(c=>{
 });
 
 // ── PAYMENT FLOW ──
-window.openPay = (n,p)=>{ currentN=n; currentP=p; document.getElementById('pay-product-info').textContent=`${n} · $${p}`; document.getElementById('pay-modal').classList.add('open'); };
-window.closePay = ()=>document.getElementById('pay-modal').classList.remove('open');
-window.selectPay = (m)=>{ currentPayMethod=m; closePay(); openUpload(); };
-window.openUpload = ()=>{ document.getElementById('upload-modal').classList.add('open'); };
-window.closeUpload = ()=>{ document.getElementById('upload-modal').classList.remove('open'); compFile=null; document.getElementById('comp-preview').style.display='none'; document.getElementById('comp-upload-area').classList.remove('has-file'); };
+window.openPay=(n,p)=>{
+  currentN=n; currentP=p;
+  document.getElementById('pay-product-info').textContent=`${n} · $${p}`;
+  document.getElementById('pay-modal').classList.add('open');
+};
+window.closePay=()=>document.getElementById('pay-modal').classList.remove('open');
+window.selectPay=(m)=>{ currentPayMethod=m; closePay(); openUpload(); };
+window.openUpload=()=>document.getElementById('upload-modal').classList.add('open');
+window.closeUpload=()=>{
+  document.getElementById('upload-modal').classList.remove('open');
+  compFile=null;
+  document.getElementById('comp-preview').style.display='none';
+  document.getElementById('comp-upload-area').classList.remove('has-file');
+  document.getElementById('buyer-name').value='';
+  document.getElementById('comp-file').value='';
+};
 
-window.previewComp = (e)=>{
+window.previewComp=(e)=>{
   const f=e.target.files[0]; if(!f) return;
   compFile=f;
-  const url=URL.createObjectURL(f);
   const prev=document.getElementById('comp-preview');
-  prev.src=url; prev.style.display='block';
+  prev.src=URL.createObjectURL(f); prev.style.display='block';
   document.getElementById('comp-upload-area').classList.add('has-file');
 };
 
-window.confirmOrder = async ()=>{
+window.confirmOrder=async()=>{
   const name=document.getElementById('buyer-name').value.trim();
-  if(!name){ alert("Ingresa tu nombre"); return; }
-  if(!compFile){ alert("Sube el comprobante de pago"); return; }
+  if(!name){ showToast("⚠️ Ingresa tu nombre"); return; }
+  if(!compFile){ showToast("⚠️ Sube el comprobante de pago"); return; }
   const btn=document.getElementById('confirm-order-btn');
   btn.textContent="Subiendo…"; btn.disabled=true;
   try {
-    // upload comprobante to Firebase Storage
-    const storRef = ref(storage, `comprobantes/${Date.now()}_${compFile.name}`);
-    await uploadBytes(storRef, compFile);
-    const imgUrl = await getDownloadURL(storRef);
-    // save order to Firestore
+    const storRef=ref(storage,`comprobantes/${Date.now()}_${compFile.name}`);
+    await uploadBytes(storRef,compFile);
+    const imgUrl=await getDownloadURL(storRef);
     await addDoc(collection(db,"ventas_essence"),{
       cliente:name, perfume:currentN, precio:currentP,
       pago:currentPayMethod, comprobante:imgUrl,
       fecha:new Date(), status:"pending"
     });
-    // send email notification
-    await sendOrderEmail(name, currentN, currentP, currentPayMethod, imgUrl);
-    // reset button
+    await sendOrderEmail(name,currentN,currentP,currentPayMethod,imgUrl);
     btn.textContent="Confirmar Pedido"; btn.disabled=false;
     closeUpload();
-    // show success
-    showToast(`✅ ¡Pedido enviado! El jefe lo revisará pronto.`);
+    showToast("✅ ¡Pedido enviado! El jefe lo revisará pronto.");
   } catch(err){
     console.error(err);
     btn.textContent="Confirmar Pedido"; btn.disabled=false;
-    alert("Error al subir. Verifica tu conexión e intenta de nuevo.");
+    showToast("❌ Error al subir. Verifica tu conexión.");
   }
 };
 
 // ── TRACKING ──
-window.trackOrder = async ()=>{
+window.trackOrder=async()=>{
   const id=document.getElementById('track-id').value.trim();
   const res=document.getElementById('track-result');
   if(!id) return;
   res.innerHTML='<div style="display:flex;gap:4px;justify-content:center"><span style="width:6px;height:6px;background:var(--muted);border-radius:50%;display:inline-block;animation:dotb 1.2s infinite ease-in-out"></span><span style="width:6px;height:6px;background:var(--muted);border-radius:50%;display:inline-block;animation:dotb 1.2s .2s infinite ease-in-out"></span><span style="width:6px;height:6px;background:var(--muted);border-radius:50%;display:inline-block;animation:dotb 1.2s .4s infinite ease-in-out"></span></div>';
   try {
-    const q=query(collection(db,"ventas_essence"),where("cliente","==",id));
-    const snap=await getDocs(q);
+    const snap=await getDocs(query(collection(db,"ventas_essence"),where("cliente","==",id)));
     if(snap.empty){ res.textContent="No se encontró pedido. Verifica tu nombre."; return; }
     let html='';
     snap.forEach(d=>{
@@ -728,12 +613,15 @@ window.trackOrder = async ()=>{
 // ── ÓRDENES (JEFE) ──
 function loadOrders(){
   const el=document.getElementById('orders-list'); if(!el) return;
-  onSnapshot(query(collection(db,"ventas_essence"),orderBy("fecha","desc")),(snap)=>{
+  onSnapshot(query(collection(db,"ventas_essence"),orderBy("fecha","desc")),snap=>{
     const pending=[];
     snap.forEach(d=>{ const o=d.data(); if(o.status==='pending') pending.push({id:d.id,...o}); });
     const dot=document.getElementById('notif-dot');
     if(dot) dot.style.display=pending.length?'inline-block':'none';
-    if(!pending.length){ el.innerHTML=`<div style="font-size:.78rem;color:var(--muted);font-weight:600;text-align:center;padding:20px">Sin órdenes pendientes 🎉</div>`; return; }
+    if(!pending.length){
+      el.innerHTML=`<div style="font-size:.78rem;color:var(--muted);font-weight:600;text-align:center;padding:20px">Sin órdenes pendientes 🎉</div>`;
+      return;
+    }
     el.innerHTML=pending.map(o=>`
       <div class="order-card">
         <div class="order-top">
@@ -744,42 +632,44 @@ function loadOrders(){
           </div>
           <span class="status-badge pending">Pendiente</span>
         </div>
-        ${o.comprobante?`<img src="${o.comprobante}" class="order-img" onclick="viewImg('${o.comprobante}')" alt="comprobante">`:'<div style="font-size:.7rem;color:var(--muted);font-weight:600;margin:6px 0">Sin comprobante</div>'}
+        ${o.comprobante
+          ?`<img src="${o.comprobante}" class="order-img" onclick="viewImg('${o.comprobante}')" alt="comprobante">`
+          :'<div style="font-size:.7rem;color:var(--muted);font-weight:600;margin:6px 0">Sin comprobante</div>'}
         <div class="order-actions">
-          <button class="obtn approve" onclick="approveOrder('${o.id}','${o.cliente}','${o.perfume}')">✅ Aprobar</button>
-          <button class="obtn reject" onclick="rejectOrder('${o.id}','${o.cliente}')">❌ Rechazar</button>
+          <button class="obtn approve" onclick="approveOrder(${JSON.stringify(o.id)},${JSON.stringify(o.cliente)},${JSON.stringify(o.perfume)})">✅ Aprobar</button>
+          <button class="obtn reject"  onclick="rejectOrder(${JSON.stringify(o.id)},${JSON.stringify(o.cliente)})">❌ Rechazar</button>
         </div>
       </div>`).join('');
   });
 }
 
-window.approveOrder = async (id,cliente,perfume)=>{
+window.approveOrder=async(id,cliente,perfume)=>{
   await updateDoc(doc(db,"ventas_essence",id),{status:'approved'});
   window.open(`https://wa.me/50769028805?text=${encodeURIComponent(`✅ ORDEN APROBADA\nCliente: ${cliente}\nPerfume: ${perfume}\nYa puedes coordinar la entrega.`)}`);
 };
-window.rejectOrder = async (id,cliente)=>{
+window.rejectOrder=async(id,cliente)=>{
   await updateDoc(doc(db,"ventas_essence",id),{status:'rejected'});
+  showToast(`❌ Orden de ${cliente} rechazada`);
 };
 
-// ── AGREGAR PRODUCTO (JEFE) ──
-window.previewProdImg = (e)=>{
+// ── AGREGAR PRODUCTO ──
+window.previewProdImg=(e)=>{
   const f=e.target.files[0]; if(!f) return;
   prodImgFile=f;
-  const url=URL.createObjectURL(f);
   const prev=document.getElementById('prod-img-preview');
-  prev.src=url; prev.style.display='block';
+  prev.src=URL.createObjectURL(f); prev.style.display='block';
   document.getElementById('prod-upload-area').classList.add('has-file');
 };
 
-window.addProduct = async ()=>{
+window.addProduct=async()=>{
   const name=document.getElementById('j-name').value.trim();
   const desc=document.getElementById('j-desc').value.trim();
   const price=document.getElementById('j-price').value.trim();
   const cat=document.getElementById('j-cat').value;
-  if(!name||!price){ alert("Nombre y precio son obligatorios"); return; }
+  if(!name||!price){ showToast("⚠️ Nombre y precio son obligatorios"); return; }
   let imgUrl='';
-  const btn=document.querySelector('#app-jefe .btn-red');
-  if(btn){ btn.textContent="Guardando…"; btn.disabled=true; }
+  const btn=document.getElementById('btn-add-product');
+  btn.textContent="Guardando…"; btn.disabled=true;
   try {
     if(prodImgFile){
       const storRef=ref(storage,`productos/${Date.now()}_${prodImgFile.name}`);
@@ -793,35 +683,38 @@ window.addProduct = async ()=>{
     prodImgFile=null;
     document.getElementById('prod-img-preview').style.display='none';
     document.getElementById('prod-upload-area').classList.remove('has-file');
-    alert("✅ Producto agregado");
-  } catch(e){ alert("Error al agregar"); console.error(e); }
-  if(btn){ btn.textContent="Agregar al catálogo"; btn.disabled=false; }
+    document.getElementById('prod-img-file').value='';
+    showToast("✅ Producto agregado al catálogo");
+  } catch(e){ showToast("❌ Error al agregar producto"); console.error(e); }
+  btn.textContent="Agregar al catálogo"; btn.disabled=false;
 };
 
-window.deleteProduct = async (id,name)=>{
+window.deleteProduct=async(id,name)=>{
   if(!confirm(`¿Eliminar "${name}"?`)) return;
   await deleteDoc(doc(db,"inventario_oficial",id));
+  showToast(`🗑️ "${name}" eliminado`);
 };
 
-// ── PROMO ──
-window.openEditPromo = ()=>{
+// ── PROMO MODALES ──
+window.openEditPromo=()=>{
   document.getElementById('pm-price').value=promoData.price||'';
   document.getElementById('pm-sub').value=promoData.sub||'';
   document.getElementById('pm-pill').value=promoData.pill||'';
   document.getElementById('promo-modal').classList.add('open');
 };
-window.closePromoModal = ()=>document.getElementById('promo-modal').classList.remove('open');
-window.savePromoModal = async ()=>{
+window.closePromoModal=()=>document.getElementById('promo-modal').classList.remove('open');
+window.savePromoModal=async()=>{
   promoData.price=document.getElementById('pm-price').value.trim()||promoData.price;
   promoData.sub=document.getElementById('pm-sub').value.trim()||promoData.sub;
   promoData.pill=document.getElementById('pm-pill').value.trim()||promoData.pill;
   await setDoc(doc(db,"config","promo"),promoData);
   applyPromo(); closePromoModal();
+  showToast("✅ Oferta actualizada");
 };
-window.savePromo = ()=>{ window.openEditPromo(); };
+window.savePromo=()=>window.openEditPromo();
 
 // ── AI CHAT ──
-const SYSTEM_PROMPT = `Eres NOVA, la asistente virtual de ESSENCE — una tienda premium de perfumes en Panamá. Tienes personalidad cálida, moderna y entusiasta. Hablas como una persona real, no como un robot. Usas emojis ocasionalmente para dar vida a tus respuestas. Eres experta en fragancias.
+const SYSTEM_PROMPT=`Eres NOVA, la asistente virtual de ESSENCE — una tienda premium de perfumes en Panamá. Tienes personalidad cálida, moderna y entusiasta. Hablas como una persona real, no como un robot. Usas emojis ocasionalmente para dar vida a tus respuestas. Eres experta en fragancias.
 
 === INFORMACIÓN DE ESSENCE ===
 
@@ -839,8 +732,8 @@ ENTREGAS:
 
 MÉTODOS DE PAGO:
 - Yappy: al número 6902-8805
-- Transferencia ACH / Sinpe: banco confirmado por el equipo
-- El cliente sube el comprobante directamente en la app al hacer su pedido
+- Transferencia ACH: banco confirmado por el equipo
+- El cliente sube el comprobante directamente en la app
 - No se acepta efectivo ni tarjeta por el momento
 
 PROCESO DE COMPRA:
@@ -856,96 +749,71 @@ POLÍTICAS:
 - En caso de error en el pedido, se gestiona de inmediato
 
 RASTREO:
-- El cliente puede rastrear su pedido en la sección "Rastreo" de la app usando su nombre
+- El cliente puede rastrear su pedido en la sección "Rastreo" usando su nombre
 
 CONTACTO:
 - WhatsApp: 6902-8805
-- Solo atención en horario: Lunes a Sábado 8am - 8pm
+- Atención: Lunes a Sábado 8am - 8pm
 
 === TU COMPORTAMIENTO ===
 - Sé conversacional, cálida y genuinamente útil
-- Si te preguntan sobre una fragancia específica (ej: "tienen algo parecido a Sauvage?"), da recomendaciones generales sobre las categorías disponibles
-- Si no sabes algo específico del inventario actual, dilo honestamente y sugiere preguntar por WhatsApp
-- Puedes hacer preguntas de seguimiento para entender mejor qué busca el cliente (ej: "¿es para regalo o para ti? ¿prefieres algo fresco o más intenso?")
-- Si el cliente quiere hablar con una persona real, diles que toquen el botón "Hablar con un agente humano" que está justo debajo del chat
-- Responde en español panameño natural, sin ser formal en exceso
-- Si te insultan o salen del tema, redirecciona amablemente hacia ESSENCE`;
+- Si no sabes algo del inventario actual, sugiere preguntar por WhatsApp
+- Si el cliente quiere hablar con una persona, diles que toquen "Hablar con un agente humano"
+- Responde en español panameño natural`;
 
-
-let chatHistory = [];
+let chatHistory=[];
 
 async function initChat(){
-  const msgs=document.getElementById('chat-messages');
-  msgs.innerHTML='';
+  document.getElementById('chat-messages').innerHTML='';
   chatHistory=[];
-  appendMsg('bot','¡Hola! 🌸 Soy NOVA, tu asistente de ESSENCE. Estoy aquí para ayudarte con lo que necesites — precios, fragancias, envíos, pagos o lo que se te ocurra. ¿En qué te puedo ayudar hoy?');
+  appendMsg('bot','¡Hola! 🌸 Soy NOVA, tu asistente de ESSENCE. ¿En qué te puedo ayudar hoy?');
 }
 initChat();
 
 function appendMsg(role,text){
   const msgs=document.getElementById('chat-messages');
   const d=document.createElement('div');
-  d.className=`msg ${role}`;
-  d.textContent=text;
-  msgs.appendChild(d);
-  msgs.scrollTop=msgs.scrollHeight;
+  d.className=`msg ${role}`; d.textContent=text;
+  msgs.appendChild(d); msgs.scrollTop=msgs.scrollHeight;
 }
 function appendTyping(){
   const msgs=document.getElementById('chat-messages');
   const d=document.createElement('div');
   d.className='msg bot typing'; d.id='typing-indicator';
   d.innerHTML='<span class="dot-typing"></span><span class="dot-typing"></span><span class="dot-typing"></span>';
-  msgs.appendChild(d);
-  msgs.scrollTop=msgs.scrollHeight;
+  msgs.appendChild(d); msgs.scrollTop=msgs.scrollHeight;
 }
 function removeTyping(){ const t=document.getElementById('typing-indicator'); if(t) t.remove(); }
 
-window.sendChat = async ()=>{
+window.sendChat=async()=>{
   const inp=document.getElementById('chat-input');
   const text=inp.value.trim(); if(!text) return;
-  appendMsg('user',text);
-  inp.value='';
+  appendMsg('user',text); inp.value='';
   chatHistory.push({role:'user',content:text});
   appendTyping();
   try {
     const res=await fetch('https://api.anthropic.com/v1/messages',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-        model:'claude-sonnet-4-20250514',
-        max_tokens:1000,
-        system:SYSTEM_PROMPT,
-        messages:chatHistory
-      })
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:SYSTEM_PROMPT,messages:chatHistory})
     });
     const data=await res.json();
     const reply=data.content?.map(c=>c.text||'').join('')||'Lo siento, intenta de nuevo.';
-    removeTyping();
-    appendMsg('bot',reply);
+    removeTyping(); appendMsg('bot',reply);
     chatHistory.push({role:'assistant',content:reply});
-    // Save conversation for agents
-    await addDoc(collection(db,"chat_sessions"),{
-      user_msg:text, bot_reply:reply,
-      fecha:new Date(), redirected:false
-    });
+    await addDoc(collection(db,"chat_sessions"),{user_msg:text,bot_reply:reply,fecha:new Date(),redirected:false});
   } catch(e){ removeTyping(); appendMsg('bot','Error de conexión. Intenta de nuevo.'); }
 };
 
-window.redirectToWhatsApp = async ()=>{
-  const name=prompt("¿Cuál es tu nombre?");
-  if(!name) return;
-  // save redirect request
-  await addDoc(collection(db,"agent_requests"),{
-    cliente:name, messages:chatHistory,
-    fecha:new Date(), status:'pending', agentReply:[]
-  });
+window.redirectToWhatsApp=async()=>{
+  const name=prompt("¿Cuál es tu nombre?"); if(!name) return;
+  await addDoc(collection(db,"agent_requests"),{cliente:name,messages:chatHistory,fecha:new Date(),status:'pending',agentReply:[]});
   window.open(`https://wa.me/50769028805?text=${encodeURIComponent(`Hola, soy ${name} y quisiera hablar con un agente de ESSENCE.`)}`);
 };
 
-// ── AGENT PANEL ──
+// ── PANEL AGENTE ──
 function loadAgentPanel(){
-  // load agent requests
-  onSnapshot(query(collection(db,"agent_requests"),orderBy("fecha","desc")),(snap)=>{
+  onSnapshot(query(collection(db,"agent_requests"),orderBy("fecha","desc")),snap=>{
     const el=document.getElementById('agent-convs'); if(!el) return;
     if(snap.empty){ el.innerHTML=`<div style="font-size:.78rem;color:var(--muted);font-weight:600;text-align:center;padding:20px">Sin conversaciones pendientes</div>`; return; }
     el.innerHTML='';
@@ -958,11 +826,10 @@ function loadAgentPanel(){
       el.appendChild(btn);
     });
   });
-  // load all orders
-  onSnapshot(query(collection(db,"ventas_essence"),orderBy("fecha","desc")),(snap)=>{
+  onSnapshot(query(collection(db,"ventas_essence"),orderBy("fecha","desc")),snap=>{
     const el=document.getElementById('agent-orders'); if(!el) return;
     if(snap.empty){ el.innerHTML=`<div style="font-size:.78rem;color:var(--muted);font-weight:600;text-align:center;padding:16px">Sin órdenes</div>`; return; }
-    el.innerHTML=`<div style="display:flex;flex-direction:column;gap:8px">`+
+    el.innerHTML='<div style="display:flex;flex-direction:column;gap:8px">'+
       [...snap.docs].map(d=>{
         const o=d.data();
         const s=o.status==='approved'?`<span class="status-badge approved">Aprobado</span>`:o.status==='rejected'?`<span class="status-badge rejected">Rechazado</span>`:`<span class="status-badge pending">Pendiente</span>`;
@@ -974,31 +841,19 @@ function loadAgentPanel(){
 function openAgentChat(id,o){
   activeAgentClient={id,...o};
   document.getElementById('agent-chat-title').textContent=`Chat con ${o.cliente}`;
-  const el=document.getElementById('agent-chat-messages');
-  el.innerHTML='';
-  (o.messages||[]).forEach(m=>{
-    const d=document.createElement('div');
-    d.className=`msg ${m.role==='user'?'user':'bot'}`;
-    d.textContent=m.content;
-    el.appendChild(d);
-  });
-  (o.agentReply||[]).forEach(r=>{
-    const d=document.createElement('div');
-    d.className='msg user';
-    d.textContent=`[Agente]: ${r}`;
-    el.appendChild(d);
-  });
+  const el=document.getElementById('agent-chat-messages'); el.innerHTML='';
+  (o.messages||[]).forEach(m=>{ const d=document.createElement('div'); d.className=`msg ${m.role==='user'?'user':'bot'}`; d.textContent=m.content; el.appendChild(d); });
+  (o.agentReply||[]).forEach(r=>{ const d=document.createElement('div'); d.className='msg user'; d.textContent=`[Agente]: ${r}`; el.appendChild(d); });
   el.scrollTop=el.scrollHeight;
   document.getElementById('agent-chat-panel').style.display='block';
 }
 
-window.sendAgentReply = async ()=>{
+window.sendAgentReply=async()=>{
   const inp=document.getElementById('agent-reply-input');
   const text=inp.value.trim(); if(!text||!activeAgentClient) return;
   inp.value='';
   const el=document.getElementById('agent-chat-messages');
-  const d=document.createElement('div');
-  d.className='msg user'; d.textContent=`[Agente]: ${text}`;
+  const d=document.createElement('div'); d.className='msg user'; d.textContent=`[Agente]: ${text}`;
   el.appendChild(d); el.scrollTop=el.scrollHeight;
   const replies=(activeAgentClient.agentReply||[]);
   replies.push(text);
@@ -1007,14 +862,13 @@ window.sendAgentReply = async ()=>{
 };
 
 // ── ACCESS / LOGIN ──
-window.showAccessModal = ()=>document.getElementById('access-modal').classList.add('open');
-window.closeAccessModal = ()=>document.getElementById('access-modal').classList.remove('open');
+window.showAccessModal=()=>document.getElementById('access-modal').classList.add('open');
+window.closeAccessModal=()=>document.getElementById('access-modal').classList.remove('open');
+window.goJefe=()=>{ closeAccessModal(); document.getElementById('app-client').style.display='none'; document.getElementById('app-jefe').style.display='block'; document.getElementById('app-agente').style.display='none'; };
+window.goAgente=()=>{ closeAccessModal(); document.getElementById('app-client').style.display='none'; document.getElementById('app-agente').style.display='block'; document.getElementById('app-jefe').style.display='none'; };
+window.backToApp=()=>{ document.getElementById('app-client').style.display='block'; document.getElementById('app-jefe').style.display='none'; document.getElementById('app-agente').style.display='none'; };
 
-window.goJefe = ()=>{ closeAccessModal(); document.getElementById('app-client').style.display='none'; document.getElementById('app-jefe').style.display='block'; document.getElementById('app-agente').style.display='none'; };
-window.goAgente = ()=>{ closeAccessModal(); document.getElementById('app-client').style.display='none'; document.getElementById('app-agente').style.display='block'; document.getElementById('app-jefe').style.display='none'; };
-window.backToApp = ()=>{ document.getElementById('app-client').style.display='block'; document.getElementById('app-jefe').style.display='none'; document.getElementById('app-agente').style.display='none'; };
-
-window.jefeLogin = ()=>{
+window.jefeLogin=()=>{
   const code=document.getElementById('jefe-code').value;
   if(code==='2020'){
     isBoss=true;
@@ -1028,8 +882,7 @@ window.jefeLogin = ()=>{
     setTimeout(()=>document.getElementById('jefe-err').textContent='',2000);
   }
 };
-
-window.logoutJefe = ()=>{
+window.logoutJefe=()=>{
   isBoss=false;
   document.getElementById('jefe-panel').style.display='none';
   document.getElementById('jefe-login').style.display='flex';
@@ -1039,7 +892,7 @@ window.logoutJefe = ()=>{
   backToApp();
 };
 
-window.agenteLogin = ()=>{
+window.agenteLogin=()=>{
   const code=document.getElementById('agente-code').value;
   if(code==='2021'){
     isAgent=true;
@@ -1052,8 +905,7 @@ window.agenteLogin = ()=>{
     setTimeout(()=>document.getElementById('agente-err').textContent='',2000);
   }
 };
-
-window.logoutAgente = ()=>{
+window.logoutAgente=()=>{
   isAgent=false;
   document.getElementById('agente-panel').style.display='none';
   document.getElementById('agente-login').style.display='flex';
@@ -1062,120 +914,31 @@ window.logoutAgente = ()=>{
   backToApp();
 };
 
-// ── VIEW NAVIGATION ──
-window.goView = (v)=>{
+// ── NAVEGACIÓN ──
+window.goView=(v)=>{
   ['shop','track','chat'].forEach(x=>{
     document.getElementById(`view-${x}`).classList.toggle('active',x===v);
     document.getElementById(`nb-${x}`).classList.toggle('active',x===v);
   });
-  if(v==='chat' && document.getElementById('chat-messages').children.length===0) initChat();
+  if(v==='chat'&&document.getElementById('chat-messages').children.length===0) initChat();
 };
 
-// ── SECRET TAP (8 veces en el logo) ──
-let secretCount = 0, secretTimer = null;
-window.secretTap = () => {
+// ── SECRET TAP ──
+let secretCount=0, secretTimer=null;
+window.secretTap=()=>{
   secretCount++;
   clearTimeout(secretTimer);
-  secretTimer = setTimeout(() => { secretCount = 0; }, 2000);
-  if (secretCount === 8) {
-    secretCount = 0;
-    showAccessModal();
-  }
+  secretTimer=setTimeout(()=>{ secretCount=0; },2000);
+  if(secretCount===8){ secretCount=0; showAccessModal(); }
 };
 
 // ── IMAGE VIEWER ──
-window.viewImg = (src)=>{
+window.viewImg=(src)=>{
   document.getElementById('img-viewer-src').src=src;
   document.getElementById('img-viewer').classList.add('open');
-  // --- FUNCIÓN DEFINITIVA: CONTADOR + ESPERA + APROBACIÓN ---
-window.confirmOrder = async function() {
-    const nameInput = document.getElementById('buyer-name');
-    const btn = document.getElementById('confirm-order-btn');
-    const modalContent = document.querySelector('.sheet'); 
-
-    if (!nameInput || !nameInput.value) return alert("Fren, pon tu nombre completo");
-
-    btn.innerText = "PROCESANDO...";
-    btn.disabled = true;
-
-    try {
-        const { getFirestore, collection, addDoc, onSnapshot, doc } = await import("https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js");
-        const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js");
-
-        const config = {
-            apiKey: "AIzaSyATWNabsIZvdV0NuONWpKBT2vZEGWxTg1c",
-            authDomain: "essence3-2d1de.firebaseapp.com",
-            projectId: "essence3-2d1de",
-            storageBucket: "essence3-2d1de.appspot.com",
-            appId: "1:244822107655:web:1d656b1a8eb3969c262ca2"
-        };
-
-        const app = initializeApp(config);
-        const db = getFirestore(app);
-
-        const docRef = await addDoc(collection(db, "pedidos"), {
-            cliente: nameInput.value,
-            fecha: new Date().toLocaleString("es-PA"),
-            estado: "pendiente"
-        });
-
-        const pedidoId = docRef.id;
-
-        // DIBUJAR EL CONTADOR
-        modalContent.innerHTML = `
-            <div id="status-container" style="text-align:center; padding: 30px; font-family: sans-serif; background: white; border-radius: 20px;">
-                <div style="font-size: 60px; margin-bottom: 10px;">⏳</div>
-                <h2 style="color: #e67e22; margin-bottom: 5px; font-weight: bold;">Esperando Confirmación</h2>
-                <p style="font-size: 14px; color: #666;">Verificando tu comprobante en el sistema...</p>
-                
-                <div style="background: #fff5e6; border: 2px solid #e67e22; border-radius: 15px; padding: 20px; margin: 20px 0;">
-                    <div id="timer" style="font-size: 45px; font-weight: bold; color: #d35400;">05:00</div>
-                    <p style="font-size: 11px; font-weight: bold; color: #e67e22; margin-top: 5px; text-transform: uppercase;">Tiempo estimado de espera</p>
-                </div>
-
-                <div style="width: 100%; background: #eee; height: 8px; border-radius: 4px; overflow: hidden;">
-                    <div id="progress" style="width: 10%; background: #e67e22; height: 100%; transition: 0.5s;"></div>
-                </div>
-                <p style="font-size: 11px; color: #999; margin-top: 15px;">No cierres esta ventana, se actualizará sola.</p>
-            </div>
-        `;
-
-        let tiempo = 300;
-        const timerElement = document.getElementById('timer');
-        const countdown = setInterval(() => {
-            let mins = Math.floor(tiempo / 60);
-            let segs = tiempo % 60;
-            if(timerElement) timerElement.innerHTML = mins + ":" + (segs < 10 ? '0' + segs : segs);
-            if (tiempo <= 0) clearInterval(countdown);
-            else tiempo--;
-        }, 1000);
-
-        onSnapshot(doc(db, "pedidos", pedidoId), (snap) => {
-            const data = snap.data();
-            if (data && data.estado === "aprobado") {
-                clearInterval(countdown);
-                document.getElementById('status-container').innerHTML = `
-                    <div style="text-align:center; animation: fadeIn 0.5s;">
-                        <div style="font-size: 70px; margin-bottom: 15px;">✅</div>
-                        <h2 style="color: #27ae60; font-size: 24px; font-weight: bold;">¡PAGO APROBADO!</h2>
-                        <p style="color: #555;">Tu pedido ha sido confirmado con éxito.</p>
-                        <div style="background: #eafaf1; padding: 15px; border-radius: 10px; margin-top: 20px; border: 1px dashed #27ae60;">
-                            <p style="font-weight: bold; color: #27ae60; margin: 0;">📦 PREPARANDO ENVÍO</p>
-                            <p style="font-size: 12px; margin-top: 5px;">Te contactaremos por WhatsApp en breve.</p>
-                        </div>
-                        <button onclick="location.reload()" style="margin-top: 25px; background: #27ae60; color: white; border: none; padding: 15px; border-radius: 10px; font-weight: bold; width: 100%; cursor: pointer;">Finalizar</button>
-                    </div>
-                `;
-            }
-        });
-
-    } catch (e) {
-        alert("Error: " + e.message);
-        btn.innerText = "CONFIRMAR PEDIDO";
-        btn.disabled = false;
-    }
 };
-
 </script>
+
+<div class="toast" id="toast"></div>
 </body>
 </html>
