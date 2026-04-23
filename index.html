@@ -3,179 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>ESSENCE | Perfumes Premium</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>ESSENCE | PREMIUM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #5b6cff;
-            --secondary: #7f53ff;
-            --accent: #25d366;
-            --bg: #f6f7fb;
-            --text: #232946;
-            --radius: 22px;
-            --shadow: 0 6px 32px rgba(91,108,255,0.08);
-            --card-bg: #fff;
-            --footer-bg: #eaeaff;
-            --nav-bg: #fff;
-            --input-bg: #f3f4fa;
+            --birri-red: #ff2d2d;
+            --birri-bg: #f2f2f7;
+            --card-white: #ffffff;
+            --text-main: #1c1c1e;
+            --shadow-soft: 0 4px 20px rgba(0,0,0,0.05);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: var(--bg); font-family: 'Montserrat', sans-serif; color: var(--text); }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { background: var(--birri-bg); font-family: 'Montserrat', sans-serif; color: var(--text-main); line-height: 1.4; }
+
+        /* HEADER CLEAN */
         header {
-            background: var(--card-bg); padding: 28px 0 18px 0; box-shadow: 0 2px 16px rgba(91,108,255,0.04);
-            display: flex; flex-direction: column; align-items: center; position: sticky; top: 0; z-index: 1000;
+            background: var(--card-white); padding: 20px; text-align: center;
+            position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid rgba(0,0,0,0.05);
         }
-        .logo {
-            font-weight: 900; font-size: 2.2rem; letter-spacing: 7px; color: var(--primary); text-shadow: 0 2px 8px #b3baff;
+        .logo { font-weight: 900; font-size: 1.4rem; letter-spacing: 6px; text-transform: uppercase; color: #000; }
+
+        /* CONTAINER CENTRALIZADO */
+        .app-width { max-width: 500px; margin: 0 auto; padding: 20px; }
+
+        /* BANNER PROMO (ESTILO BIRRIAPP) */
+        .promo-banner {
+            background: linear-gradient(135deg, #ff2d2d 0%, #d41414 100%);
+            border-radius: 20px; padding: 30px 20px; color: #fff; margin-bottom: 25px;
+            text-align: center; box-shadow: 0 10px 25px rgba(255, 45, 45, 0.25);
         }
-        .subtitle {
-            font-size: 1.1rem; color: #888; margin-top: 2px; letter-spacing: 2px;
-        }
-        .main-banner {
-            background: linear-gradient(120deg, var(--primary), var(--secondary));
-            color: #fff; border-radius: var(--radius); padding: 44px 24px 36px 24px; margin: 32px auto 22px auto;
-            max-width: 600px; box-shadow: var(--shadow); text-align: center; position: relative;
-        }
-        .main-banner h1 { font-size: 2.3rem; font-weight: 900; margin-bottom: 10px; }
-        .main-banner p { font-size: 1.15rem; font-weight: 500; }
-        .main-banner .promo {
-            background: #fff; color: var(--primary); font-weight: 800; border-radius: 14px;
-            display: inline-block; padding: 10px 28px; margin-top: 22px; font-size: 1.25rem; box-shadow: 0 2px 12px #b3baff;
-        }
-        .categories {
-            display: flex; gap: 14px; justify-content: center; margin: 34px 0 20px 0;
-        }
+        .promo-banner h2 { font-size: 1.8rem; font-weight: 900; margin-bottom: 5px; }
+        .promo-banner p { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; opacity: 0.9; }
+
+        /* CATEGORÍAS (PILLS) */
+        .categories { display: flex; gap: 10px; overflow-x: auto; padding: 5px 0 25px 0; scrollbar-width: none; }
+        .categories::-webkit-scrollbar { display: none; }
         .category {
-            background: #fff; border-radius: 18px; padding: 14px 28px; font-weight: 700;
-            color: var(--primary); box-shadow: 0 2px 10px #b3baff; cursor: pointer; transition: background 0.2s, color 0.2s;
+            background: #fff; padding: 12px 22px; border-radius: 50px; font-weight: 700;
+            font-size: 0.75rem; white-space: nowrap; color: #8e8e93; border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: var(--shadow-soft); transition: var(--transition); cursor: pointer;
         }
-        .category.active, .category:hover { background: var(--primary); color: #fff; }
-        .search-box { margin: 0 auto 32px auto; max-width: 600px; }
+        .category.active { background: #000; color: #fff; border-color: #000; }
+
+        /* SEARCH BAR */
+        .search-box { margin-bottom: 25px; }
         .search-input {
-            width: 100%; padding: 18px 26px; border: 1px solid #e0e3ff; border-radius: 18px;
-            background: var(--input-bg); font-size: 1.05rem; outline: none; box-shadow: var(--shadow);
-            transition: 0.3s;
+            width: 100%; padding: 16px 20px; border: none; border-radius: 15px;
+            background: #fff; font-size: 0.95rem; font-weight: 500; outline: none;
+            box-shadow: var(--shadow-soft); transition: var(--transition);
         }
-        .search-input:focus { border-color: var(--primary); }
-        .products-section { max-width: 600px; margin: 0 auto; }
-        .section-title {
-            font-size: 1.15rem; color: #888; letter-spacing: 1px; margin: 34px 0 14px 0; text-transform: uppercase;
-        }
-        .product-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px;
-        }
+        .search-input:focus { transform: scale(0.98); }
+
+        /* GRID DE PRODUCTOS (CARDS BIRRI) */
+        .product-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
         .product-card {
-            background: var(--card-bg); border-radius: var(--radius); padding: 26px; box-shadow: var(--shadow);
-            border: 1px solid rgba(91,108,255,0.06); display: flex; flex-direction: column; align-items: center;
-            transition: transform 0.2s, box-shadow 0.2s;
+            background: var(--card-white); border-radius: 22px; padding: 20px;
+            box-shadow: var(--shadow-soft); border: 1px solid rgba(0,0,0,0.02);
+            display: flex; gap: 20px; align-items: center; transition: var(--transition);
         }
-        .product-card:active { transform: scale(0.98); box-shadow: 0 2px 8px #b3baff; }
-        .product-image { width: 110px; height: 110px; object-fit: contain; border-radius: 14px; background: #f3f3f3; margin-bottom: 18px; }
-        .product-info { width: 100%; text-align: center; }
-        .product-info h3 { font-size: 1.15rem; font-weight: 800; margin-bottom: 8px; color: #232946; }
-        .product-desc { font-size: 0.97rem; color: #666; margin-bottom: 10px; }
-        .product-price { font-size: 1.35rem; font-weight: 900; color: var(--primary); margin-bottom: 12px; display: block; }
+        .product-card:active { transform: scale(0.97); }
+        .product-image { width: 100px; height: 100px; object-fit: contain; border-radius: 15px; }
+        .product-info { flex: 1; }
+        .product-info h3 { font-size: 1rem; font-weight: 800; margin-bottom: 4px; }
+        .product-desc { font-size: 0.75rem; color: #8e8e93; margin-bottom: 12px; font-weight: 500; }
+        .product-price { font-size: 1.3rem; font-weight: 900; color: var(--birri-red); }
+
+        /* BOTÓN ¡LO QUIERO! (RED BIRRI) */
         .btn-toy {
-            background: var(--primary); color: #fff; border: none; padding: 16px;
-            border-radius: 14px; font-size: 1.05rem; font-weight: 800; width: 100%;
-            cursor: pointer; text-transform: uppercase; letter-spacing: 1px;
-            box-shadow: 0 4px 15px rgba(91,108,255,0.13); margin-top: 10px; transition: background 0.2s;
+            background: var(--birri-red); color: #fff; border: none; padding: 12px 18px;
+            border-radius: 12px; font-size: 0.8rem; font-weight: 900; cursor: pointer;
+            text-transform: uppercase; letter-spacing: 1px; margin-top: 10px;
+            width: 100%; box-shadow: 0 4px 12px rgba(255, 45, 45, 0.2);
         }
-        .btn-toy:active { background: var(--secondary); }
+
+        /* NAVEGACIÓN INFERIOR (ESTILO NATIVO) */
         .nav-dock {
-            position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%);
-            width: 96%; max-width: 480px; background: var(--nav-bg); border-radius: 100px;
-            padding: 12px; display: flex; justify-content: space-around;
-            box-shadow: 0 10px 40px rgba(91,108,255,0.13); border: 1px solid #e0e3ff;
+            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
+            width: 90%; max-width: 400px; background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            border-radius: 100px; padding: 10px; display: flex; justify-content: space-around;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid rgba(0,0,0,0.05); z-index: 5000;
         }
         .nav-item {
-            padding: 16px 32px; border-radius: 50px; border: none; background: transparent;
-            font-size: 0.9rem; font-weight: 800; color: #a0a0a0; text-transform: uppercase; transition: background 0.2s, color 0.2s;
+            padding: 12px 25px; border-radius: 50px; border: none; background: transparent;
+            font-size: 0.7rem; font-weight: 800; color: #a0a0a0; text-transform: uppercase;
         }
-        .nav-item.active { background: #e0e3ff; color: var(--primary); }
-        .footer {
-            background: var(--footer-bg); color: #888; text-align: center; padding: 34px 0 22px 0; font-size: 1rem;
-            margin-top: 70px; border-radius: 22px 22px 0 0; box-shadow: 0 -2px 16px rgba(91,108,255,0.04);
-        }
-        .modal { display: none; position: fixed; inset: 0; background: rgba(91,108,255,0.13); backdrop-filter: blur(8px); z-index: 2000; align-items: center; justify-content: center; padding: 20px; }
+        .nav-item.active { background: #000; color: #fff; }
+
+        /* RASTREO SECTION */
+        .track-section { background: #fff; border-radius: 22px; padding: 30px 20px; box-shadow: var(--shadow-soft); text-align: center; }
+        .track-input { width: 100%; padding: 15px; border-radius: 12px; border: 1px solid #eee; margin-bottom: 15px; font-size: 1rem; text-align: center; }
+
+        /* MODAL (SHEET STYLE) */
+        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); backdrop-filter: blur(5px); z-index: 6000; align-items: flex-end; }
         .modal.open { display: flex; }
-        .modal-content { background: #fff; width: 100%; max-width: 370px; border-radius: 28px; padding: 36px; text-align: center; }
-        .modal-content h3 { margin-bottom: 24px; color: var(--primary); }
-        .pay-options { display: flex; flex-direction: column; gap: 14px; margin-bottom: 10px; }
-        .btn-pay { padding: 14px; border-radius: 12px; font-size: 1rem; font-weight: 800; border: none; cursor: pointer; transition: background 0.2s; }
-        .btn-pay.yappy { background: #232946; color: #fff; }
-        .btn-pay.ach { background: #e0e3ff; color: var(--primary); }
-        .btn-pay.whatsapp { background: var(--accent); color: #fff; }
-        .btn-pay.cancel { background: #eee; color: #232946; box-shadow: none; }
-        .track-section { max-width: 600px; margin: 0 auto 40px auto; display: none; }
-        .track-title { font-size: 1.1rem; color: var(--primary); margin: 30px 0 12px 0; text-align: center; }
-        .track-form { display: flex; gap: 10px; justify-content: center; }
-        .track-input { padding: 14px 18px; border-radius: 12px; border: 1px solid #e0e3ff; background: var(--input-bg); font-size: 1rem; }
-        .btn-track { background: var(--primary); color: #fff; border: none; padding: 14px 22px; border-radius: 12px; font-weight: 700; cursor: pointer; }
-        .track-result { margin-top: 18px; text-align: center; color: #232946; font-size: 1rem; }
-        @media (max-width: 700px) {
-            .main-banner, .products-section, .search-box, .track-section { max-width: 98vw; }
-            .product-grid { grid-template-columns: 1fr; }
+        .modal-content {
+            background: #fff; width: 100%; border-radius: 30px 30px 0 0; padding: 40px 25px;
+            text-align: center; animation: slideUp 0.3s ease-out;
         }
-        @media (max-width: 500px) {
-            .main-banner { padding: 22px 6px 18px 6px; }
-            .modal-content { padding: 18px; }
-            .footer { font-size: 0.9rem; }
+        @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+
+        @media (max-width: 400px) {
+            .product-card { flex-direction: column; text-align: center; }
+            .product-image { width: 140px; height: 140px; }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="logo">ESSENCE</div>
-        <div class="subtitle">Perfumes Premium 2026</div>
-    </header>
-    <div class="main-banner">
-        <h1>¡Fragancias que Enamoran!</h1>
-        <p>Descubre las mejores esencias, calidad premium y ofertas exclusivas.</p>
-        <div class="promo">2 x $120.00</div>
-    </div>
-    <div class="categories">
-        <div class="category active">Todos</div>
-        <div class="category">Dama</div>
-        <div class="category">Caballero</div>
-        <div class="category">Unisex</div>
-    </div>
-    <div class="search-box">
-        <input type="text" class="search-input" id="search" placeholder="Busca tu perfume..." onkeyup="filter()">
-    </div>
-    <div class="products-section">
-        <div class="section-title">Destacados</div>
-        <div class="product-grid" id="product-list"></div>
-    </div>
-    <div class="track-section" id="track-section">
-        <div class="track-title">Rastrea tu pedido</div>
-        <form class="track-form" onsubmit="trackOrder(event)">
-            <input type="text" class="track-input" id="track-id" placeholder="ID de pedido" required>
-            <button class="btn-track" type="submit">Rastrear</button>
-        </form>
-        <div class="track-result" id="track-result"></div>
-    </div>
+
+    <header><div class="logo">ESSENCE</div></header>
+
+    <main class="app-width">
+        <div id="shop-view">
+            <div class="promo-banner">
+                <p>OFERTA DE TEMPORADA</p>
+                <h2>2 x $120.00</h2>
+            </div>
+
+            <div class="categories">
+                <div class="category active">Todos</div>
+                <div class="category">Dama</div>
+                <div class="category">Caballero</div>
+                <div class="category">Unisex</div>
+            </div>
+
+            <div class="search-box">
+                <input type="text" class="search-input" id="search" placeholder="Busca tu perfume favorito..." onkeyup="filter()">
+            </div>
+
+            <div class="product-grid" id="product-list">
+                </div>
+        </div>
+
+        <div id="track-view" style="display: none; padding-top: 20px;">
+            <div class="track-section">
+                <h3 style="margin-bottom: 15px; font-weight: 800;">RASTREA TU PEDIDO</h3>
+                <input type="text" class="track-input" id="track-id" placeholder="Ingresa tu nombre o ID">
+                <button class="btn-toy" style="background: #000;" onclick="trackOrder(event)">Consultar Estado</button>
+                <div id="track-result" style="margin-top: 20px; font-weight: 600; color: #ff2d2d;"></div>
+            </div>
+        </div>
+    </main>
+
     <nav class="nav-dock">
         <button class="nav-item active" id="nav-home">Inicio</button>
         <button class="nav-item" id="nav-track">Rastreo</button>
     </nav>
+
     <div class="modal" id="p-modal">
         <div class="modal-content">
-            <h3>¿Cómo quieres pagar?</h3>
-            <div class="pay-options">
-                <button class="btn-pay yappy" onclick="pay('YAPPY')">YAPPY</button>
-                <button class="btn-pay ach" onclick="pay('ACH')">ACH</button>
-                <button class="btn-pay whatsapp" onclick="pay('WHATSAPP')">WhatsApp</button>
-            </div>
-            <button class="btn-pay cancel" onclick="closeM()">CANCELAR</button>
+            <h3 style="margin-bottom: 25px; font-weight: 900;">¿CÓMO DESEAS PAGAR?</h3>
+            <button class="btn-toy" style="background:#000; margin-bottom:12px;" onclick="pay('YAPPY')">YAPPY</button>
+            <button class="btn-toy" style="background:#0066ff; margin-bottom:12px;" onclick="pay('ACH')">TRANSFERENCIA</button>
+            <button class="btn-toy" style="background:#eee; color:#000; box-shadow:none;" onclick="closeM()">CANCELAR</button>
         </div>
     </div>
-    <footer class="footer">
-        © 2026 ESSENCE. Todos los derechos reservados. | Inspirado en Birriapp
-    </footer>
+
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
         import { getFirestore, collection, onSnapshot, addDoc, getDocs, query, where } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
+
         const config = {
             apiKey: "AIzaSyBkNAkJXoyxn9rkGv1mG5GPh9ge4FUjp8Y",
             authDomain: "essencev2.firebaseapp.com",
@@ -184,9 +173,12 @@
             messagingSenderId: "201967001425",
             appId: "1:201967001425:web:0a072cd4d2048e7a0dbd70"
         };
+
         const app = initializeApp(config);
         const db = getFirestore(app);
         let currentN = "", currentP = "";
+
+        // CARGA DE PRODUCTOS
         onSnapshot(collection(db, "inventario_oficial"), (snap) => {
             const list = document.getElementById('product-list');
             list.innerHTML = "";
@@ -197,74 +189,63 @@
                         <img src="${i.img}" class="product-image">
                         <div class="product-info">
                             <h3>${i.name}</h3>
-                            <div class="product-desc">${i.desc || ''}</div>
+                            <div class="product-desc">${i.desc || 'Fragancia Original'}</div>
                             <span class="product-price">$${i.price}</span>
                             <button class="btn-toy" onclick="openM('${i.name}', '${i.price}')">¡LO QUIERO!</button>
                         </div>
                     </div>`;
             });
         });
+
+        // LÓGICA DE COMPRA
         window.openM = (n, p) => { currentN = n; currentP = p; document.getElementById('p-modal').classList.add('open'); };
         window.closeM = () => document.getElementById('p-modal').classList.remove('open');
+        
         window.pay = async (m) => {
-            const u = prompt("Dinos tu nombre para la orden:");
+            const u = prompt("Dinos tu nombre para confirmar:");
             if(!u) return;
-            let payText = m;
-            if(m === 'WHATSAPP') payText = 'WhatsApp';
-            window.open(`https://wa.me/50769028805?text=Orden:%20${currentN}%20|%20Pago:%20${payText}`);
+            window.open(`https://wa.me/50769028805?text=🔥 NUEVA ORDEN%0ACliente: ${u}%0APerfume: ${currentN}%0APago: ${m}`);
             await addDoc(collection(db, "ventas_essence"), { cliente: u, perfume: currentN, pago: m, fecha: new Date() });
             closeM();
         };
+
+        // FILTROS
         window.filter = () => {
             const v = document.getElementById('search').value.toLowerCase();
             document.querySelectorAll('.product-card').forEach(c => {
                 c.style.display = c.dataset.name.includes(v) ? "flex" : "none";
             });
         };
-        // Categoría filtro (solo UI, requiere que los productos tengan data-cat)
-        document.querySelectorAll('.category').forEach(cat => {
-            cat.addEventListener('click', function() {
-                document.querySelectorAll('.category').forEach(c => c.classList.remove('active'));
-                this.classList.add('active');
-                const catName = this.textContent.trim().toLowerCase();
-                document.querySelectorAll('.product-card').forEach(card => {
-                    if(catName === 'todos' || (card.dataset.cat && card.dataset.cat.toLowerCase() === catName)) {
-                        card.style.display = 'flex';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-            });
-        });
-        // Navegación entre Inicio y Rastreo
+
+        // NAVEGACIÓN
         document.getElementById('nav-home').onclick = () => {
-            document.querySelector('.products-section').style.display = '';
-            document.getElementById('track-section').style.display = 'none';
+            document.getElementById('shop-view').style.display = 'block';
+            document.getElementById('track-view').style.display = 'none';
             document.getElementById('nav-home').classList.add('active');
             document.getElementById('nav-track').classList.remove('active');
         };
         document.getElementById('nav-track').onclick = () => {
-            document.querySelector('.products-section').style.display = 'none';
-            document.getElementById('track-section').style.display = '';
+            document.getElementById('shop-view').style.display = 'none';
+            document.getElementById('track-view').style.display = 'block';
             document.getElementById('nav-home').classList.remove('active');
             document.getElementById('nav-track').classList.add('active');
         };
-        // Rastreo de pedidos (simulado, debes adaptar a tu backend)
+
+        // RASTREO REAL
         window.trackOrder = async function(e) {
-            e.preventDefault();
             const id = document.getElementById('track-id').value.trim();
             const result = document.getElementById('track-result');
-            result.textContent = 'Buscando...';
-            // Simulación: busca por nombre de cliente
+            if(!id) return;
+            result.textContent = 'Buscando pedido...';
             const q = query(collection(db, "ventas_essence"), where("cliente", "==", id));
             const snap = await getDocs(q);
             if(snap.empty) {
-                result.textContent = 'No se encontró ningún pedido con ese ID.';
+                result.textContent = 'No se encontró pedido. Verifica el nombre.';
             } else {
                 let info = '';
                 snap.forEach(doc => {
                     const d = doc.data();
-                    info += `Pedido: ${d.perfume} | Pago: ${d.pago} | Fecha: ${d.fecha.toDate ? d.fecha.toDate().toLocaleString() : d.fecha}`;
+                    info += `✅ ${d.perfume} - En proceso`;
                 });
                 result.textContent = info;
             }
@@ -272,8 +253,6 @@
     </script>
 </body>
 </html>
-
-
 
 
 
