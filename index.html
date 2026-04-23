@@ -2,193 +2,226 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ESSENCE OMNIVERSE | SMOOTH EXPERIENCE</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>ESSENCE OMNIVERSE | CINEMATIC EXPERIENCE</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@900&family=Montserrat:wght@100;300;500;700;900&display=swap" rel="stylesheet">
+    
     <style>
+        /* [LÍNEA 20] EL MOTOR DE SEDA (ANIMACIONES RELAJADAS) */
         :root {
             --primary: #000000;
             --accent: #c5a059;
             --bg: #ffffff;
-            --card-bg: #f8f9fa;
-            --radius: 24px;
-            --shadow: 0 10px 30px rgba(0,0,0,0.08);
-            --smooth: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            --gray: #f8f9fa;
+            --v-smooth: all 0.8s cubic-bezier(0.19, 1, 0.22, 1); /* Pura Seda */
+            --Cinzel: 'Cinzel', serif;
+            --Montserrat: 'Montserrat', sans-serif;
+            --shadow: 0 30px 60px rgba(0,0,0,0.1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body { background: var(--bg); font-family: 'Montserrat', sans-serif; color: var(--primary); overflow-x: hidden; }
+        body { background: var(--bg); font-family: var(--Montserrat); color: var(--primary); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
 
-        /* HEADER ESTILO APP */
-        header {
-            padding: 30px 20px;
-            text-align: center;
-            background: var(--bg);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+        /* [LÍNEA 40] SPLASH SCREEN (INTRO ÉPICA AL CARGAR) */
+        #splash {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--bg); z-index: 100000;
+            display: flex; align-items: center; justify-content: center;
+            animation: splashOut 1.5s ease 2.5s forwards;
         }
-        .logo { font-weight: 900; font-size: 1.5rem; letter-spacing: 5px; text-transform: uppercase; }
+        #splash .logo-intro { font-family: var(--Cinzel); font-size: 2.5rem; letter-spacing: 20px; text-transform: uppercase; animation: introFade 2s; }
+        @keyframes introFade { from { opacity: 0; letter-spacing: 50px; } to { opacity: 1; letter-spacing: 20px; } }
+        @keyframes splashOut { to { opacity: 0; visibility: hidden; } }
 
-        /* ANUNCIO DISCRETO */
-        .top-bar { background: var(--accent); color: #fff; text-align: center; padding: 8px; font-size: 0.6rem; font-weight: 700; letter-spacing: 2px; }
+        /* [LÍNEA 60] HEADER ÉPICO */
+        header { padding: 80px 30px 40px; text-align: center; background: var(--bg); position: relative; z-index: 1000; }
+        .logo { font-family: var(--Cinzel); font-size: 2.8rem; letter-spacing: 15px; text-transform: uppercase; cursor: pointer; transition: var(--v-smooth); }
+        .logo:hover { letter-spacing: 20px; color: var(--accent); }
 
-        /* BUSCADOR SMOOTH */
-        .search-container { padding: 0 20px; margin-bottom: 20px; }
+        /* BUSCADOR CON BACKDROP BLUR (CRISTAL) */
+        .search-area { max-width: 600px; margin: 40px auto; padding: 0 20px; position: sticky; top: 30px; z-index: 5000; transition: var(--v-smooth); }
+        .search-area:focus-within { top: 10px; }
         .search-bar {
-            width: 100%;
-            padding: 18px 25px;
-            background: var(--card-bg);
-            border: none;
-            border-radius: var(--radius);
-            font-size: 0.9rem;
-            outline: none;
-            transition: var(--smooth);
-            border: 1px solid transparent;
-        }
-        .search-bar:focus { background: #fff; border-color: var(--accent); box-shadow: var(--shadow); }
-
-        /* GRID DE PRODUCTOS ESTILO BIRRIAPP */
-        .container { padding: 0 20px 100px; max-width: 1200px; margin: 0 auto; display: none; }
-        .container.active { display: block; animation: slideUp 0.6s ease; }
-
-        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-
-        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
-        @media (min-width: 768px) { .grid { grid-template-columns: repeat(4, 1fr); gap: 30px; } }
-
-        .card {
-            background: var(--card-bg);
-            border-radius: var(--radius);
-            padding: 15px;
-            text-align: center;
-            transition: var(--smooth);
-            position: relative;
-            border: 1px solid rgba(0,0,0,0.03);
-        }
-        .card:active { transform: scale(0.95); }
-        .card img { width: 100%; aspect-ratio: 1; object-fit: contain; margin-bottom: 10px; transition: var(--smooth); }
-        .card h3 { font-size: 0.8rem; font-weight: 700; margin-bottom: 5px; text-transform: uppercase; }
-        .card p { font-size: 1rem; font-weight: 300; color: var(--accent); margin-bottom: 15px; }
-
-        .btn-buy {
-            background: var(--primary);
-            color: #fff;
-            border: none;
-            padding: 12px;
-            width: 100%;
-            border-radius: 15px;
-            font-size: 0.7rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-        }
-
-        /* NAVEGACIÓN INFERIOR (ESTILO BIRRIAPP) */
-        .bottom-nav {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90%;
-            max-width: 400px;
-            background: rgba(0,0,0,0.9);
+            width: 100%; padding: 22px 35px;
+            background: rgba(255,255,255,0.8);
             backdrop-filter: blur(20px);
-            padding: 15px;
-            border-radius: 30px;
-            display: flex;
-            justify-content: space-around;
-            z-index: 5000;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border: none; border-radius: 50px;
+            font-size: 0.9rem; text-align: center; letter-spacing: 2px;
+            outline: none; transition: var(--v-smooth);
+            border: 1px solid rgba(0,0,0,0.05);
         }
-        .nav-item { color: #fff; text-decoration: none; font-size: 0.6rem; font-weight: 700; opacity: 0.5; transition: 0.3s; background: none; border: none; cursor: pointer; text-transform: uppercase; }
-        .nav-item.active { opacity: 1; color: var(--accent); }
+        .search-bar:focus { background: #fff; border-color: var(--accent); box-shadow: var(--shadow); width: 105%; }
 
-        /* MODALES SMOOTH */
+        /* [LÍNEA 100] GRID Y CARDS CON EFECTO DE CASCADA ÉPICO */
+        .container { padding: 60px 20px 150px; max-width: 1400px; margin: 0 auto; display: none; }
+        .container.active { display: block; animation: sectionFadeIn 1s cubic-bezier(0.19, 1, 0.22, 1); }
+        @keyframes sectionFadeIn { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+
+        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px 20px; }
+        @media (min-width: 768px) { .grid { grid-template-columns: repeat(4, 1fr); gap: 60px 40px; } }
+
+        /* EL EFECTO SMOOTH DE LAS CARDS */
+        .card {
+            background: var(--bg);
+            border-radius: 4px; /* Minimalismo puro, sin bordes redondos exagerados */
+            padding: 20px; text-align: center;
+            transition: var(--v-smooth);
+            position: relative; overflow: hidden;
+            animation: cardAppear 0.8s cubic-bezier(0.19, 1, 0.22, 1) backwards;
+        }
+        .card:hover { transform: translateY(-10px); }
+        @keyframes cardAppear { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+
+        /* Efecto de cascada para los primeros 8 productos */
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.2s; }
+        .card:nth-child(3) { animation-delay: 0.3s; }
+        .card:nth-child(4) { animation-delay: 0.4s; }
+        .card:nth-child(5) { animation-delay: 0.5s; }
+        .card:nth-child(6) { animation-delay: 0.6s; }
+        .card:nth-child(7) { animation-delay: 0.7s; }
+        .card:nth-child(8) { animation-delay: 0.8s; }
+
+        .card-visuals { background: var(--gray); aspect-ratio: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 2px; margin-bottom: 25px; }
+        .card img { width: 85%; height: 85%; object-fit: contain; transition: 1.5s cubic-bezier(0.1, 1, 0.2, 1); }
+        .card:hover img { transform: scale(1.1); }
+
+        .card h3 { font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+        .card p { font-size: 1.2rem; font-weight: 100; color: #555; margin-bottom: 25px; }
+
+        /* [LÍNEA 160] BOTÓN CORPORATIVO */
+        .btn-acquire {
+            width: 100%; padding: 22px;
+            background: var(--primary); color: #fff;
+            border: none; border-radius: 2px;
+            font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 4px;
+            cursor: pointer; transition: var(--v-smooth);
+        }
+        .btn-acquire:hover { background: var(--accent); box-shadow: 0 15px 30px rgba(197,160,89,0.3); }
+
+        /* [LÍNEA 180] NAVEGACIÓN INFERIOR (FLOTANTE ÉPICA) */
+        .nav-flotante {
+            position: fixed; bottom: 40px; left: 50%;
+            transform: translateX(-50%);
+            width: 90%; max-width: 450px;
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(25px);
+            padding: 10px; border-radius: 60px;
+            display: flex; justify-content: space-around;
+            z-index: 6000;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+            transition: var(--v-smooth);
+        }
+        .nav-flotante:hover { bottom: 45px; }
+        
+        .nav-item {
+            color: #fff; text-decoration: none;
+            font-size: 0.7rem; font-weight: 900; text-transform: uppercase;
+            letter-spacing: 2px; padding: 15px 20px;
+            border-radius: 30px; transition: 0.3s;
+            background: none; border: none; cursor: pointer;
+            opacity: 0.6;
+        }
+        .nav-item.active { opacity: 1; background: rgba(255,255,255,0.1); color: var(--accent); }
+
+        /* [LÍNEA 220] MODAL "BOTTOM SHEET" (EL EFECTO BIRRIAPP/IPHONE) */
         .modal {
             display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.4);
-            backdrop-filter: blur(8px);
-            z-index: 10000;
-            align-items: flex-end;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            z-index: 20000;
+            align-items: flex-end; /* Efecto iPhone */
+            transition: var(--v-smooth);
         }
-        .modal-content {
+        .modal-inner {
             background: #fff;
             width: 100%;
             border-radius: 30px 30px 0 0;
-            padding: 40px 20px;
-            animation: sheetUp 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-        @keyframes sheetUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
-
-        .method-card {
-            background: var(--card-bg);
-            padding: 20px;
-            border-radius: 20px;
-            margin-bottom: 10px;
-            font-weight: 700;
+            padding: 50px 30px;
             text-align: center;
-            cursor: pointer;
-            transition: 0.3s;
+            animation: modalSheetIn 0.8s cubic-bezier(0.19, 1, 0.22, 1);
         }
-        .method-card:active { background: var(--accent); color: #fff; }
+        @keyframes modalSheetIn { from { transform: translateY(100%); } to { transform: translateY(0); } }
 
-        .fab-add { position: fixed; top: 20px; right: 20px; width: 50px; height: 50px; background: var(--primary); color: #fff; border-radius: 50%; display: none; align-items: center; justify-content: center; z-index: 6000; border: 2px solid var(--accent); }
+        .method-luxe {
+            width: 100%; padding: 25px;
+            background: var(--gray);
+            border-radius: 12px;
+            margin-bottom: 20px;
+            font-weight: 700; letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer; transition: 0.3s;
+            border: 1px solid transparent;
+        }
+        .method-luxe:active { transform: scale(0.95); background: var(--accent); color: #fff; border-color: var(--accent); }
+
+        /* ADMIN TOOLS */
+        .fab-master {
+            position: fixed; bottom: 120px; right: 30px;
+            width: 70px; height: 70px; background: #000; color: #fff;
+            border-radius: 50%; display: none; align-items: center; justify-content: center;
+            font-size: 2rem; border: 2px solid var(--accent); z-index: 15000; cursor: pointer;
+            box-shadow: var(--shadow); transition: 0.4s;
+        }
+        .fab-master:hover { transform: scale(1.1) rotate(90deg); }
+
     </style>
 </head>
 <body>
 
-    <div class="top-bar">PRODUCTOS 100% ORIGINALES • PANAMÁ</div>
+    <div id="splash">
+        <div class="logo-intro">ESSENCE</div>
+    </div>
 
     <header><div class="logo" id="boss-trigger">ESSENCE</div></header>
 
-    <div class="search-container">
-        <input type="text" id="main-search" class="search-bar" placeholder="Busca tu perfume favorito..." onkeyup="filter()">
+    <div class="search-area">
+        <input type="text" id="engine" class="search-bar" placeholder="DESCUBRE TU ESENCIA..." onkeyup="filterSystem()">
     </div>
 
     <main>
-        <section id="shop" class="container active"><div class="grid" id="product-list"></div></section>
+        <section id="shop" class="container active"><div class="grid" id="main-injector"></div></section>
         
         <section id="trace" class="container">
-            <div style="text-align:center; padding-top: 50px;">
-                <h2 style="margin-bottom:20px">RASTREO DE PEDIDO</h2>
-                <input type="text" id="trace-name" class="search-bar" placeholder="Ingresa tu nombre..." style="text-align:center">
-                <button class="btn-buy" style="margin-top:20px; height:60px" onclick="track()">Consultar WhatsApp</button>
+            <div style="text-align:center; padding-top: 60px;">
+                <h2 style="font-family:var(--Cinzel); letter-spacing:10px; margin-bottom:30px">RASTREO DE PEDIDO</h2>
+                <input type="text" id="track-name" class="search-bar" placeholder="INGRESA TU NOMBRE..." style="text-align:center; max-width:400px; border-color:#eee;">
+                <button class="btn-acquire" style="margin-top:30px; max-width:300px; margin-left:auto; margin-right:auto;" onclick="trackingWa()">CONSULTAR WA</button>
             </div>
         </section>
 
         <section id="admin" class="container">
-            <h2 style="margin-bottom:20px">ADMIN DASHBOARD</h2>
-            <div id="admin-items"></div>
+            <h2 style="font-family:var(--Cinzel); margin-bottom:40px">DASHBOARD MAESTRO</h2>
+            <div id="adm-list"></div>
         </section>
     </main>
 
-    <div class="bottom-nav">
-        <button class="nav-item active" onclick="changeTab('shop', this)">Tienda</button>
-        <button class="nav-item" onclick="changeTab('trace', this)">Rastreo</button>
-        <button class="nav-item" id="admin-tab" style="display:none" onclick="changeTab('admin', this)">Panel</button>
+    <div class="nav-flotante">
+        <button class="nav-item active" onclick="switchSection('shop', this)">Tienda</button>
+        <button class="nav-item" onclick="switchSection('trace', this)">Rastreo</button>
+        <button class="nav-item" id="nav-boss" style="display:none" onclick="switchSection('admin', this)">Panel</button>
     </div>
 
     <div class="modal" id="pay-modal">
-        <div class="modal-content">
-            <h3 style="text-align:center; margin-bottom:30px">SELECCIONA PAGO</h3>
-            <div class="method-card" onclick="complete('YAPPY')">YAPPY</div>
-            <div class="method-card" onclick="complete('ACH')">TRANSFERENCIA</div>
-            <div class="method-card" onclick="complete('EFECTIVO')">EFECTIVO</div>
-            <button class="btn-buy" style="background:#eee; color:#000; margin-top:10px" onclick="closeModal()">Cerrar</button>
+        <div class="modal-inner">
+            <h3 style="font-family:var(--Cinzel); letter-spacing:5px; margin-bottom:40px">SELECCIONA PAGO</h3>
+            <div class="method-luxe" onclick="finalizeWA('YAPPY')">01. YAPPY</div>
+            <div class="method-luxe" onclick="finalizeWA('ACH')">02. TRANSFERENCIA</div>
+            <div class="method-luxe" onclick="finalizeWA('EFECTIVO')">03. EFECTIVO</div>
+            <button class="btn-acquire" style="background:#ff4d4d; margin-top:20px;" onclick="closeM()">CANCELAR</button>
         </div>
     </div>
 
-    <button class="fab-add" id="fab" onclick="addOne()">+</button>
+    <button class="fab-master" id="fab" onclick="addP()">+</button>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
         import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
 
-        const config = {
+        // [LÍNEA 365] CONFIGURACIÓN CORPORATIVA
+        const firebaseConfig = {
             apiKey: "AIzaSyBkNAkJXoyxn9rkGv1mG5GPh9ge4FUjp8Y",
             authDomain: "essencev2.firebaseapp.com",
             projectId: "essencev2",
@@ -197,95 +230,96 @@
             appId: "1:201967001425:web:0a072cd4d2048e7a0dbd70"
         };
 
-        const app = initializeApp(config);
+        const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
-        const WHATSAPP = "50769028805";
-        let selP = ""; let selV = "";
+        const BOSS_TEL = "50769028805";
+        let tmpP = ""; let tmpV = "";
 
-        // CARGA DE PRODUCTOS
+        // [LÍNEA 385] MOTOR DE CARGA CON SEDA
         onSnapshot(collection(db, "inventario_oficial"), (snap) => {
-            const grid = document.getElementById('product-list');
-            const adm = document.getElementById('admin-items');
+            const grid = document.getElementById('main-injector');
+            const adm = document.getElementById('adm-list');
             grid.innerHTML = ""; adm.innerHTML = "";
             snap.forEach(d => {
                 const item = d.data();
+                // CARD CON EFECTO DE CASCADA
                 grid.innerHTML += `
-                    <div class="card" data-name="${item.name.toLowerCase()}">
-                        <img src="${item.img}">
+                    <div class="card" data-search="${item.name.toLowerCase()}">
+                        <div class="card-visuals"><img src="${item.img}"></div>
+                        <div style="color:var(--accent); font-size:0.6rem; font-weight:700; letter-spacing:3px; text-transform:uppercase; margin-bottom:10px">ESSENCE</div>
                         <h3>${item.name}</h3>
                         <p>$${item.price}</p>
-                        <button class="btn-buy" onclick="initPay('${item.name}', '${item.price}')">Comprar</button>
+                        <button class="btn-acquire" onclick="openM('${item.name}', '${item.price}')">ADQUIRIR</button>
                     </div>`;
-                adm.innerHTML += `<div style="background:#f4f4f4; padding:15px; border-radius:15px; margin-bottom:10px; display:flex; justify-content:space-between">
-                    <span>${item.name}</span><button onclick="removeItem('${d.id}')" style="color:red; border:none; background:none; font-weight:700">X</button>
+                
+                adm.innerHTML += `<div style="background:#f4f4f4; padding:20px; border-radius:8px; margin-bottom:10px; display:flex; justify-content:space-between; align-items:center;">
+                    <span><b>${item.name}</b> ($${item.price})</span><button onclick="killP('${d.id}')" style="color:red; border:none; background:none; font-weight:700">BORRAR</button>
                 </div>`;
             });
         });
 
-        // LÓGICA DE PAGO (ANTI-BLOQUEO IPHONE)
-        window.initPay = (n, v) => { selP = n; selV = v; document.getElementById('pay-modal').style.display = 'flex'; };
-        window.closeModal = () => document.getElementById('pay-modal').style.display = 'none';
+        // [LÍNEA 420] LÓGICA DE PAGO (ANTIBLOQUEO IPHONE v12.0)
+        window.openM = (n, v) => { tmpP = n; tmpV = v; document.getElementById('pay-modal').style.display = 'flex'; };
+        window.closeM = () => document.getElementById('pay-modal').style.display = 'none';
 
-        window.complete = async (metodo) => {
-            const user = localStorage.getItem('e_user') || prompt("Tu nombre completo:");
+        window.finalizeWA = async (metodo) => {
+            const user = localStorage.getItem('e_user_rel') || prompt("Tu nombre completo:");
             if(!user) return;
-            const msg = `👑 *ORDEN ESSENCE*%0A👤 *Cliente:* ${user}%0A📦 *Perfume:* ${selP}%0A💰 *Precio:* $${selV}%0A💳 *Pago:* ${metodo}`;
-            const url = `https://wa.me/${WHATSAPP}?text=${msg}`;
-            const win = window.open(url, '_blank');
-            if(!win) window.location.href = url;
-            await addDoc(collection(db, "ventas_essence"), { user, perfume: selP, metodo, ts: new Date() });
-            closeModal();
+            const msg = `👑 *ORDEN ÉLITE*%0A%0A👤 *Cliente:* ${user}%0A📦 *Pieza:* ${tmpP}%0A💰 *Valor:* $${tmpV}%0A💳 *Pago:* ${metodo}`;
+            const waUrl = `https://wa.me/${BOSS_TEL}?text=${msg}`;
+            
+            // DISPARO AGRESIVO PARA IPHONE
+            window.location.href = waUrl; 
+
+            // Registro en segundo plano
+            await addDoc(collection(db, "ventas_essence"), { user, perfume: tmpP, metodo, ts: new Date() });
+            localStorage.setItem('e_user_rel', user); // Guardamos para la próxima
+            closeM();
         };
 
-        // NAVEGACIÓN
-        window.changeTab = (id, btn) => {
-            document.querySelectorAll('.container').forEach(c => c.classList.remove('active'));
-            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
-            btn.classList.add('active');
+        // [LÍNEA 450] NAVEGACIÓN SMOOTH (TAB SWITCH)
+        window.switchSection = (id, btn) => {
+            // Suavizamos el cambio de tab
+            document.querySelectorAll('.container').forEach(c => c.style.opacity = '0');
+            setTimeout(() => {
+                document.querySelectorAll('.container').forEach(c => c.classList.remove('active'));
+                document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+                document.getElementById(id).classList.add('active');
+                btn.classList.add('active');
+                setTimeout(() => document.getElementById(id).style.opacity = '1', 10);
+            }, 300); // 300ms de seda entre secciones
         };
 
-        window.filter = () => {
-            const val = document.getElementById('main-search').value.toLowerCase();
-            document.querySelectorAll('.card').forEach(c => c.style.display = c.dataset.name.includes(val) ? "block" : "none");
+        window.filterSystem = () => {
+            const val = document.getElementById('engine').value.toLowerCase();
+            document.querySelectorAll('.card').forEach(c => c.style.display = c.dataset.search.includes(val) ? "block" : "none");
         };
 
-        window.track = () => {
-            const n = document.getElementById('trace-name').value;
-            if(n) window.open(`https://wa.me/${WHATSAPP}?text=Rastreo%20de%20pedido%20para:%20${n}`);
+        window.trackingWa = () => {
+            const n = document.getElementById('track-name').value;
+            if(n) window.open(`https://wa.me/${BOSS_TEL}?text=Rastreo%20de%20pedido%20para:%20${n}`);
         };
 
         // ADMIN TOOLS
-        window.removeItem = (id) => confirm("¿Borrar?") && deleteDoc(doc(db, "inventario_oficial", id));
-        window.addOne = async () => {
+        window.killP = (id) => confirm("¿ELIMINAR?") && deleteDoc(doc(db, "inventario_oficial", id));
+        window.addP = async () => {
             const name = prompt("Nombre:"), price = prompt("Precio:"), img = prompt("URL Imagen:");
             if(name && price && img) await addDoc(collection(db, "inventario_oficial"), { name, price, img });
         };
 
-        let clicks = 0;
+        let admClicks = 0;
         document.getElementById('boss-trigger').onclick = () => {
-            if(++clicks >= 3) {
-                if(prompt("PASSWORD:") === "542497") {
-                    document.getElementById('admin-tab').style.display = 'block';
+            if(++admClicks >= 3) {
+                if(prompt("MASTER KEY:") === "542497") {
+                    document.getElementById('nav-boss').style.display = 'block';
                     document.getElementById('fab').style.display = 'flex';
                 }
-                clicks = 0;
+                admClicks = 0;
             }
         };
     </script>
 </body>
 </html>
-            }
-        };
-
-        window.onload = () => {
-            const u = localStorage.getItem('e_user');
-            if(u) document.getElementById('u-name').innerText = "CLIENTE: " + u.toUpperCase();
-        };
-    </script>
-</body>
-</html>
-
 
 
 
