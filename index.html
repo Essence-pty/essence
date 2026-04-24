@@ -1146,6 +1146,61 @@ window.secretTap=()=>{secretCount++;clearTimeout(secretTimer);secretTimer=setTim
 
 // IMG
 window.viewImg=(src)=>{document.getElementById('img-viewer-src').src=src;document.getElementById('img-viewer').classList.add('open');};
+</script><script>
+// 1. LA BASE DE DATOS (Simulada, aquí conectarías tu Firebase)
+const productosEssence = [
+    { id: 1, nombre: "Sauvage Elixir", marca: "Dior", precio: 125, ml: 100, cat: "Diseñador", badge: "leyenda", img: "" },
+    { id: 2, nombre: "Baccarat Rouge 540", marca: "MFK", precio: 295, ml: 70, cat: "Nicho", badge: "titan", img: "" },
+    { id: 3, nombre: "Layton", marca: "Parfums de Marly", precio: 180, ml: 125, cat: "Nicho", badge: "arquitecto", img: "" },
+    { id: 4, nombre: "Libre Intense", marca: "YSL", precio: 95, ml: 90, cat: "Mujer", badge: "guardian", img: "" }
+];
+
+// 2. EL MOTOR DE RENDERIZADO (Lo que convierte datos en Marketplace)
+const renderApp = (data) => {
+    const container = document.getElementById('pgrid') || document.getElementById('main-grid');
+    if(!container) return;
+
+    container.innerHTML = data.map(p => `
+        <div class="pcard" onclick="verDetalle(${p.id})">
+            <div class="pimg">
+                ${p.img ? `<img src="${p.img}">` : `<div style="width:100%; height:100%; background:var(--surface2); display:flex; align-items:center; justify-content:center; font-size:20px">✨</div>`}
+            </div>
+            <div class="pinfo">
+                <span class="pbadge ${p.badge}">${p.badge}</span>
+                <div class="pname">${p.nombre}</div>
+                <div style="font-size:10px; color:var(--muted)">${p.marca} • ${p.ml}ml</div>
+                <div class="pprice">$${p.precio.toFixed(2)}</div>
+            </div>
+            <button class="btn-buy" onclick="event.stopPropagation(); comprar('${p.nombre}')">COMPRAR</button>
+        </div>
+    `).join('');
+};
+
+// 3. LÓGICA DE BÚSQUEDA Y FILTROS
+document.querySelector('.search-input')?.addEventListener('input', (e) => {
+    const term = e.target.value.toLowerCase();
+    const filtrados = productosEssence.filter(p => 
+        p.nombre.toLowerCase().includes(term) || 
+        p.marca.toLowerCase().includes(term)
+    );
+    renderApp(filtrados);
+});
+
+// 4. ACCIONES DEL MARKETPLACE
+const comprar = (nombre) => {
+    const msj = `Hola Essence, me interesa el perfume: ${nombre}. ¿Está disponible?`;
+    window.open(`https://wa.me/50769028805?text=${encodeURIComponent(msj)}`, '_blank');
+};
+
+const verDetalle = (id) => {
+    console.log("Abriendo detalle del producto:", id);
+    // Aquí podrías abrir un modal con más fotos
+};
+
+// 5. INICIO AUTOMÁTICO
+document.addEventListener('DOMContentLoaded', () => {
+    renderApp(productosEssence);
+});
 </script>
 </body>
 </html>
