@@ -4,376 +4,369 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>NEXO · Marketplace Panamá</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --brand:#FF3B00;--brand2:#FF6B35;--brand-bg:#fff5f3;
-  --dark:#0A0A0A;--dark2:#141414;--dark3:#1E1E1E;
-  --card:#ffffff;--surface:#F7F7F7;--surface2:#EFEFEF;
-  --text:#0A0A0A;--sub:#666;--muted:#999;--border:#E5E5E5;
-  --green:#00C853;--green-bg:#E8FFF2;
-  --blue:#0066FF;--gold:#F5A623;
-  --sh:0 2px 12px rgba(0,0,0,.06),0 20px 48px rgba(0,0,0,.08);
-  --sh-sm:0 1px 4px rgba(0,0,0,.05),0 4px 16px rgba(0,0,0,.06);
-  --r:16px;--rl:24px;
-  --tr:all .18s cubic-bezier(.4,0,.2,1);
+  --brand:#FF2D00;--brand-dim:rgba(255,45,0,.08);
+  --dark:#0C0C0C;--dark2:#181818;--dark3:#222;
+  --card:#fff;--surface:#F8F8F8;--surface2:#F0F0F0;
+  --text:#0C0C0C;--sub:#6B6B6B;--muted:#A0A0A0;--border:#E8E8E8;
+  --green:#00B341;--green-bg:rgba(0,179,65,.07);
+  --sh:0 1px 3px rgba(0,0,0,.04),0 8px 24px rgba(0,0,0,.06);
+  --sh-sm:0 1px 2px rgba(0,0,0,.04),0 2px 8px rgba(0,0,0,.05);
+  --r:14px;--rl:20px;
+  --tr:all .15s ease;
   --sb:env(safe-area-inset-bottom,0px);
-  --ff:'DM Sans',sans-serif;--fd:'Syne',sans-serif
+  --ff:'Geist',system-ui,sans-serif;
+  --mono:'Space Mono',monospace
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{background:#F4F4F4;font-family:var(--ff);color:var(--text);min-height:100vh;padding-bottom:calc(88px + var(--sb));-webkit-font-smoothing:antialiased;overscroll-behavior:none}
+body{background:#EBEBEB;font-family:var(--ff);color:var(--text);min-height:100vh;padding-bottom:calc(82px + var(--sb));-webkit-font-smoothing:antialiased;overscroll-behavior:none}
 
 /* SPLASH */
-#splash{position:fixed;inset:0;background:var(--dark);z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;transition:opacity .5s ease}
+#splash{position:fixed;inset:0;background:var(--dark);z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;transition:opacity .4s ease}
 #splash.hide{opacity:0;pointer-events:none}
-.sp-ring{width:56px;height:56px;border:2px solid rgba(255,59,0,.2);border-top-color:var(--brand);border-radius:50%;animation:spin .8s linear infinite;margin-bottom:8px}
-.sp-logo{font-family:var(--fd);font-size:2.4rem;font-weight:800;color:#fff;letter-spacing:4px;animation:fadeY .6s ease .2s both;opacity:0}
-.sp-logo span{color:var(--brand)}
-.sp-sub{font-size:.58rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.3);animation:fadeY .6s ease .4s both;opacity:0}
-@keyframes spin{to{transform:rotate(360deg)}}
-@keyframes fadeY{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.sp-wordmark{font-family:var(--mono);font-size:2rem;font-weight:700;color:#fff;letter-spacing:8px;animation:spIn .5s ease .2s both}
+.sp-wordmark span{color:var(--brand)}
+.sp-sub{font-size:.55rem;font-weight:400;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.25);animation:spIn .5s ease .4s both}
+.sp-bar{width:40px;height:2px;background:var(--brand);margin-top:20px;border-radius:2px;animation:spBar .8s ease .6s both}
+@keyframes spIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes spBar{from{width:0;opacity:0}to{width:40px;opacity:1}}
 
 /* HEADER */
-header{background:rgba(255,255,255,.96);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:800;height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 16px}
-.logo{font-family:var(--fd);font-size:1.4rem;font-weight:800;color:var(--dark);letter-spacing:2px;cursor:default;user-select:none}
+header{background:rgba(255,255,255,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:800;height:54px;display:flex;align-items:center;justify-content:space-between;padding:0 16px}
+.logo{font-family:var(--mono);font-size:1.1rem;font-weight:700;color:var(--dark);letter-spacing:4px;cursor:default;user-select:none}
 .logo span{color:var(--brand)}
 .h-actions{display:flex;align-items:center;gap:8px}
-.h-sell-btn{background:var(--brand);color:#fff;border:none;border-radius:50px;padding:8px 16px;font-family:var(--ff);font-size:.68rem;font-weight:700;cursor:pointer;transition:var(--tr);white-space:nowrap;letter-spacing:.2px}
-.h-sell-btn:active{transform:scale(.94);opacity:.9}
-.h-av{width:34px;height:34px;border-radius:50%;background:var(--dark);display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;color:#fff;cursor:pointer;overflow:hidden;border:2px solid var(--border);flex-shrink:0}
+.h-sell-btn{background:var(--dark);color:#fff;border:none;border-radius:8px;padding:8px 14px;font-family:var(--ff);font-size:.65rem;font-weight:600;cursor:pointer;transition:var(--tr);letter-spacing:.3px}
+.h-sell-btn:active{opacity:.75;transform:scale(.95)}
+.h-av{width:32px;height:32px;border-radius:8px;background:var(--dark);display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:700;color:#fff;cursor:pointer;overflow:hidden;border:1.5px solid var(--border)}
 .h-av img{width:100%;height:100%;object-fit:cover}
-.h-notif{position:relative;width:34px;height:34px;background:var(--surface);border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.85rem;transition:var(--tr)}
-.h-notif:active{transform:scale(.92)}
-.notif-badge{position:absolute;top:-2px;right:-2px;width:10px;height:10px;background:var(--brand);border-radius:50%;border:2px solid #fff;display:none}
+.h-notif{position:relative;width:32px;height:32px;background:var(--surface);border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.8rem;transition:var(--tr)}
+.h-notif:active{background:var(--surface2)}
+.notif-badge{position:absolute;top:-3px;right:-3px;width:8px;height:8px;background:var(--brand);border-radius:50%;border:2px solid #fff;display:none}
+.h-login-btn{background:transparent;border:1.5px solid var(--border);color:var(--sub);font-family:var(--ff);font-size:.65rem;font-weight:600;padding:7px 13px;border-radius:8px;cursor:pointer;transition:var(--tr)}
+.h-login-btn:active{background:var(--surface)}
 
 /* WRAP */
 .wrap{max-width:480px;margin:0 auto;padding:0 14px}
 .view{display:none}.view.active{display:block}
 
-/* HERO STRIP */
-.hero-strip{background:var(--dark);border-radius:var(--r);padding:18px 18px 16px;margin:12px 0 14px;position:relative;overflow:hidden}
-.hero-strip::before{content:'';position:absolute;top:-60px;right:-60px;width:220px;height:220px;background:radial-gradient(circle,rgba(255,59,0,.15),transparent 70%);pointer-events:none}
-.hs-label{font-size:.52rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:8px}
-.hs-title{font-family:var(--fd);font-size:1.5rem;font-weight:800;color:#fff;line-height:1.1;margin-bottom:6px}
-.hs-title span{color:var(--brand)}
-.hs-sub{font-size:.68rem;color:rgba(255,255,255,.4);font-weight:400}
-.hs-badges{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap}
-.hs-badge{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.5);font-size:.52rem;font-weight:700;padding:4px 10px;border-radius:50px;letter-spacing:.4px}
-.hs-badge.hot{background:rgba(255,59,0,.15);border-color:rgba(255,59,0,.3);color:var(--brand)}
+/* HERO */
+.hero-strip{background:var(--dark);border-radius:var(--r);padding:20px;margin:12px 0 14px;position:relative;overflow:hidden}
+.hero-strip::after{content:'';position:absolute;bottom:-40px;right:-40px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(255,45,0,.12),transparent 70%);pointer-events:none}
+.hs-eyebrow{font-size:.52rem;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:10px;font-family:var(--mono)}
+.hs-title{font-size:1.25rem;font-weight:600;color:#fff;line-height:1.25;margin-bottom:6px;letter-spacing:-.3px}
+.hs-title em{color:var(--brand);font-style:normal}
+.hs-sub{font-size:.7rem;color:rgba(255,255,255,.35);font-weight:400;line-height:1.6}
+.hs-pills{display:flex;gap:6px;margin-top:14px;flex-wrap:wrap}
+.hs-pill{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);color:rgba(255,255,255,.4);font-size:.53rem;font-weight:500;padding:4px 10px;border-radius:6px;letter-spacing:.3px}
+.hs-pill.hot{background:rgba(255,45,0,.1);border-color:rgba(255,45,0,.2);color:rgba(255,100,60,.9)}
 
 /* CATS */
 .cats{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:2px 0 14px;-webkit-overflow-scrolling:touch}
 .cats::-webkit-scrollbar{display:none}
-.cat{flex-shrink:0;background:var(--card);border:1.5px solid var(--border);padding:7px 15px;border-radius:50px;font-size:.63rem;font-weight:600;color:var(--sub);cursor:pointer;transition:var(--tr);display:flex;align-items:center;gap:5px}
+.cat{flex-shrink:0;background:var(--card);border:1.5px solid var(--border);padding:6px 14px;border-radius:8px;font-size:.63rem;font-weight:500;color:var(--sub);cursor:pointer;transition:var(--tr)}
 .cat.active{background:var(--dark);color:#fff;border-color:var(--dark)}
-.cat:active{transform:scale(.92)}
+.cat:active{transform:scale(.93)}
 
 /* SEARCH */
 .search-wrap{position:relative;margin-bottom:16px}
-.search-ico{position:absolute;left:14px;top:50%;transform:translateY(-50%);opacity:.3;font-size:.8rem;pointer-events:none}
-.search-input{width:100%;padding:12px 14px 12px 38px;border:1.5px solid var(--border);border-radius:50px;background:var(--card);font-family:var(--ff);font-size:.82rem;font-weight:500;color:var(--text);outline:none;transition:var(--tr);-webkit-appearance:none}
+.search-ico{position:absolute;left:13px;top:50%;transform:translateY(-50%);opacity:.25;font-size:.75rem;pointer-events:none}
+.search-input{width:100%;padding:11px 14px 11px 36px;border:1.5px solid var(--border);border-radius:10px;background:var(--card);font-family:var(--ff);font-size:.8rem;font-weight:400;color:var(--text);outline:none;transition:var(--tr);-webkit-appearance:none}
 .search-input:focus{border-color:var(--dark);background:#fff}
 .search-input::placeholder{color:var(--muted)}
 
-/* SLABEL */
+/* SECTION LABEL */
 .slabel{display:flex;align-items:center;gap:8px;margin-bottom:12px}
-.slabel-txt{font-size:.52rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.slabel-txt{font-size:.55rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);white-space:nowrap;font-family:var(--mono)}
 .slabel-line{flex:1;height:1px;background:var(--border)}
-.slabel-count{font-size:.6rem;font-weight:700;color:var(--muted)}
+.slabel-count{font-size:.58rem;font-weight:500;color:var(--muted);font-family:var(--mono)}
 
 /* PRODUCT GRID */
-.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:8px}
-.pcard{background:var(--card);border-radius:var(--r);overflow:hidden;border:1px solid var(--border);transition:var(--tr);animation:fadeUp .25s ease both;box-shadow:var(--sh-sm);cursor:pointer}
-.pcard:active{transform:scale(.97)}
-@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
+.pcard{background:var(--card);border-radius:var(--r);overflow:hidden;border:1px solid var(--border);transition:var(--tr);animation:fadeUp .2s ease both;box-shadow:var(--sh-sm);cursor:pointer}
+.pcard:active{transform:scale(.975);opacity:.9}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 .pcard-img{width:100%;aspect-ratio:1;background:var(--surface);overflow:hidden;position:relative}
-.pcard-img img{width:100%;height:100%;object-fit:cover;transition:transform .3s ease}
-.pcard:active .pcard-img img{transform:scale(1.05)}
-.pcard-no-img{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:2.5rem;background:linear-gradient(135deg,var(--surface),var(--surface2))}
-.pcard-seller{position:absolute;bottom:7px;left:7px;background:rgba(0,0,0,.65);backdrop-filter:blur(8px);border-radius:50px;padding:3px 7px 3px 4px;display:flex;align-items:center;gap:4px}
-.pcard-seller-av{width:16px;height:16px;border-radius:50%;overflow:hidden;background:var(--brand);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.45rem;font-weight:700;color:#fff}
+.pcard-img img{width:100%;height:100%;object-fit:cover;transition:transform .25s ease}
+.pcard:active .pcard-img img{transform:scale(1.04)}
+.pcard-no-img{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:2.2rem;background:var(--surface)}
+.pcard-seller{position:absolute;bottom:7px;left:7px;background:rgba(0,0,0,.6);backdrop-filter:blur(6px);border-radius:6px;padding:3px 7px 3px 4px;display:flex;align-items:center;gap:4px}
+.pcard-seller-av{width:14px;height:14px;border-radius:4px;overflow:hidden;background:var(--brand);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.4rem;font-weight:700;color:#fff}
 .pcard-seller-av img{width:100%;height:100%;object-fit:cover}
-.pcard-seller-name{font-size:.48rem;font-weight:600;color:rgba(255,255,255,.85);white-space:nowrap;max-width:60px;overflow:hidden;text-overflow:ellipsis}
-.pcard-delivery-badge{position:absolute;top:7px;right:7px;font-size:.45rem;font-weight:800;padding:3px 7px;border-radius:50px;letter-spacing:.3px}
-.pcard-delivery-badge.free{background:rgba(0,200,83,.9);color:#fff}
-.pcard-delivery-badge.paid{background:rgba(10,10,10,.75);color:rgba(255,255,255,.7)}
+.pcard-seller-name{font-size:.46rem;font-weight:500;color:rgba(255,255,255,.8);white-space:nowrap;max-width:60px;overflow:hidden;text-overflow:ellipsis}
+.pcard-delivery-badge{position:absolute;top:7px;right:7px;font-size:.44rem;font-weight:700;padding:3px 7px;border-radius:5px;letter-spacing:.2px}
+.pcard-delivery-badge.free{background:rgba(0,179,65,.9);color:#fff}
+.pcard-delivery-badge.paid{background:rgba(0,0,0,.55);color:rgba(255,255,255,.75)}
 .pcard-body{padding:10px}
-.pcard-name{font-family:var(--fd);font-size:.78rem;font-weight:700;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.pcard-desc{font-size:.58rem;color:var(--muted);margin-bottom:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.5}
+.pcard-name{font-size:.76rem;font-weight:600;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:-.1px}
+.pcard-desc{font-size:.57rem;color:var(--muted);margin-bottom:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.55;font-weight:400}
 .pcard-bottom{display:flex;align-items:center;justify-content:space-between}
-.pcard-price{font-family:var(--fd);font-size:.95rem;font-weight:800;color:var(--dark)}
-.pcard-price-sub{font-size:.52rem;color:var(--muted);display:block}
-.btn-buy-sm{background:var(--brand);color:#fff;border:none;padding:7px 12px;border-radius:50px;font-family:var(--ff);font-size:.58rem;font-weight:700;cursor:pointer;transition:var(--tr);white-space:nowrap}
-.btn-buy-sm:active{transform:scale(.88)}
+.pcard-price{font-family:var(--mono);font-size:.9rem;font-weight:700;color:var(--dark)}
+.pcard-price-sub{font-size:.5rem;color:var(--muted);display:block;font-weight:400}
+.btn-buy-sm{background:var(--dark);color:#fff;border:none;padding:6px 11px;border-radius:7px;font-family:var(--ff);font-size:.57rem;font-weight:600;cursor:pointer;transition:var(--tr)}
+.btn-buy-sm:active{opacity:.7;transform:scale(.9)}
 
 /* SKELETONS */
-.skel{background:linear-gradient(90deg,#eee 25%,#f9f9f9 50%,#eee 75%);background-size:200% 100%;animation:shimmer 1.2s infinite;border-radius:8px}
+.skel{background:linear-gradient(90deg,#eee 25%,#f5f5f5 50%,#eee 75%);background-size:200% 100%;animation:shimmer 1.3s infinite;border-radius:6px}
 @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
 .skel-card{background:var(--card);border-radius:var(--r);overflow:hidden;border:1px solid var(--border)}
 .skel-img{width:100%;aspect-ratio:1}
-.skel-body{padding:10px;display:flex;flex-direction:column;gap:7px}
-.skel-line{height:9px;border-radius:5px}
+.skel-body{padding:10px;display:flex;flex-direction:column;gap:6px}
+.skel-line{height:8px;border-radius:4px}
 
 /* EMPTY */
-.empty{text-align:center;padding:48px 20px;color:var(--muted)}
-.empty-ico{font-size:2.8rem;margin-bottom:10px}
-.empty p{font-size:.78rem;font-weight:600}
+.empty{text-align:center;padding:40px 20px;color:var(--muted)}
+.empty-ico{font-size:2.2rem;margin-bottom:8px}
+.empty p{font-size:.75rem;font-weight:500}
 
 /* TOAST */
-.toast{position:fixed;bottom:calc(94px + var(--sb));left:50%;transform:translateX(-50%) translateY(16px);background:var(--dark);color:#fff;padding:12px 22px;border-radius:50px;font-size:.72rem;font-weight:700;z-index:99999;opacity:0;transition:all .25s cubic-bezier(.34,1.2,.64,1);pointer-events:none;white-space:nowrap;max-width:88vw;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,.25)}
+.toast{position:fixed;bottom:calc(88px + var(--sb));left:50%;transform:translateX(-50%) translateY(12px);background:var(--dark);color:#fff;padding:11px 20px;border-radius:8px;font-size:.68rem;font-weight:500;z-index:99999;opacity:0;transition:all .2s ease;pointer-events:none;white-space:nowrap;max-width:88vw;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,.2);font-family:var(--mono);letter-spacing:.2px}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
 /* BOTTOM NAV */
-.nav-dock{position:fixed;bottom:calc(12px + var(--sb));left:50%;transform:translateX(-50%);width:calc(100% - 28px);max-width:380px;background:var(--dark);border-radius:50px;padding:5px;display:flex;gap:3px;box-shadow:0 8px 40px rgba(0,0,0,.25);z-index:9000}
-.nav-btn{flex:1;padding:11px 6px;border-radius:50px;border:none;background:transparent;font-family:var(--ff);font-size:.54rem;font-weight:700;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.3px;cursor:pointer;transition:var(--tr);display:flex;align-items:center;justify-content:center;gap:4px}
-.nav-btn.active{background:rgba(255,255,255,.12);color:#fff}
+.nav-dock{position:fixed;bottom:calc(10px + var(--sb));left:50%;transform:translateX(-50%);width:calc(100% - 28px);max-width:380px;background:var(--dark);border-radius:14px;padding:4px;display:flex;gap:2px;box-shadow:0 4px 24px rgba(0,0,0,.2);z-index:9000;border:1px solid rgba(255,255,255,.06)}
+.nav-btn{flex:1;padding:10px 6px;border-radius:10px;border:none;background:transparent;font-family:var(--ff);font-size:.53rem;font-weight:500;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.4px;cursor:pointer;transition:var(--tr);display:flex;align-items:center;justify-content:center;gap:4px}
+.nav-btn.active{background:rgba(255,255,255,.1);color:#fff}
 .nav-btn:active{transform:scale(.93)}
 
 /* OVERLAYS */
-.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);z-index:9500;align-items:flex-end;justify-content:center}
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:9500;align-items:flex-end;justify-content:center}
 .overlay.open{display:flex}
-.sheet{background:var(--card);width:100%;max-width:480px;border-radius:28px 28px 0 0;padding:10px 20px calc(32px + var(--sb));animation:sheetUp .3s cubic-bezier(.34,1.1,.64,1);max-height:92vh;overflow-y:auto}
-@keyframes sheetUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
-.sheet-handle{width:36px;height:3px;background:var(--border);border-radius:2px;margin:0 auto 20px}
-.sheet-title{font-family:var(--fd);font-size:1.15rem;font-weight:800;text-align:center;margin-bottom:20px}
+.sheet{background:var(--card);width:100%;max-width:480px;border-radius:22px 22px 0 0;padding:10px 20px calc(32px + var(--sb));animation:sheetUp .25s cubic-bezier(.32,1,.5,1);max-height:92vh;overflow-y:auto}
+@keyframes sheetUp{from{transform:translateY(100%)}to{transform:none}}
+.sheet-handle{width:32px;height:3px;background:var(--border);border-radius:2px;margin:0 auto 18px}
+.sheet-title{font-size:1.05rem;font-weight:600;text-align:center;margin-bottom:18px;letter-spacing:-.2px}
 
 /* BUTTONS */
-.btn-full{width:100%;padding:14px;border-radius:50px;border:none;font-family:var(--ff);font-size:.76rem;font-weight:700;cursor:pointer;transition:var(--tr);margin-bottom:8px;letter-spacing:.2px}
-.btn-full:active{transform:scale(.97)}
+.btn-full{width:100%;padding:13px;border-radius:10px;border:none;font-family:var(--ff);font-size:.74rem;font-weight:600;cursor:pointer;transition:var(--tr);margin-bottom:8px;letter-spacing:.1px}
+.btn-full:active{transform:scale(.975);opacity:.8}
 .btn-dark{background:var(--dark);color:#fff}
 .btn-red{background:var(--brand);color:#fff}
 .btn-green{background:var(--green);color:#fff}
 .btn-ghost{background:var(--surface);color:var(--sub);border:1.5px solid var(--border)}
 
 /* FORM */
-.form-row{margin-bottom:12px}
-.form-label{font-size:.56rem;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);margin-bottom:5px;display:block}
-.form-input{width:100%;padding:13px 16px;border:1.5px solid var(--border);border-radius:14px;font-family:var(--ff);font-size:.82rem;font-weight:500;color:var(--text);outline:none;background:var(--surface);transition:var(--tr);-webkit-appearance:none}
+.form-row{margin-bottom:10px}
+.form-label{font-size:.55rem;font-weight:600;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);margin-bottom:5px;display:block;font-family:var(--mono)}
+.form-input{width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:10px;font-family:var(--ff);font-size:.8rem;font-weight:400;color:var(--text);outline:none;background:var(--surface);transition:var(--tr);-webkit-appearance:none}
 .form-input:focus{border-color:var(--dark);background:#fff}
 .form-input-pill{border-radius:50px}
-.select-input{width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:14px;font-family:var(--ff);font-size:.82rem;color:var(--text);outline:none;background:var(--surface);-webkit-appearance:none;appearance:none}
-.form-err{font-size:.65rem;font-weight:700;color:var(--brand);min-height:16px;margin-top:4px}
+.select-input{width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:10px;font-family:var(--ff);font-size:.8rem;color:var(--text);outline:none;background:var(--surface);-webkit-appearance:none;appearance:none}
+.form-err{font-size:.63rem;font-weight:600;color:var(--brand);min-height:16px;margin-top:3px;font-family:var(--mono)}
 
 /* AUTH TABS */
-.auth-tabs{display:flex;background:var(--surface);border-radius:50px;padding:4px;margin-bottom:18px;border:1.5px solid var(--border)}
-.auth-tab{flex:1;padding:10px;border:none;background:transparent;font-family:var(--ff);font-size:.66rem;font-weight:700;color:var(--muted);cursor:pointer;border-radius:50px;transition:var(--tr)}
+.auth-tabs{display:flex;background:var(--surface);border-radius:10px;padding:3px;margin-bottom:16px;border:1.5px solid var(--border)}
+.auth-tab{flex:1;padding:9px;border:none;background:transparent;font-family:var(--ff);font-size:.64rem;font-weight:600;color:var(--muted);cursor:pointer;border-radius:8px;transition:var(--tr)}
 .auth-tab.active{background:var(--card);color:var(--dark);box-shadow:var(--sh-sm)}
 
 /* AVATAR */
-.avatar-upload{display:flex;flex-direction:column;align-items:center;gap:8px;margin:8px 0 16px}
-.avatar-circle{width:70px;height:70px;border-radius:50%;background:var(--surface);border:2px dashed var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;overflow:hidden;transition:var(--tr);flex-shrink:0}
+.avatar-upload{display:flex;flex-direction:column;align-items:center;gap:7px;margin:6px 0 14px}
+.avatar-circle{width:64px;height:64px;border-radius:12px;background:var(--surface);border:1.5px dashed var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;overflow:hidden;transition:var(--tr)}
 .avatar-circle:active{transform:scale(.94)}
 .avatar-circle img{width:100%;height:100%;object-fit:cover}
-.avatar-hint{font-size:.58rem;font-weight:600;color:var(--muted)}
+.avatar-hint{font-size:.57rem;font-weight:500;color:var(--muted)}
 
 /* UPLOAD AREA */
-.upload-area{border:2px dashed var(--border);border-radius:var(--r);padding:20px;text-align:center;cursor:pointer;transition:var(--tr);background:var(--surface)}
-.upload-area.ok{border-color:var(--green);background:#f0fff7}
+.upload-area{border:1.5px dashed var(--border);border-radius:10px;padding:18px;text-align:center;cursor:pointer;transition:var(--tr);background:var(--surface)}
+.upload-area.ok{border-color:var(--green);background:var(--green-bg)}
 .upload-area input{display:none}
-.upload-area p{font-size:.68rem;font-weight:600;color:var(--muted);margin-top:8px}
-.upload-ico{font-size:1.8rem}
-.upload-preview{width:100%;border-radius:10px;margin-top:10px;max-height:140px;object-fit:cover;display:none}
+.upload-area p{font-size:.66rem;font-weight:500;color:var(--muted);margin-top:7px}
+.upload-ico{font-size:1.6rem}
+.upload-preview{width:100%;border-radius:8px;margin-top:10px;max-height:130px;object-fit:cover;display:none}
 
 /* CHECKOUT */
-.checkout-sheet{background:var(--card);width:100%;max-width:480px;border-radius:28px 28px 0 0;padding:10px 20px calc(36px + var(--sb));animation:sheetUp .3s cubic-bezier(.34,1.1,.64,1);max-height:92vh;overflow-y:auto}
-.cstep{display:none}.cstep.active{display:block;animation:fadeUp .2s ease}
-.cstep-title{font-family:var(--fd);font-size:1.1rem;font-weight:800;text-align:center;margin-bottom:16px}
-.cback{display:inline-flex;align-items:center;font-size:.74rem;font-weight:700;color:var(--muted);cursor:pointer;margin-bottom:14px;gap:2px}
+.checkout-sheet{background:var(--card);width:100%;max-width:480px;border-radius:22px 22px 0 0;padding:10px 20px calc(36px + var(--sb));animation:sheetUp .25s cubic-bezier(.32,1,.5,1);max-height:92vh;overflow-y:auto}
+.cstep{display:none}.cstep.active{display:block;animation:fadeUp .18s ease}
+.cstep-title{font-size:1.05rem;font-weight:600;text-align:center;margin-bottom:14px;letter-spacing:-.2px}
+.cback{display:inline-flex;align-items:center;font-size:.72rem;font-weight:500;color:var(--muted);cursor:pointer;margin-bottom:12px;gap:2px}
 
 /* SELLER CHECKOUT INFO */
-.seller-pay-box{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:16px}
-.spb-head{display:flex;align-items:center;gap:10px;margin-bottom:12px}
-.spb-av{width:40px;height:40px;border-radius:50%;overflow:hidden;background:var(--dark);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;color:#fff}
+.seller-pay-box{background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:14px;margin-bottom:14px}
+.spb-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.spb-av{width:36px;height:36px;border-radius:8px;overflow:hidden;background:var(--dark);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;color:#fff}
 .spb-av img{width:100%;height:100%;object-fit:cover}
-.spb-name{font-size:.84rem;font-weight:700;margin-bottom:1px}
-.spb-sub{font-size:.6rem;color:var(--muted)}
-.pay-method-select{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
-.pms-btn{display:flex;align-items:center;gap:12px;padding:14px;border-radius:var(--r);border:1.5px solid var(--border);background:var(--card);cursor:pointer;transition:var(--tr);width:100%;text-align:left}
-.pms-btn:active{transform:scale(.97);background:var(--surface)}
-.pms-icon{width:40px;height:40px;border-radius:12px;background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+.spb-name{font-size:.8rem;font-weight:600;margin-bottom:1px;letter-spacing:-.1px}
+.spb-sub{font-size:.58rem;color:var(--muted)}
+.pay-method-select{display:flex;flex-direction:column;gap:7px;margin-bottom:12px}
+.pms-btn{display:flex;align-items:center;gap:12px;padding:13px;border-radius:10px;border:1.5px solid var(--border);background:var(--card);cursor:pointer;transition:var(--tr);width:100%;text-align:left}
+.pms-btn:active{transform:scale(.975);background:var(--surface)}
+.pms-icon{width:38px;height:38px;border-radius:10px;background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
 .pms-info{flex:1}
-.pms-name{font-size:.84rem;font-weight:700;margin-bottom:1px}
-.pms-sub{font-size:.6rem;color:var(--muted)}
-.pm-arr{font-size:1.2rem;color:var(--muted)}
+.pms-name{font-size:.8rem;font-weight:600;margin-bottom:1px;letter-spacing:-.1px}
+.pms-sub{font-size:.58rem;color:var(--muted)}
+.pm-arr{font-size:1.1rem;color:var(--muted)}
 
 /* INSTR BOX */
-.instr-box{border-radius:var(--r);padding:16px;margin-bottom:14px;display:flex;align-items:center;gap:12px}
-.instr-yappy{background:#f0fff6;border:1.5px solid rgba(0,200,83,.18)}
-.instr-ach{background:#f0f5ff;border:1.5px solid rgba(0,102,255,.12)}
-.instr-ico{width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,.8);display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0}
+.instr-box{border-radius:10px;padding:14px;margin-bottom:12px;display:flex;align-items:center;gap:12px}
+.instr-yappy{background:var(--green-bg);border:1.5px solid rgba(0,179,65,.15)}
+.instr-ach{background:rgba(0,100,255,.05);border:1.5px solid rgba(0,100,255,.1)}
+.instr-ico{width:40px;height:40px;border-radius:10px;background:rgba(255,255,255,.85);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
 .instr-body{flex:1;min-width:0}
-.instr-label{font-size:.52rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
-.instr-num{font-family:var(--fd);font-size:1.4rem;font-weight:800;cursor:pointer;word-break:break-all;line-height:1.1}
-.instr-hint{font-size:.52rem;color:var(--muted);margin-top:2px}
-.instr-steps{display:flex;flex-direction:column;gap:10px;margin-bottom:18px}
-.instr-step{display:flex;align-items:center;gap:10px;font-size:.75rem;color:var(--text);line-height:1.5}
-.step-n{width:24px;height:24px;background:var(--brand);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.58rem;font-weight:800;flex-shrink:0}
+.instr-label{font-size:.5rem;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;font-family:var(--mono)}
+.instr-num{font-family:var(--mono);font-size:1.3rem;font-weight:700;cursor:pointer;word-break:break-all;line-height:1.1}
+.instr-hint{font-size:.5rem;color:var(--muted);margin-top:2px}
+.instr-steps{display:flex;flex-direction:column;gap:9px;margin-bottom:16px}
+.instr-step{display:flex;align-items:center;gap:10px;font-size:.72rem;color:var(--text);line-height:1.5}
+.step-n{width:22px;height:22px;background:var(--brand);color:#fff;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.56rem;font-weight:700;flex-shrink:0;font-family:var(--mono)}
 
 /* WAITING */
-.wait-wrap{display:flex;flex-direction:column;align-items:center;text-align:center;padding:8px 0}
-.wait-icon{position:relative;width:80px;height:80px;display:flex;align-items:center;justify-content:center;margin-bottom:18px}
-.pulse-ring{position:absolute;width:80px;height:80px;border-radius:50%;border:2px solid var(--green);animation:pulse 1.8s ease-out infinite}
-.pulse-ring.r2{animation-delay:.7s;opacity:.5}
-@keyframes pulse{0%{transform:scale(.6);opacity:.9}100%{transform:scale(1.5);opacity:0}}
-.wait-emoji{font-size:2rem;position:relative;z-index:1}
-.wait-title{font-family:var(--fd);font-size:1.1rem;font-weight:800;margin-bottom:6px}
-.wait-sub{font-size:.7rem;color:var(--muted);margin-bottom:22px}
-.timer-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:18px;width:100%;margin-bottom:14px;text-align:center}
-.timer-label{font-size:.52rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
-.timer-display{font-family:var(--fd);font-size:2.6rem;color:var(--dark);letter-spacing:4px;font-variant-numeric:tabular-nums;margin-bottom:12px;font-weight:800}
-.timer-bar-bg{background:var(--border);border-radius:50px;height:4px;overflow:hidden}
+.wait-wrap{display:flex;flex-direction:column;align-items:center;text-align:center;padding:6px 0}
+.wait-icon{position:relative;width:72px;height:72px;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.pulse-ring{position:absolute;width:72px;height:72px;border-radius:50%;border:1.5px solid var(--green);animation:pulse 1.8s ease-out infinite}
+.pulse-ring.r2{animation-delay:.7s;opacity:.4}
+@keyframes pulse{0%{transform:scale(.6);opacity:.8}100%{transform:scale(1.5);opacity:0}}
+.wait-emoji{font-size:1.8rem;position:relative;z-index:1}
+.wait-title{font-size:1rem;font-weight:600;margin-bottom:5px;letter-spacing:-.2px}
+.wait-sub{font-size:.68rem;color:var(--muted);margin-bottom:20px;line-height:1.55}
+.timer-box{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;width:100%;margin-bottom:12px;text-align:center}
+.timer-label{font-size:.5rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;font-family:var(--mono)}
+.timer-display{font-family:var(--mono);font-size:2.2rem;color:var(--dark);letter-spacing:6px;font-variant-numeric:tabular-nums;margin-bottom:10px;font-weight:700}
+.timer-bar-bg{background:var(--border);border-radius:50px;height:3px;overflow:hidden}
 .timer-bar{height:100%;background:var(--green);border-radius:50px;transition:width 1s linear}
 
 /* CHECKOUT PILL */
-.checkout-pill{background:var(--surface);border:1px solid var(--border);border-radius:50px;padding:8px 18px;font-size:.7rem;font-weight:700;color:var(--sub);text-align:center;margin-bottom:16px}
+.checkout-pill{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:7px 16px;font-size:.68rem;font-weight:600;color:var(--sub);text-align:center;margin-bottom:14px;font-family:var(--mono)}
 
-/* SUBS */
-.subs-stack{display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
-.sub-card{border-radius:var(--r);padding:16px;cursor:pointer;transition:var(--tr);position:relative;overflow:hidden;box-shadow:var(--sh-sm)}
-.sub-card:active{transform:scale(.985)}
-.sub-basic{background:#fff;border:1.5px solid #E5E5E5}
-.sub-gold{background:linear-gradient(135deg,#FFFBF0,#FFF5D6);border:1.5px solid rgba(245,166,35,.25)}
-.sub-elite{background:var(--dark);border:1.5px solid #2A2A2A}
-.sub-popular{position:absolute;top:0;right:20px;background:var(--brand);color:#fff;font-size:.5rem;font-weight:800;padding:4px 10px 5px;border-radius:0 0 8px 8px;letter-spacing:.5px;text-transform:uppercase}
-.sub-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
-.sub-tier-pill{font-size:.58rem;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;padding:5px 12px;border-radius:50px}
-.sub-basic .sub-tier-pill{background:#F0F0F0;color:#444}
-.sub-gold .sub-tier-pill{background:#FEF3D0;color:#8B6700}
-.sub-elite .sub-tier-pill{background:rgba(255,255,255,.1);color:rgba(255,255,255,.8)}
-.sub-price-big{font-family:var(--fd);font-size:1.5rem;font-weight:800;line-height:1}
-.sub-basic .sub-price-big,.sub-gold .sub-price-big{color:var(--dark)}
-.sub-elite .sub-price-big{color:#fff}
-.sub-period{font-size:.58rem;font-weight:600;color:var(--muted)}
-.sub-elite .sub-period{color:rgba(255,255,255,.35)}
-.sub-div{height:1px;margin-bottom:12px}
-.sub-basic .sub-div,.sub-gold .sub-div{background:var(--border)}
-.sub-elite .sub-div{background:rgba(255,255,255,.1)}
-.sub-perks{display:grid;grid-template-columns:1fr 1fr;gap:5px 8px;margin-bottom:14px}
-.sub-perk{font-size:.6rem;font-weight:500;display:flex;align-items:center;gap:5px;line-height:1.4}
-.sub-basic .sub-perk,.sub-gold .sub-perk{color:var(--sub)}
-.sub-elite .sub-perk{color:rgba(255,255,255,.5)}
-.sub-cta{width:100%;padding:11px;border-radius:50px;font-family:var(--ff);font-size:.66rem;font-weight:700;cursor:pointer;transition:var(--tr);border:none}
-.sub-basic .sub-cta{background:var(--dark);color:#fff}
-.sub-gold .sub-cta{background:var(--gold);color:#fff}
-.sub-elite .sub-cta{background:#fff;color:var(--dark)}
-.sub-cta:active{opacity:.85;transform:scale(.96)}
+/* PLAN CARD - Solo uno */
+.plan-card{background:var(--dark);border-radius:var(--r);padding:20px;margin-bottom:20px;position:relative;overflow:hidden}
+.plan-card::before{content:'';position:absolute;top:-30px;right:-30px;width:130px;height:130px;border-radius:50%;background:radial-gradient(circle,rgba(255,45,0,.12),transparent 70%)}
+.plan-tag{display:inline-flex;align-items:center;gap:5px;background:rgba(255,45,0,.15);border:1px solid rgba(255,45,0,.2);color:rgba(255,100,60,.9);font-size:.52rem;font-weight:600;padding:4px 10px;border-radius:6px;letter-spacing:.3px;margin-bottom:14px;font-family:var(--mono)}
+.plan-price-row{display:flex;align-items:flex-end;gap:6px;margin-bottom:4px}
+.plan-price{font-family:var(--mono);font-size:2rem;font-weight:700;color:#fff;line-height:1}
+.plan-period{font-size:.65rem;color:rgba(255,255,255,.35);font-weight:400;padding-bottom:4px}
+.plan-desc{font-size:.68rem;color:rgba(255,255,255,.4);margin-bottom:16px;line-height:1.55}
+.plan-perks{display:flex;flex-direction:column;gap:7px;margin-bottom:18px}
+.plan-perk{font-size:.68rem;color:rgba(255,255,255,.55);display:flex;align-items:center;gap:8px;font-weight:400}
+.plan-perk::before{content:'';width:4px;height:4px;background:var(--brand);border-radius:50%;flex-shrink:0}
+.plan-cta{width:100%;padding:13px;border-radius:10px;border:none;font-family:var(--ff);font-size:.72rem;font-weight:600;cursor:pointer;transition:var(--tr);background:var(--brand);color:#fff;letter-spacing:.1px}
+.plan-cta:active{opacity:.8;transform:scale(.97)}
 
-/* MY STORE — Panel vendedor */
+/* MY STORE */
 .store-card{background:var(--card);border-radius:var(--r);padding:16px;margin-bottom:10px;border:1px solid var(--border);box-shadow:var(--sh-sm)}
-.store-card h3{font-family:var(--fd);font-size:.96rem;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:7px}
+.store-card h3{font-size:.85rem;font-weight:600;margin-bottom:14px;display:flex;align-items:center;gap:7px;letter-spacing:-.1px}
 
 /* ORDER CARD */
-.order-card{background:var(--surface);border-radius:var(--r);padding:14px;margin-bottom:8px;border:1px solid var(--border)}
-.order-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px}
-.order-name{font-size:.82rem;font-weight:700;font-family:var(--fd)}
-.order-detail{font-size:.64rem;color:var(--muted);margin-bottom:3px}
-.order-img{width:100%;border-radius:10px;margin:8px 0;max-height:120px;object-fit:cover;cursor:pointer}
-.order-actions{display:flex;gap:7px;margin-top:10px}
-.obtn{flex:1;padding:11px;border:none;border-radius:50px;font-family:var(--ff);font-size:.63rem;font-weight:800;cursor:pointer;transition:var(--tr)}
+.order-card{background:var(--surface);border-radius:10px;padding:12px;margin-bottom:7px;border:1px solid var(--border)}
+.order-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:5px}
+.order-name{font-size:.8rem;font-weight:600;letter-spacing:-.1px}
+.order-detail{font-size:.62rem;color:var(--muted);margin-bottom:2px}
+.order-img{width:100%;border-radius:8px;margin:7px 0;max-height:100px;object-fit:cover;cursor:pointer}
+.order-actions{display:flex;gap:6px;margin-top:8px}
+.obtn{flex:1;padding:10px;border:none;border-radius:8px;font-family:var(--ff);font-size:.62rem;font-weight:700;cursor:pointer;transition:var(--tr)}
 .obtn:active{transform:scale(.93)}
 .obtn.approve{background:var(--green);color:#fff}
-.obtn.reject{background:#e53535;color:#fff}
-.status-badge{font-size:.54rem;font-weight:800;padding:4px 10px;border-radius:50px;text-transform:uppercase;white-space:nowrap}
-.status-badge.pending{background:#fff8e6;color:#9a6700}
-.status-badge.approved{background:#e6f7ee;color:#006636}
-.status-badge.rejected{background:#ffe6e6;color:#b00000}
-.status-badge.released{background:#e6f0ff;color:#0044bb}
+.obtn.reject{background:#E53535;color:#fff}
+.status-badge{font-size:.52rem;font-weight:700;padding:3px 9px;border-radius:6px;text-transform:uppercase;white-space:nowrap;font-family:var(--mono)}
+.status-badge.pending{background:#FFF8E6;color:#9A6700}
+.status-badge.approved{background:#E6F7EE;color:#006636}
+.status-badge.rejected{background:#FFE6E6;color:#B00000}
+.status-badge.released{background:#E6F0FF;color:#0044BB}
 
 /* TRACK */
-.track-card{background:var(--card);border-radius:var(--rl);padding:24px 20px;border:1px solid var(--border);box-shadow:var(--sh);text-align:center;margin-top:16px}
-.track-title{font-family:var(--fd);font-size:1.2rem;font-weight:800;margin-bottom:18px}
-.track-input{width:100%;padding:13px 18px;border:1.5px solid var(--border);border-radius:50px;font-family:var(--ff);font-size:.82rem;font-weight:600;text-align:center;color:var(--text);outline:none;background:var(--surface);transition:var(--tr);margin-bottom:12px;-webkit-appearance:none}
+.track-card{background:var(--card);border-radius:var(--rl);padding:22px 20px;border:1px solid var(--border);box-shadow:var(--sh);text-align:center;margin-top:14px}
+.track-title{font-size:1rem;font-weight:600;margin-bottom:16px;letter-spacing:-.2px}
+.track-input{width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:50px;font-family:var(--mono);font-size:.8rem;font-weight:400;text-align:center;color:var(--text);outline:none;background:var(--surface);transition:var(--tr);margin-bottom:10px;-webkit-appearance:none}
 .track-input:focus{border-color:var(--dark);background:#fff}
-.track-badge{display:inline-flex;align-items:center;gap:6px;background:var(--surface);border:1px solid var(--border);border-radius:50px;padding:7px 14px;font-size:.68rem;font-weight:700;margin:4px 2px}
+.track-badge{display:inline-flex;align-items:center;gap:6px;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:6px 12px;font-size:.66rem;font-weight:600;margin:3px 2px;font-family:var(--mono)}
 
-/* JEFE */
-.login-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:78vh;gap:14px;text-align:center;padding:20px}
-.login-ico{font-size:2.8rem}
-.login-title{font-family:var(--fd);font-size:1.3rem;font-weight:800}
-.login-sub{font-size:.7rem;color:var(--muted)}
-.login-input{width:100%;max-width:260px;padding:14px 18px;border:1.5px solid var(--border);border-radius:50px;font-family:var(--ff);font-size:.88rem;font-weight:700;text-align:center;outline:none;background:var(--surface);transition:var(--tr);letter-spacing:4px;-webkit-appearance:none}
+/* LOGIN SCREEN */
+.login-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:78vh;gap:13px;text-align:center;padding:20px}
+.login-ico{font-size:2.5rem}
+.login-title{font-size:1.1rem;font-weight:600;letter-spacing:-.2px}
+.login-sub{font-size:.68rem;color:var(--muted);line-height:1.5}
+.login-input{width:100%;max-width:240px;padding:13px 16px;border:1.5px solid var(--border);border-radius:50px;font-family:var(--mono);font-size:.9rem;font-weight:700;text-align:center;outline:none;background:var(--surface);transition:var(--tr);letter-spacing:6px;-webkit-appearance:none}
 .login-input:focus{border-color:var(--dark)}
-.login-err{font-size:.68rem;font-weight:700;color:var(--brand);min-height:16px}
-.logout-btn{background:none;border:1.5px solid var(--border);font-family:var(--ff);font-size:.62rem;font-weight:700;color:var(--muted);cursor:pointer;padding:7px 14px;border-radius:50px;transition:var(--tr)}
+.login-err{font-size:.65rem;font-weight:600;color:var(--brand);min-height:16px;font-family:var(--mono)}
+.logout-btn{background:none;border:1.5px solid var(--border);font-family:var(--ff);font-size:.62rem;font-weight:500;color:var(--muted);cursor:pointer;padding:7px 14px;border-radius:8px;transition:var(--tr)}
 .logout-btn:active{background:var(--surface)}
 
 /* PANEL WRAP */
 .panel-wrap{max-width:480px;margin:0 auto;padding:0 14px;padding-top:12px}
 
 /* ACCESS MODAL */
-.access-btn{display:flex;align-items:center;gap:12px;padding:15px 16px;border-radius:var(--r);border:1.5px solid var(--border);background:var(--card);cursor:pointer;transition:var(--tr);width:100%;text-align:left;margin-bottom:8px;font-family:var(--ff)}
-.access-btn:active{transform:scale(.97);background:var(--surface)}
-.access-btn-ico{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+.access-btn{display:flex;align-items:center;gap:12px;padding:14px;border-radius:10px;border:1.5px solid var(--border);background:var(--card);cursor:pointer;transition:var(--tr);width:100%;text-align:left;margin-bottom:8px;font-family:var(--ff)}
+.access-btn:active{transform:scale(.975);background:var(--surface)}
+.access-btn-ico{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
 .access-btn-info{flex:1}
-.access-btn-name{font-size:.88rem;font-weight:700;margin-bottom:1px}
-.access-btn-sub{font-size:.62rem;color:var(--muted)}
+.access-btn-name{font-size:.84rem;font-weight:600;margin-bottom:1px;letter-spacing:-.1px}
+.access-btn-sub{font-size:.6rem;color:var(--muted)}
 
-/* SELLER PRODUCT CARD (in store panel) */
-.my-prod-card{display:flex;align-items:center;gap:10px;background:var(--surface);border-radius:12px;padding:10px;margin-bottom:8px;border:1px solid var(--border)}
-.my-prod-img{width:48px;height:48px;border-radius:10px;overflow:hidden;flex-shrink:0;background:var(--border)}
+/* SELLER PRODUCT CARD */
+.my-prod-card{display:flex;align-items:center;gap:9px;background:var(--surface);border-radius:10px;padding:9px;margin-bottom:7px;border:1px solid var(--border)}
+.my-prod-img{width:44px;height:44px;border-radius:8px;overflow:hidden;flex-shrink:0;background:var(--border)}
 .my-prod-img img{width:100%;height:100%;object-fit:cover}
 .my-prod-info{flex:1;min-width:0}
-.my-prod-name{font-size:.78rem;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.my-prod-detail{font-size:.6rem;color:var(--muted)}
-.my-prod-del{background:var(--brand-bg);color:var(--brand);border:none;font-family:var(--ff);font-size:.55rem;font-weight:800;padding:5px 10px;border-radius:50px;cursor:pointer;transition:var(--tr)}
+.my-prod-name{font-size:.75rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:-.1px}
+.my-prod-detail{font-size:.58rem;color:var(--muted)}
+.my-prod-del{background:var(--brand-dim);color:var(--brand);border:none;font-family:var(--ff);font-size:.54rem;font-weight:600;padding:5px 10px;border-radius:6px;cursor:pointer;transition:var(--tr)}
 .my-prod-del:active{transform:scale(.9)}
 
 /* IMG VIEWER */
-.img-modal-content{background:var(--card);width:100%;max-width:480px;border-radius:24px 24px 0 0;padding:20px}
+.img-modal-content{background:var(--card);width:100%;max-width:480px;border-radius:22px 22px 0 0;padding:18px}
 
-/* CONFIG PAGO JEFE */
-.config-pay-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px;margin-bottom:10px}
-.config-pay-head{font-size:.74rem;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:6px}
-.config-pay-field{display:flex;align-items:center;gap:8px;margin-bottom:7px}
-.config-pay-field label{font-size:.62rem;font-weight:600;color:var(--muted);width:80px;flex-shrink:0}
+/* STATS ROW */
+.stats-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin-bottom:14px}
+.stat-box{background:var(--card);border-radius:10px;padding:11px;text-align:center;border:1px solid var(--border)}
+.stat-num{font-family:var(--mono);font-size:1.2rem;font-weight:700;color:var(--dark)}
+.stat-label{font-size:.5rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-top:2px;font-family:var(--mono)}
 
-/* ACCORDION / INFO ROW */
-.info-row{display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--border);font-size:.76rem}
-.info-row:last-child{border-bottom:none}
-.info-row label{color:var(--muted);font-weight:500}
-.info-row strong{font-weight:700}
+/* NOTIF */
+.notif-item{display:flex;align-items:flex-start;gap:10px;padding:11px 0;border-bottom:1px solid var(--border)}
+.notif-item:last-child{border-bottom:none}
+.notif-ico{width:32px;height:32px;border-radius:8px;background:var(--brand-dim);display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
+.notif-ico.green-bg{background:var(--green-bg)}
+.notif-body{flex:1}
+.notif-title{font-size:.74rem;font-weight:600;margin-bottom:2px;letter-spacing:-.1px}
+.notif-sub{font-size:.6rem;color:var(--muted);line-height:1.4}
+.notif-time{font-size:.52rem;color:var(--muted);margin-top:2px;font-family:var(--mono)}
 
-/* MODALITY toggle */
-.modality-toggle{display:flex;gap:6px;margin:8px 0 14px}
-.mod-opt{flex:1;padding:10px;border-radius:var(--r);border:1.5px solid var(--border);background:var(--surface);font-family:var(--ff);font-size:.65rem;font-weight:700;cursor:pointer;transition:var(--tr);text-align:center}
+/* SELLER PROFILE */
+.seller-profile-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.seller-profile-av{width:54px;height:54px;border-radius:12px;overflow:hidden;background:var(--dark);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:700;color:#fff}
+.seller-profile-av img{width:100%;height:100%;object-fit:cover}
+.seller-profile-name{font-size:1rem;font-weight:600;margin-bottom:2px;letter-spacing:-.2px}
+.seller-profile-sub{font-size:.62rem;color:var(--muted)}
+
+/* MODALITY */
+.modality-toggle{display:flex;gap:6px;margin:7px 0 12px}
+.mod-opt{flex:1;padding:9px;border-radius:8px;border:1.5px solid var(--border);background:var(--surface);font-family:var(--ff);font-size:.63rem;font-weight:500;cursor:pointer;transition:var(--tr);text-align:center}
 .mod-opt.active{border-color:var(--dark);background:var(--dark);color:#fff}
 .mod-opt:active{transform:scale(.95)}
 
-/* PRODUCT DETAIL SHEET */
-.detail-img{width:100%;border-radius:14px;aspect-ratio:1;object-fit:cover;margin-bottom:14px;background:var(--surface)}
-.detail-img-placeholder{width:100%;border-radius:14px;aspect-ratio:1;background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:4rem;margin-bottom:14px}
-.detail-seller-row{display:flex;align-items:center;gap:10px;padding:12px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:12px}
-.detail-seller-av{width:38px;height:38px;border-radius:50%;overflow:hidden;background:var(--dark);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;color:#fff}
+/* DETAIL */
+.detail-img{width:100%;border-radius:12px;aspect-ratio:1;object-fit:cover;margin-bottom:12px;background:var(--surface)}
+.detail-img-placeholder{width:100%;border-radius:12px;aspect-ratio:1;background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:3.5rem;margin-bottom:12px}
+.detail-seller-row{display:flex;align-items:center;gap:10px;padding:11px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:11px}
+.detail-seller-av{width:34px;height:34px;border-radius:8px;overflow:hidden;background:var(--dark);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:700;color:#fff}
 .detail-seller-av img{width:100%;height:100%;object-fit:cover}
-.detail-seller-name{font-size:.78rem;font-weight:700}
-.detail-seller-sub{font-size:.6rem;color:var(--muted)}
-.detail-price-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
-.detail-price{font-family:var(--fd);font-size:1.8rem;font-weight:800}
-.delivery-info-pill{background:var(--green-bg);color:var(--green);font-size:.6rem;font-weight:700;padding:5px 12px;border-radius:50px;border:1px solid rgba(0,200,83,.2)}
+.detail-seller-name{font-size:.75rem;font-weight:600;letter-spacing:-.1px}
+.detail-seller-sub{font-size:.58rem;color:var(--muted)}
+.detail-price-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.detail-price{font-family:var(--mono);font-size:1.6rem;font-weight:700}
+.delivery-info-pill{background:var(--green-bg);color:var(--green);font-size:.58rem;font-weight:600;padding:5px 11px;border-radius:6px;border:1px solid rgba(0,179,65,.15)}
 
-/* STATS ROW */
-.stats-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:16px}
-.stat-box{background:var(--surface);border-radius:12px;padding:12px;text-align:center;border:1px solid var(--border)}
-.stat-num{font-family:var(--fd);font-size:1.3rem;font-weight:800;color:var(--dark)}
-.stat-label{font-size:.52rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-top:2px}
+/* CONFIG PAY */
+.config-pay-box{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px;margin-bottom:9px}
+.config-pay-head{font-size:.72rem;font-weight:600;margin-bottom:9px;display:flex;align-items:center;gap:5px;letter-spacing:-.1px}
 
-/* NOTIF PANEL */
-.notif-item{display:flex;align-items:flex-start;gap:10px;padding:12px 0;border-bottom:1px solid var(--border)}
-.notif-item:last-child{border-bottom:none}
-.notif-ico{width:36px;height:36px;border-radius:10px;background:var(--brand-bg);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
-.notif-ico.green-bg{background:var(--green-bg)}
-.notif-body{flex:1}
-.notif-title{font-size:.76rem;font-weight:700;margin-bottom:2px}
-.notif-sub{font-size:.62rem;color:var(--muted)}
-.notif-time{font-size:.54rem;color:var(--muted);white-space:nowrap;margin-top:2px}
+/* INFO ROW */
+.info-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:.74rem}
+.info-row:last-child{border-bottom:none}
+.info-row label{color:var(--muted);font-weight:400}
+.info-row strong{font-weight:600}
 
-/* SELLER PROFILE */
-.seller-profile-head{display:flex;align-items:center;gap:14px;margin-bottom:16px}
-.seller-profile-av{width:60px;height:60px;border-radius:50%;overflow:hidden;background:var(--dark);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.4rem;font-weight:700;color:#fff}
-.seller-profile-av img{width:100%;height:100%;object-fit:cover}
-.seller-profile-name{font-family:var(--fd);font-size:1.1rem;font-weight:800;margin-bottom:2px}
-.seller-profile-sub{font-size:.64rem;color:var(--muted)}
+/* JEFE SPECIFIC */
+.jefe-config-row{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.jefe-config-row label{font-size:.6rem;font-weight:600;color:var(--muted);width:80px;flex-shrink:0;font-family:var(--mono)}
+
+/* GUEST SECTIONS */
+.guest-section{text-align:center;padding:40px 20px}
+.guest-section .g-ico{font-size:2.4rem;margin-bottom:12px}
+.guest-section .g-title{font-size:1rem;font-weight:600;margin-bottom:7px;letter-spacing:-.2px}
+.guest-section .g-sub{font-size:.7rem;color:var(--muted);margin-bottom:18px;line-height:1.55}
 </style>
 </head>
 <body>
@@ -381,9 +374,9 @@ header{background:rgba(255,255,255,.96);backdrop-filter:blur(24px);-webkit-backd
 
 <!-- SPLASH -->
 <div id="splash">
-  <div class="sp-ring"></div>
-  <div class="sp-logo">NEX<span>O</span></div>
+  <div class="sp-wordmark">NEX<span>O</span></div>
   <div class="sp-sub">Marketplace · Panamá</div>
+  <div class="sp-bar"></div>
 </div>
 
 <!-- HEADER -->
@@ -398,11 +391,11 @@ header{background:rgba(255,255,255,.96);backdrop-filter:blur(24px);-webkit-backd
     <div class="h-av" id="h-av" onclick="openAuthModal()" style="display:none">
       <span id="h-av-init">U</span>
     </div>
-    <button class="btn-full btn-ghost" id="h-login-btn" onclick="openAuthModal()" style="width:auto;padding:7px 14px;font-size:.63rem;margin-bottom:0">Entrar</button>
+    <button class="h-login-btn" id="h-login-btn" onclick="openAuthModal()">Entrar</button>
   </div>
 </header>
 
-<!-- ========== APP CLIENTE ========== -->
+<!-- APP CLIENTE -->
 <div id="app-client">
 
   <!-- TIENDA -->
@@ -410,19 +403,19 @@ header{background:rgba(255,255,255,.96);backdrop-filter:blur(24px);-webkit-backd
     <div class="wrap">
       <!-- HERO -->
       <div class="hero-strip">
-        <div class="hs-label">Bienvenido a</div>
-        <div class="hs-title">NEXO <span>Marketplace</span></div>
+        <div class="hs-eyebrow">Bienvenido a</div>
+        <div class="hs-title">NEXO <em>Marketplace</em></div>
         <div class="hs-sub">Compra y vende en Panamá. Nosotros hacemos la entrega.</div>
-        <div class="hs-badges">
-          <span class="hs-badge hot">🔥 Entrega $3</span>
-          <span class="hs-badge">Pago seguro</span>
-          <span class="hs-badge">Vendedores verificados</span>
+        <div class="hs-pills">
+          <span class="hs-pill hot">Entrega $3</span>
+          <span class="hs-pill">Pago seguro</span>
+          <span class="hs-pill">Verificados</span>
         </div>
       </div>
 
       <!-- CATS -->
       <div class="cats" id="cat-bar">
-        <div class="cat active" data-cat="all">✨ Todos</div>
+        <div class="cat active" data-cat="all">Todos</div>
         <div class="cat" data-cat="electronica">📱 Electrónica</div>
         <div class="cat" data-cat="ropa">👗 Ropa</div>
         <div class="cat" data-cat="hogar">🏠 Hogar</div>
@@ -450,85 +443,40 @@ header{background:rgba(255,255,255,.96);backdrop-filter:blur(24px);-webkit-backd
         <div class="skel-card"><div class="skel skel-img"></div><div class="skel-body"><div class="skel skel-line" style="width:60%"></div><div class="skel skel-line" style="width:48%"></div><div class="skel skel-line" style="width:42%"></div></div></div>
       </div>
 
-      <!-- SUBS -->
-      <div style="height:24px"></div>
-      <div class="slabel"><span class="slabel-txt">Planes Vendedor</span><div class="slabel-line"></div></div>
-      <div class="subs-stack" id="subs-section">
+      <!-- PLAN -->
+      <div style="height:22px"></div>
+      <div class="slabel"><span class="slabel-txt">Plan Vendedor</span><div class="slabel-line"></div></div>
 
-        <div class="sub-card sub-basic" onclick="openSubModal('basic')">
-          <div class="sub-top">
-            <span class="sub-tier-pill">🛒 Starter</span>
-            <div>
-              <div class="sub-price-big">$8.99</div>
-              <div class="sub-period">/mes</div>
-            </div>
-          </div>
-          <div class="sub-div"></div>
-          <div class="sub-perks">
-            <div class="sub-perk">🏷️ 10 publicaciones</div>
-            <div class="sub-perk">📦 Entrega $3 al comprador</div>
-            <div class="sub-perk">🔔 Notif. ventas WhatsApp</div>
-            <div class="sub-perk">📊 Stats básicas</div>
-          </div>
-          <button class="sub-cta">Empezar a vender</button>
+      <div class="plan-card">
+        <div class="plan-tag">◆ NEXO Seller</div>
+        <div class="plan-price-row">
+          <div class="plan-price">$2.99</div>
+          <div class="plan-period">/mes</div>
         </div>
-
-        <div class="sub-card sub-gold" onclick="openSubModal('gold')">
-          <div class="sub-top">
-            <span class="sub-tier-pill">⭐ Pro</span>
-            <div>
-              <div class="sub-price-big">$18.99</div>
-              <div class="sub-period">/mes</div>
-            </div>
-          </div>
-          <div class="sub-div"></div>
-          <div class="sub-perks">
-            <div class="sub-perk">🏷️ 50 publicaciones</div>
-            <div class="sub-perk">🚚 Entrega $2 al comprador</div>
-            <div class="sub-perk">⭐ Sello de vendedor Pro</div>
-            <div class="sub-perk">📊 Dashboard completo</div>
-            <div class="sub-perk">🎯 Posición destacada</div>
-            <div class="sub-perk">💬 Soporte prioritario</div>
-          </div>
-          <button class="sub-cta">Plan Pro</button>
+        <div class="plan-desc">Todo lo que necesitas para vender en Panamá. Sin complicaciones.</div>
+        <div class="plan-perks">
+          <div class="plan-perk">Publicaciones ilimitadas</div>
+          <div class="plan-perk">Entrega $3 al comprador (NEXO coordina)</div>
+          <div class="plan-perk">Notificaciones de ventas por WhatsApp</div>
+          <div class="plan-perk">Panel de gestión de pedidos</div>
+          <div class="plan-perk">Soporte directo</div>
         </div>
-
-        <div class="sub-card sub-elite" onclick="openSubModal('elite')">
-          <div class="sub-popular">🔥 TOP</div>
-          <div class="sub-top">
-            <span class="sub-tier-pill">👑 Elite</span>
-            <div>
-              <div class="sub-price-big">$34.99</div>
-              <div class="sub-period">/mes</div>
-            </div>
-          </div>
-          <div class="sub-div"></div>
-          <div class="sub-perks">
-            <div class="sub-perk">♾️ Publicaciones ilimitadas</div>
-            <div class="sub-perk">🚚 Entrega GRATIS al comprador</div>
-            <div class="sub-perk">👑 Sello Elite verificado</div>
-            <div class="sub-perk">🏆 Primero en búsquedas</div>
-            <div class="sub-perk">📈 Analíticas avanzadas</div>
-            <div class="sub-perk">📞 Línea VIP directa</div>
-          </div>
-          <button class="sub-cta">Plan Elite 👑</button>
-        </div>
+        <button class="plan-cta" onclick="openSubModal()">Activar plan · $2.99/mes</button>
       </div>
+
       <div style="height:10px"></div>
     </div>
   </div>
 
-  <!-- MIS VENTAS / TIENDA -->
+  <!-- MI TIENDA -->
   <div id="view-mystore" class="view">
     <div class="wrap" style="padding-top:12px">
       <div id="mystore-logged" style="display:none">
-        <!-- Stats -->
         <div class="stats-row" id="seller-stats">
           <div class="stat-box"><div class="stat-num" id="stat-products">0</div><div class="stat-label">Productos</div></div>
           <div class="stat-box"><div class="stat-num" id="stat-sales">0</div><div class="stat-label">Ventas</div></div>
           <div class="stat-box"><div class="stat-num" id="stat-earned">$0</div><div class="stat-label">Ganado</div></div>
         </div>
-        <!-- Seller Profile -->
         <div class="store-card">
           <div class="seller-profile-head" id="seller-profile-head">
             <div class="seller-profile-av" id="store-av">?</div>
@@ -537,8 +485,7 @@ header{background:rgba(255,255,255,.96);backdrop-filter:blur(24px);-webkit-backd
               <div class="seller-profile-sub" id="store-plan-badge">Sin plan activo</div>
             </div>
           </div>
-          <!-- Pay config -->
-          <div style="font-size:.58rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:8px">Datos de cobro (info para compradores)</div>
+          <div style="font-size:.52rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:7px;font-family:var(--mono)">Datos de cobro</div>
           <div class="form-row">
             <label class="form-label">Yappy (tu número)</label>
             <input class="form-input form-input-pill" id="store-yappy" placeholder="6000-0000" oninput="debounceSavePayInfo()">
@@ -547,29 +494,18 @@ header{background:rgba(255,255,255,.96);backdrop-filter:blur(24px);-webkit-backd
             <label class="form-label">Cuenta ACH</label>
             <input class="form-input form-input-pill" id="store-ach" placeholder="04080000XXXXX" oninput="debounceSavePayInfo()">
           </div>
-          <div style="font-size:.58rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:8px">Modalidad de entrega</div>
+          <div style="font-size:.52rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:7px;font-family:var(--mono)">Modalidad de entrega</div>
           <div class="modality-toggle" id="modality-toggle">
             <div class="mod-opt active" data-mod="nexo" onclick="selectModality('nexo')">🚚 NEXO entrega</div>
-            <div class="mod-opt" data-mod="personal" onclick="selectModality('personal')">🤝 Entrega personal</div>
+            <div class="mod-opt" data-mod="personal" onclick="selectModality('personal')">🤝 Personal</div>
           </div>
         </div>
-        <!-- Add product -->
         <div class="store-card">
-          <h3>➕ Publicar producto</h3>
-          <div class="form-row">
-            <label class="form-label">Nombre del producto</label>
-            <input class="form-input" id="p-name" placeholder="Ej: iPhone 14 Pro 256GB">
-          </div>
-          <div class="form-row">
-            <label class="form-label">Descripción</label>
-            <input class="form-input" id="p-desc" placeholder="Describe tu producto">
-          </div>
-          <div class="form-row">
-            <label class="form-label">Precio ($)</label>
-            <input class="form-input form-input-pill" id="p-price" type="number" placeholder="50">
-          </div>
-          <div class="form-row">
-            <label class="form-label">Categoría</label>
+          <h3>Publicar producto</h3>
+          <div class="form-row"><label class="form-label">Nombre</label><input class="form-input" id="p-name" placeholder="Ej: iPhone 14 Pro 256GB"></div>
+          <div class="form-row"><label class="form-label">Descripción</label><input class="form-input" id="p-desc" placeholder="Describe tu producto"></div>
+          <div class="form-row"><label class="form-label">Precio ($)</label><input class="form-input form-input-pill" id="p-price" type="number" placeholder="50"></div>
+          <div class="form-row"><label class="form-label">Categoría</label>
             <select class="select-input" id="p-cat">
               <option value="electronica">📱 Electrónica</option>
               <option value="ropa">👗 Ropa</option>
@@ -579,8 +515,7 @@ header{background:rgba(255,255,255,.96);backdrop-filter:blur(24px);-webkit-backd
               <option value="otros">📦 Otros</option>
             </select>
           </div>
-          <div class="form-row">
-            <label class="form-label">Foto del producto</label>
+          <div class="form-row"><label class="form-label">Foto</label>
             <div class="upload-area" id="p-img-area" onclick="document.getElementById('p-img-file').click()">
               <div class="upload-ico">📸</div>
               <p>Toca para subir foto</p>
@@ -588,32 +523,24 @@ header{background:rgba(255,255,255,.96);backdrop-filter:blur(24px);-webkit-backd
               <img id="p-img-preview" class="upload-preview">
             </div>
           </div>
-          <div class="form-row">
-            <label class="form-label">Número de contacto (WhatsApp)</label>
-            <input class="form-input form-input-pill" id="p-phone" placeholder="507 6000-0000">
-          </div>
-          <div class="form-row">
-            <label class="form-label">Correo de contacto</label>
-            <input class="form-input form-input-pill" id="p-email" type="email" placeholder="tu@correo.com">
-          </div>
-          <button class="btn-full btn-dark" id="btn-publish" onclick="publishProduct()">📢 Publicar producto</button>
+          <div class="form-row"><label class="form-label">WhatsApp contacto</label><input class="form-input form-input-pill" id="p-phone" placeholder="507 6000-0000"></div>
+          <div class="form-row"><label class="form-label">Correo contacto</label><input class="form-input form-input-pill" id="p-email" type="email" placeholder="tu@correo.com"></div>
+          <button class="btn-full btn-dark" id="btn-publish" onclick="publishProduct()">Publicar producto</button>
         </div>
-        <!-- My products -->
         <div class="store-card">
-          <h3>📦 Mis productos publicados</h3>
-          <div id="my-products-list"><div style="font-size:.75rem;color:var(--muted);text-align:center;padding:18px">Sin productos aún</div></div>
+          <h3>Mis productos <span id="seller-notif-dot" style="display:none;width:6px;height:6px;border-radius:50%;background:var(--brand);display:inline-block;vertical-align:middle;margin-left:3px"></span></h3>
+          <div id="my-products-list"><div style="font-size:.73rem;color:var(--muted);text-align:center;padding:16px">Sin productos aún</div></div>
         </div>
-        <!-- Pending orders -->
         <div class="store-card">
-          <h3>🛎️ Comprobantes recibidos <span class="notif-badge" id="seller-notif-dot" style="display:none;width:7px;height:7px;border-radius:50%;background:var(--brand);margin-left:4px;vertical-align:middle"></span></h3>
-          <div id="seller-orders-list"><div style="font-size:.75rem;color:var(--muted);text-align:center;padding:18px">Sin pedidos pendientes</div></div>
+          <h3>Comprobantes recibidos</h3>
+          <div id="seller-orders-list"><div style="font-size:.73rem;color:var(--muted);text-align:center;padding:16px">Sin pedidos pendientes</div></div>
         </div>
       </div>
-      <div id="mystore-guest" style="text-align:center;padding:48px 20px">
-        <div style="font-size:2.8rem;margin-bottom:14px">🛒</div>
-        <div style="font-family:var(--fd);font-size:1.15rem;font-weight:800;margin-bottom:8px">Tu tienda en NEXO</div>
-        <div style="font-size:.74rem;color:var(--muted);margin-bottom:20px">Crea tu cuenta gratuita y empieza a vender hoy mismo</div>
-        <button class="btn-full btn-dark" style="max-width:260px;margin:0 auto" onclick="openAuthModal()">Crear cuenta gratis</button>
+      <div id="mystore-guest" class="guest-section">
+        <div class="g-ico">🛒</div>
+        <div class="g-title">Tu tienda en NEXO</div>
+        <div class="g-sub">Crea tu cuenta gratis y empieza a vender hoy en Panamá</div>
+        <button class="btn-full btn-dark" style="max-width:240px;margin:0 auto" onclick="openAuthModal()">Crear cuenta</button>
       </div>
     </div>
   </div>
@@ -622,10 +549,10 @@ header{background:rgba(255,255,255,.96);backdrop-filter:blur(24px);-webkit-backd
   <div id="view-track" class="view">
     <div class="wrap">
       <div class="track-card">
-        <div class="track-title">Rastrea tu pedido 📦</div>
+        <div class="track-title">Rastrea tu pedido</div>
         <input type="text" class="track-input" id="track-id" placeholder="Tu nombre completo o ID">
-        <button class="btn-full btn-dark" onclick="trackOrder()">Consultar estado</button>
-        <div id="track-result" style="margin-top:12px;font-size:.8rem;font-weight:600"></div>
+        <button class="btn-full btn-dark" onclick="trackOrder()">Consultar</button>
+        <div id="track-result" style="margin-top:10px;font-size:.78rem;font-weight:500"></div>
       </div>
     </div>
   </div>
@@ -635,7 +562,7 @@ header{background:rgba(255,255,255,.96);backdrop-filter:blur(24px);-webkit-backd
     <div class="wrap" style="padding-top:14px">
       <div class="slabel"><span class="slabel-txt">Notificaciones</span><div class="slabel-line"></div></div>
       <div id="notifs-list" style="background:var(--card);border-radius:var(--r);border:1px solid var(--border);padding:0 14px">
-        <div style="font-size:.75rem;color:var(--muted);text-align:center;padding:24px">Sin notificaciones</div>
+        <div style="font-size:.73rem;color:var(--muted);text-align:center;padding:22px">Sin notificaciones</div>
       </div>
     </div>
   </div>
@@ -649,82 +576,68 @@ header{background:rgba(255,255,255,.96);backdrop-filter:blur(24px);-webkit-backd
   </nav>
 </div>
 
-<!-- ========== APP JEFE ========== -->
+<!-- APP JEFE -->
 <div id="app-jefe" style="display:none">
   <div id="jefe-login" class="login-screen">
-    <div class="login-ico">👑</div>
+    <div class="login-ico">◆</div>
     <div class="login-title">Panel Jefe</div>
     <div class="login-sub">Ingresa tu código de acceso</div>
     <input type="password" class="login-input" id="jefe-code" placeholder="••••" onkeydown="if(event.key==='Enter')jefeLogin()">
     <div class="login-err" id="jefe-err"></div>
-    <button class="btn-full btn-dark" style="max-width:260px;border-radius:50px" onclick="jefeLogin()">Entrar</button>
+    <button class="btn-full btn-dark" style="max-width:240px;border-radius:50px" onclick="jefeLogin()">Entrar</button>
     <button class="logout-btn" onclick="backToApp()">← Volver</button>
   </div>
   <div id="jefe-panel" style="display:none">
     <div class="panel-wrap">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
-        <div style="font-family:var(--fd);font-size:1.15rem;font-weight:800">Panel Jefe 👑</div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+        <div style="font-size:1rem;font-weight:600;letter-spacing:-.2px">Panel Jefe ◆</div>
         <button class="logout-btn" onclick="logoutJefe()">Salir</button>
       </div>
-      <!-- Stats Jefe -->
-      <div class="stats-row" id="jefe-stats-row" style="margin-bottom:14px">
+      <div class="stats-row" id="jefe-stats-row" style="margin-bottom:12px">
         <div class="stat-box"><div class="stat-num" id="jefe-stat-orders">0</div><div class="stat-label">Órdenes</div></div>
         <div class="stat-box"><div class="stat-num" id="jefe-stat-pending">0</div><div class="stat-label">Pendientes</div></div>
         <div class="stat-box"><div class="stat-num" id="jefe-stat-sellers">0</div><div class="stat-label">Vendedores</div></div>
       </div>
-      <!-- Config de pago global -->
       <div class="store-card">
-        <h3>⚙️ Config. Pago Global</h3>
-        <div style="font-size:.68rem;color:var(--muted);margin-bottom:12px;line-height:1.5">Cuando el vendedor no configura sus datos, se usan estos. También aplica cuando el comprador paga a NEXO directamente.</div>
-        <div class="form-row">
-          <label class="form-label">Yappy NEXO</label>
-          <input class="form-input form-input-pill" id="jefe-yappy" placeholder="6902-8805">
-        </div>
-        <div class="form-row">
-          <label class="form-label">ACH NEXO</label>
-          <input class="form-input form-input-pill" id="jefe-ach" placeholder="0408000050774">
-        </div>
-        <div class="form-row">
-          <label class="form-label">Costo de entrega ($)</label>
-          <input class="form-input form-input-pill" id="jefe-delivery-cost" type="number" value="3" placeholder="3">
-        </div>
-        <div style="font-size:.58rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:8px">Modalidad de pago global</div>
+        <h3>Config. Pago Global</h3>
+        <div style="font-size:.65rem;color:var(--muted);margin-bottom:10px;line-height:1.55">Datos usados cuando el vendedor no configura los suyos o cuando el pago va a NEXO.</div>
+        <div class="form-row"><label class="form-label">Yappy NEXO</label><input class="form-input form-input-pill" id="jefe-yappy" placeholder="6902-8805"></div>
+        <div class="form-row"><label class="form-label">ACH NEXO</label><input class="form-input form-input-pill" id="jefe-ach" placeholder="0408000050774"></div>
+        <div class="form-row"><label class="form-label">Costo entrega ($)</label><input class="form-input form-input-pill" id="jefe-delivery-cost" type="number" value="3" placeholder="3"></div>
+        <div style="font-size:.52rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:7px;font-family:var(--mono)">Modalidad de pago global</div>
         <div class="modality-toggle" id="jefe-pay-modality-toggle">
-          <div class="mod-opt active" data-mod="nexo" onclick="jefeSelectPayModality('nexo')">💰 Pago a NEXO</div>
-          <div class="mod-opt" data-mod="seller" onclick="jefeSelectPayModality('seller')">🤝 Pago al vendedor</div>
+          <div class="mod-opt active" data-mod="nexo" onclick="jefeSelectPayModality('nexo')">Pago a NEXO</div>
+          <div class="mod-opt" data-mod="seller" onclick="jefeSelectPayModality('seller')">Pago al vendedor</div>
         </div>
-        <button class="btn-full btn-dark" onclick="saveJefeConfig()">Guardar configuración</button>
+        <button class="btn-full btn-dark" onclick="saveJefeConfig()">Guardar</button>
       </div>
-      <!-- Órdenes pendientes -->
       <div class="store-card">
-        <h3>📋 Órdenes pendientes <span id="jefe-notif-dot" style="display:none;width:7px;height:7px;border-radius:50%;background:var(--brand);display:inline-block;vertical-align:middle;margin-left:4px"></span></h3>
-        <div id="jefe-orders-list"><div style="font-size:.75rem;color:var(--muted);text-align:center;padding:18px">Cargando…</div></div>
+        <h3>Órdenes pendientes</h3>
+        <div id="jefe-orders-list"><div style="font-size:.73rem;color:var(--muted);text-align:center;padding:16px">Cargando…</div></div>
       </div>
-      <!-- Todos los productos -->
       <div class="store-card">
-        <h3>🛍️ Todos los productos</h3>
-        <div id="jefe-all-products"><div style="font-size:.75rem;color:var(--muted);text-align:center;padding:18px">Cargando…</div></div>
+        <h3>Todos los productos</h3>
+        <div id="jefe-all-products"><div style="font-size:.73rem;color:var(--muted);text-align:center;padding:16px">Cargando…</div></div>
       </div>
-      <!-- Vendedores -->
       <div class="store-card">
-        <h3>👥 Vendedores registrados</h3>
-        <div id="jefe-sellers-list"><div style="font-size:.75rem;color:var(--muted);text-align:center;padding:18px">Cargando…</div></div>
+        <h3>Vendedores</h3>
+        <div id="jefe-sellers-list"><div style="font-size:.73rem;color:var(--muted);text-align:center;padding:16px">Cargando…</div></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ========== MODALES ========== -->
+<!-- MODALES -->
 
 <!-- ACCESS -->
 <div class="overlay" id="access-modal" onclick="if(event.target.id==='access-modal')closeAccessModal()">
   <div class="sheet">
     <div class="sheet-handle"></div>
-    <div class="sheet-title">Acceso Especial 🔐</div>
+    <div class="sheet-title">Acceso Especial</div>
     <button class="access-btn" onclick="goJefe()">
-      <div class="access-btn-ico" style="background:#FFF5E6">👑</div>
-      <div class="access-btn-info"><div class="access-btn-name">Panel Jefe</div><div class="access-btn-sub">Administración completa del marketplace</div></div>
-      <span style="color:var(--muted);font-size:1.1rem">›</span>
+      <div class="access-btn-ico" style="background:#F5F0FF">◆</div>
+      <div class="access-btn-info"><div class="access-btn-name">Panel Jefe</div><div class="access-btn-sub">Administración del marketplace</div></div>
+      <span style="color:var(--muted)">›</span>
     </button>
     <button class="btn-full btn-ghost" onclick="closeAccessModal()">Cancelar</button>
   </div>
@@ -734,11 +647,11 @@ header{background:rgba(255,255,255,.96);backdrop-filter:blur(24px);-webkit-backd
 <div class="overlay" id="auth-modal" onclick="if(event.target.id==='auth-modal')closeAuthModal()">
   <div class="sheet">
     <div class="sheet-handle"></div>
-    <div id="auth-logged-view" style="display:none;text-align:center;padding:8px 0 14px">
-      <div id="modal-av-wrap" style="width:72px;height:72px;border-radius:50%;background:var(--dark);display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin:0 auto 12px;overflow:hidden;border:2px solid var(--border)"></div>
-      <div style="font-family:var(--fd);font-size:1.15rem;margin-bottom:3px;font-weight:800" id="auth-modal-name"></div>
-      <div style="font-size:.68rem;color:var(--muted);margin-bottom:14px" id="auth-modal-email"></div>
-      <div id="auth-plan-badge" style="margin-bottom:18px"></div>
+    <div id="auth-logged-view" style="display:none;text-align:center;padding:6px 0 12px">
+      <div id="modal-av-wrap" style="width:64px;height:64px;border-radius:12px;background:var(--dark);display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin:0 auto 10px;overflow:hidden;border:1.5px solid var(--border)"></div>
+      <div style="font-size:1rem;margin-bottom:2px;font-weight:600;letter-spacing:-.2px" id="auth-modal-name"></div>
+      <div style="font-size:.65rem;color:var(--muted);margin-bottom:12px" id="auth-modal-email"></div>
+      <div id="auth-plan-badge" style="margin-bottom:16px"></div>
       <button class="btn-full btn-ghost" onclick="logoutUser()">Cerrar sesión</button>
     </div>
     <div id="auth-form-view">
@@ -748,27 +661,27 @@ header{background:rgba(255,255,255,.96);backdrop-filter:blur(24px);-webkit-backd
       </div>
       <div id="auth-login-form">
         <div class="form-row"><label class="form-label">Correo</label><input class="form-input" id="auth-email" type="email" placeholder="tu@correo.com" autocomplete="email"></div>
-        <div class="form-row" style="margin-top:8px"><label class="form-label">Contraseña</label><input class="form-input" id="auth-pass" type="password" placeholder="••••••" autocomplete="current-password"></div>
+        <div class="form-row" style="margin-top:7px"><label class="form-label">Contraseña</label><input class="form-input" id="auth-pass" type="password" placeholder="••••••" autocomplete="current-password"></div>
         <div class="form-err" id="auth-err"></div>
         <button class="btn-full btn-dark" onclick="loginUser()">Entrar</button>
       </div>
       <div id="auth-register-form" style="display:none">
         <div class="avatar-upload">
           <div class="avatar-circle" id="reg-av-circle" onclick="document.getElementById('reg-av-file').click()">
-            <span id="reg-av-icon" style="font-size:1.6rem">👤</span>
+            <span id="reg-av-icon" style="font-size:1.4rem">👤</span>
             <img id="reg-av-preview" style="display:none;width:100%;height:100%;object-fit:cover">
           </div>
           <input type="file" id="reg-av-file" accept="image/*" style="display:none" onchange="previewRegAvatar(event)">
           <div class="avatar-hint">Foto de perfil (opcional)</div>
         </div>
-        <div class="form-row"><label class="form-label">Nombre completo</label><input class="form-input" id="reg-name" placeholder="Tu nombre completo"></div>
-        <div class="form-row" style="margin-top:8px"><label class="form-label">Correo</label><input class="form-input" id="reg-email" type="email" placeholder="tu@correo.com" autocomplete="email"></div>
-        <div class="form-row" style="margin-top:8px"><label class="form-label">WhatsApp</label><input class="form-input" id="reg-phone" type="tel" placeholder="+507 6000-0000"></div>
-        <div class="form-row" style="margin-top:8px"><label class="form-label">Contraseña</label><input class="form-input" id="reg-pass" type="password" placeholder="Mínimo 6 caracteres" autocomplete="new-password"></div>
+        <div class="form-row"><label class="form-label">Nombre completo</label><input class="form-input" id="reg-name" placeholder="Tu nombre"></div>
+        <div class="form-row" style="margin-top:7px"><label class="form-label">Correo</label><input class="form-input" id="reg-email" type="email" placeholder="tu@correo.com" autocomplete="email"></div>
+        <div class="form-row" style="margin-top:7px"><label class="form-label">WhatsApp</label><input class="form-input" id="reg-phone" type="tel" placeholder="+507 6000-0000"></div>
+        <div class="form-row" style="margin-top:7px"><label class="form-label">Contraseña</label><input class="form-input" id="reg-pass" type="password" placeholder="Mínimo 6 caracteres" autocomplete="new-password"></div>
         <div class="form-err" id="reg-err"></div>
-        <button class="btn-full btn-dark" onclick="registerUser()">Crear cuenta gratis 🎉</button>
+        <button class="btn-full btn-dark" onclick="registerUser()">Crear cuenta</button>
       </div>
-      <button class="btn-full btn-ghost" style="margin-top:6px" onclick="closeAuthModal()">Cancelar</button>
+      <button class="btn-full btn-ghost" style="margin-top:4px" onclick="closeAuthModal()">Cancelar</button>
     </div>
   </div>
 </div>
@@ -785,18 +698,13 @@ header{background:rgba(255,255,255,.96);backdrop-filter:blur(24px);-webkit-backd
 <div class="overlay" id="checkout-modal" onclick="if(event.target.id==='checkout-modal')closeCheckout()">
   <div class="checkout-sheet">
     <div class="sheet-handle"></div>
-    <!-- Step 1: Método -->
     <div id="step-method" class="cstep active">
       <div class="checkout-pill" id="checkout-pill">Producto · $0</div>
       <div class="cstep-title">¿Cómo quieres pagar?</div>
-      <!-- Seller info -->
       <div class="seller-pay-box" id="seller-pay-box-display">
         <div class="spb-head">
           <div class="spb-av" id="co-seller-av">?</div>
-          <div>
-            <div class="spb-name" id="co-seller-name">Vendedor</div>
-            <div class="spb-sub">Paga directamente al vendedor</div>
-          </div>
+          <div><div class="spb-name" id="co-seller-name">Vendedor</div><div class="spb-sub">Paga directamente al vendedor</div></div>
         </div>
       </div>
       <div class="pay-method-select">
@@ -811,12 +719,11 @@ header{background:rgba(255,255,255,.96);backdrop-filter:blur(24px);-webkit-backd
           <div class="pm-arr">›</div>
         </button>
       </div>
-      <div style="background:var(--green-bg);border-radius:var(--r);padding:12px 14px;font-size:.68rem;color:#005a2b;font-weight:500;margin-bottom:14px;border:1px solid rgba(0,200,83,.2)">
+      <div style="background:var(--green-bg);border-radius:10px;padding:11px 13px;font-size:.66rem;color:#005a2b;font-weight:500;margin-bottom:12px;border:1px solid rgba(0,179,65,.15)">
         🚚 Entrega a domicilio incluida · <strong id="delivery-cost-display">$3.00</strong>
       </div>
       <button class="btn-full btn-ghost" onclick="closeCheckout()">Cancelar</button>
     </div>
-    <!-- Step 2: YAPPY -->
     <div id="step-yappy" class="cstep">
       <div class="cback" onclick="backToMethod()">‹ Volver</div>
       <div class="cstep-title">Paga con Yappy 💚</div>
@@ -829,13 +736,12 @@ header{background:rgba(255,255,255,.96);backdrop-filter:blur(24px);-webkit-backd
         </div>
       </div>
       <div class="instr-steps">
-        <div class="instr-step"><span class="step-n">1</span><span>Abre tu app Yappy</span></div>
-        <div class="instr-step"><span class="step-n">2</span><span>Envía <strong id="yappy-amount-txt"></strong> al número mostrado arriba</span></div>
-        <div class="instr-step"><span class="step-n">3</span><span>Toma captura del comprobante y súbela aquí</span></div>
+        <div class="instr-step"><span class="step-n">1</span>Abre tu app Yappy</div>
+        <div class="instr-step"><span class="step-n">2</span>Envía <strong id="yappy-amount-txt"></strong> al número de arriba</div>
+        <div class="instr-step"><span class="step-n">3</span>Toma captura y súbela abajo</div>
       </div>
       <button class="btn-full btn-dark" onclick="goToUpload()">Ya pagué → Subir comprobante</button>
     </div>
-    <!-- Step 3: ACH -->
     <div id="step-ach" class="cstep">
       <div class="cback" onclick="backToMethod()">‹ Volver</div>
       <div class="cstep-title">Transferencia ACH 🏦</div>
@@ -848,13 +754,12 @@ header{background:rgba(255,255,255,.96);backdrop-filter:blur(24px);-webkit-backd
         </div>
       </div>
       <div class="instr-steps">
-        <div class="instr-step"><span class="step-n">1</span><span>Abre tu banca en línea</span></div>
-        <div class="instr-step"><span class="step-n">2</span><span>Transfiere <strong id="ach-amount-txt"></strong> a la cuenta mostrada</span></div>
-        <div class="instr-step"><span class="step-n">3</span><span>Guarda el comprobante</span></div>
+        <div class="instr-step"><span class="step-n">1</span>Abre tu banca en línea</div>
+        <div class="instr-step"><span class="step-n">2</span>Transfiere <strong id="ach-amount-txt"></strong> a la cuenta de arriba</div>
+        <div class="instr-step"><span class="step-n">3</span>Guarda el comprobante</div>
       </div>
       <button class="btn-full btn-dark" onclick="goToUpload()">Ya pagué → Subir comprobante</button>
     </div>
-    <!-- Step 4: Upload -->
     <div id="step-upload" class="cstep">
       <div class="cback" onclick="backToInstructions()">‹ Volver</div>
       <div class="cstep-title">Sube tu comprobante 📎</div>
@@ -864,13 +769,12 @@ header{background:rgba(255,255,255,.96);backdrop-filter:blur(24px);-webkit-backd
         <input type="file" id="comp-file" accept="image/*" onchange="previewComp(event)">
         <img id="comp-preview" class="upload-preview">
       </div>
-      <input type="text" class="form-input form-input-pill" id="buyer-name" placeholder="Tu nombre completo" style="margin:12px 0">
-      <input type="text" class="form-input form-input-pill" id="buyer-phone" placeholder="Tu WhatsApp (+507 ####-####)" style="margin-bottom:12px">
-      <input type="text" class="form-input form-input-pill" id="buyer-address" placeholder="Dirección de entrega" style="margin-bottom:14px">
+      <input type="text" class="form-input form-input-pill" id="buyer-name" placeholder="Tu nombre completo" style="margin:11px 0">
+      <input type="text" class="form-input form-input-pill" id="buyer-phone" placeholder="Tu WhatsApp (+507 ####-####)" style="margin-bottom:10px">
+      <input type="text" class="form-input form-input-pill" id="buyer-address" placeholder="Dirección de entrega" style="margin-bottom:12px">
       <button class="btn-full btn-dark" id="confirm-order-btn" onclick="confirmOrder()">Confirmar pedido ✅</button>
       <button class="btn-full btn-ghost" onclick="closeCheckout()">Cancelar</button>
     </div>
-    <!-- Step 5: Waiting -->
     <div id="step-waiting" class="cstep">
       <div class="wait-wrap">
         <div class="wait-icon"><div class="pulse-ring"></div><div class="pulse-ring r2"></div><div class="wait-emoji">✅</div></div>
@@ -881,10 +785,10 @@ header{background:rgba(255,255,255,.96);backdrop-filter:blur(24px);-webkit-backd
           <div class="timer-display" id="wt-display">10:00</div>
           <div class="timer-bar-bg"><div class="timer-bar" id="wt-bar"></div></div>
         </div>
-        <div style="font-size:.7rem;color:var(--muted);text-align:left;line-height:1.6;padding:0 4px">
-          ✅ Una vez el vendedor apruebe, NEXO coordinará la entrega a tu dirección. Te contactaremos por WhatsApp.
+        <div style="font-size:.68rem;color:var(--muted);text-align:left;line-height:1.6;padding:0 2px">
+          ✅ Una vez aprobado, NEXO coordinará la entrega. Te contactaremos por WhatsApp.
         </div>
-        <button class="btn-full btn-ghost" style="margin-top:18px" onclick="closeCheckout()">Cerrar</button>
+        <button class="btn-full btn-ghost" style="margin-top:16px" onclick="closeCheckout()">Cerrar</button>
       </div>
     </div>
   </div>
@@ -899,7 +803,7 @@ header{background:rgba(255,255,255,.96);backdrop-filter:blur(24px);-webkit-backd
 <div class="overlay" id="img-viewer" onclick="document.getElementById('img-viewer').classList.remove('open')">
   <div class="img-modal-content">
     <div class="sheet-handle"></div>
-    <img id="img-viewer-src" src="" style="width:100%;border-radius:14px;max-height:60vh;object-fit:contain">
+    <img id="img-viewer-src" src="" style="width:100%;border-radius:10px;max-height:60vh;object-fit:contain">
   </div>
 </div>
 
@@ -915,32 +819,27 @@ const db=getFirestore(fbApp);
 const storage=getStorage(fbApp);
 const auth=getAuth(fbApp);
 
-// STATE
-let currentUser=null, currentUserData=null;
-let allProducts=[], activeCategory='all';
+let currentUser=null,currentUserData=null;
+let allProducts=[],activeCategory='all';
 let countdownInterval=null;
-let currentProduct=null, currentSeller=null;
-let prodImgFile=null, regAvatarFile=null;
+let currentProduct=null,currentSeller=null;
+let prodImgFile=null,regAvatarFile=null;
 let isBoss=false;
 let payModality='nexo';
 let jefePayModality='nexo';
 let globalConfig={yappy:'6902-8805',ach:'0408000050774',deliveryCost:3,payModality:'nexo'};
 let savePayDebounce=null;
 
-// TOAST
 function showToast(msg,dur=3000){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),dur);}
 window.showToast=showToast;
 
-// SPLASH
-setTimeout(()=>{const s=document.getElementById('splash');if(s){s.classList.add('hide');setTimeout(()=>s.style.display='none',500);}},1800);
+setTimeout(()=>{const s=document.getElementById('splash');if(s){s.classList.add('hide');setTimeout(()=>s.style.display='none',500);}},1600);
 
-// LOAD GLOBAL CONFIG
 async function loadGlobalConfig(){
   try{const d=await getDoc(doc(db,"nexo_config","global"));if(d.exists())globalConfig={...globalConfig,...d.data()};}catch(e){}
 }
 loadGlobalConfig();
 
-// AUTH
 onAuthStateChanged(auth,async user=>{
   currentUser=user;
   if(user){
@@ -952,43 +851,37 @@ onAuthStateChanged(auth,async user=>{
     loadSellerOrders();
     loadSellerStats();
     loadNotifs();
-  } else {
-    currentUser=null;currentUserData=null;
-    setupGuestUI();
-  }
+  }else{currentUser=null;currentUserData=null;setupGuestUI();}
   renderProducts();
 });
 
 function setupLoggedUI(ud,email){
-  document.getElementById('h-sell-btn').textContent='+ Vender';
   document.getElementById('h-av').style.display='flex';
   document.getElementById('h-notif').style.display='flex';
   document.getElementById('h-login-btn').style.display='none';
   const hav=document.getElementById('h-av');
   if(ud.avatar)hav.innerHTML=`<img src="${ud.avatar}">`;
-  else{document.getElementById('h-av-init').textContent=(ud.nombre||'U')[0].toUpperCase();}
+  else document.getElementById('h-av-init').textContent=(ud.nombre||'U')[0].toUpperCase();
   document.getElementById('mystore-logged').style.display='block';
   document.getElementById('mystore-guest').style.display='none';
-  // Store profile
   const sav=document.getElementById('store-av');
   if(ud.avatar)sav.innerHTML=`<img src="${ud.avatar}" style="width:100%;height:100%;object-fit:cover">`;
   else sav.textContent=(ud.nombre||'?')[0].toUpperCase();
   document.getElementById('store-name').textContent=ud.nombre||'Mi Tienda';
-  document.getElementById('store-plan-badge').textContent=ud.plan?`Plan ${ud.plan} activo ✦`:'Sin plan activo';
+  document.getElementById('store-plan-badge').textContent=ud.plan?`Plan activo ◆`:'Sin plan activo';
   if(ud.yappy)document.getElementById('store-yappy').value=ud.yappy;
   if(ud.ach)document.getElementById('store-ach').value=ud.ach;
   if(ud.modality)selectModality(ud.modality,true);
   if(ud.phone)document.getElementById('p-phone').value=ud.phone;
   if(ud.email)document.getElementById('p-email').value=email||ud.email;
-  // Modal
   const maw=document.getElementById('modal-av-wrap');
-  maw.innerHTML=ud.avatar?`<img src="${ud.avatar}" style="width:72px;height:72px;object-fit:cover;border-radius:50%">`:`<span style="font-size:1.8rem">${(ud.nombre||'?')[0].toUpperCase()}</span>`;
+  maw.innerHTML=ud.avatar?`<img src="${ud.avatar}" style="width:64px;height:64px;object-fit:cover;border-radius:10px">`:`<span style="font-size:1.6rem">${(ud.nombre||'?')[0].toUpperCase()}</span>`;
   document.getElementById('auth-modal-name').textContent=ud.nombre||'Usuario';
   document.getElementById('auth-modal-email').textContent=email;
   document.getElementById('auth-logged-view').style.display='block';
   document.getElementById('auth-form-view').style.display='none';
   const pb=document.getElementById('auth-plan-badge');
-  if(ud.plan){pb.innerHTML=`<span style="background:var(--surface);color:var(--sub);font-size:.65rem;font-weight:700;padding:5px 14px;border-radius:50px;border:1px solid var(--border)">✦ Plan ${ud.plan.charAt(0).toUpperCase()+ud.plan.slice(1)} activo</span>`;}
+  if(ud.plan){pb.innerHTML=`<span style="background:var(--surface);color:var(--sub);font-size:.63rem;font-weight:600;padding:5px 13px;border-radius:6px;border:1px solid var(--border);font-family:var(--mono)">◆ Plan activo</span>`;}
 }
 
 function setupGuestUI(){
@@ -1013,7 +906,7 @@ window.previewRegAvatar=(e)=>{const f=e.target.files[0];if(!f)return;regAvatarFi
 window.loginUser=async()=>{
   const email=document.getElementById('auth-email').value.trim(),pass=document.getElementById('auth-pass').value;
   const err=document.getElementById('auth-err');if(!email||!pass){err.textContent='Completa todos los campos';return;}
-  try{await signInWithEmailAndPassword(auth,email,pass);closeAuthModal();showToast('¡Bienvenido! 👋');}
+  try{await signInWithEmailAndPassword(auth,email,pass);closeAuthModal();showToast('Bienvenido 👋');}
   catch(e){err.textContent='Correo o contraseña incorrectos';}
 };
 window.registerUser=async()=>{
@@ -1026,12 +919,11 @@ window.registerUser=async()=>{
     let avatarUrl='';
     if(regAvatarFile){const sr=ref(storage,`avatares/${cred.user.uid}`);await uploadBytes(sr,regAvatarFile);avatarUrl=await getDownloadURL(sr);}
     await setDoc(doc(db,"usuarios",cred.user.uid),{nombre,email,telefono:phone||'',avatar:avatarUrl,plan:null,yappy:'',ach:'',modality:'nexo',fecha:new Date().toLocaleString("es-PA")});
-    closeAuthModal();showToast('¡Cuenta creada! Bienvenido a NEXO 🎉');
+    closeAuthModal();showToast('Cuenta creada. Bienvenido a NEXO 🎉');
   }catch(e){document.getElementById('reg-err').textContent=e.code==='auth/email-already-in-use'?'Este correo ya está registrado':'Error al crear cuenta';}
 };
-window.logoutUser=async()=>{await signOut(auth);closeAuthModal();showToast('Sesión cerrada 👋');};
+window.logoutUser=async()=>{await signOut(auth);closeAuthModal();showToast('Sesión cerrada');};
 
-// SELLER CONFIG
 window.selectModality=(mod,silent)=>{
   payModality=mod;
   document.querySelectorAll('#modality-toggle .mod-opt').forEach(o=>o.classList.toggle('active',o.dataset.mod===mod));
@@ -1046,7 +938,6 @@ async function savePayInfo(){
   showToast('Datos guardados ✅');
 }
 
-// PRODUCTS
 onSnapshot(query(collection(db,"nexo_products"),orderBy("fecha","desc")),snap=>{
   allProducts=[];snap.forEach(d=>allProducts.push({id:d.id,...d.data()}));
   renderProducts();
@@ -1068,14 +959,14 @@ function renderProducts(){
     (activeCategory==='all'||(p.cat||'').toLowerCase()===activeCategory)&&
     p.status!=='deleted'
   );
-  document.getElementById('prod-count').textContent=filtered.length?`${filtered.length} items`:'';
+  document.getElementById('prod-count').textContent=filtered.length?`${filtered.length}`:'';
   if(!filtered.length){list.innerHTML=`<div class="empty" style="grid-column:span 2"><div class="empty-ico">🔍</div><p>Sin resultados</p></div>`;return;}
   list.innerHTML=filtered.map((p,idx)=>{
-    const sellerAv=p.sellerAvatar?`<img src="${p.sellerAvatar}">`:`<span style="font-size:.45rem;font-weight:800;color:#fff">${(p.sellerName||'?')[0]}</span>`;
+    const sellerAv=p.sellerAvatar?`<img src="${p.sellerAvatar}">`:`<span>${(p.sellerName||'?')[0]}</span>`;
     const delivCost=p.sellerPlan==='elite'?0:p.sellerPlan==='pro'?2:3;
-    const delivBadge=delivCost===0?'<span class="pcard-delivery-badge free">Envío gratis</span>':`<span class="pcard-delivery-badge paid">+$${delivCost} envío</span>`;
+    const delivBadge=delivCost===0?'<span class="pcard-delivery-badge free">Gratis</span>':`<span class="pcard-delivery-badge paid">+$${delivCost}</span>`;
     const imgContent=p.img?`<img src="${p.img}" alt="${p.name}" loading="lazy">`:`<div class="pcard-no-img">📦</div>`;
-    return `<div class="pcard" style="animation-delay:${idx*35}ms" onclick="openDetail(${JSON.stringify(p.id)})">
+    return `<div class="pcard" style="animation-delay:${idx*30}ms" onclick="openDetail(${JSON.stringify(p.id)})">
       <div class="pcard-img">
         ${imgContent}
         <div class="pcard-seller"><div class="pcard-seller-av">${sellerAv}</div><div class="pcard-seller-name">${p.sellerName||'Vendedor'}</div></div>
@@ -1085,7 +976,7 @@ function renderProducts(){
         <div class="pcard-name">${p.name||''}</div>
         <div class="pcard-desc">${p.desc||''}</div>
         <div class="pcard-bottom">
-          <div><span class="pcard-price">$${p.price||0}</span><span class="pcard-price-sub">+ $${delivCost} envío</span></div>
+          <div><span class="pcard-price">$${p.price||0}</span><span class="pcard-price-sub">+$${delivCost} envío</span></div>
           <button class="btn-buy-sm" onclick="event.stopPropagation();initCheckout(${JSON.stringify(p.id)})">Comprar</button>
         </div>
       </div>
@@ -1095,7 +986,6 @@ function renderProducts(){
 window.filterProducts=()=>renderProducts();
 document.querySelectorAll('.cat').forEach(c=>{c.addEventListener('click',()=>{document.querySelectorAll('.cat').forEach(x=>x.classList.remove('active'));c.classList.add('active');activeCategory=c.dataset.cat;renderProducts();});});
 
-// PRODUCT DETAIL
 window.openDetail=async(id)=>{
   const p=allProducts.find(x=>x.id===id);if(!p)return;
   const delivCost=p.sellerPlan==='elite'?0:p.sellerPlan==='pro'?2:3;
@@ -1105,31 +995,29 @@ window.openDetail=async(id)=>{
     ${imgContent}
     <div class="detail-seller-row">
       <div class="detail-seller-av">${sellerAv}</div>
-      <div><div class="detail-seller-name">${p.sellerName||'Vendedor'}</div><div class="detail-seller-sub">${p.sellerPlan?`Plan ${p.sellerPlan} ✦`:'Vendedor'}</div></div>
+      <div><div class="detail-seller-name">${p.sellerName||'Vendedor'}</div><div class="detail-seller-sub">${p.sellerPlan?`Plan activo ◆`:'Vendedor'}</div></div>
     </div>
-    <div style="font-family:var(--fd);font-size:1.15rem;font-weight:800;margin-bottom:6px">${p.name}</div>
-    <div style="font-size:.78rem;color:var(--muted);margin-bottom:14px;line-height:1.6">${p.desc||''}</div>
+    <div style="font-size:1rem;font-weight:600;margin-bottom:5px;letter-spacing:-.2px">${p.name}</div>
+    <div style="font-size:.75rem;color:var(--muted);margin-bottom:12px;line-height:1.6;font-weight:400">${p.desc||''}</div>
     <div class="detail-price-row">
       <div class="detail-price">$${p.price}</div>
       <div class="delivery-info-pill">🚚 +$${delivCost} entrega</div>
     </div>
-    ${p.contactPhone?`<div style="font-size:.68rem;color:var(--muted);margin-bottom:4px">📞 ${p.contactPhone}</div>`:''}
-    ${p.contactEmail?`<div style="font-size:.68rem;color:var(--muted);margin-bottom:12px">✉️ ${p.contactEmail}</div>`:''}
+    ${p.contactPhone?`<div style="font-size:.65rem;color:var(--muted);margin-bottom:3px;font-family:var(--mono)">📞 ${p.contactPhone}</div>`:''}
+    ${p.contactEmail?`<div style="font-size:.65rem;color:var(--muted);margin-bottom:11px;font-family:var(--mono)">✉️ ${p.contactEmail}</div>`:''}
     <button class="btn-full btn-dark" onclick="closeDetailModal();initCheckout(${JSON.stringify(id)})">Comprar · $${p.price}</button>
-    ${p.contactPhone?`<button class="btn-full" style="background:#25D366;color:#fff;margin-bottom:0" onclick="window.open('https://wa.me/${p.contactPhone.replace(/\D/g,'')}?text=${encodeURIComponent('Hola, vi tu producto '+p.name+' en NEXO Marketplace. ¿Sigue disponible?')}')">💬 Preguntar al vendedor</button>`:''}
+    ${p.contactPhone?`<button class="btn-full" style="background:#25D366;color:#fff;margin-bottom:0" onclick="window.open('https://wa.me/${p.contactPhone.replace(/\D/g,'')}?text=${encodeURIComponent('Hola, vi tu producto '+p.name+' en NEXO. ¿Sigue disponible?')}')">💬 Preguntar al vendedor</button>`:''}
   `;
   document.getElementById('detail-modal').classList.add('open');
 };
 window.closeDetailModal=()=>document.getElementById('detail-modal').classList.remove('open');
 
-// CHECKOUT
 function showCStep(id){document.querySelectorAll('.cstep').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');}
 
 window.initCheckout=async(productId)=>{
   const p=allProducts.find(x=>x.id===productId);if(!p)return;
   currentProduct=p;
   await loadGlobalConfig();
-  // Load seller data
   let sellerData=null;
   if(p.sellerUid){try{const snap=await getDoc(doc(db,"usuarios",p.sellerUid));if(snap.exists())sellerData=snap.data();}catch(e){}}
   currentSeller=sellerData;
@@ -1137,7 +1025,6 @@ window.initCheckout=async(productId)=>{
   const total=(parseFloat(p.price)+delivCost).toFixed(2);
   document.getElementById('checkout-pill').textContent=`${p.name} · $${total}`;
   document.getElementById('delivery-cost-display').textContent=`$${delivCost.toFixed(2)}`;
-  // Seller pay info
   const useGlobal=globalConfig.payModality==='nexo'||!sellerData?.yappy;
   const yappyNum=useGlobal?globalConfig.yappy:(sellerData?.yappy||globalConfig.yappy);
   const achNum=useGlobal?globalConfig.ach:(sellerData?.ach||globalConfig.ach);
@@ -1145,14 +1032,12 @@ window.initCheckout=async(productId)=>{
   document.getElementById('ach-num-display').textContent=achNum;
   document.getElementById('yappy-amount-txt').textContent=`$${total}`;
   document.getElementById('ach-amount-txt').textContent=`$${total}`;
-  document.getElementById('yappy-dest-sub').textContent=useGlobal?'Pago a NEXO':`Pago al vendedor (${p.sellerName||'Vendedor'})`;
-  document.getElementById('ach-dest-sub').textContent=useGlobal?'Cuenta NEXO':`Cuenta del vendedor`;
-  // Seller badge
+  document.getElementById('yappy-dest-sub').textContent=useGlobal?'Pago a NEXO':`Al vendedor (${p.sellerName||'Vendedor'})`;
+  document.getElementById('ach-dest-sub').textContent=useGlobal?'Cuenta NEXO':'Cuenta del vendedor';
   const coAv=document.getElementById('co-seller-av');
-  if(p.sellerAvatar)coAv.innerHTML=`<img src="${p.sellerAvatar}" style="width:40px;height:40px;object-fit:cover;border-radius:50%">`;
+  if(p.sellerAvatar)coAv.innerHTML=`<img src="${p.sellerAvatar}" style="width:36px;height:36px;object-fit:cover;border-radius:8px">`;
   else coAv.textContent=(p.sellerName||'?')[0];
   document.getElementById('co-seller-name').textContent=p.sellerName||'Vendedor';
-  // Reset
   const prev=document.getElementById('comp-preview');if(prev){prev.style.display='none';prev.src='';}
   document.getElementById('comp-upload-area').classList.remove('ok');
   document.getElementById('comp-file').value='';
@@ -1167,10 +1052,7 @@ window.initCheckout=async(productId)=>{
 };
 
 window.closeCheckout=()=>{document.getElementById('checkout-modal').classList.remove('open');if(countdownInterval){clearInterval(countdownInterval);countdownInterval=null;}};
-window.selectMethod=(m)=>{
-  if(m==='YAPPY')showCStep('step-yappy');else showCStep('step-ach');
-  window._currentPayMethod=m;
-};
+window.selectMethod=(m)=>{if(m==='YAPPY')showCStep('step-yappy');else showCStep('step-ach');window._currentPayMethod=m;};
 window.backToMethod=()=>showCStep('step-method');
 window.goToUpload=()=>showCStep('step-upload');
 window.backToInstructions=()=>showCStep(window._currentPayMethod==='YAPPY'?'step-yappy':'step-ach');
@@ -1182,38 +1064,34 @@ window.confirmOrder=async()=>{
   const address=document.getElementById('buyer-address').value.trim();
   const file=document.getElementById('comp-file').files[0];
   if(!name){showToast('Ingresa tu nombre ⚠️');return;}
-  if(!address){showToast('Ingresa tu dirección de entrega ⚠️');return;}
+  if(!address){showToast('Ingresa tu dirección ⚠️');return;}
   if(!file){showToast('Sube el comprobante ⚠️');return;}
   const btn=document.getElementById('confirm-order-btn');btn.textContent='Enviando…';btn.disabled=true;
   try{
     const delivCost=getDeliveryCost(currentSeller);
     const total=(parseFloat(currentProduct.price)+delivCost).toFixed(2);
     const sr=ref(storage,`comprobantes/${Date.now()}_${name}`);await uploadBytes(sr,file);const imgUrl=await getDownloadURL(sr);
-    const orderData={
+    await addDoc(collection(db,"nexo_orders"),{
       comprador:name,compradorPhone:phone,compradorAddress:address,
       producto:currentProduct.name,productId:currentProduct.id,precio:currentProduct.price,
       deliveryCost:delivCost,total,pago:window._currentPayMethod,
       comprobante:imgUrl,fecha:new Date().toLocaleString("es-PA"),status:'pending',
       vendedorUid:currentProduct.sellerUid||null,vendedorNombre:currentProduct.sellerName||'',
-      vendedorPhone:currentSeller?.telefono||currentSeller?.phone||'',
-      compradorUid:currentUser?currentUser.uid:null
-    };
-    const orderRef=await addDoc(collection(db,"nexo_orders"),orderData);
-    // Notif al vendedor WhatsApp
+      vendedorPhone:currentSeller?.telefono||'',compradorUid:currentUser?currentUser.uid:null
+    });
     if(currentSeller?.telefono){
       const wa=currentSeller.telefono.replace(/\D/g,'');
-      const msg=`🛎️ NUEVA VENTA en NEXO\n\nProducto: ${currentProduct.name}\nComprador: ${name}\nMonto: $${total}\n\nRevisa tu panel de NEXO para aprobar la entrega.`;
-      window.open(`https://wa.me/${wa}?text=${encodeURIComponent(msg)}`)
+      const msg=`🛎️ NUEVA VENTA en NEXO\n\nProducto: ${currentProduct.name}\nComprador: ${name}\nMonto: $${total}\n\nRevisa tu panel para aprobar.`;
+      window.open(`https://wa.me/${wa}?text=${encodeURIComponent(msg)}`);
     }
     showCStep('step-waiting');
     const TOTAL=600;let tiempo=TOTAL;
     const bar=document.getElementById('wt-bar'),disp=document.getElementById('wt-display');
     if(countdownInterval)clearInterval(countdownInterval);
     countdownInterval=setInterval(()=>{tiempo--;const m=Math.floor(tiempo/60),s=tiempo%60;if(disp)disp.textContent=`${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;if(bar)bar.style.width=`${(tiempo/TOTAL)*100}%`;if(tiempo<=0){clearInterval(countdownInterval);countdownInterval=null;}},1000);
-  }catch(err){console.error(err);showToast('Error al enviar. Revisa tu conexión ❌');btn.disabled=false;btn.textContent='Confirmar pedido ✅';}
+  }catch(err){console.error(err);showToast('Error al enviar ❌');btn.disabled=false;btn.textContent='Confirmar pedido ✅';}
 };
 
-// MY STORE — Publish
 window.previewProdImg=(e)=>{const f=e.target.files[0];if(!f)return;prodImgFile=f;const prev=document.getElementById('p-img-preview');prev.src=URL.createObjectURL(f);prev.style.display='block';document.getElementById('p-img-area').classList.add('ok');};
 window.publishProduct=async()=>{
   if(!currentUser){openAuthModal();return;}
@@ -1224,7 +1102,7 @@ window.publishProduct=async()=>{
   const phone=document.getElementById('p-phone').value.trim();
   const email=document.getElementById('p-email').value.trim();
   if(!name||!price){showToast('Nombre y precio son obligatorios ⚠️');return;}
-  if(!phone&&!email){showToast('Agrega al menos número o correo de contacto ⚠️');return;}
+  if(!phone&&!email){showToast('Agrega número o correo de contacto ⚠️');return;}
   const btn=document.getElementById('btn-publish');btn.textContent='Publicando…';btn.disabled=true;
   try{
     let imgUrl='';
@@ -1238,25 +1116,24 @@ window.publishProduct=async()=>{
     });
     document.getElementById('p-name').value='';document.getElementById('p-desc').value='';document.getElementById('p-price').value='';
     prodImgFile=null;document.getElementById('p-img-preview').style.display='none';document.getElementById('p-img-area').classList.remove('ok');document.getElementById('p-img-file').value='';
-    showToast('¡Producto publicado! 🎉');
+    showToast('Producto publicado ✅');
   }catch(e){console.error(e);showToast('Error al publicar ❌');}
-  btn.textContent='📢 Publicar producto';btn.disabled=false;
+  btn.textContent='Publicar producto';btn.disabled=false;
 };
 
 function loadMyProducts(){
   if(!currentUser)return;
   const el=document.getElementById('my-products-list');if(!el)return;
   onSnapshot(query(collection(db,"nexo_products"),where("sellerUid","==",currentUser.uid)),snap=>{
-    if(snap.empty){el.innerHTML=`<div style="font-size:.75rem;color:var(--muted);text-align:center;padding:18px">Sin productos publicados</div>`;return;}
+    if(snap.empty){el.innerHTML=`<div style="font-size:.72rem;color:var(--muted);text-align:center;padding:16px">Sin productos publicados</div>`;return;}
     el.innerHTML=snap.docs.map(d=>{const p=d.data();return `<div class="my-prod-card">
-      <div class="my-prod-img">${p.img?`<img src="${p.img}">`:'<div style="width:100%;height:100%;background:var(--border);display:flex;align-items:center;justify-content:center;font-size:1.2rem">📦</div>'}</div>
+      <div class="my-prod-img">${p.img?`<img src="${p.img}">`:'<div style="width:100%;height:100%;background:var(--border);display:flex;align-items:center;justify-content:center">📦</div>'}</div>
       <div class="my-prod-info"><div class="my-prod-name">${p.name}</div><div class="my-prod-detail">$${p.price} · ${p.cat}</div></div>
       <button class="my-prod-del" onclick="deleteMyProduct(${JSON.stringify(d.id)})">Eliminar</button>
     </div>`;}).join('');
   });
 }
-
-window.deleteMyProduct=async(id)=>{if(!confirm('¿Eliminar este producto?'))return;await deleteDoc(doc(db,"nexo_products",id));showToast('Producto eliminado');};
+window.deleteMyProduct=async(id)=>{if(!confirm('¿Eliminar?'))return;await deleteDoc(doc(db,"nexo_products",id));showToast('Eliminado');};
 
 function loadSellerOrders(){
   if(!currentUser)return;
@@ -1265,9 +1142,9 @@ function loadSellerOrders(){
     const pending=[];snap.forEach(d=>{const o=d.data();if(o.status==='pending')pending.push({id:d.id,...o});});
     const dot=document.getElementById('seller-notif-dot');
     if(dot)dot.style.display=pending.length?'inline-block':'none';
-    if(snap.empty){el.innerHTML=`<div style="font-size:.75rem;color:var(--muted);text-align:center;padding:18px">Sin pedidos recibidos aún</div>`;return;}
+    if(snap.empty){el.innerHTML=`<div style="font-size:.72rem;color:var(--muted);text-align:center;padding:16px">Sin pedidos aún</div>`;return;}
     el.innerHTML=snap.docs.map(d=>{const o=d.data();
-      const s=o.status==='approved'?'<span class="status-badge approved">✅ Liberado</span>':o.status==='rejected'?'<span class="status-badge rejected">❌ Rechazado</span>':'<span class="status-badge pending">⏳ Pendiente</span>';
+      const s=o.status==='approved'?'<span class="status-badge approved">Liberado</span>':o.status==='rejected'?'<span class="status-badge rejected">Rechazado</span>':'<span class="status-badge pending">Pendiente</span>';
       const actions=o.status==='pending'?`<div class="order-actions"><button class="obtn approve" onclick="approveSellerOrder(${JSON.stringify(d.id)},${JSON.stringify(o)})">✅ Liberar</button><button class="obtn reject" onclick="rejectSellerOrder(${JSON.stringify(d.id)})">❌ Rechazar</button></div>`:'';
       return `<div class="order-card">
         <div class="order-top"><div><div class="order-name">${o.comprador}</div><div class="order-detail">${o.producto} · $${o.total} · ${o.pago}</div><div class="order-detail">${o.compradorAddress||''}</div></div>${s}</div>
@@ -1280,18 +1157,15 @@ function loadSellerOrders(){
 
 window.approveSellerOrder=async(id,o)=>{
   await updateDoc(doc(db,"nexo_orders",id),{status:'approved'});
-  showToast('Venta liberada ✅ NEXO coordinará la entrega');
-  // Notify NEXO boss via WA
+  showToast('Venta liberada ✅');
   const msg=`✅ VENTA LIBERADA por ${o.vendedorNombre}\nProducto: ${o.producto}\nComprador: ${o.comprador}\nDirección: ${o.compradorAddress}\nTotal: $${o.total}`;
   window.open(`https://wa.me/${globalConfig.yappy?.replace(/\D/g,'')||'50769028805'}?text=${encodeURIComponent(msg)}`);
 };
-window.rejectSellerOrder=async(id)=>{await updateDoc(doc(db,"nexo_orders",id),{status:'rejected'});showToast('Pedido rechazado');};
+window.rejectSellerOrder=async(id)=>{await updateDoc(doc(db,"nexo_orders",id),{status:'rejected'});showToast('Rechazado');};
 
 function loadSellerStats(){
   if(!currentUser)return;
-  onSnapshot(query(collection(db,"nexo_products"),where("sellerUid","==",currentUser.uid)),snap=>{
-    document.getElementById('stat-products').textContent=snap.size;
-  });
+  onSnapshot(query(collection(db,"nexo_products"),where("sellerUid","==",currentUser.uid)),snap=>{document.getElementById('stat-products').textContent=snap.size;});
   onSnapshot(query(collection(db,"nexo_orders"),where("vendedorUid","==",currentUser.uid)),snap=>{
     let sales=0,earned=0;
     snap.forEach(d=>{const o=d.data();if(o.status==='approved'){sales++;earned+=parseFloat(o.precio||0);}});
@@ -1300,7 +1174,6 @@ function loadSellerStats(){
   });
 }
 
-// TRACKING
 window.trackOrder=async()=>{
   const id=document.getElementById('track-id').value.trim();
   const res=document.getElementById('track-result');
@@ -1308,17 +1181,16 @@ window.trackOrder=async()=>{
   try{
     const snap=await getDocs(query(collection(db,"nexo_orders"),where("comprador","==",id)));
     if(snap.empty){res.textContent="No se encontró pedido. Verifica tu nombre exacto.";return;}
-    let html='';snap.forEach(d=>{const o=d.data();const s=o.status==='approved'?'✅ Liberado - En camino':o.status==='rejected'?'❌ Rechazado':'⏳ Pendiendo aprobación del vendedor';html+=`<div class="track-badge">${o.producto||''}  ·  ${s}</div><br>`;});
+    let html='';snap.forEach(d=>{const o=d.data();const s=o.status==='approved'?'✅ En camino':o.status==='rejected'?'❌ Rechazado':'⏳ Pendiente de aprobación';html+=`<div class="track-badge">${o.producto||''}  ·  ${s}</div><br>`;});
     res.innerHTML=html;
-  }catch(e){res.textContent="Error al consultar. Intenta de nuevo.";}
+  }catch(e){res.textContent="Error al consultar.";}
 };
 
-// NOTIFS
 function loadNotifs(){
   if(!currentUser)return;
   onSnapshot(query(collection(db,"nexo_orders"),where("compradorUid","==",currentUser.uid),orderBy("fecha","desc"),limit(20)),snap=>{
     const el=document.getElementById('notifs-list');if(!el)return;
-    if(snap.empty){el.innerHTML=`<div style="font-size:.75rem;color:var(--muted);text-align:center;padding:24px">Sin notificaciones</div>`;return;}
+    if(snap.empty){el.innerHTML=`<div style="font-size:.72rem;color:var(--muted);text-align:center;padding:22px">Sin notificaciones</div>`;return;}
     el.innerHTML=snap.docs.map(d=>{const o=d.data();
       const ico=o.status==='approved'?'✅':o.status==='rejected'?'❌':'📦';
       const bg=o.status==='approved'?'green-bg':'';
@@ -1330,35 +1202,27 @@ function loadNotifs(){
   });
 }
 
-// SUBS
-const SUB_DATA={
-  basic:{name:'Starter',price:'$8.99',color:'var(--dark)',perks:['10 publicaciones/mes','Entrega $3 al comprador','Notif. de ventas por WhatsApp','Estadísticas básicas']},
-  gold:{name:'Pro',price:'$18.99',color:'var(--gold)',perks:['50 publicaciones/mes','Entrega $2 al comprador','Sello de Vendedor Pro ⭐','Dashboard completo','Posición destacada','Soporte prioritario']},
-  elite:{name:'Elite',price:'$34.99',color:'var(--brand)',perks:['Publicaciones ilimitadas','Envío GRATIS al comprador','Sello Elite verificado 👑','Primero en búsquedas','Analíticas avanzadas','Línea VIP directa']}
-};
-window.openSubModal=(type)=>{
-  if(!currentUser){openAuthModal();showToast('Crea tu cuenta para suscribirte 👆');return;}
-  const s=SUB_DATA[type];
+window.openSubModal=()=>{
+  if(!currentUser){openAuthModal();showToast('Crea tu cuenta primero 👆');return;}
   document.getElementById('sub-modal-content').innerHTML=`
-    <div style="text-align:center;padding:6px 0 14px">
-      <div style="font-family:var(--fd);font-size:1.2rem;font-weight:800;margin-bottom:4px">${s.name}</div>
-      <div style="font-family:var(--fd);font-size:2.4rem;font-weight:800;color:${s.color};margin:10px 0 4px">${s.price}</div>
-      <div style="font-size:.64rem;color:var(--muted);margin-bottom:16px">/mes · Cancela cuando quieras</div>
+    <div style="text-align:center;padding:4px 0 12px">
+      <div style="font-family:var(--mono);font-size:.55rem;letter-spacing:3px;color:var(--muted);text-transform:uppercase;margin-bottom:12px">◆ NEXO SELLER</div>
+      <div style="font-family:var(--mono);font-size:2.4rem;font-weight:700;color:var(--dark);margin-bottom:2px">$2.99</div>
+      <div style="font-size:.64rem;color:var(--muted);margin-bottom:18px">/mes · Cancela cuando quieras</div>
       <div style="text-align:left;border-top:1px solid var(--border);padding-top:14px">
-        ${s.perks.map(p=>`<div style="font-size:.74rem;color:var(--sub);padding:7px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:9px;font-weight:400"><span style="color:${s.color}">✦</span>${p}</div>`).join('')}
+        ${['Publicaciones ilimitadas','Entrega $3 al comprador (NEXO coordina)','Notificaciones de ventas por WhatsApp','Panel de gestión de pedidos','Soporte directo'].map(p=>`<div style="font-size:.73rem;color:var(--sub);padding:8px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;font-weight:400"><span style="width:5px;height:5px;background:var(--brand);border-radius:50%;flex-shrink:0;display:inline-block"></span>${p}</div>`).join('')}
       </div>
     </div>
-    <button class="btn-full btn-dark" onclick="subscribePlan('${type}','${s.name}')">Suscribirme · ${s.price}/mes</button>
+    <button class="btn-full btn-dark" onclick="subscribePlan()">Activar plan · $2.99/mes</button>
     <button class="btn-full btn-ghost" onclick="document.getElementById('sub-modal').classList.remove('open')">Cancelar</button>`;
   document.getElementById('sub-modal').classList.add('open');
 };
-window.subscribePlan=async(type,name)=>{
+window.subscribePlan=async()=>{
   if(!currentUser)return;
-  try{await updateDoc(doc(db,"usuarios",currentUser.uid),{plan:type});document.getElementById('sub-modal').classList.remove('open');showToast(`Plan ${name} activado ✦`);}
+  try{await updateDoc(doc(db,"usuarios",currentUser.uid),{plan:'seller'});document.getElementById('sub-modal').classList.remove('open');showToast('Plan activado ◆');}
   catch(e){showToast('Error al activar plan ❌');}
 };
 
-// JEFE
 window.openAccessModal=()=>document.getElementById('access-modal').classList.add('open');
 window.closeAccessModal=()=>document.getElementById('access-modal').classList.remove('open');
 window.goJefe=()=>{closeAccessModal();document.getElementById('app-client').style.display='none';document.getElementById('app-jefe').style.display='block';};
@@ -1371,44 +1235,40 @@ async function loadJefePanel(){
   if(globalConfig.yappy)document.getElementById('jefe-yappy').value=globalConfig.yappy;
   if(globalConfig.ach)document.getElementById('jefe-ach').value=globalConfig.ach;
   if(globalConfig.deliveryCost)document.getElementById('jefe-delivery-cost').value=globalConfig.deliveryCost;
-  if(globalConfig.payModality){jefeSelectPayModality(globalConfig.payModality,true);}
-  // Orders
+  if(globalConfig.payModality)jefeSelectPayModality(globalConfig.payModality,true);
   onSnapshot(query(collection(db,"nexo_orders"),orderBy("fecha","desc")),snap=>{
-    let pending=0;const el=document.getElementById('jefe-orders-list');
-    if(!el)return;
+    let pending=0;const el=document.getElementById('jefe-orders-list');if(!el)return;
     snap.forEach(d=>{if(d.data().status==='pending')pending++;});
     document.getElementById('jefe-stat-orders').textContent=snap.size;
     document.getElementById('jefe-stat-pending').textContent=pending;
-    if(snap.empty){el.innerHTML=`<div style="font-size:.75rem;color:var(--muted);text-align:center;padding:18px">Sin órdenes</div>`;return;}
+    if(snap.empty){el.innerHTML=`<div style="font-size:.72rem;color:var(--muted);text-align:center;padding:16px">Sin órdenes</div>`;return;}
     el.innerHTML=snap.docs.filter(d=>d.data().status==='pending').map(d=>{const o=d.data();return `<div class="order-card">
       <div class="order-top"><div><div class="order-name">${o.comprador}</div><div class="order-detail">${o.producto} · $${o.total} · ${o.pago}</div><div class="order-detail">📍 ${o.compradorAddress||'—'}</div><div class="order-detail">Vendedor: ${o.vendedorNombre}</div></div><span class="status-badge pending">Pendiente</span></div>
       ${o.comprobante?`<img src="${o.comprobante}" class="order-img" onclick="viewImg('${o.comprobante}')">`:''}
       <div class="order-actions"><button class="obtn approve" onclick="jefApproveOrder(${JSON.stringify(d.id)},${JSON.stringify(o)})">✅ Aprobar</button><button class="obtn reject" onclick="jefRejectOrder(${JSON.stringify(d.id)})">❌ Rechazar</button></div>
-    </div>`;}).join('')||`<div style="font-size:.75rem;color:var(--muted);text-align:center;padding:18px">Sin pendientes 🎉</div>`;
+    </div>`;}).join('')||`<div style="font-size:.72rem;color:var(--muted);text-align:center;padding:16px">Sin pendientes 🎉</div>`;
   });
-  // All products
   onSnapshot(collection(db,"nexo_products"),snap=>{
     const el=document.getElementById('jefe-all-products');if(!el)return;
-    if(snap.empty){el.innerHTML=`<div style="font-size:.75rem;color:var(--muted);text-align:center;padding:18px">Sin productos</div>`;return;}
+    if(snap.empty){el.innerHTML=`<div style="font-size:.72rem;color:var(--muted);text-align:center;padding:16px">Sin productos</div>`;return;}
     el.innerHTML=snap.docs.map(d=>{const p=d.data();return `<div class="my-prod-card"><div class="my-prod-img">${p.img?`<img src="${p.img}">`:'📦'}</div><div class="my-prod-info"><div class="my-prod-name">${p.name}</div><div class="my-prod-detail">$${p.price} · ${p.sellerName||''}</div></div><button class="my-prod-del" onclick="jefDeleteProduct(${JSON.stringify(d.id)})">Del</button></div>`;}).join('');
   });
-  // Sellers
   onSnapshot(collection(db,"usuarios"),snap=>{
     const el=document.getElementById('jefe-sellers-list');if(!el)return;
     document.getElementById('jefe-stat-sellers').textContent=snap.size;
-    if(snap.empty){el.innerHTML=`<div style="font-size:.75rem;color:var(--muted);text-align:center;padding:18px">Sin usuarios</div>`;return;}
-    el.innerHTML=snap.docs.map(d=>{const u=d.data();return `<div class="my-prod-card"><div class="my-prod-img">${u.avatar?`<img src="${u.avatar}">`:`<div style="background:var(--dark);width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;color:#fff">${(u.nombre||'?')[0]}</div>`}</div><div class="my-prod-info"><div class="my-prod-name">${u.nombre||'—'}</div><div class="my-prod-detail">${u.email||''} · Plan: ${u.plan||'—'}</div></div></div>`;}).join('');
+    if(snap.empty){el.innerHTML=`<div style="font-size:.72rem;color:var(--muted);text-align:center;padding:16px">Sin usuarios</div>`;return;}
+    el.innerHTML=snap.docs.map(d=>{const u=d.data();return `<div class="my-prod-card"><div class="my-prod-img">${u.avatar?`<img src="${u.avatar}">`:`<div style="background:var(--dark);width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;color:#fff">${(u.nombre||'?')[0]}</div>`}</div><div class="my-prod-info"><div class="my-prod-name">${u.nombre||'—'}</div><div class="my-prod-detail">${u.email||''} · ${u.plan||'Sin plan'}</div></div></div>`;}).join('');
   });
 }
 
 window.jefApproveOrder=async(id,o)=>{
   await updateDoc(doc(db,"nexo_orders",id),{status:'approved'});
-  showToast(`Orden de ${o.comprador} aprobada ✅`);
-  const msg=`✅ NEXO: Tu pedido de "${o.producto}" fue aprobado. Lo entregaremos a: ${o.compradorAddress}. Tiempo estimado: 24-48h.`;
-  if(o.compradorPhone){window.open(`https://wa.me/${o.compradorPhone.replace(/\D/g,'')}?text=${encodeURIComponent(msg)}`);}
+  showToast(`Aprobado ✅`);
+  const msg=`✅ NEXO: Tu pedido de "${o.producto}" fue aprobado. Entrega a: ${o.compradorAddress}. Tiempo estimado: 24-48h.`;
+  if(o.compradorPhone)window.open(`https://wa.me/${o.compradorPhone.replace(/\D/g,'')}?text=${encodeURIComponent(msg)}`);
 };
-window.jefRejectOrder=async(id)=>{await updateDoc(doc(db,"nexo_orders",id),{status:'rejected'});showToast('Orden rechazada');};
-window.jefDeleteProduct=async(id)=>{if(!confirm('¿Eliminar este producto?'))return;await deleteDoc(doc(db,"nexo_products",id));showToast('Eliminado');};
+window.jefRejectOrder=async(id)=>{await updateDoc(doc(db,"nexo_orders",id),{status:'rejected'});showToast('Rechazado');};
+window.jefDeleteProduct=async(id)=>{if(!confirm('¿Eliminar?'))return;await deleteDoc(doc(db,"nexo_products",id));showToast('Eliminado');};
 
 window.jefeSelectPayModality=(mod,silent)=>{
   jefePayModality=mod;
@@ -1424,20 +1284,15 @@ window.saveJefeConfig=async()=>{
   showToast('Configuración guardada ✅');
 };
 
-// NAV
 window.goView=(v)=>{
   ['shop','mystore','track','notifs'].forEach(x=>{
     document.getElementById(`view-${x}`)?.classList.toggle('active',x===v);
     document.getElementById(`nb-${x}`)?.classList.toggle('active',x===v);
   });
 };
-
 window.handleSellClick=()=>{if(!currentUser){openAuthModal();showToast('Inicia sesión para vender 👆');}else{goView('mystore');}};
-
-// IMG VIEWER
 window.viewImg=(src)=>{document.getElementById('img-viewer-src').src=src;document.getElementById('img-viewer').classList.add('open');};
 
-// SECRET (8 taps)
 let sc=0,st=null;
 window.secretTap=()=>{sc++;clearTimeout(st);st=setTimeout(()=>sc=0,2000);if(sc===8){sc=0;openAccessModal();}};
 </script>
